@@ -1,0 +1,124 @@
+{
+  "$schema": "../site.schema.json",
+  "businessName": "Docklands Fresh Clean",
+  "tagline": "Fast-turnaround end-of-tenancy, apartment and office cleaning across Canary Wharf and Tower Hamlets.",
+  "niche": "cleaner",
+  "borough": "Tower Hamlets",
+  "phone": "020 7946 0381",
+  "whatsapp": "+447700900381",
+  "email": "bookings@docklandsfresh.example.co.uk",
+  "heroImage": {
+    "url": "/src/assets/images/cleaner_kitchen_sparkle_1795373182615.jpg",
+    "alt": "Spotless modern London flat kitchen worktop and polished tap cleaned by Docklands Fresh Clean",
+    "width": 1200,
+    "height": 900
+  },
+  "openingHours": [
+    { "day": "Monday", "open": "07:30", "close": "19:30" },
+    { "day": "Tuesday", "open": "07:30", "close": "19:30" },
+    { "day": "Wednesday", "open": "07:30", "close": "19:30" },
+    { "day": "Thursday", "open": "07:30", "close": "19:30" },
+    { "day": "Friday", "open": "07:30", "close": "19:30" },
+    { "day": "Saturday", "open": "08:30", "close": "17:00" },
+    { "day": "Sunday", "open": "09:30", "close": "15:00" }
+  ],
+  "quoteForm": {
+    "enabled": true,
+    "heading": "Instant fixed cleaning quote",
+    "subtext": "Moving out of a Canary Wharf or Bow apartment? Send your flat size for a same-day fixed quote.",
+    "endpoint": "",
+    "serviceTypes": [
+      "End of tenancy clean (deposit guarantee)",
+      "Regular weekly apartment clean",
+      "Short-let / Airbnb turnaround",
+      "Deep kitchen & bathroom reset",
+      "Small office clean"
+    ]
+  },
+  "services": [
+    {
+      "name": "End of Tenancy Apartment Clean",
+      "description": "Full check-out clean including oven, fridge-freezer defrost, balcony glass and 72-hour re-clean guarantee.",
+      "price": "From £195",
+      "duration": "Fixed price"
+    },
+    {
+      "name": "Weekly / Fortnightly Flat Clean",
+      "description": "Dedicated local cleaner with key-holding option, beds changed and full kitchen & bath reset.",
+      "price": "£22/hour",
+      "duration": "Min 2 hrs"
+    },
+    {
+      "name": "Deep Descale & Steam Refresh",
+      "description": "Heavy limescale removal on glass shower screens, taps, tiles, extractor fans and skirting.",
+      "price": "From £150",
+      "duration": "Half day"
+    },
+    {
+      "name": "Small Office & Studio Clean",
+      "description": "Early-morning or evening commercial cleaning for desks, kitchens, meeting rooms and washrooms.",
+      "price": "From £24/hour",
+      "duration": "Flexible"
+    }
+  ],
+  "gallery": [
+    {
+      "url": "/src/assets/images/cleaner_kitchen_sparkle_1795373182615.jpg",
+      "alt": "Gleaming quartz kitchen counter and brass tap after an end-of-tenancy clean in Canary Wharf E14",
+      "width": 1200,
+      "height": 900,
+      "caption": "Zero-limescale kitchen and bathroom finish approved by E14 letting agents."
+    },
+    {
+      "url": "/src/assets/images/cleaner_bright_flat_1795370824764.jpg",
+      "alt": "Freshly cleaned open-plan Docklands flat living space with sunlit oak floors",
+      "width": 1408,
+      "height": 768,
+      "caption": "Same-day team slots available seven days a week across E14 and E3."
+    }
+  ],
+  "reviews": [
+    {
+      "author": "Priyantha K.",
+      "text": "Booked at 24 hours notice for our Canary Wharf check-out. Letting agent signed off the full deposit on the spot.",
+      "rating": 5,
+      "source": "Google"
+    },
+    {
+      "author": "Lauren D.",
+      "text": "Clear pricing and super reliable key-holding service for our flat in Limehouse.",
+      "rating": 5,
+      "source": "Google"
+    }
+  ],
+  "about": "Docklands Fresh Clean is a local East London cleaning team built for busy apartment residents, landlords and small offices across Canary Wharf, Bow and Wapping. All supplies and commercial equipment included.",
+  "areasServed": [
+    "Canary Wharf (E14)",
+    "Isle of Dogs",
+    "Limehouse",
+    "Wapping (E1W)",
+    "Bow (E3)",
+    "Mile End"
+  ],
+  "theme": {
+    "primaryColour": "#0B3B49",
+    "accentColour": "#0D9488",
+    "font": "athletic",
+    "style": "bold",
+    "mode": "light"
+  },
+  "seo": {
+    "title": "Docklands Fresh Clean — Apartment & End of Tenancy Cleaners E14",
+    "description": "Trusted apartment, end-of-tenancy and office cleaning across Canary Wharf, Limehouse, Wapping and Tower Hamlets.",
+    "schemaType": "HousekeepingService"
+  },
+  "pages": {
+    "home": true,
+    "services": true,
+    "gallery": true,
+    "about": true,
+    "contact": true
+  },
+  "demoMode": true,
+  "demoBannerPhone": "020 7946 0900"
+}

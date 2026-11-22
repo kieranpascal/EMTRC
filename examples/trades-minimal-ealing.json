@@ -1,0 +1,117 @@
+{
+  "$schema": "../site.schema.json",
+  "businessName": "Westway Plumbing & Leaks",
+  "tagline": "Fast, honest local plumbers for leaks, taps, toilets, radiators and blocked drains across Ealing and West London.",
+  "niche": "trades",
+  "borough": "Ealing",
+  "phone": "020 7946 0965",
+  "whatsapp": "+447700900965",
+  "heroImage": {
+    "url": "/src/assets/images/trades_precision_heating_1795370825196.jpg",
+    "alt": "Neat copper pipework and pressure-tested plumbing manifold fitted by Westway Plumbing & Leaks",
+    "width": 1408,
+    "height": 768
+  },
+  "openingHours": [
+    { "day": "Monday", "open": "08:00", "close": "19:00" },
+    { "day": "Tuesday", "open": "08:00", "close": "19:00" },
+    { "day": "Wednesday", "open": "08:00", "close": "19:00" },
+    { "day": "Thursday", "open": "08:00", "close": "19:00" },
+    { "day": "Friday", "open": "08:00", "close": "18:30" },
+    { "day": "Saturday", "open": "08:30", "close": "16:00" },
+    { "day": "Sunday", "status": "closed" }
+  ],
+  "emergencyCallout": {
+    "headline": "Urgent Leak or Burst Pipe in W5 / W3?",
+    "subtext": "Direct local plumber covering Ealing, Acton and Chiswick — no call-out fee when we do the repair.",
+    "responseTime": "Same-day visits across West London"
+  },
+  "gasSafeNumber": "",
+  "niceicNumber": "",
+  "quoteForm": {
+    "enabled": true,
+    "heading": "Request a plumbing estimate",
+    "subtext": "Send your postcode and issue (leaking tap, radiator swap, cistern repair) for a clear fixed price.",
+    "endpoint": "",
+    "serviceTypes": [
+      "Leak trace & pipe repair",
+      "Tap, sink or toilet repair",
+      "Radiator replacement / balancing",
+      "Blocked sink or bathroom drain",
+      "Stopcock replacement"
+    ]
+  },
+  "services": [
+    {
+      "name": "Leak Trace & Pipe Repair",
+      "description": "Under-sink, ceiling and stopcock leaks isolated and repaired neatly with quality brass fittings.",
+      "price": "From £85"
+    },
+    {
+      "name": "Tap, Mixer & Toilet Cistern Repairs",
+      "description": "Dripping ceramic cartridges, running flush valves and new kitchen/bathroom taps supplied or fitted.",
+      "price": "From £75"
+    },
+    {
+      "name": "Radiator Fitting & Balancing",
+      "description": "Cold radiators bled, TRV valves replaced and new designer or standard radiators hung cleanly.",
+      "price": "From £110"
+    },
+    {
+      "name": "Emergency Stopcock Replacement",
+      "description": "Seized brass stopcocks upgraded to reliable quarter-turn full-bore lever valves.",
+      "price": "£135 fixed"
+    }
+  ],
+  "gallery": [
+    {
+      "url": "/src/assets/images/trades_precision_heating_1795370825196.jpg",
+      "alt": "Copper pipework and valve manifold installed in an Ealing family home",
+      "width": 1408,
+      "height": 768
+    },
+    {
+      "url": "/src/assets/images/trades_electrical_craft_1795373181964.jpg",
+      "alt": "Clean pipework lagging and pressure gauge installation in a West London utility cupboard",
+      "width": 1200,
+      "height": 900
+    }
+  ],
+  "reviews": [
+    {
+      "author": "Gareth H.",
+      "text": "Replaced our seized stopcock under the kitchen sink in 45 minutes. Fair price and zero mess.",
+      "rating": 5,
+      "source": "Google"
+    }
+  ],
+  "about": "Westway Plumbing & Leaks handles day-to-day domestic plumbing across Ealing, Acton and Chiswick. We turn up when we say we will, explain the job in plain English and charge honest local rates.",
+  "areasServed": [
+    "Ealing Broadway (W5)",
+    "Acton (W3)",
+    "Chiswick (W4)",
+    "Hanwell (W7)",
+    "Northfields"
+  ],
+  "theme": {
+    "primaryColour": "#0E3366",
+    "accentColour": "#2563EB",
+    "font": "modern",
+    "style": "minimal",
+    "mode": "light"
+  },
+  "seo": {
+    "title": "Westway Plumbing & Leaks — Local Plumbers in Ealing W5 & Acton W3",
+    "description": "Honest local plumbers in Ealing and West London for leaks, taps, toilets, radiators and stopcock repairs.",
+    "schemaType": "Plumber"
+  },
+  "pages": {
+    "home": true,
+    "services": false,
+    "gallery": false,
+    "about": false,
+    "contact": false
+  },
+  "demoMode": true,
+  "demoBannerPhone": "020 7946 0900"
+}

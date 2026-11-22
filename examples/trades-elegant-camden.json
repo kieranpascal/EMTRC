@@ -1,0 +1,123 @@
+{
+  "$schema": "../site.schema.json",
+  "businessName": "Camden Volt & Wire",
+  "tagline": "NICEIC approved electricians for London period homes, landlords and commercial fit-outs across Camden.",
+  "niche": "trades",
+  "borough": "Camden",
+  "phone": "020 7946 0942",
+  "whatsapp": "+447700900942",
+  "email": "desk@camdenvolt.example.co.uk",
+  "heroImage": {
+    "url": "/src/assets/images/trades_electrical_craft_1795373181964.jpg",
+    "alt": "Neatly organised modern 18th Edition consumer unit and digital test meter installed by Camden Volt & Wire",
+    "width": 1200,
+    "height": 900
+  },
+  "openingHours": [
+    { "day": "Monday", "open": "08:00", "close": "18:30" },
+    { "day": "Tuesday", "open": "08:00", "close": "18:30" },
+    { "day": "Wednesday", "open": "08:00", "close": "18:30" },
+    { "day": "Thursday", "open": "08:00", "close": "18:30" },
+    { "day": "Friday", "open": "08:00", "close": "18:00" },
+    { "day": "Saturday", "open": "09:00", "close": "15:00" },
+    { "day": "Sunday", "status": "closed" }
+  ],
+  "emergencyCallout": {
+    "headline": "Same-Day Emergency Electrician across NW1 & NW3",
+    "subtext": "Tripping fuse boards, burning smells, dead lighting circuits or urgent landlord faults resolved safely.",
+    "responseTime": "Direct engineer dispatch · no call-out surprises"
+  },
+  "niceicNumber": "051944",
+  "services": [
+    {
+      "category": "Safety & Compliance",
+      "name": "Landlord & Homeowner EICR",
+      "description": "Full BS 7671 circuit testing, thermal check and digital NICEIC certificate within 24 hours.",
+      "price": "From £150"
+    },
+    {
+      "category": "Safety & Compliance",
+      "name": "Consumer Unit (Fuse Board) Upgrade",
+      "description": "Dual-RCD or full RCBO metal board upgrade with SPD surge protection and Part P notification.",
+      "price": "From £620"
+    },
+    {
+      "category": "Installations",
+      "name": "EV Home Charger Installation",
+      "description": "OZEV-compliant 7kW smart charger setup (Ohme, Pod Point, Zappi) with tidy external cabling.",
+      "price": "From £895"
+    },
+    {
+      "category": "Installations",
+      "name": "Period Home Lighting & Rewiring",
+      "description": "Sympathetic brass sockets, dimmable downlights and full or partial rewires for Victorian terraces.",
+      "price": "Quoted on survey"
+    },
+    {
+      "category": "Repairs",
+      "name": "Diagnostic Fault Finding",
+      "description": "First hour fault trace and make-safe on tripping circuits, immersion heaters and faulty sockets.",
+      "price": "£95 first hour"
+    }
+  ],
+  "gallery": [
+    {
+      "url": "/src/assets/images/trades_electrical_craft_1795373181964.jpg",
+      "alt": "18th Edition circuit breaker installation and voltage testing meter in a Camden townhouse utility cupboard",
+      "width": 1200,
+      "height": 900,
+      "caption": "Full RCBO board upgrade and neat trunking completed in Kentish Town NW5."
+    },
+    {
+      "url": "/src/assets/images/trades_precision_heating_1795370825196.jpg",
+      "alt": "Smart heating controller wiring and neat plant room controls installed alongside heating engineers",
+      "width": 1408,
+      "height": 768,
+      "caption": "Smart thermostat wiring and zoned heating controls commissioned in Belsize Park."
+    }
+  ],
+  "reviews": [
+    {
+      "author": "Fiona W.",
+      "text": "Replaced our 1980s fuse box and labelled every single circuit clearly. Left the hallway cleaner than they found it.",
+      "rating": 5,
+      "source": "Google"
+    },
+    {
+      "author": "Nathan S.",
+      "text": "Fast EICR turnaround for our flat in Kentish Town with transparent remedial pricing.",
+      "rating": 5,
+      "source": "Google"
+    }
+  ],
+  "about": "Camden Volt & Wire is an NICEIC approved electrical contractor serving Camden, Hampstead and Islington. We specialise in period London properties, landlord EICR testing, consumer unit upgrades and neat EV charger installations — always quoted clearly up front.",
+  "areasServed": [
+    "Camden Town (NW1)",
+    "Kentish Town (NW5)",
+    "Belsize Park (NW3)",
+    "Primrose Hill",
+    "Gospel Oak",
+    "Bloomsbury (WC1)"
+  ],
+  "theme": {
+    "primaryColour": "#0F2942",
+    "accentColour": "#1E4E8C",
+    "font": "editorial",
+    "style": "elegant",
+    "mode": "light"
+  },
+  "seo": {
+    "title": "Camden Volt & Wire — NICEIC Electricians in Camden NW1 & NW5",
+    "description": "NICEIC approved electricians in Camden and Hampstead for EICRs, fuse board upgrades, EV chargers and emergency electrical faults.",
+    "schemaType": "Electrician"
+  },
+  "pages": {
+    "home": true,
+    "services": true,
+    "gallery": true,
+    "about": true,
+    "contact": true
+  },
+  "demoMode": true,
+  "demoBannerPhone": "020 7946 0900"
+}

@@ -1,0 +1,142 @@
+{
+  "$schema": "../site.schema.json",
+  "businessName": "Bellenden Roastery & Bakery",
+  "tagline": "Small-batch speciality coffee, warm sourdough croissants and seasonal brunch on Bellenden Road, Peckham.",
+  "niche": "cafe",
+  "borough": "Southwark",
+  "address": "89 Bellenden Road, Peckham, London SE15 4QZ",
+  "phone": "020 7946 0719",
+  "email": "hello@bellendenroastery.example.co.uk",
+  "instagramUrl": "https://www.instagram.com",
+  "heroImage": {
+    "url": "/src/assets/images/cafe_coffee_bakery_1795370824300.jpg",
+    "alt": "Flat white coffee with crisp latte art alongside freshly baked golden croissants and cardamom buns on an oak counter at Bellenden Roastery & Bakery",
+    "width": 1408,
+    "height": 768
+  },
+  "openingHours": [
+    { "day": "Monday", "open": "07:30", "close": "16:30" },
+    { "day": "Tuesday", "open": "07:30", "close": "16:30" },
+    { "day": "Wednesday", "open": "07:30", "close": "16:30" },
+    { "day": "Thursday", "open": "07:30", "close": "17:00" },
+    { "day": "Friday", "open": "07:30", "close": "17:00" },
+    { "day": "Saturday", "open": "08:00", "close": "17:00" },
+    { "day": "Sunday", "open": "08:30", "close": "16:00" }
+  ],
+  "services": [
+    {
+      "category": "Espresso & Filter",
+      "name": "Flat White",
+      "description": "Double shot of our Peckham House seasonal espresso with steamed organic whole or oat milk.",
+      "price": "£3.60"
+    },
+    {
+      "category": "Espresso & Filter",
+      "name": "Batch Brew Filter",
+      "description": "Rotating single-origin washed Ethiopian or Colombian filter brewed fresh every hour.",
+      "price": "£3.20",
+      "dietary": ["VG", "GF"]
+    },
+    {
+      "category": "Espresso & Filter",
+      "name": "Iced Matcha Latte",
+      "description": "Ceremonial Uji matcha hand-whisked over ice with oat or whole milk.",
+      "price": "£4.20",
+      "dietary": ["V", "GF"]
+    },
+    {
+      "category": "Morning Bakery",
+      "name": "Cultured Butter Croissant",
+      "description": "Three-day fermented laminated pastry baked at 6am for crisp, honeycombed layers.",
+      "price": "£3.40",
+      "dietary": ["V"]
+    },
+    {
+      "category": "Morning Bakery",
+      "name": "Swedish Cardamom Knot",
+      "description": "Freshly ground green cardamom and pearl sugar glazed bun.",
+      "price": "£3.80",
+      "dietary": ["V"]
+    },
+    {
+      "category": "Sourdough & Brunch (until 2:30pm)",
+      "name": "Soft-Scrambled Eggs & Chilli Oil on Sourdough",
+      "description": "Clarence Court eggs folded with cultured butter, house crispy chilli oil and chives.",
+      "price": "£10.50",
+      "dietary": ["V"]
+    },
+    {
+      "category": "Sourdough & Brunch (until 2:30pm)",
+      "name": "Roasted Squash, Whipped Tahini & Dukkah Toast",
+      "description": "Crown Prince squash, lemon-garlic tahini, toasted hazelnut dukkah and herbs on country loaf.",
+      "price": "£11.20",
+      "dietary": ["VG"]
+    },
+    {
+      "category": "Sourdough & Brunch (until 2:30pm)",
+      "name": "Smoked Streaky Bacon Sourdough Roll",
+      "description": "Dry-cured Sussex bacon with smoky tomato relish on a warm milk bun.",
+      "price": "£8.50"
+    }
+  ],
+  "gallery": [
+    {
+      "url": "/src/assets/images/cafe_coffee_bakery_1795370824300.jpg",
+      "alt": "Baristas preparing espresso behind freshly baked croissants and cardamom buns on Bellenden Road",
+      "width": 1408,
+      "height": 768,
+      "caption": "Morning bake out of the ovens at 7:30am every weekday."
+    },
+    {
+      "url": "/src/assets/images/cafe_brunch_pastry_1795373181666.jpg",
+      "alt": "Almond croissant, avocado sourdough toast with poached eggs and flat white served on oak table at Bellenden Roastery",
+      "width": 1200,
+      "height": 900,
+      "caption": "Seasonal brunch plates and warm laminated pastries served daily until 2:30pm."
+    }
+  ],
+  "reviews": [
+    {
+      "author": "Amara O.",
+      "text": "Hands down the best cardamom knot and flat white in SE15. Friendly baristas even on a packed Saturday morning.",
+      "rating": 5,
+      "source": "Google"
+    },
+    {
+      "author": "Leo G.",
+      "text": "The chilli oil scrambled eggs on sourdough are unbeatable. Great spot two minutes from Peckham Rye station.",
+      "rating": 5,
+      "source": "Google"
+    }
+  ],
+  "about": "Bellenden Roastery & Bakery is a neighbourhood coffee shop and morning bakery three minutes from Peckham Rye station. We roast our house espresso in small batches each Tuesday and laminate our pastries by hand every morning — walk in for a quick flat white at the window or linger over brunch.",
+  "areasServed": [
+    "Peckham Rye (SE15)",
+    "Bellenden Village",
+    "East Dulwich (SE22)",
+    "Camberwell (SE5)",
+    "Nunhead",
+    "Denmark Hill"
+  ],
+  "theme": {
+    "primaryColour": "#2A1F18",
+    "accentColour": "#8A4B2A",
+    "font": "editorial",
+    "style": "elegant",
+    "mode": "light"
+  },
+  "seo": {
+    "title": "Bellenden Roastery & Bakery — Coffee Shop & Bakery in Peckham SE15",
+    "description": "Speciality coffee, warm sourdough croissants, cardamom knots and seasonal brunch on Bellenden Road, Peckham SE15.",
+    "schemaType": "CafeOrCoffeeShop"
+  },
+  "pages": {
+    "home": true,
+    "services": true,
+    "gallery": true,
+    "about": true,
+    "contact": true
+  },
+  "demoMode": true,
+  "demoBannerPhone": "020 7946 0900"
+}

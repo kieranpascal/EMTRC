@@ -1,0 +1,146 @@
+{
+  "$schema": "../site.schema.json",
+  "businessName": "Linden & Silk",
+  "tagline": "Warm, unhurried hair colour, precision cuts and botanical beauty treatments in South Kensington.",
+  "niche": "salon",
+  "borough": "Kensington & Chelsea",
+  "address": "19 Old Brompton Road, South Kensington, London SW7 3HZ",
+  "phone": "020 7946 0482",
+  "whatsapp": "+447700900482",
+  "email": "hello@lindenandsilk.example.co.uk",
+  "bookingUrl": "https://www.fresha.com",
+  "bookingLabel": "Book an appointment",
+  "instagramUrl": "https://www.instagram.com",
+  "heroImage": {
+    "url": "/src/assets/images/salon_warm_studio_1795370824298.jpg",
+    "alt": "Sunlit interior of Linden & Silk Hair & Beauty salon in South Kensington with arched bronze mirrors and travertine styling counters",
+    "width": 1408,
+    "height": 768
+  },
+  "openingHours": [
+    { "day": "Monday", "status": "closed" },
+    { "day": "Tuesday", "open": "09:30", "close": "19:00" },
+    { "day": "Wednesday", "open": "09:30", "close": "19:30" },
+    { "day": "Thursday", "open": "09:30", "close": "20:30" },
+    { "day": "Friday", "open": "09:30", "close": "19:30" },
+    { "day": "Saturday", "open": "09:00", "close": "18:00" },
+    { "day": "Sunday", "open": "10:30", "close": "16:30" }
+  ],
+  "services": [
+    {
+      "category": "Cut & Styling",
+      "name": "Cut, Wash & Signature Blow-Dry",
+      "description": "Tailored consultation, relaxing scalp massage, bespoke cut and bouncy brush blow-dry.",
+      "price": "From £68",
+      "duration": "60 min"
+    },
+    {
+      "category": "Cut & Styling",
+      "name": "Restyle Cut & Finish",
+      "description": "Extra time for a complete transformation, framing and home styling advice.",
+      "price": "From £82",
+      "duration": "75 min"
+    },
+    {
+      "category": "Cut & Styling",
+      "name": "Bouncy Blow-Dry",
+      "description": "Smooth, glossy volume or soft waves using heat-protective botanical serums.",
+      "price": "£46",
+      "duration": "45 min"
+    },
+    {
+      "category": "Colour & Gloss",
+      "name": "Lived-In Balayage & Toner",
+      "description": "Hand-painted ribbons for natural dimension, bond-builder treatment and bespoke gloss.",
+      "price": "From £175",
+      "duration": "150 min"
+    },
+    {
+      "category": "Colour & Gloss",
+      "name": "Half-Head Highlights & Gloss",
+      "description": "Fine foils tailored to brighten around the face and parting, finished with a toning glaze.",
+      "price": "From £135",
+      "duration": "120 min"
+    },
+    {
+      "category": "Beauty & Brows",
+      "name": "Brow Lamination & Tint",
+      "description": "Soft, structured brow styling with custom tint and nourishing keratin serum.",
+      "price": "£54",
+      "duration": "45 min"
+    },
+    {
+      "category": "Beauty & Brows",
+      "name": "BIAB Gel Manicure",
+      "description": "Detailed Russian cuticle work and builder gel overlay for natural nail strength.",
+      "price": "£48",
+      "duration": "60 min"
+    }
+  ],
+  "gallery": [
+    {
+      "url": "/src/assets/images/salon_warm_studio_1795370824298.jpg",
+      "alt": "Main styling floor at Linden & Silk South Kensington with linen chairs and natural daylight",
+      "width": 1408,
+      "height": 768,
+      "caption": "Calm daylight salon just four minutes from South Kensington Underground."
+    },
+    {
+      "url": "/src/assets/images/salon_hair_craft_1795373182080.jpg",
+      "alt": "Botanical hair oils, brass scissors and folded waffle linen on travertine counter at Linden & Silk",
+      "width": 1200,
+      "height": 900,
+      "caption": "Ammonia-free colour, vegan bond builders and botanical serums at every station."
+    }
+  ],
+  "reviews": [
+    {
+      "author": "Hannah M.",
+      "text": "Finally found a colourist in SW7 who listens. My balayage grows out so softly and the salon feels like a quiet sanctuary.",
+      "rating": 5,
+      "source": "Google"
+    },
+    {
+      "author": "Priya S.",
+      "text": "Best BIAB manicure and blow-dry in Kensington. Warm welcome, honest pricing and my nails still look immaculate three weeks on.",
+      "rating": 5,
+      "source": "Treatwell"
+    },
+    {
+      "author": "Claire T.",
+      "text": "Complimentary colour consultation gave me total confidence before booking. Could not recommend the team more highly.",
+      "rating": 5,
+      "source": "Google"
+    }
+  ],
+  "about": "Linden & Silk is an independent hair and beauty studio in South Kensington designed to feel calm, bright and unhurried. Our senior stylists and therapists use ammonia-free colour, vegan bond builders and gentle skincare — with complimentary 15-minute consultations before any colour booking.",
+  "areasServed": [
+    "South Kensington (SW7)",
+    "Chelsea (SW3)",
+    "Earl's Court",
+    "Knightsbridge",
+    "Gloucester Road",
+    "Fulham"
+  ],
+  "theme": {
+    "primaryColour": "#2C1E1B",
+    "accentColour": "#8C4A3E",
+    "font": "editorial",
+    "style": "elegant",
+    "mode": "light"
+  },
+  "seo": {
+    "title": "Linden & Silk — Hair & Beauty Salon in South Kensington SW7",
+    "description": "Tailored haircuts, lived-in balayage, brow styling and BIAB manicures on Old Brompton Road, South Kensington. Book online.",
+    "schemaType": "BeautySalon"
+  },
+  "pages": {
+    "home": true,
+    "services": true,
+    "gallery": true,
+    "about": true,
+    "contact": true
+  },
+  "demoMode": true,
+  "demoBannerPhone": "020 7946 0900"
+}

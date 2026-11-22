@@ -1,0 +1,117 @@
+{
+  "$schema": "../site.schema.json",
+  "businessName": "Coldharbour Cuts",
+  "tagline": "Clean fades, textured crops and razor-sharp line-ups in Brixton. No fuss, on time.",
+  "niche": "barber",
+  "borough": "Lambeth",
+  "address": "74 Coldharbour Lane, Brixton, London SW9 8PL",
+  "phone": "020 7946 0552",
+  "whatsapp": "+447700900552",
+  "bookingUrl": "https://www.fresha.com",
+  "bookingLabel": "Book online",
+  "heroImage": {
+    "url": "/src/assets/images/barber_tools_craft_1795370823939.jpg",
+    "alt": "Precision clippers, shears and straight razor ready on the station bench at Coldharbour Cuts Brixton",
+    "width": 1200,
+    "height": 900
+  },
+  "openingHours": [
+    { "day": "Monday", "open": "10:00", "close": "19:00" },
+    { "day": "Tuesday", "open": "10:00", "close": "19:00" },
+    { "day": "Wednesday", "open": "10:00", "close": "19:30" },
+    { "day": "Thursday", "open": "10:00", "close": "20:00" },
+    { "day": "Friday", "open": "09:30", "close": "20:00" },
+    { "day": "Saturday", "open": "09:00", "close": "18:30" },
+    { "day": "Sunday", "status": "closed" }
+  ],
+  "services": [
+    {
+      "name": "Precision Fade",
+      "description": "High, mid or low skin fade with detailed edge-up and sponge or matte finish.",
+      "price": "£25",
+      "duration": "35 min"
+    },
+    {
+      "name": "Scissor Cut & Texture",
+      "description": "Structured cut for straight, wavy or curly hair, shaped to grow out cleanly.",
+      "price": "£27",
+      "duration": "40 min"
+    },
+    {
+      "name": "Shape-Up & Beard Line",
+      "description": "Crisp hairline and beard razor work between full cuts.",
+      "price": "£15",
+      "duration": "20 min"
+    },
+    {
+      "name": "Full Cut & Beard",
+      "description": "Complete haircut plus full beard grade, fade blend and oil.",
+      "price": "£36",
+      "duration": "55 min"
+    },
+    {
+      "name": "Under 16s Cut",
+      "description": "Clean school or weekend cut with patient barbers.",
+      "price": "£18",
+      "duration": "30 min"
+    }
+  ],
+  "gallery": [
+    {
+      "url": "/src/assets/images/barber_shop_interior_1795370825070.jpg",
+      "alt": "Barbers working at Coldharbour Cuts in Brixton",
+      "width": 1408,
+      "height": 768
+    },
+    {
+      "url": "/src/assets/images/barber_tools_craft_1795370823939.jpg",
+      "alt": "Clippers, Japanese scissors and rolled hot towel at Coldharbour Cuts",
+      "width": 1200,
+      "height": 900
+    }
+  ],
+  "reviews": [
+    {
+      "author": "Devon R.",
+      "text": "Always on time, clean blends on afro and textured hair, and super easy to book on your phone.",
+      "rating": 5,
+      "source": "Google"
+    },
+    {
+      "author": "Samir K.",
+      "text": "Zero pretence, great cut every time and right by Brixton station.",
+      "rating": 5,
+      "source": "Google"
+    }
+  ],
+  "about": "Coldharbour Cuts is a stripped-back modern barbershop three minutes from Brixton Underground. Experienced with every hair type, we focus on clean fades, honest advice and appointments that run to the minute.",
+  "areasServed": [
+    "Brixton (SW9)",
+    "Herne Hill",
+    "Clapham North",
+    "Stockwell",
+    "Camberwell",
+    "Tulse Hill"
+  ],
+  "theme": {
+    "primaryColour": "#111317",
+    "accentColour": "#111317",
+    "font": "modern",
+    "style": "minimal",
+    "mode": "light"
+  },
+  "seo": {
+    "title": "Coldharbour Cuts — Modern Barbers in Brixton SW9",
+    "description": "Precision fades, scissor cuts and sharp beard line-ups on Coldharbour Lane, Brixton SW9. Walk in or book online.",
+    "schemaType": "BarberShop"
+  },
+  "pages": {
+    "home": true,
+    "services": false,
+    "gallery": false,
+    "about": false,
+    "contact": false
+  },
+  "demoMode": true,
+  "demoBannerPhone": "020 7946 0900"
+}

@@ -1,0 +1,130 @@
+{
+  "$schema": "../site.schema.json",
+  "businessName": "Battersea Bright Cleaning",
+  "tagline": "Reliable domestic, deep and end-of-tenancy cleaning across Wandsworth and Battersea. Vetted cleaners, fixed checklists.",
+  "niche": "cleaner",
+  "borough": "Wandsworth",
+  "phone": "020 7946 0365",
+  "whatsapp": "+447700900365",
+  "email": "quotes@batterseabright.example.co.uk",
+  "heroImage": {
+    "url": "/src/assets/images/cleaner_bright_flat_1795370824764.jpg",
+    "alt": "Sunlit spotless London flat living room and open kitchen after a Battersea Bright Cleaning visit",
+    "width": 1408,
+    "height": 768
+  },
+  "openingHours": [
+    { "day": "Monday", "open": "08:00", "close": "18:30" },
+    { "day": "Tuesday", "open": "08:00", "close": "18:30" },
+    { "day": "Wednesday", "open": "08:00", "close": "18:30" },
+    { "day": "Thursday", "open": "08:00", "close": "18:30" },
+    { "day": "Friday", "open": "08:00", "close": "18:30" },
+    { "day": "Saturday", "open": "08:30", "close": "16:00" },
+    { "day": "Sunday", "status": "closed" }
+  ],
+  "quoteForm": {
+    "enabled": true,
+    "heading": "Get a fast, fixed cleaning quote",
+    "subtext": "Tell us your postcode, property size and clean type. We reply within 2 hours during working days.",
+    "endpoint": "",
+    "serviceTypes": [
+      "Regular weekly / fortnightly clean",
+      "End of tenancy clean (deposit checklist)",
+      "One-off spring / deep clean",
+      "After-builders clean",
+      "Oven & kitchen deep clean"
+    ]
+  },
+  "services": [
+    {
+      "name": "Regular Home Cleaning",
+      "description": "Same vetted local cleaner every week or fortnight. Kitchens, bathrooms, floors, dusting and bedrooms.",
+      "price": "£21/hour",
+      "duration": "Min 2.5 hrs"
+    },
+    {
+      "name": "End of Tenancy Cleaning",
+      "description": "Agency-approved inventory checklist including oven, inside cupboards, limescale removal and 72-hour re-clean guarantee.",
+      "price": "From £215",
+      "duration": "Fixed price"
+    },
+    {
+      "name": "Deep & Spring Clean",
+      "description": "Thorough top-to-bottom refresh covering skirting boards, light switches, tiles, grout and internal windows.",
+      "price": "From £145",
+      "duration": "Half or full day"
+    },
+    {
+      "name": "After-Builders Clean",
+      "description": "Fine plaster dust removal, paint spot clearing and full sanitisation following renovation work.",
+      "price": "From £240",
+      "duration": "Team of 2–3"
+    },
+    {
+      "name": "Oven & Hob Deep Clean",
+      "description": "Non-caustic fume-free degreasing of racks, glass doors, extractor filters and hob.",
+      "price": "£68",
+      "duration": "90 min"
+    }
+  ],
+  "gallery": [
+    {
+      "url": "/src/assets/images/cleaner_bright_flat_1795370824764.jpg",
+      "alt": "Freshly cleaned open-plan kitchen and lounge with pale oak flooring in Battersea SW11",
+      "width": 1408,
+      "height": 768,
+      "caption": "Deposit-ready end-of-tenancy finish on a two-bed Battersea flat."
+    },
+    {
+      "url": "/src/assets/images/cleaner_kitchen_sparkle_1795373182615.jpg",
+      "alt": "Spotless white quartz kitchen worktop and polished brass tap cleaned by Battersea Bright Cleaning",
+      "width": 1200,
+      "height": 900,
+      "caption": "Detailed kitchen sanitisation, descaling and gleaming worktops on every visit."
+    }
+  ],
+  "reviews": [
+    {
+      "author": "Sophie L.",
+      "text": "Got 100% of our deposit back without a single comment from the inventory clerk. The oven looked brand new.",
+      "rating": 5,
+      "source": "Google"
+    },
+    {
+      "author": "Ben & Maya C.",
+      "text": "We have used Battersea Bright every Thursday for a year. Punctual, trustworthy with keys and consistently thorough.",
+      "rating": 5,
+      "source": "Google"
+    }
+  ],
+  "about": "Battersea Bright Cleaning is a local, fully insured cleaning team covering Wandsworth, Battersea and Clapham. Every cleaner is reference-checked, trained on our room-by-room checklists, and brings eco-friendly supplies on request — with clear fixed prices and zero agency admin fees.",
+  "areasServed": [
+    "Battersea (SW11)",
+    "Wandsworth Town (SW18)",
+    "Clapham Junction",
+    "Balham (SW12)",
+    "Putney (SW15)",
+    "Nine Elms"
+  ],
+  "theme": {
+    "primaryColour": "#0F4C5C",
+    "accentColour": "#0E7490",
+    "font": "modern",
+    "style": "minimal",
+    "mode": "light"
+  },
+  "seo": {
+    "title": "Battersea Bright Cleaning — Home & End of Tenancy Cleaners in Wandsworth SW11",
+    "description": "Vetted local cleaners for regular home cleaning, deep cleans and deposit-back end of tenancy cleans across Battersea and Wandsworth.",
+    "schemaType": "HousekeepingService"
+  },
+  "pages": {
+    "home": true,
+    "services": true,
+    "gallery": true,
+    "about": true,
+    "contact": true
+  },
+  "demoMode": true,
+  "demoBannerPhone": "020 7946 0900"
+}

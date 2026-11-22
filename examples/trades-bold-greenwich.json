@@ -1,0 +1,143 @@
+{
+  "$schema": "../site.schema.json",
+  "businessName": "Blackheath Heating & Electrical",
+  "tagline": "Gas Safe heating engineers and NICEIC electricians across South East London. Fixed quotes, tidy work.",
+  "niche": "trades",
+  "borough": "Greenwich",
+  "phone": "020 7946 0930",
+  "whatsapp": "+447700900930",
+  "email": "help@blackheathheating.example.co.uk",
+  "heroImage": {
+    "url": "/src/assets/images/trades_precision_heating_1795370825196.jpg",
+    "alt": "Precision copper pipework manifold, newly fitted boiler and smart heating controller installed by Blackheath Heating & Electrical",
+    "width": 1408,
+    "height": 768
+  },
+  "openingHours": [
+    { "day": "Monday", "open": "07:30", "close": "19:00" },
+    { "day": "Tuesday", "open": "07:30", "close": "19:00" },
+    { "day": "Wednesday", "open": "07:30", "close": "19:00" },
+    { "day": "Thursday", "open": "07:30", "close": "19:00" },
+    { "day": "Friday", "open": "07:30", "close": "19:00" },
+    { "day": "Saturday", "open": "08:00", "close": "17:00" },
+    { "day": "Sunday", "status": "closed" }
+  ],
+  "emergencyCallout": {
+    "headline": "24/7 Emergency Call-Out across SE London",
+    "subtext": "Burst pipes, boiler breakdowns, gas leaks or sudden power loss — speak straight to a qualified local engineer.",
+    "responseTime": "Typically on site within 60–90 minutes"
+  },
+  "gasSafeNumber": "649281",
+  "niceicNumber": "042819",
+  "badges": [
+    {
+      "type": "insured",
+      "label": "£5M Public Liability Insured"
+    }
+  ],
+  "services": [
+    {
+      "category": "Plumbing & Heating",
+      "name": "Annual Boiler Service",
+      "description": "Full safety check, flue analysis, pressure test and digital service record for all major brands.",
+      "price": "£90 fixed"
+    },
+    {
+      "category": "Plumbing & Heating",
+      "name": "Boiler Breakdown & Repair",
+      "description": "Diagnostic fault-finding and repair with upfront parts pricing agreed before we fit anything.",
+      "price": "From £95"
+    },
+    {
+      "category": "Plumbing & Heating",
+      "name": "Landlord Gas Safety Certificate (CP12)",
+      "description": "Certified inspection of boiler and up to two gas appliances with same-day digital PDF.",
+      "price": "£80 fixed"
+    },
+    {
+      "category": "Electrical",
+      "name": "Electrical Installation Condition Report (EICR)",
+      "description": "Full NICEIC safety inspection for London homeowners and landlords with clear reporting.",
+      "price": "From £145"
+    },
+    {
+      "category": "Electrical",
+      "name": "Consumer Unit (Fuse Board) Upgrade",
+      "description": "18th Edition RCBO metal consumer unit installation, testing and Building Control sign-off.",
+      "price": "From £590"
+    },
+    {
+      "category": "Electrical",
+      "name": "Fault Finding & Emergency Power Restoration",
+      "description": "Tripping RCDs, dead circuits and socket faults traced and resolved safely.",
+      "price": "From £95"
+    }
+  ],
+  "gallery": [
+    {
+      "url": "/src/assets/images/trades_precision_heating_1795370825196.jpg",
+      "alt": "Completed boiler and underfloor heating copper manifold installation in a Blackheath home",
+      "width": 1408,
+      "height": 768,
+      "caption": "Clean copper pipework and zoned smart heating fitted in a Greenwich townhouse."
+    },
+    {
+      "url": "/src/assets/images/trades_electrical_craft_1795373181964.jpg",
+      "alt": "Neatly wired 18th Edition UK consumer unit and copper heating plant cupboard tested by Blackheath Heating & Electrical",
+      "width": 1200,
+      "height": 900,
+      "caption": "18th Edition RCBO consumer unit upgrade and full EICR circuit certification."
+    }
+  ],
+  "reviews": [
+    {
+      "author": "David K.",
+      "text": "Our boiler died on a freezing Sunday morning. They arrived inside an hour, diagnosed the diverter valve and charged the exact quote.",
+      "rating": 5,
+      "source": "Google"
+    },
+    {
+      "author": "Rachel B.",
+      "text": "Upgraded our fuse board and issued our landlord CP12 and EICR in one visit. Spotless work and polite engineers.",
+      "rating": 5,
+      "source": "Checkatrade"
+    },
+    {
+      "author": "Tom E.",
+      "text": "No call-centre runaround — spoke straight to an engineer and got our leak sorted the same afternoon.",
+      "rating": 5,
+      "source": "Google"
+    }
+  ],
+  "about": "Blackheath Heating & Electrical is a team of Gas Safe registered heating engineers and NICEIC approved electricians serving Greenwich, Blackheath and Lewisham. We give plain-English fixed quotes before starting work, protect your floors, and back every installation with a 12-month workmanship guarantee.",
+  "areasServed": [
+    "Blackheath (SE3)",
+    "Greenwich (SE10)",
+    "Lewisham (SE13)",
+    "Charlton (SE7)",
+    "Eltham (SE9)",
+    "Lee & Hither Green",
+    "Woolwich (SE18)"
+  ],
+  "theme": {
+    "primaryColour": "#0B295E",
+    "accentColour": "#1D4ED8",
+    "font": "modern",
+    "style": "bold",
+    "mode": "light"
+  },
+  "seo": {
+    "title": "Blackheath Heating & Electrical — Gas Safe Plumbers & NICEIC Electricians SE10",
+    "description": "Trusted Gas Safe heating engineers and NICEIC electricians in Greenwich and Blackheath. 24/7 emergency call-out, boiler repairs, CP12 & EICR.",
+    "schemaType": "Plumber"
+  },
+  "pages": {
+    "home": true,
+    "services": true,
+    "gallery": true,
+    "about": true,
+    "contact": true
+  },
+  "demoMode": true,
+  "demoBannerPhone": "020 7946 0900"
+}

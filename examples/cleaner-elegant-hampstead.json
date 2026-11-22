@@ -1,0 +1,126 @@
+{
+  "$schema": "../site.schema.json",
+  "businessName": "Heathside Housekeepers",
+  "tagline": "Discreet, eco-friendly housekeeping, laundry care and seasonal deep cleans for homes in Hampstead and Highgate.",
+  "niche": "cleaner",
+  "borough": "Camden",
+  "phone": "020 7946 0394",
+  "whatsapp": "+447700900394",
+  "email": "care@heathsidehousekeepers.example.co.uk",
+  "heroImage": {
+    "url": "/src/assets/images/cleaner_bright_flat_1795370824764.jpg",
+    "alt": "Calm sunlit Hampstead living room and kitchen cared for by Heathside Housekeepers",
+    "width": 1408,
+    "height": 768
+  },
+  "openingHours": [
+    { "day": "Monday", "open": "08:30", "close": "17:30" },
+    { "day": "Tuesday", "open": "08:30", "close": "17:30" },
+    { "day": "Wednesday", "open": "08:30", "close": "17:30" },
+    { "day": "Thursday", "open": "08:30", "close": "17:30" },
+    { "day": "Friday", "open": "08:30", "close": "17:00" },
+    { "day": "Saturday", "status": "closed" },
+    { "day": "Sunday", "status": "closed" }
+  ],
+  "quoteForm": {
+    "enabled": true,
+    "heading": "Arrange a housekeeping quote",
+    "subtext": "Tell us how many bedrooms and bathrooms you have and whether you prefer plant-based products.",
+    "endpoint": "",
+    "serviceTypes": [
+      "Weekly housekeeping & linen care",
+      "Twice-weekly family home care",
+      "Seasonal deep & spring clean",
+      "Move-in / pre-sale presentation clean"
+    ]
+  },
+  "services": [
+    {
+      "category": "Regular Care",
+      "name": "Dedicated Weekly Housekeeping",
+      "description": "Same vetted housekeeper every week covering delicate stone, brass, timber floors, bathrooms and bedrooms.",
+      "price": "£24/hour",
+      "duration": "Min 3 hrs"
+    },
+    {
+      "category": "Regular Care",
+      "name": "Linen Change & Ironing Add-On",
+      "description": "Fresh bedding changes, towel folding and careful steam-pressing of everyday garments.",
+      "price": "Included in hourly rate"
+    },
+    {
+      "category": "Specialist Cleans",
+      "name": "Seasonal Deep House Refresh",
+      "description": "Inside cabinetry, sash window sills, woodwork, limescale care and upholstery vacuuming.",
+      "price": "From £220",
+      "duration": "Full day"
+    },
+    {
+      "category": "Specialist Cleans",
+      "name": "Eco-Safe End of Tenancy Clean",
+      "description": "Plant-based, pet-safe full inventory check-out clean for period flats and houses.",
+      "price": "From £245",
+      "duration": "Fixed price"
+    }
+  ],
+  "gallery": [
+    {
+      "url": "/src/assets/images/cleaner_bright_flat_1795370824764.jpg",
+      "alt": "Bright open reception room with oak floors freshly maintained in Hampstead NW3",
+      "width": 1408,
+      "height": 768,
+      "caption": "Gentle pH-neutral products safe for marble, limestone and engineered oak."
+    },
+    {
+      "url": "/src/assets/images/cleaner_kitchen_sparkle_1795373182615.jpg",
+      "alt": "Spotless kitchen island, brushed brass tap and crisp folded tea towel in Highgate",
+      "width": 1200,
+      "height": 900,
+      "caption": "Quiet attention to detail across kitchens, utility rooms and bathrooms."
+    }
+  ],
+  "reviews": [
+    {
+      "author": "Dr Caroline V.",
+      "text": "Having the same housekeeper for eighteen months has been wonderful. Safe around our marble worktops and dog.",
+      "rating": 5,
+      "source": "Google"
+    },
+    {
+      "author": "Julian & Sarah M.",
+      "text": "Thorough, quiet and genuinely trustworthy. Our Highgate home always smells fresh without harsh chemicals.",
+      "rating": 5,
+      "source": "Google"
+    }
+  ],
+  "about": "Heathside Housekeepers provides careful, plant-based domestic cleaning across Hampstead, Belsize Park and Highgate. Every housekeeper is directly employed, DBS-checked and trained to care for natural stone, fine timber and brass fittings.",
+  "areasServed": [
+    "Hampstead (NW3)",
+    "Highgate (N6)",
+    "Belsize Park",
+    "West Hampstead (NW6)",
+    "Swiss Cottage",
+    "St John's Wood"
+  ],
+  "theme": {
+    "primaryColour": "#1E3A34",
+    "accentColour": "#2F6F62",
+    "font": "editorial",
+    "style": "elegant",
+    "mode": "light"
+  },
+  "seo": {
+    "title": "Heathside Housekeepers — Eco-Friendly Home Cleaning in Hampstead NW3",
+    "description": "Discreet, plant-based weekly housekeeping and seasonal deep cleans for homes in Hampstead, Belsize Park and Highgate.",
+    "schemaType": "HousekeepingService"
+  },
+  "pages": {
+    "home": true,
+    "services": true,
+    "gallery": true,
+    "about": true,
+    "contact": true
+  },
+  "demoMode": true,
+  "demoBannerPhone": "020 7946 0900"
+}

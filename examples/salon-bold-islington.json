@@ -1,0 +1,133 @@
+{
+  "$schema": "../site.schema.json",
+  "businessName": "Upper Street Colour House",
+  "tagline": "Bold editorial cuts, vivid colour work and expressive nail art in Angel, Islington.",
+  "niche": "salon",
+  "borough": "Islington",
+  "address": "214 Upper Street, Islington, London N1 1RL",
+  "phone": "020 7946 0512",
+  "whatsapp": "+447700900512",
+  "email": "bookings@upperstreetcolour.example.co.uk",
+  "bookingUrl": "https://www.booksy.com",
+  "bookingLabel": "Book online",
+  "instagramUrl": "https://www.instagram.com",
+  "heroImage": {
+    "url": "/src/assets/images/salon_hair_craft_1795373182080.jpg",
+    "alt": "Brass scissors, botanical gloss oils and travertine styling bench inside Upper Street Colour House in Islington",
+    "width": 1200,
+    "height": 900
+  },
+  "openingHours": [
+    { "day": "Monday", "status": "closed" },
+    { "day": "Tuesday", "open": "10:00", "close": "20:00" },
+    { "day": "Wednesday", "open": "10:00", "close": "20:00" },
+    { "day": "Thursday", "open": "10:00", "close": "21:00" },
+    { "day": "Friday", "open": "09:30", "close": "20:00" },
+    { "day": "Saturday", "open": "09:00", "close": "18:30" },
+    { "day": "Sunday", "open": "10:00", "close": "17:00" }
+  ],
+  "services": [
+    {
+      "category": "Cuts & Styling",
+      "name": "Director Cut & Finish",
+      "description": "Precision tailored cut for straight, wavy or curly textures with bond-repair mask and styling.",
+      "price": "£74",
+      "duration": "60 min"
+    },
+    {
+      "category": "Cuts & Styling",
+      "name": "Curly & Textured Dry Cut",
+      "description": "Shape-first dry cutting designed around natural curl pattern, hydrating cleanse and diffused finish.",
+      "price": "£80",
+      "duration": "75 min"
+    },
+    {
+      "category": "Colour Studio",
+      "name": "Full Creative Balayage",
+      "description": "Custom lightening, root shadow, Olaplex bond treatment and gloss toner.",
+      "price": "From £190",
+      "duration": "165 min"
+    },
+    {
+      "category": "Colour Studio",
+      "name": "Gloss Refresh & Blow-Dry",
+      "description": "Mirror-shine semi-permanent colour glaze to revive tone between full appointments.",
+      "price": "£78",
+      "duration": "60 min"
+    },
+    {
+      "category": "Nails & Lashes",
+      "name": "LVL Lash Lift & Tint",
+      "description": "Natural length and lift lasting up to 6 weeks with keratin conditioning.",
+      "price": "£62",
+      "duration": "50 min"
+    },
+    {
+      "category": "Nails & Lashes",
+      "name": "Gel Extension Full Set",
+      "description": "Custom-shaped hard gel extensions finished with solid colour or French tip.",
+      "price": "£65",
+      "duration": "75 min"
+    }
+  ],
+  "gallery": [
+    {
+      "url": "/src/assets/images/salon_hair_craft_1795373182080.jpg",
+      "alt": "Styling tools, botanical oils and ceramic prep dish on stone counter at Upper Street Colour House",
+      "width": 1200,
+      "height": 900,
+      "caption": "Vegan colour systems and bond builders included on every lightening service."
+    },
+    {
+      "url": "/src/assets/images/salon_warm_studio_1795370824298.jpg",
+      "alt": "Warm sunlit styling chairs and arched mirrors at Upper Street Colour House Islington",
+      "width": 1408,
+      "height": 768,
+      "caption": "Late-night Thursday appointments until 9pm on Upper Street."
+    }
+  ],
+  "reviews": [
+    {
+      "author": "Maya R.",
+      "text": "Best curly cut I have ever had in North London. Left with zero frizz and a shape that still falls neatly weeks later.",
+      "rating": 5,
+      "source": "Google"
+    },
+    {
+      "author": "Eleanor P.",
+      "text": "My copper gloss turned out rich and luminous. Love the evening Thursday slots after work.",
+      "rating": 5,
+      "source": "Booksy"
+    }
+  ],
+  "about": "Upper Street Colour House is an independent Islington hair and beauty salon known for modern colour, textured cutting and late weekday openings. Every appointment starts with a clear price breakdown and ends with effortless, wearable styling.",
+  "areasServed": [
+    "Angel (N1)",
+    "Islington",
+    "Highbury (N5)",
+    "Canonbury",
+    "Barnsbury",
+    "Clerkenwell"
+  ],
+  "theme": {
+    "primaryColour": "#3B1726",
+    "accentColour": "#9B3451",
+    "font": "athletic",
+    "style": "bold",
+    "mode": "light"
+  },
+  "seo": {
+    "title": "Upper Street Colour House — Hair & Beauty Salon in Islington N1",
+    "description": "Editorial haircuts, curly cutting, balayage colour and nail & lash treatments on Upper Street, Angel Islington N1.",
+    "schemaType": "BeautySalon"
+  },
+  "pages": {
+    "home": true,
+    "services": true,
+    "gallery": true,
+    "about": true,
+    "contact": true
+  },
+  "demoMode": true,
+  "demoBannerPhone": "020 7946 0900"
+}

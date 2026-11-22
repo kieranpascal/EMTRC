@@ -1,0 +1,297 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://emtrc.com/schemas/local-business-site.schema.json",
+  "title": "London Local Business Website Configuration (site.json)",
+  "description": "Single-source JSON configuration driving a 1-to-5 page static website for a London local business (barber, salon, trades, cleaner, or cafe).",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "businessName",
+    "tagline",
+    "niche",
+    "borough",
+    "phone",
+    "openingHours",
+    "services",
+    "gallery",
+    "reviews",
+    "about",
+    "areasServed",
+    "theme",
+    "seo",
+    "pages",
+    "demoMode"
+  ],
+  "properties": {
+    "$schema": { "type": "string" },
+    "businessName": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Trading name of the business."
+    },
+    "tagline": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Short plain-English value proposition shown in the hero."
+    },
+    "niche": {
+      "type": "string",
+      "enum": ["barber", "salon", "trades", "cleaner", "cafe"],
+      "description": "Business category controlling layout labels, Schema.org subtype, and niche modules."
+    },
+    "borough": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Primary London borough or neighbourhood (e.g. Hackney, Kensington & Chelsea)."
+    },
+    "address": {
+      "type": "string",
+      "description": "Optional full street address and postcode. Omitted or empty hides address blocks."
+    },
+    "phone": {
+      "type": "string",
+      "minLength": 6,
+      "description": "Display phone number (e.g. 020 7946 0821)."
+    },
+    "whatsapp": {
+      "type": "string",
+      "description": "Optional WhatsApp number (e.g. +447700900123). Omitted or empty hides WhatsApp actions."
+    },
+    "email": {
+      "type": "string",
+      "format": "email",
+      "description": "Optional public contact email."
+    },
+    "bookingUrl": {
+      "type": "string",
+      "format": "uri",
+      "description": "Optional external booking URL (e.g. Fresha, Booksy, Treatwell)."
+    },
+    "bookingLabel": {
+      "type": "string",
+      "description": "Optional label for the booking button (e.g. Book a chair, Book treatment)."
+    },
+    "instagramUrl": {
+      "type": "string",
+      "format": "uri",
+      "description": "Optional Instagram profile URL."
+    },
+    "heroImage": {
+      "$ref": "#/$defs/galleryImage",
+      "description": "Optional dedicated hero photo. Defaults to gallery[0] if omitted."
+    },
+    "openingHours": {
+      "type": "array",
+      "minLength": 7,
+      "maxLength": 7,
+      "items": {
+        "oneOf": [
+          {
+            "type": "object",
+            "required": ["day", "open", "close"],
+            "additionalProperties": false,
+            "properties": {
+              "day": { "$ref": "#/$defs/dayOfWeek" },
+              "open": {
+                "type": "string",
+                "pattern": "^([01]\\d|2[0-3]):[0-5]\\d$",
+                "description": "24-hour opening time HH:MM"
+              },
+              "close": {
+                "type": "string",
+                "pattern": "^([01]\\d|2[0-3]):[0-5]\\d$",
+                "description": "24-hour closing time HH:MM"
+              },
+              "status": { "const": "open" }
+            }
+          },
+          {
+            "type": "object",
+            "required": ["day", "status"],
+            "additionalProperties": false,
+            "properties": {
+              "day": { "$ref": "#/$defs/dayOfWeek" },
+              "status": { "const": "closed" }
+            }
+          }
+        ]
+      }
+    },
+    "services": {
+      "type": "array",
+      "minLength": 1,
+      "items": {
+        "type": "object",
+        "required": ["name", "description"],
+        "additionalProperties": false,
+        "properties": {
+          "name": { "type": "string", "minLength": 1 },
+          "description": { "type": "string" },
+          "price": { "type": "string" },
+          "duration": { "type": "string" },
+          "category": { "type": "string" },
+          "dietary": {
+            "type": "array",
+            "items": { "type": "string" }
+          }
+        }
+      }
+    },
+    "gallery": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/galleryImage" }
+    },
+    "reviews": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["author", "text", "rating", "source"],
+        "additionalProperties": false,
+        "properties": {
+          "author": { "type": "string", "minLength": 1 },
+          "text": { "type": "string", "minLength": 1 },
+          "rating": { "type": "number", "minimum": 1, "maximum": 5 },
+          "source": { "type": "string", "minLength": 1 }
+        }
+      }
+    },
+    "about": {
+      "type": "string",
+      "minLength": 10
+    },
+    "areasServed": {
+      "type": "array",
+      "minLength": 1,
+      "items": { "type": "string", "minLength": 1 }
+    },
+    "theme": {
+      "type": "object",
+      "required": ["primaryColour", "accentColour", "font", "style"],
+      "additionalProperties": false,
+      "properties": {
+        "primaryColour": {
+          "type": "string",
+          "pattern": "^#[0-9A-Fa-f]{6}$"
+        },
+        "accentColour": {
+          "type": "string",
+          "pattern": "^#[0-9A-Fa-f]{6}$"
+        },
+        "font": {
+          "type": "string",
+          "enum": ["athletic", "editorial", "modern"]
+        },
+        "style": {
+          "type": "string",
+          "enum": ["bold", "elegant", "minimal"]
+        },
+        "mode": {
+          "type": "string",
+          "enum": ["dark", "light"]
+        }
+      }
+    },
+    "seo": {
+      "type": "object",
+      "required": ["title", "description"],
+      "additionalProperties": false,
+      "properties": {
+        "title": { "type": "string", "minLength": 5 },
+        "description": { "type": "string", "minLength": 20 },
+        "siteUrl": { "type": "string", "format": "uri" },
+        "schemaType": { "type": "string" }
+      }
+    },
+    "pages": {
+      "type": "object",
+      "required": ["home", "services", "gallery", "about", "contact"],
+      "additionalProperties": false,
+      "properties": {
+        "home": { "type": "boolean" },
+        "services": { "type": "boolean" },
+        "gallery": { "type": "boolean" },
+        "about": { "type": "boolean" },
+        "contact": { "type": "boolean" }
+      }
+    },
+    "demoMode": {
+      "type": "boolean",
+      "description": "When true, displays the slim emtrc demo banner and adds noindex, nofollow meta tag."
+    },
+    "demoBannerPhone": {
+      "type": "string",
+      "description": "Phone number displayed in the emtrc demo banner."
+    },
+    "emergencyCallout": {
+      "type": "object",
+      "required": ["headline", "subtext"],
+      "additionalProperties": false,
+      "properties": {
+        "headline": { "type": "string", "minLength": 1 },
+        "subtext": { "type": "string", "minLength": 1 },
+        "responseTime": { "type": "string" }
+      }
+    },
+    "gasSafeNumber": {
+      "type": "string",
+      "description": "Optional Gas Safe registration number (e.g. 649281). Badge is hidden unless non-empty."
+    },
+    "niceicNumber": {
+      "type": "string",
+      "description": "Optional NICEIC registration number (e.g. 042819). Badge is hidden unless non-empty."
+    },
+    "badges": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["type", "label"],
+        "additionalProperties": false,
+        "properties": {
+          "type": {
+            "type": "string",
+            "enum": ["gas-safe", "niceic", "napit", "trustmark", "insured", "custom"]
+          },
+          "label": { "type": "string", "minLength": 1 },
+          "registrationNumber": { "type": "string" }
+        }
+      }
+    },
+    "quoteForm": {
+      "type": "object",
+      "required": ["enabled"],
+      "additionalProperties": false,
+      "properties": {
+        "enabled": { "type": "boolean" },
+        "heading": { "type": "string" },
+        "subtext": { "type": "string" },
+        "endpoint": { "type": "string" },
+        "serviceTypes": {
+          "type": "array",
+          "items": { "type": "string" }
+        }
+      }
+    },
+    "showTemplatePreview": {
+      "type": "boolean",
+      "description": "Optional preview switcher toggle. Leave omitted or false for live client deployments."
+    }
+  },
+  "$defs": {
+    "dayOfWeek": {
+      "type": "string",
+      "enum": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]
+    },
+    "galleryImage": {
+      "type": "object",
+      "required": ["url", "alt", "width", "height"],
+      "additionalProperties": false,
+      "properties": {
+        "url": { "type": "string", "minLength": 1 },
+        "alt": { "type": "string", "minLength": 1 },
+        "width": { "type": "integer", "minimum": 1 },
+        "height": { "type": "integer", "minimum": 1 },
+        "caption": { "type": "string" }
+      }
+    }
+  }
+}

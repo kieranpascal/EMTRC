@@ -1,0 +1,112 @@
+{
+  "$schema": "../site.schema.json",
+  "businessName": "Brackenbury Corner Coffee",
+  "tagline": "Neighbourhood speciality coffee, sourdough toasties and fresh pastries in Brackenbury Village, Hammersmith.",
+  "niche": "cafe",
+  "borough": "Hammersmith & Fulham",
+  "address": "63 Aldensley Road, Hammersmith, London W6 0DH",
+  "phone": "020 7946 0752",
+  "instagramUrl": "https://www.instagram.com",
+  "heroImage": {
+    "url": "/src/assets/images/cafe_coffee_bakery_1795370824300.jpg",
+    "alt": "Flat white and warm croissants on the counter at Brackenbury Corner Coffee in Hammersmith",
+    "width": 1408,
+    "height": 768
+  },
+  "openingHours": [
+    { "day": "Monday", "open": "07:30", "close": "16:00" },
+    { "day": "Tuesday", "open": "07:30", "close": "16:00" },
+    { "day": "Wednesday", "open": "07:30", "close": "16:00" },
+    { "day": "Thursday", "open": "07:30", "close": "16:00" },
+    { "day": "Friday", "open": "07:30", "close": "16:00" },
+    { "day": "Saturday", "open": "08:00", "close": "16:30" },
+    { "day": "Sunday", "open": "08:30", "close": "15:30" }
+  ],
+  "services": [
+    {
+      "category": "Coffee & Tea",
+      "name": "Flat White / Latte / Cappuccino",
+      "description": "Seasonal London-roasted espresso with estate whole milk or oat milk.",
+      "price": "£3.50"
+    },
+    {
+      "category": "Coffee & Tea",
+      "name": "Loose-Leaf Chai Latte",
+      "description": "House-spiced masala chai brewed fresh with ginger, cinnamon and cardamom.",
+      "price": "£3.90",
+      "dietary": ["V", "GF"]
+    },
+    {
+      "category": "Bakery & Toasties",
+      "name": "Butter Croissant / Pain au Chocolat",
+      "description": "Delivered warm each morning from our West London artisan bakery.",
+      "price": "£3.30",
+      "dietary": ["V"]
+    },
+    {
+      "category": "Bakery & Toasties",
+      "name": "Westcombe Cheddar & Caramelised Onion Toastie",
+      "description": "Pressed golden on thick country sourdough with Dijon mustard.",
+      "price": "£7.80",
+      "dietary": ["V"]
+    },
+    {
+      "category": "Bakery & Toasties",
+      "name": "Avocado & Soft-Boiled Egg Sourdough",
+      "description": "Smashed avocado, lemon, sea salt flakes and free-range eggs on toasted sourdough.",
+      "price": "£9.50",
+      "dietary": ["V"]
+    }
+  ],
+  "gallery": [
+    {
+      "url": "/src/assets/images/cafe_coffee_bakery_1795370824300.jpg",
+      "alt": "Espresso cup and morning viennoiserie tray at Brackenbury Corner Coffee in W6",
+      "width": 1408,
+      "height": 768
+    },
+    {
+      "url": "/src/assets/images/cafe_brunch_pastry_1795373181666.jpg",
+      "alt": "Freshly plated avocado sourdough toast with poached eggs and flaky almond croissant in sunlit café window",
+      "width": 1200,
+      "height": 900
+    }
+  ],
+  "reviews": [
+    {
+      "author": "claire_w6",
+      "text": "Our favourite corner spot after the school run. Lovely staff, dog-friendly and the cheddar toastie is brilliant.",
+      "rating": 5,
+      "source": "Google"
+    }
+  ],
+  "about": "Brackenbury Corner Coffee is a small, dog-friendly neighbourhood café on a quiet residential corner in Hammersmith. We keep things simple: great coffee, warm pastries and crisp sourdough toasties.",
+  "areasServed": [
+    "Brackenbury Village (W6)",
+    "Hammersmith",
+    "Brook Green",
+    "Ravenscourt Park",
+    "Shepherd's Bush"
+  ],
+  "theme": {
+    "primaryColour": "#23201D",
+    "accentColour": "#7A5230",
+    "font": "modern",
+    "style": "minimal",
+    "mode": "light"
+  },
+  "seo": {
+    "title": "Brackenbury Corner Coffee — Neighbourhood Cafe in Hammersmith W6",
+    "description": "Dog-friendly speciality coffee, pastries and sourdough toasties in Brackenbury Village, Hammersmith W6.",
+    "schemaType": "CafeOrCoffeeShop"
+  },
+  "pages": {
+    "home": true,
+    "services": false,
+    "gallery": false,
+    "about": false,
+    "contact": false
+  },
+  "demoMode": true,
+  "demoBannerPhone": "020 7946 0900"
+}

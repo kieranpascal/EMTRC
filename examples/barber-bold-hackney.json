@@ -1,0 +1,133 @@
+{
+  "$schema": "../site.schema.json",
+  "businessName": "Kingsland Blade & Fade",
+  "tagline": "Sharp skin fades, traditional scissor cuts and hot towel shaves in the heart of Hackney.",
+  "niche": "barber",
+  "borough": "Hackney",
+  "address": "142 Kingsland High Street, Dalston, London E8 2NS",
+  "phone": "020 7946 0821",
+  "whatsapp": "+447700900821",
+  "email": "bookings@kingslandblade.example.co.uk",
+  "bookingUrl": "https://www.fresha.com",
+  "bookingLabel": "Book a chair",
+  "instagramUrl": "https://www.instagram.com",
+  "heroImage": {
+    "url": "/src/assets/images/barber_shop_interior_1795370825070.jpg",
+    "alt": "Barbers cutting hair inside Kingsland Blade & Fade in Dalston, Hackney with vintage black leather chairs and dark charcoal walls",
+    "width": 1408,
+    "height": 768
+  },
+  "openingHours": [
+    { "day": "Monday", "open": "09:30", "close": "19:30" },
+    { "day": "Tuesday", "open": "09:30", "close": "19:30" },
+    { "day": "Wednesday", "open": "09:30", "close": "20:00" },
+    { "day": "Thursday", "open": "09:30", "close": "20:30" },
+    { "day": "Friday", "open": "09:00", "close": "20:30" },
+    { "day": "Saturday", "open": "08:30", "close": "19:00" },
+    { "day": "Sunday", "open": "10:00", "close": "17:00" }
+  ],
+  "services": [
+    {
+      "name": "Skin Fade & Style",
+      "description": "Zero or foil fade blended cleanly with scissors on top, hot towel finish and matte styling.",
+      "price": "£28",
+      "duration": "40 min"
+    },
+    {
+      "name": "Classic Scissor Cut",
+      "description": "Tailored consultation, full scissor work, tapered neckline and natural blow-dry finish.",
+      "price": "£30",
+      "duration": "40 min"
+    },
+    {
+      "name": "Cut & Beard Sculpt",
+      "description": "Any haircut or skin fade paired with razor-sharp beard line-up, hot towel and cedar beard oil.",
+      "price": "£42",
+      "duration": "60 min"
+    },
+    {
+      "name": "Hot Towel Straight-Razor Shave",
+      "description": "Rich sandalwood lather, two-pass straight razor shave, eucalyptus steam towel and soothing balm.",
+      "price": "£26",
+      "duration": "30 min"
+    },
+    {
+      "name": "Beard Trim & Line-Up",
+      "description": "Precision grade shaping, cheek and neck razor detailing and conditioning oil.",
+      "price": "£16",
+      "duration": "20 min"
+    },
+    {
+      "name": "Buzz Cut & Skin Taper",
+      "description": "All-over clipper grade with crisp skin taper around the ears and nape.",
+      "price": "£20",
+      "duration": "25 min"
+    }
+  ],
+  "gallery": [
+    {
+      "url": "/src/assets/images/barber_shop_interior_1795370825070.jpg",
+      "alt": "Main shop floor at Kingsland Blade & Fade in Hackney with brass lighting and walnut stations",
+      "width": 1408,
+      "height": 768,
+      "caption": "Walk-ins and booked chairs seven days a week on Kingsland High Street."
+    },
+    {
+      "url": "/src/assets/images/barber_tools_craft_1795370823939.jpg",
+      "alt": "Traditional steel clippers, Japanese shears, straight razor and rolled warm towel on oiled oak bench",
+      "width": 1200,
+      "height": 900,
+      "caption": "Precision Japanese shears, straight razors and steam-heated towels at every station."
+    }
+  ],
+  "reviews": [
+    {
+      "author": "Marcus D.",
+      "text": "Best skin fade in E8. Zero rush, spot-on attention to the crown and neckline, and the hot towel finish makes all the difference.",
+      "rating": 5,
+      "source": "Google"
+    },
+    {
+      "author": "Callum H.",
+      "text": "Walked in on a Friday evening and was in the chair within ten minutes. Clean shop, sound barbers, fair prices for Dalston.",
+      "rating": 5,
+      "source": "Google"
+    },
+    {
+      "author": "Tariq A.",
+      "text": "Been coming here every three weeks for two years for a fade and beard sculpt. Consistent every single time.",
+      "rating": 5,
+      "source": "Fresha"
+    }
+  ],
+  "about": "Kingsland Blade & Fade is an independent Hackney barbershop built on unhurried cuts, sharp line-ups and straightforward service. Whether you need a crisp mid-week skin fade before work or a full cut and hot towel shave ahead of the weekend, our senior barbers take the time to get every blend right. Walk-ins are always welcome, or reserve your slot online in thirty seconds.",
+  "areasServed": [
+    "Dalston (E8)",
+    "Hackney Central",
+    "Stoke Newington (N16)",
+    "Haggerston",
+    "Shoreditch",
+    "London Fields"
+  ],
+  "theme": {
+    "primaryColour": "#12141A",
+    "accentColour": "#D49B45",
+    "font": "athletic",
+    "style": "bold",
+    "mode": "dark"
+  },
+  "seo": {
+    "title": "Kingsland Blade & Fade — Barbers in Dalston, Hackney E8",
+    "description": "Sharp skin fades, scissor cuts and hot towel shaves on Kingsland High Street, Hackney E8. Walk-ins welcome or book online.",
+    "schemaType": "BarberShop"
+  },
+  "pages": {
+    "home": true,
+    "services": true,
+    "gallery": true,
+    "about": true,
+    "contact": true
+  },
+  "demoMode": true,
+  "demoBannerPhone": "020 7946 0900"
+}

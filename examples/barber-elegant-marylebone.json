@@ -1,0 +1,120 @@
+{
+  "$schema": "../site.schema.json",
+  "businessName": "Chiltern Grooming Club",
+  "tagline": "Unhurried gentlemen's tailoring for hair and beard off Chiltern Street, Marylebone.",
+  "niche": "barber",
+  "borough": "Westminster",
+  "address": "38 Chiltern Street, Marylebone, London W1U 7QE",
+  "phone": "020 7946 0314",
+  "email": "concierge@chilterngrooming.example.co.uk",
+  "bookingUrl": "https://booksy.com",
+  "bookingLabel": "Reserve a chair",
+  "instagramUrl": "https://www.instagram.com",
+  "heroImage": {
+    "url": "/src/assets/images/barber_shop_interior_1795370825070.jpg",
+    "alt": "Gentlemen's grooming interior at Chiltern Grooming Club in Marylebone with dark oak counters and leather chairs",
+    "width": 1408,
+    "height": 768
+  },
+  "openingHours": [
+    { "day": "Monday", "status": "closed" },
+    { "day": "Tuesday", "open": "09:00", "close": "19:30" },
+    { "day": "Wednesday", "open": "09:00", "close": "19:30" },
+    { "day": "Thursday", "open": "09:00", "close": "20:00" },
+    { "day": "Friday", "open": "09:00", "close": "19:30" },
+    { "day": "Saturday", "open": "09:00", "close": "18:00" },
+    { "day": "Sunday", "status": "closed" }
+  ],
+  "services": [
+    {
+      "name": "Bespoke Scissor Cut & Wash",
+      "description": "Full consultation, precision scissor tailoring, invigorating scalp wash and natural finish.",
+      "price": "£48",
+      "duration": "45 min"
+    },
+    {
+      "name": "The Marylebone Cut & Shave",
+      "description": "Signature haircut paired with our three-towel traditional wet shave and cold-pressed balm.",
+      "price": "£78",
+      "duration": "75 min"
+    },
+    {
+      "name": "Traditional Wet Shave",
+      "description": "Badger-brush lather, double-pass straight razor shave, chilled cedar towel and moisturiser.",
+      "price": "£38",
+      "duration": "35 min"
+    },
+    {
+      "name": "Beard Restyle & Hot Towel",
+      "description": "Scissor-over-comb shaping, crisp throat and cheek razor finish, nourishing botanical oil.",
+      "price": "£28",
+      "duration": "30 min"
+    },
+    {
+      "name": "Executive Taper & Neck Tidy",
+      "description": "Between-cut refresh around the hairline, sideburns and neckline.",
+      "price": "£22",
+      "duration": "20 min"
+    }
+  ],
+  "gallery": [
+    {
+      "url": "/src/assets/images/barber_tools_craft_1795370823939.jpg",
+      "alt": "Badger shaving brush, straight razor, shears and rolled warm cotton towel on walnut counter",
+      "width": 1200,
+      "height": 900,
+      "caption": "Traditional wet-shave tools prepared fresh for every appointment."
+    },
+    {
+      "url": "/src/assets/images/barber_shop_interior_1795370825070.jpg",
+      "alt": "Calm barbershop room with brass sconces and vintage leather chairs in Marylebone",
+      "width": 1408,
+      "height": 768,
+      "caption": "A quiet room off Chiltern Street, two minutes from Baker Street station."
+    }
+  ],
+  "reviews": [
+    {
+      "author": "Oliver W.",
+      "text": "Calm, attentive and genuinely skilled with longer scissor cuts. Easily my favourite barber in Marylebone.",
+      "rating": 5,
+      "source": "Google"
+    },
+    {
+      "author": "James P.",
+      "text": "The traditional wet shave is worth every penny. Unhurried from start to finish and you walk out feeling sharp.",
+      "rating": 5,
+      "source": "Google"
+    }
+  ],
+  "about": "Founded by master barbers trained on Savile Row and Jermyn Street, Chiltern Grooming Club offers quiet, appointment-led grooming in the heart of Marylebone. Every service begins with an honest consultation and finishes with a steam towel and complimentary espresso.",
+  "areasServed": [
+    "Marylebone (W1)",
+    "Mayfair",
+    "Fitzrovia",
+    "Regent's Park",
+    "Baker Street",
+    "Paddington"
+  ],
+  "theme": {
+    "primaryColour": "#1A1614",
+    "accentColour": "#C5A06D",
+    "font": "editorial",
+    "style": "elegant",
+    "mode": "dark"
+  },
+  "seo": {
+    "title": "Chiltern Grooming Club — Heritage Barbers in Marylebone W1",
+    "description": "Bespoke scissor cuts, beard tailoring and traditional hot towel wet shaves on Chiltern Street, Marylebone. Book online.",
+    "schemaType": "BarberShop"
+  },
+  "pages": {
+    "home": true,
+    "services": true,
+    "gallery": true,
+    "about": true,
+    "contact": true
+  },
+  "demoMode": true,
+  "demoBannerPhone": "020 7946 0900"
+}

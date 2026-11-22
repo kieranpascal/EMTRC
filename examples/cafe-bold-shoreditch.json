@@ -1,0 +1,143 @@
+{
+  "$schema": "../site.schema.json",
+  "businessName": "Redchurch Espresso & Kitchen",
+  "tagline": "House-roasted espresso, flaky viennoiserie and all-day sourdough brunch plates in Shoreditch E2.",
+  "niche": "cafe",
+  "borough": "Hackney",
+  "address": "48 Redchurch Street, Shoreditch, London E2 7DP",
+  "phone": "020 7946 0734",
+  "email": "coffee@redchurchespresso.example.co.uk",
+  "instagramUrl": "https://www.instagram.com",
+  "heroImage": {
+    "url": "/src/assets/images/cafe_brunch_pastry_1795373181666.jpg",
+    "alt": "Sourdough avocado toast with poached eggs, flaky almond croissant and flat white on oak table at Redchurch Espresso & Kitchen",
+    "width": 1200,
+    "height": 900
+  },
+  "openingHours": [
+    { "day": "Monday", "open": "07:00", "close": "17:00" },
+    { "day": "Tuesday", "open": "07:00", "close": "17:00" },
+    { "day": "Wednesday", "open": "07:00", "close": "17:00" },
+    { "day": "Thursday", "open": "07:00", "close": "17:30" },
+    { "day": "Friday", "open": "07:00", "close": "17:30" },
+    { "day": "Saturday", "open": "08:00", "close": "17:30" },
+    { "day": "Sunday", "open": "08:30", "close": "16:30" }
+  ],
+  "services": [
+    {
+      "category": "Coffee Bar",
+      "name": "House Double Espresso",
+      "description": "Washed Brazilian & Kenyan blend — dark chocolate, roasted hazelnut and bright blood orange.",
+      "price": "£3.10",
+      "dietary": ["VG", "GF"]
+    },
+    {
+      "category": "Coffee Bar",
+      "name": "Flat White / Cortado",
+      "description": "Double ristretto with silky steamed estate dairy or barista oat milk at no extra charge.",
+      "price": "£3.70"
+    },
+    {
+      "category": "Coffee Bar",
+      "name": "Cold Brew Tonic",
+      "description": "18-hour single-origin cold brew poured over crisp tonic water and fresh orange peel.",
+      "price": "£4.40",
+      "dietary": ["VG", "GF"]
+    },
+    {
+      "category": "Counter Bakes",
+      "name": "Twice-Baked Almond Croissant",
+      "description": "Filled with toasted marzipan frangipane, flaked almonds and light icing sugar.",
+      "price": "£4.20",
+      "dietary": ["V"]
+    },
+    {
+      "category": "Counter Bakes",
+      "name": "Pistachio & Orange Morning Bun",
+      "description": "Crisp laminated dough rolled in Sicilian pistachio sugar and zest.",
+      "price": "£4.10",
+      "dietary": ["V"]
+    },
+    {
+      "category": "All-Day Brunch",
+      "name": "Smashed Avocado, Poached Eggs & Chilli on Sourdough",
+      "description": "Two free-range poached eggs, lime-crushed avocado, Aleppo pepper and toasted seeds.",
+      "price": "£11.50",
+      "dietary": ["V"]
+    },
+    {
+      "category": "All-Day Brunch",
+      "name": "Turkish Eggs (Cilbir)",
+      "description": "Whipped garlic Greek yoghurt, poached eggs, brown butter paprika oil, dill and grilled sourdough.",
+      "price": "£12.00",
+      "dietary": ["V"]
+    },
+    {
+      "category": "All-Day Brunch",
+      "name": "Harissa Halloumi & Roasted Pepper Ciabatta",
+      "description": "Chargrilled Cypriot halloumi, sweet roast peppers, baby spinach and rose harissa mayo.",
+      "price": "£9.80",
+      "dietary": ["V"]
+    }
+  ],
+  "gallery": [
+    {
+      "url": "/src/assets/images/cafe_brunch_pastry_1795373181666.jpg",
+      "alt": "Almond croissant, avocado and poached eggs on sourdough and flat white served in the window at Redchurch Espresso",
+      "width": 1200,
+      "height": 900,
+      "caption": "Brunch plates cooked to order daily until 3pm on Redchurch Street."
+    },
+    {
+      "url": "/src/assets/images/cafe_coffee_bakery_1795370824300.jpg",
+      "alt": "Morning espresso counter lined with warm laminated croissants and cardamom buns in Shoreditch",
+      "width": 1408,
+      "height": 768,
+      "caption": "Oat milk included free on every espresso drink — zero surcharge."
+    }
+  ],
+  "reviews": [
+    {
+      "author": "Samira B.",
+      "text": "The Turkish eggs and twice-baked almond croissant are unreal. Fast service even in the 8:30am commuter rush.",
+      "rating": 5,
+      "source": "Google"
+    },
+    {
+      "author": "Ollie T.",
+      "text": "Properly dialled-in espresso and sunny window tables right off Shoreditch High Street.",
+      "rating": 5,
+      "source": "Google"
+    }
+  ],
+  "about": "Redchurch Espresso & Kitchen pairs East London speciality coffee with a proper morning bakery and hot sourdough brunch kitchen. Drop in at 7am for a quick flat white or grab a window table for poached eggs and pastries.",
+  "areasServed": [
+    "Shoreditch (E2)",
+    "Bethnal Green",
+    "Spitalfields (E1)",
+    "Brick Lane",
+    "Hoxton",
+    "Liverpool Street"
+  ],
+  "theme": {
+    "primaryColour": "#1E1612",
+    "accentColour": "#D97736",
+    "font": "athletic",
+    "style": "bold",
+    "mode": "dark"
+  },
+  "seo": {
+    "title": "Redchurch Espresso & Kitchen — Coffee & Brunch Cafe in Shoreditch E2",
+    "description": "Speciality espresso, flaky croissants and all-day sourdough brunch on Redchurch Street, Shoreditch E2.",
+    "schemaType": "CafeOrCoffeeShop"
+  },
+  "pages": {
+    "home": true,
+    "services": true,
+    "gallery": true,
+    "about": true,
+    "contact": true
+  },
+  "demoMode": true,
+  "demoBannerPhone": "020 7946 0900"
+}

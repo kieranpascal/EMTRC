@@ -1,0 +1,101 @@
+{
+  "$schema": "../site.schema.json",
+  "businessName": "Kew Botanics Hair & Skin",
+  "tagline": "Quiet, organic hairdressing and holistic facials two minutes from Richmond Green.",
+  "niche": "salon",
+  "borough": "Richmond upon Thames",
+  "address": "11 Paved Court, Richmond, London TW9 1LZ",
+  "phone": "020 7946 0548",
+  "email": "studio@kewbotanics.example.co.uk",
+  "bookingUrl": "https://www.fresha.com",
+  "bookingLabel": "Book treatment",
+  "heroImage": {
+    "url": "/src/assets/images/salon_warm_studio_1795370824298.jpg",
+    "alt": "Calm sunlit styling space at Kew Botanics Hair & Skin in Richmond",
+    "width": 1408,
+    "height": 768
+  },
+  "openingHours": [
+    { "day": "Monday", "status": "closed" },
+    { "day": "Tuesday", "open": "09:30", "close": "18:00" },
+    { "day": "Wednesday", "open": "09:30", "close": "18:30" },
+    { "day": "Thursday", "open": "09:30", "close": "19:30" },
+    { "day": "Friday", "open": "09:30", "close": "18:30" },
+    { "day": "Saturday", "open": "09:00", "close": "17:30" },
+    { "day": "Sunday", "status": "closed" }
+  ],
+  "services": [
+    {
+      "category": "Hair",
+      "name": "Organic Cut & Natural Blow-Dry",
+      "description": "Gentle botanical wash, tailored haircut and soft everyday finish.",
+      "price": "£64",
+      "duration": "60 min"
+    },
+    {
+      "category": "Hair",
+      "name": "Root Tint & Shine Mask",
+      "description": "Ammonia-free permanent root coverage paired with plant-protein mask.",
+      "price": "£85",
+      "duration": "90 min"
+    },
+    {
+      "category": "Skin & Brows",
+      "name": "Botanical Glow Facial",
+      "description": "Deep enzymatic cleanse, lymphatic facial massage and calming rosehip oil finish.",
+      "price": "£78",
+      "duration": "60 min"
+    },
+    {
+      "category": "Skin & Brows",
+      "name": "Natural Brow Shape & Tint",
+      "description": "Precision tweeze, trim and custom botanical brow tint.",
+      "price": "£28",
+      "duration": "25 min"
+    }
+  ],
+  "gallery": [
+    {
+      "url": "/src/assets/images/salon_warm_studio_1795370824298.jpg",
+      "alt": "Minimalist sunlit salon floor at Kew Botanics Hair & Skin in Richmond TW9",
+      "width": 1408,
+      "height": 768
+    },
+    {
+      "url": "/src/assets/images/salon_hair_craft_1795373182080.jpg",
+      "alt": "Botanical oil droppers and folded linen on stone tray at Kew Botanics",
+      "width": 1200,
+      "height": 900
+    }
+  ],
+  "reviews": [],
+  "about": "Kew Botanics Hair & Skin is a four-chair neighbourhood salon tucked off Richmond Green. We focus on low-tox colour, healthy haircutting and calm, one-to-one facials without salon rush.",
+  "areasServed": [
+    "Richmond (TW9)",
+    "Kew",
+    "Twickenham",
+    "East Sheen",
+    "St Margarets"
+  ],
+  "theme": {
+    "primaryColour": "#3A2F28",
+    "accentColour": "#7C5A46",
+    "font": "modern",
+    "style": "minimal",
+    "mode": "light"
+  },
+  "seo": {
+    "title": "Kew Botanics Hair & Skin — Organic Salon in Richmond TW9",
+    "description": "Calm organic haircuts, ammonia-free colour and botanical facials on Paved Court, Richmond TW9.",
+    "schemaType": "BeautySalon"
+  },
+  "pages": {
+    "home": true,
+    "services": false,
+    "gallery": false,
+    "about": false,
+    "contact": false
+  },
+  "demoMode": true,
+  "demoBannerPhone": "020 7946 0900"
+}
