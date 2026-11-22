@@ -74,12 +74,23 @@ function getInitialPresetFromUrl(): string | null {
   return preset && PREVIEW_PRESETS.some((p) => p.id === preset) ? preset : null;
 }
 
-export function SiteProvider({ children }: { children: ReactNode }) {
+export function SiteProvider({
+  children,
+  initialPresetId,
+}: {
+  children: ReactNode;
+  initialPresetId?: string;
+}) {
   const previewEnabled = Boolean(buildSiteConfig.showTemplatePreview);
   const [site, setSite] = useState<SiteConfig>(buildSiteConfig);
-  const [activePresetId, setActivePresetId] = useState<string>(
-    () => getInitialPresetFromUrl() ?? 'barber-bold-hackney'
-  );
+  const resolvedStartPreset =
+    (initialPresetId && PREVIEW_PRESETS.some((p) => p.id === initialPresetId)
+      ? initialPresetId
+      : null) ??
+    getInitialPresetFromUrl() ??
+    'barber-bold-hackney';
+
+  const [activePresetId, setActivePresetId] = useState<string>(resolvedStartPreset);
 
   const loadPresetById = async (presetId: string) => {
     const key = `../../examples/${presetId}.json`;
@@ -100,11 +111,14 @@ export function SiteProvider({ children }: { children: ReactNode }) {
   };
 
   useEffect(() => {
-    const urlPreset = getInitialPresetFromUrl();
-    if (urlPreset && urlPreset !== 'barber-bold-hackney') {
-      void loadPresetById(urlPreset);
+    const target =
+      (initialPresetId && PREVIEW_PRESETS.some((p) => p.id === initialPresetId)
+        ? initialPresetId
+        : null) ?? getInitialPresetFromUrl();
+    if (target) {
+      void loadPresetById(target);
     }
-  }, []);
+  }, [initialPresetId]);
 
   const theme = useMemo(() => buildThemeTokens(site.niche, site.theme), [site.niche, site.theme]);
 
@@ -116,11 +130,16 @@ export function SiteProvider({ children }: { children: ReactNode }) {
     root.dataset.themeMode = theme.mode;
     root.dataset.themeStyle = theme.style;
     root.dataset.niche = site.niche;
+    return () => {
+      delete root.dataset.themeMode;
+      delete root.dataset.themeStyle;
+      delete root.dataset.niche;
+    };
   }, [theme, site.niche]);
 
   const selectPreset = (presetId: string) => {
     void loadPresetById(presetId);
-    if (typeof window !== 'undefined') {
+    if (typeof window !== 'undefined' && !initialPresetId) {
       const url = new URL(window.location.href);
       url.searchParams.set('preset', presetId);
       window.history.replaceState({}, '', url.toString());

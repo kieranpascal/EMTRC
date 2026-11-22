@@ -3,17 +3,34 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>London Local Business Website</title>
+    <title>emtrc — Websites, Hosting &amp; AI Front Office for London Local Businesses</title>
     <meta
       name="description"
-      content="Fast, mobile-first website for a London local business."
+      content="Websites, hosting, domains, business email and AI tools for London local businesses. Built, hosted and looked after for one monthly price — starting with a free demo."
+    />
+    <meta property="og:title" content="emtrc — Websites &amp; AI Front Office for London Local Businesses" />
+    <meta
+      property="og:description"
+      content="Websites for London barbers, salons, trades, cleaners and cafés. Built, hosted and looked after for one monthly price. Get a free demo first."
     />
     <meta property="og:type" content="website" />
     <meta property="og:locale" content="en_GB" />
     <meta name="twitter:card" content="summary_large_image" />
+    <meta name="theme-color" content="#0B132B" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="apple-touch-icon" href="/favicon.svg" />
+    <script>
+      (function () {
+        try {
+          var saved = localStorage.getItem('emtrc-theme');
+          if (saved === 'dark') {
+            document.documentElement.classList.add('dark');
+          }
+        } catch (e) {}
+      })();
+    </script>
   </head>
-  <body class="antialiased">
+  <body>
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
   </body>

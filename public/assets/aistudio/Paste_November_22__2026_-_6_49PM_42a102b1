@@ -1,0 +1,541 @@
+# emtrc plan v2: from websites to an AI-run services company
+
+Nov 21, 2026 · @Kieran Pascal
+
+## Summary
+
+emtrc becomes an AI-run services company for London small businesses. Websites are the way in; recurring AI, comms and security services are the business. Claude (Cowork, Code and the API) does most of the delivery and admin, and you approve anything that reaches a person or moves money. Stage 1 is still the [v1 plan](https://claude.ai/artifact/VD6b5MfgGcm9g6ks7e7CBs): 10 website clients by about February 2027 on £50, then £100. v2 covers what comes after, and supersedes v1 where they differ.
+
+**What changed from v1:**
+
+- **Domains move to Cloudflare Registrar.** It sells at cost, your DNS and Pages are already there, and it now handles .uk. Porkbun is the fallback for extensions Cloudflare doesn't sell.
+- **The first upsell is the review engine (£39/mo), not the full Lead Catcher.** It's the easiest yes, and it opens the door to the rest of the ladder.
+- **Postcards with a QR code to each business's own demo become the scalable channel for sole traders.** Post is outside PECR, and the Stannp API automates it.
+- **New free lead feeds catch businesses the week they open:** food hygiene registrations, new Companies House incorporations and council licence lists.
+- **The PSTN switch-off on 31 January 2027 is confirmed.** About 1.2 million lines are still on copper, so phones become a stage-2 product, not a stage-3 one.
+- **Claude plans were renamed on about 1 November 2026.** Max is $100/mo (5x Pro), Ultra is $200/mo. Buy Max in January and move up only if you keep hitting the weekly limit.
+- **Cowork now runs in the cloud by default,** so scheduled jobs run with your PC off. Local folders and browser use still need the desktop app open.
+
+**Committed picks:**
+
+| Need | Pick now | Pick at scale |
+| --- | --- | --- |
+| Domains | Cloudflare Registrar (client named as registrant) | Openprovider API |
+| Email | Zoho Mail Lite (£0.80/user) resold at £3 to £4 | + Google Workspace / Microsoft 365 via Pax8 or Giacom |
+| Hosting beyond Pages | 20i Reseller 50 (£39.99/mo) at about 10 clients | 20i Reseller 500 + emtrc Hub (own portal) |
+| CRM, SMS, reviews, social, calendars | GoHighLevel $297 at 3+ AI clients | GoHighLevel $497 (rebill AI usage) |
+| AI voice | GoHighLevel Voice AI | Retell + Twilio or Telnyx UK numbers |
+| Website chat | Own Claude chat widget on Cloudflare Workers | Same |
+| Local SEO + AI visibility | BrightLocal | Same |
+| Phones | Yay.com reseller | Gamma direct |
+| Security | Bitwarden MSP, Cloudflare DMARC | + Huntress, usecure, Cyber Essentials partner |
+| Distributor | Pax8 UK | + Giacom for telecoms |
+| Automation | Claude Max (Cowork + Code) | + Hetzner VPS running n8n and the desktop app |
+
+**Revenue path (targets, not forecasts):** about £700/mo recurring at 10 clients (Feb 2027), about £2,000 to £3,000 at 25 (Aug 2027), £4,000 to £7,000+ at 50 to 80 (2028), then white-label and acquisitions.
+
+**How much to trust the figures:** five research agents gathered them, but an hourly page-load limit cut the live checks short. Each vendor figure is tagged in the source reports (in your plan folder) as checked on a live page or not. A separate check of the 25 most important prices is running, and its results go in Section 12.
+
+## The vision and stages
+
+**End state:** a London-born, AI-run "digital front office" for small businesses. One emtrc portal covers the website, domain, email, phones, AI receptionist, reviews, local SEO, social and security, for one monthly bill. Claude agents run the pipeline from lead to invoice, and you manage exceptions. Later the same stack is sold white label to other agencies and freelancers, and you buy small agencies' client books to fill it.
+
+A stage starts when the previous gate is met, not on a date.
+
+| Stage | Target window | Clients | Recurring revenue/mo | What gets added | Gate to move on |
+| --- | --- | --- | --- | --- | --- |
+| 1. First 10 | Dec 2026 to Feb 2027 | 10 | about £700 | Demo-first walk-ins and calls, Places API leads, AI Studio templates, Cloudflare Pages, Zoho mail, Cloudflare Registrar | 10 paying clients |
+| 2. Upsell + engine | Mar to Aug 2027 | 25 | £2,000 to £3,000 | Claude Max running ops; review engine, chat, missed-call text-back, AI receptionist; phones (PSTN hook); GoHighLevel at 3+ AI clients; 20i Reseller 50; postcards via Stannp; Ltd-only cold email; first VA | 30% of clients on an add-on; churn under 2.5%/mo |
+| 3. Productise | Late 2027 to 2028 | 50 to 80 | £4,000 to £7,000+ | emtrc Hub (own portal); GHL $497 rebilling; Retell voice; security bundle (Huntress, Bitwarden, usecure, Cyber Essentials); partnerships as the main channel; capped paid-ads test | Half of revenue from non-website services; 80% of delivery automated |
+| 4. AI-run + white label | 2028+ | 100+ | £10,000+ | Hetzner VM running the agents 24/7; HaloPSA + Claude helpdesk; white-label platform for other agencies (£25 to £40/site/mo); buying client books at 1x annual recurring revenue or less | You approve exceptions, not actions |
+
+**Unit economics behind it:** about £65/mo average revenue per client at 85% gross margin and 2.5% monthly churn gives a lifetime value of about £2,200. That justifies spending up to about £250 to win a client in stage 2. Each add-on raises revenue per client without raising acquisition cost, which is why the bolt-on ladder (Section 4) matters more than adding new clients after stage 2.
+
+## Domains, email and hosting
+
+**Picks: Cloudflare Registrar for domains, Zoho Mail Lite for email now, 20i Reseller 50 as the stage-2 host, and your own emtrc Hub at stage 3.** \[V\] = read on the vendor's live page, \[K\] = unverified.
+
+### Hosting resellers compared
+
+| Company | HQ, founded | Offer | White label | Price | Trust | Verdict |
+| --- | --- | --- | --- | --- | --- | --- |
+| [20i](https://www.20i.com/reseller-hosting) | Sheffield, UK, about 2016 | Reseller 50 / 500 / Unlimited; unlimited 10 GB mailboxes; London data centre | Branded My20i + StackCP panels, private nameservers, Reseller API, free HostShop billing, WHMCS 40% off | £39.99 / £69.99 / £99.99 per month, first month £1 \[V\]. VAT not stated; assume +20% | [Trustpilot 4.8 from 2,018 reviews](https://ca.trustpilot.com/review/20i.com) \[V\] | **Pick for stage 2** |
+| [Krystal](https://krystal.io/hosting/reseller) | London, 2002, B-Corp | Unity 25 cPanel accounts / Trinity 50 / Infinity 100 | WHM, private nameservers, WHMCS-compatible (licence not included) | £20 / £35 / £70 per month \[V\] | [Trustpilot 4.9 from 2,495 reviews](https://ca.trustpilot.com/review/krystal.io) \[V\] | Runner-up if clients need cPanel |
+| [Hostinger Agency](https://www.hostinger.com/uk/pro) | Cyprus / Lithuania, 2004 | 100 sites, unbranded client dashboard | No billing, no private nameservers or reseller API | £24/mo on a 24-month prepay, renews at £39, ex VAT \[V\] | about 4.6 \[K\] | Cheap compute, not a reseller platform |
+| Namecheap Reseller | US | cPanel reseller + domain API | Basic | USD \[K\] | \[K\] | Skip: USD, US-centric |
+| ResellerClub | India (Newfold) | Hosting + domains | SuperSite storefront | \[K\] | Weak support reputation | Skip |
+| WHC | Canada | Reseller hosting | Good | \[K\] | Good | Skip: no UK data centre |
+| TSOHost / Fasthosts / IONOS | UK / Germany | Reseller ranges | Mixed | \[K\] | Mixed | Skip: TSOHost being folded into its parent |
+| Cloudways, WPMU DEV, Kinsta | Various | Managed WordPress | Partial | \[K\] | Good | Skip: WordPress tools, not reseller platforms |
+
+### Domains
+
+| Registrar | Use | Cost | Notes |
+| --- | --- | --- | --- |
+| [Cloudflare Registrar](https://developers.cloudflare.com/registrar/top-level-domains/uk-domains/) | **All client domains now**, in the emtrc account, client named as registrant | At cost: .com about £8.50/yr (Verisign rise on 1 Nov 2026), .co.uk about £4 \[K\] | Free .uk transfers in \[V\]; DNS already there for Pages. You bill the client yourself via Stripe |
+| Porkbun | TLDs Cloudflare doesn't sell | .co.uk $5.66 \[V-r1\] | Free API |
+| [Openprovider](https://www.openprovider.com/en/gb/try/membership) | Stage-3 registrar API for the Hub | Membership £39.99/yr for 100 operations, then wholesale \[V\] | API, WHMCS, white-label tools |
+| Nominet membership | Not worth it | £400 to join + £100/yr | Only pays off at 500+ .uk domains |
+
+Charge £15/yr for .co.uk (about 72% margin) and £20/yr for .com (about 58%). From 9 Feb 2027, .uk transfers move to standard auth codes. Hand over auth codes within 5 working days on request, and say so in the contract.
+
+### Email
+
+| Product | Your cost | Retail | Use |
+| --- | --- | --- | --- |
+| Zoho Mail Lite 5 GB / 10 GB | £0.80 / £1.00 per user per month, annual \[V-r1\] | £3 to £4 + £49 to £99 setup | **Default now.** One Zoho org per client |
+| 20i mailboxes | £0 extra (unlimited in Reseller 50) \[V\] | £3 | Default from stage 2 |
+| Google Workspace | £5.90 Starter / £11.80 Standard \[V-r1\] | list + £2, or client pays Google and you bill support | Premium tier |
+| Microsoft 365 | Basic about £5.40 after the July 2026 rise \[S\] | £7 | Via Giacom or Pax8 once 5+ clients want it (Microsoft now requires direct partners to have $1m revenue) |
+| Migadu, Fastmail, Proton | Various | — | Niche only. Never Purelymail for clients (run by one person) |
+
+### Stage 3: the emtrc Hub
+
+Your own client portal: Supabase (logins, records), Cloudflare for SaaS (100 custom hostnames free, then $0.10 each), Stripe + GoCardless (or Upmind, UK) for billing, Openprovider for domains, 20i Reseller 500 for mail and legacy PHP/WordPress, Pax8/Giacom for Microsoft 365, and Claude for the AI add-ons. Fixed cost about £150 to £400/mo. Claude Code builds and extends it.
+
+**Margin at 25 clients:** about £1,090/mo revenue from care plans, domains and mailboxes against about £60/mo supplier cost, so about 94% gross margin before AI add-ons.
+
+## AI services catalogue
+
+**Standardise on GoHighLevel for the client-facing toolkit, Retell for serious voice, your own Claude chat widget, and BrightLocal for local SEO.** Sell integrated outcomes ("never miss a customer", "get found"), not bare tools: Fasthosts and IONOS already sell a bare AI receptionist at £39 to £99. Prices ex VAT; $1 = £0.76. \[V\] = read on the live page, \[S\] = search result only, \[K\] = unverified.
+
+### Bolt-on ladder: what to sell a website client, in order
+
+| # | Bolt-on | Retail | Delivered with | When to pitch |
+| --- | --- | --- | --- | --- |
+| 1 | Review engine: automatic review requests + AI replies | £39/mo | GHL Reputation (AI reply $0.01 each \[V\]) | Launch week |
+| 2 | AI website chat | £29/mo, or included in Growth | Own Claude Haiku widget on Cloudflare Workers (about £2 per 500 chats) | Launch week |
+| 3 | Missed-call text-back | £39/mo | GHL LeadConnector Phone or Twilio | Day 30 |
+| 4 | Google profile management + AI-visibility report | £79/mo | BrightLocal Track ($31/mo annual \[V\]) + Claude-drafted posts | Day 60 |
+| 5 | AI receptionist (books, logs to CRM) | £149/mo + £199 setup | GHL Voice AI, then Retell (about £0.08 to £0.11/min) | Day 90 |
+| 6 | WhatsApp + Instagram DM AI | £59/mo | GHL inbox, or ManyChat for Instagram-heavy salons | Day 90 |
+| 7 | Booking integration | £199 one-off + £19/mo | Fresha, GHL calendars or Cal.com embed | With 5 |
+| 8 | Social autopilot (12 to 20 posts/mo) | £149/mo | GHL Social Planner + Claude + Gemini images | Month 4+ |
+| 9 | SEO blog content (2 to 4 posts/mo) | £149/mo | Claude (Max) + searchfit-seo skill | Month 4+ |
+| 10 | Ads management | £249/mo + spend (min £300) | Google/Meta + AdCreative.ai | Stage 3 |
+
+### Bundles
+
+| Bundle | Contents | Price/mo | Gross margin |
+| --- | --- | --- | --- |
+| Never Miss a Lead | Reviews + chat + missed-call text-back | £69 | about 68% |
+| Get Found | + Google profile management, AI visibility, monthly report | £149 | about 66% |
+| AI Front Desk | + AI receptionist (250 min), WhatsApp/IG inbox, booking | £249 | about 69% |
+| Autopilot | + social autopilot + 2 blogs a month | £399 | about 76% |
+
+At 20 clients in a typical mix: about £2,990/mo revenue, about £1,960/mo gross profit.
+
+### Vendors by category
+
+**AI voice receptionist.** Real cost for a UK receptionist on Retell: $0.055 engine + LLM + TTS + $0.015 UK telephony = about £0.08 to £0.11 per minute \[V components\], so a 250-minute client costs £19 to £28 plus a £1.50 number.
+
+| Vendor | HQ | White label | Cost | Verdict |
+| --- | --- | --- | --- | --- |
+| [GHL Voice AI](https://gohighlevelassist.freshdesk.com/support/solutions/articles/155000006652-ai-product-pricing) | Dallas | Full, inside GHL | $0.045/min engine + voice + LLM, or AI Employee $50 (100 min) / $97 unlimited per client \[V\] | **Start here** |
+| [Retell AI](https://www.retellai.com/pricing) | San Francisco | No (API; add a wrapper or the Hub) | as above \[V\]; UK number $2/mo | **Scale pick**; test UK outbound routing |
+| [Trillet](https://trillet.ai/whitelabel/pricing) | Sydney/US | Full, client workspaces | $499/mo for 5,000 min, then $0.12 \[V\] | Buy-not-build option at 15+ voice clients |
+| [ElevenLabs Agents](https://elevenlabs.io/blog/weve-lowered-api-agents-pricing-and-introduced-pay-as-you-go) | London/NY | No | $0.08/min + LLM + telephony \[V-r1\] | Best British voices |
+| [VoiceAIWrapper](https://voiceaiwrapper.com) | US | Full portal over Retell/Vapi | $79 / $249 / $499 for 5 / 10 / 20 clients \[V-r1\] | White-label layer for Retell |
+| [Stammer.ai](https://stammer.ai/pricing) | US | Full (chat + voice) | $99/mo Pro WL \[V-r1\] | Backup portal |
+| [My AI Front Desk](https://llms.myaifrontdesk.com/white-label-reseller-agencies) | US | Full | $54.99 per receptionist \[V-r1\] | US-centric |
+| [Voiceflex](https://www.channelinsider.com/ai/news-voiceflex-white-label-ai-voice-emea-uk/) | UK | Partner network | Not public | Get a quote if UK data residency matters |
+| Vapi | San Francisco | No | $0.05/min + providers \[V-r1\] | Developer option |
+| Synthflow, Bland | Berlin / SF | — | Synthflow about $30k/yr minimum | **Avoid** |
+
+**Website chat:** own Claude widget (90 to 95% margin, your IP) [Anthropic pricing](https://www.anthropic.com/pricing). Off-the-shelf: [Chatbase](https://www.chatbase.co/pricing) from $40/mo \[S\], [Stammer](https://stammer.ai/pricing) $99 WL, [Vendasta Conversations AI](https://vendasta.com/pricing) $79/location \[V\]. Skip CustomGPT ($499) and Intercom Fin.
+
+**SMS, WhatsApp, Instagram:** GHL LeadConnector (included, UK KYC needed), [Twilio](https://www.twilio.com/en-us/voice/pricing/gb), [Meta WhatsApp rates](https://developers.facebook.com/docs/whatsapp/pricing) (marketing £0.0458, utility £0.0159, first 1,000 service messages free \[V\]), 360dialog (EU partner programme), Respond.io, WATI, [ManyChat](https://www.manychat.com/pricing) for Instagram comment-to-DM. A text-back to someone who just called is a service message; promotional SMS needs consent or soft opt-in.
+
+**Reviews:** GHL Reputation (near-zero cost) as default; [BrightLocal Grow](https://www.brightlocal.com/pricing/) $65/location \[V\] for multi-site; [Vendasta](https://vendasta.com/pricing) $35/location \[V\]; NiceJob (trades, agency programme), GatherUp (white label). Birdeye ($299+) and Podium ($399+) are price anchors for your pitch.
+
+**Local SEO + AI visibility:** [BrightLocal](https://www.brightlocal.com/pricing/) (Brighton, UK; $41 / $54 / $65 per location, AI-visibility tracker on every plan \[V\]), Localo, Merchynt Paige, Semrush Local, Vendasta Local SEO Pro ($11.50 \[V\]). Plus a self-built monthly "Is ChatGPT recommending you?" report via Claude, at about £1 per client in API cost.
+
+**Content and social:** Claude for blogs; GHL Social Planner (included); [Vista Social](https://www.socialchamp.com/blog/vista-social-pricing/), Predis.ai, Publer, Cloud Campaign (full white label). Video: HeyGen, Synthesia (London), Creatify, Arcads. Photos: Claid.ai, Photoroom, Gemini image editing (in your Pro plan).
+
+**Booking and trades:** integrate rather than resell. Fresha (London; per-member pricing), GHL calendars, Cal.com; ServiceM8 and Tradify for trades. Your own "photo-to-quote" widget (customer uploads photos, Claude drafts a ballpark quote, trader approves by SMS) at £39/mo.
+
+**All-in-one platforms:**
+
+| Platform | Price | White label | Verdict |
+| --- | --- | --- | --- |
+| [GoHighLevel](https://gohighlevelassist.freshdesk.com/support/solutions/articles/155000006652-ai-product-pricing) | $97 / $297 / $497 per month; AI Employee $20 / $50 / $97 per client; rebilling needs $497; branded mobile app about $497 extra \[V\] | Full | **Core platform from 3 paying add-on clients** |
+| [Vendasta](https://vendasta.com/pricing) | $99 / $499 / $999 per month + per-location wholesale \[V\] | Professional+ | Dearer per client than GHL |
+| SuiteDash | about $19 to $99/mo \[K\] | All plans | Cheap portal if you delay GHL |
+| Relevance AI, Lindy | Free to about $350/mo \[K\] | No | Overlap with Claude; skip |
+| n8n | Free self-hosted | Embed licence for resale | **Glue layer** |
+
+**Client AI tools to refer, not build** (affiliate fees + a £295 to £495 "AI setup day"): Dext (receipts), Fyxer AI (London; email triage), Fireflies/Otter (call notes), Gemini in Workspace / Copilot in Microsoft 365.
+
+**Compliance for every AI product:** disclose AI use and call recording in the greeting; sign DPAs with Retell, Twilio, Anthropic and GHL; check each US vendor is under the UK-US data bridge or use the UK IDTA addendum; no outbound AI calls to people who haven't opted in. Keep prompts, knowledge bases and agent configs in your own GitHub repo, not only inside GHL, so you can move platforms or resell the stack.
+
+## VoIP, IT and other bolt-ons
+
+**Add only low-touch services, ranked by margin multiplied by how little work they take. Never do on-site break-fix, WiFi installs, handset installs or self-hosted phone servers.** \[V\] = live page read.
+
+### The phone opportunity: PSTN switch-off
+
+The 31 January 2027 deadline is confirmed and unchanged ([ISPreview, Sep 2026](https://ispreview.co.uk/index.php/2026/09/openreach-confirm-post-january-2027-measures-for-uk-analogue-phone-switch-off.html)) \[V\]. About 1.2 million lines are still on copper, including about 350,000 business premises. Lines not migrated go onto "Emergency Voice Access", which providers pay £35/mo wholesale for from 1 February 2027, and orders completing after 31 March 2027 are cancelled.
+
+- **Until January:** "Get off copper before you're moved onto an emergency line."
+- **From February, all of 2027:** "You were moved onto a basic digital line. Upgrade to a cloud phone with an AI receptionist."
+- **Refer out, don't touch:** alarm lines, card terminals, lift and telecare lines.
+
+| Vendor | HQ | Route for emtrc | Margin | Work | Verdict |
+| --- | --- | --- | --- | --- | --- |
+| [Yay.com](https://yay.com/reseller) | UK | Reseller: white-label store on your domain, own prices, REST API, no stated minimum \[V-r1\] | 40 to 60% | Medium (porting) | **Pick now** |
+| [Gamma](https://gammagroup.co/partner-solutions/) | Newbury, UK | Direct dealer "Edge" programme for committed partners; via Wavenet before that \[S\] | 40 to 60% | Medium | Stage 4 |
+| [Wavenet](https://www.wavenet.co.uk/become-a-partner) | Solihull, UK | Partner programme (Gamma, mobile, broadband) \[S\] | 20 to 40% | Medium | Aggregator for bundles |
+| [Giacom](https://giacom.com/become-a-giacom-partner/) | UK | MSP marketplace: M365, VoIP, broadband, mobile | 15 to 40% | Medium | Second distributor |
+| Telnyx / Twilio | US | Numbers and SIP for AI voice | — | Low | Back-end for Retell |
+| 3CX | Cyprus | PBX licences | 60 to 80% | High | **Avoid** (you become the PBX admin) |
+| Ringover, Zoom Phone, NFON, sipgate, Voipfone, Soho66 | Various | Referral or small reseller schemes \[K\] | 10 to 35% | Low to medium | Referral only |
+
+**Ofcom duties if you sell lines in your own name:** 999 access with caller location per number, contract rules for businesses with 10 or fewer staff (contract summary, 24-month maximum), a complaints code, membership of an approved dispute scheme (Communications Ombudsman or CISAS), valid caller ID and number porting. Ask Yay what its white label covers before your first sale. Broadband and mobile SIMs: only inside a phone bundle via one aggregator, never standalone, because margins are low and faults are frequent.
+
+### IT and security
+
+| Service | Vendor | Your cost | Retail | Work | Stage |
+| --- | --- | --- | --- | --- | --- |
+| Email & Domain Shield | Cloudflare DMARC (free) + EasyDMARC MSP | low \[K\] | £25/domain + £6/user/mo | Low | 2 |
+| Microsoft 365 licences + management | Pax8 UK (Microsoft now requires $1m revenue to buy direct) | list less 5 to 15% \[K\] | list + £3 to £8/user management fee | Low | 2 |
+| Password manager | Bitwarden for MSPs | about £3/user \[K\] | £5/user | Low | 2 |
+| Microsoft 365 backup | NinjaOne SaaS Backup (formerly Dropsuite) or Acronis | £1 to £3/user \[K\] | £4 to £6/user | Low | 2 to 3 |
+| Managed endpoint security | [Huntress](https://www.huntress.com/pricing) | $8.99/endpoint list at 50 to 99, no minimum via an MSP \[V\] | £12 to £15/device | Low (24/7 SOC included) | 3 |
+| Security awareness + dark web monitoring | usecure (UK) | \[K\] | £3 to £5/user | Low | 3 |
+| Cyber Essentials | Through a partner certification body | IASME fee £320 micro / £440 small \[V\] | £600 to £900 incl. prep | Medium | 3 |
+| Device management | Intune (in M365 Business Premium) + Tactical RMM, then NinjaOne | free to about £3/device | £5 to £10/device | Medium | 4 |
+| Helpdesk | HaloPSA + Claude triage | \[K\] | inside bundles | Medium | 4 |
+
+### Other bolt-ons and referral income
+
+| Bolt-on | Route | Money | Work |
+| --- | --- | --- | --- |
+| Website care plan tiers | Own (Cloudflare, GitHub Actions, uptime checks, Claude monthly report) | £29 / £59 / £99 per month | Low |
+| Compliance pack | Cookie consent (Cloudflare Zaraz free, or Cookiebot reseller), legal pages (iubenda reseller), accessibility scan (axe-core). Avoid accessibility overlays | £5 to £15/mo; audit £295 to £795 | Low |
+| Ecommerce | [Shopify Partner](https://help.shopify.com/en/partners/how-to-earn) (earning model changed; check terms) | Build £1,500 to £5,000 + referral | Medium |
+| Café ordering | Slerp (UK), Flipdish, Orderpay | Referral bounty | Low |
+| Card payments | Dojo, SumUp, Square referrals | about £50 to £200 per signup \[K\] | Low |
+| Payment links / Direct Debit setup | Stripe, GoCardless | £99 to £249 one-off | Low |
+| Google profile photo shoot | Subcontract a local photographer + AI retouch | £149 to £349 | Medium |
+| Affiliate links | Google Workspace referral, Fresha, Xero, Brevo, Dext, Canva | Per signup or 15 to 30% | Low; disclose them (ASA rules) |
+
+**Committed stack:** Pax8 UK (distributor), Giacom (telecoms), Yay.com (phones), Retell + Telnyx (AI voice), Cloudflare DMARC + EasyDMARC, M365 Defender for email filtering, NinjaOne SaaS Backup or Acronis, Cloudflare R2 for site backups, Bitwarden, Huntress, usecure, Tactical RMM then NinjaOne, HaloPSA, Cloudflare Zaraz, iubenda, Shopify Partner, Dojo/SumUp.
+
+## Lead generation by stage
+
+**Catch businesses in the week they open, reach sole traders by post and in person, and let Claude run the whole pipeline while you do the human contact.** Scraping more gives diminishing returns. Timing and personalisation drive conversion.
+
+### Free intent feeds
+
+| Signal | Source | What it finds | Use |
+| --- | --- | --- | --- |
+| New food businesses | [FSA Food Hygiene Rating API](https://www.food.gov.uk/food-hygiene-rating-scheme-api-version-2) (free, no key) | Places marked "Awaiting Inspection" = newly registered cafés, takeaways, home bakers | Weekly pull per London borough |
+| New limited companies | [Companies House Streaming API](https://developer-specs.company-information.service.gov.uk/streaming-api/guides/overview) (free key) | Real-time new incorporations; filter SIC 96020, 43210, 56101, 81210 + London postcodes | Match to Maps for contact details. These can be emailed |
+| New premises licences | Council registers, e.g. [Royal Greenwich weekly list](https://www.royalgreenwich.gov.uk/licensingapplications), Tower Hamlets, City, Richmond, Wandsworth, Merton | Bars, takeaways, late-night venues before opening | Weekly scrape per borough |
+| Special treatment licences | Borough registers (nails, massage, tattoo, sunbeds; London-specific law) | New salons before they open | Check each borough |
+| New Google listings | Monthly Places API re-run, compare place IDs | Fewer than 10 reviews + no website = new business | Built into the pipeline |
+| Hiring | Indeed, Reed | Growing businesses with cash | Scoring bonus only |
+
+**Lead score (automated):** opened in last 90 days +30, no website +25, social-only +15, bad site +15, 10+ reviews at 4.3 stars or better +10, Ltd company +10 (can be emailed), tier-1 niche +10, on TPS −10 (post or walk-in only). Skip Ordnance Survey AddressBase: it's paid and has no business names.
+
+### Channels and legality
+
+| Channel | Sole traders | Ltd companies | Use |
+| --- | --- | --- | --- |
+| Walk-ins | OK | OK | Stage 1 core |
+| Live manual calls | OK if not on TPS | OK if not on CTPS | Stages 1 to 3 core |
+| Personalised postcards | OK | OK | **Stage 2+ scalable core** |
+| Email, SMS, DMs | Consent needed | OK with identity + opt-out | Ltd only |
+| LinkedIn (manual) | — | Low risk | Higher-ticket Ltd clients (clinics, accountants, estate agents) |
+| AI voice agent outbound calls | **Consent needed** | **Consent needed** (automated calling rule covers everyone) | Never |
+| Ringless voicemail | Effectively illegal | High risk | Never |
+
+**Postcard engine (stage 2):** the pipeline builds the demo, then the [Stannp API](https://www.stannp.com/uk/pricing) prints and posts an A6 card: "We built \[Business Name\] a website. Scan to see it." The QR opens their own demo with a tracking tag. A scan flags the lead as hot and creates a call task within 24 hours (TPS-checked). Estimated about £0.55 to £0.75 per card \[K\]. Plan on a 3 to 6% scan rate, so 200 cards a month (about £130) should give 6 to 12 scans and 1 to 3 clients. These are assumptions to test.
+
+**AI sales-agent products don't fit.** Artisan, 11x and similar cost about $1,000 to $5,000/mo and need company domains. Build your own with Claude instead: intent feeds → Places enrichment → scoring → demo build → postcard → CRM task → personalised call script.
+
+### Partnerships (pilot in stage 2, main channel in stage 3)
+
+| Partner | London examples | Offer | Expected yield \[K\] |
+| --- | --- | --- | --- |
+| Accountants, bookkeepers, formation agents | Small practices in each borough | £50 per signed client or 20% of year 1; co-branded "new business launch pack" | 1 to 3 referrals per practice per quarter |
+| Business banks and fintech marketplaces | Tide, Starling, NatWest Mettle, Monzo Business | Member perk (e.g. first 3 months free) | Slow to approve, high volume once listed |
+| Business Improvement Districts (about 70 in London) | Camden Town Unlimited, Better Bankside, Brixton BID, Love Wimbledon | Free "get online" clinic for levy payers | 10 to 30 warm conversations per event |
+| Councils and enterprise agencies | Borough business-support teams, Grow London Local | Workshop speaker | Credibility |
+| Trade suppliers | Screwfix/Toolstation counters, salon wholesalers (Sally, Capital Hair & Beauty), Booker | Flyers, trade discount code | Good for trades and barbers |
+| Booking and card-machine reps | Fresha, Booksy, Treatwell, Square, SumUp, Dojo | Referral swap | Medium |
+| Trade associations | FSB London, NHF, British Beauty Council | Member discount | Slow, trusted |
+
+Track every partner with its own Stripe coupon or link.
+
+### By stage
+
+| Stage | Sources | Channels | Weekly volume |
+| --- | --- | --- | --- |
+| 1 | Places API + bad-site script, manual Google searches, Companies House | Walk-ins, calls, Ltd email, PeoplePerHour | 40 demos, 25 to 30 walk-ins, 60 calls |
+| 2 | + FSA, Companies House stream, council licences, monthly Places diff | + Stannp postcards (50/wk), Smartlead (Ltd only), 2 partnership pilots | 60 to 80 demos, 50 cards, walk-ins by a VA or you |
+| 3 | Same, fully automated nightly | Partnerships as main channel, capped ads test, events | Pipeline-driven |
+| 4 | + acquisitions of client books, white-label partner agencies | Partners and inbound | — |
+
+## Marketing by stage
+
+**For a faceless brand, the strongest marketing is proof and data: real demos, before/after case studies, and a quarterly "London Web Census" that local press will cover.** Paid ads wait until stage 3.
+
+**Agency SEO, done safely.** Google's [June 2026 spam update](https://digitalshiftmedia.com/search-intelligence/google-june-2026-spam-update-home-services/) enforced its doorway-page and scaled-content rules \[V\]. Never publish 640 templated borough × niche pages.
+
+- **Stage 1:** home, pricing, 5 niche pages ("websites for barbers"), portfolio, and a free "website check" tool (a PageSpeed wrapper that doubles as a lead magnet).
+- **Stage 2:** add borough × niche pages only where you have a real client or demo there. Each carries a local case study, real screenshots and your own data ("we checked 412 Hackney salons; 51% have no site"). Cap at about 40 pages, adding 2 to 4 a month.
+
+**Data-led PR (stage 2 onwards).** The pipeline already measures "% of businesses with no website by borough and niche". Publish it quarterly and pitch it to MyLondon, the Evening Standard business section, borough news, TechRadar and Small Business UK. TechRadar ran exactly this kind of story in November 2026.
+
+**AI search visibility.** About half of local discovery now runs through AI tools, but AI recommends only about 1.2% of local businesses ([BrightLocal study](https://www.brightlocal.com/research/local-ai-visibility-study/), [Search Engine Land 2026](https://searchengineland.com/ai-local-visibility-report-2026-468085)) \[S\]. Citations come from a complete Google profile with recent reviews, presence on the directories AI tools crawl, clear schema with prices and FAQs, and third-party mentions.
+
+- **For emtrc:** list on Clutch, DesignRush, GoodFirms, Sortlist, Bing Places and Apple Business Connect; publish explicit prices; reach 20+ Google reviews by end of stage 2.
+- **As a product:** the "AI Visibility" add-on (Section 4).
+
+**Faceless short video (stage 2, 3 a week, batched in one afternoon).** "We rebuilt this London café's website in 10 minutes with AI", "Rating London barbers' websites" (kind, never shaming), client wins. Tools: OBS or Screen Studio for recording, ElevenLabs or Gemini voice, CapCut, Veo/Gemini for B-roll, Buffer or Metricool to schedule. Treat it as trust (prospects check you after a walk-in) more than a lead source; content leads take 6 to 12 months.
+
+**Case-study and review engine.** Every launch triggers: before/after screenshots, 3 questions to the client by WhatsApp, a 150-word case study, a portfolio page, a short video and a Google profile post, all done by a Claude skill. Ask for a Google review at launch and again at day 30 with results ("you got 14 calls from the site"). Paying for or incentivising reviews is banned under the DMCC Act 2024.
+
+**Client newsletter (Brevo).** A monthly "your site this month" email: visits, calls and form leads from Cloudflare Analytics, one tip, one add-on offer. This is the main upsell and retention engine. Prospect newsletters go only to people who opted in.
+
+**Paid ads (stage 3 only, capped at £300 to start).** UK small-business Google clicks average about £1.50 to £2.50, and London costs 15 to 30% more ([whito, Nov 2026](https://whito.co.uk/research/uk-ppc-costs/)) \[V\]. "Web design London" terms probably cost £4 to £12 a click \[K\], which works out to a £150 to £500 cost per client. Test long-tail terms ("barber website", "website for plumber London"). Use Meta only to retarget people who viewed their own demo (about £5 a day); average Facebook cost per lead is about $27 ([WordStream 2026](https://www.wordstream.com/blog/facebook-ads-benchmarks-2026)) \[S\].
+
+**Events (stage 3).** A quarterly free "Get found on Google and AI" clinic with a BID or library business hub, run as a webinar or with a hired presenter to stay faceless.
+
+| Stage | Marketing focus | Budget |
+| --- | --- | --- |
+| 1 | Google profile, socials, 3 posts a week, emtrc.com niche pages | £0 |
+| 2 | + directories, Web Census PR, short video, case-study engine, client newsletter, borough pages with proof | £0 to £50/mo (tools) |
+| 3 | + capped Google/Meta tests, events, partner co-marketing | £300 to £800/mo |
+| 4 | + white-label partner marketing, acquisitions | Revenue-funded |
+
+## Sales: offers, guarantees, upsells, retention
+
+**Keep the v1 tiers (Starter £99 + £39, Business £199 + £69, Growth £399 + £129). Add two entry offers and three guarantees, and run a fixed upsell calendar.** The 12-month term with Direct Debit, not the setup fee, is the real value.
+
+**New entry offers:**
+
+| Offer | Price | For |
+| --- | --- | --- |
+| Claim your demo (site already built) | £0 setup on a 12-month Business term, or £99 on Starter | Demo-first leads from stage 2 (keep the £99 founding price for the first 10) |
+| Launch Pack: site + Google profile + logo + domain + 1 mailbox | £299 setup + £69/mo | Just-opened leads (food hygiene, licences, new companies) |
+| White-label site + hosting + care for agencies | £25 to £40/site/mo wholesale + £99 to £199 build | Stage 4, under a separate brand |
+
+**Guarantees:**
+
+1. **See it before you pay.** The demo already exists.
+2. **30-day love it or leave it.** Cancel within 30 days of launch and get the setup fee back.
+3. **Leads or a free month.** No calls or form enquiries in the first 90 days means next month is free. It's low risk with tracked forms and click-to-call.
+4. **You own your domain, always,** against Yell's lock-in.
+
+**Working conversion targets (to measure, not sourced):**
+
+| Step | Walk-in | Call | Postcard | Ltd email |
+| --- | --- | --- | --- | --- |
+| Sees demo | 90% | 40% | 3 to 6% scan | 10 to 20% click |
+| Interested | 20 to 30% | 10 to 15% | 30% of scanners | 15% of clickers |
+| Closes | 8 to 12% of demos | 3 to 6% | 1 to 2% of cards | 1 to 3% |
+
+**45-second walk-in script:** "Hi, is the owner around? I'm \[name\] from emtrc, a local web studio. \[Business\] doesn't have a website yet, so we built you one. Can I show you? It takes 20 seconds." Show the phone. "It has your reviews, prices and a WhatsApp button. It can be live this week, £69 a month including your domain and email. Can I WhatsApp you the link?" Getting a yes is your consent to follow up; log it in the CRM.
+
+**Pricing psychology:** three tiers with the middle highlighted; charm prices (£69); show the daily equivalent ("about £2.27 a day"); anchor against Checkatrade (£100+/mo) and a £1,500 to £3,000 agency build; annual prepay gets 2 months free, pushed at signup and at month 3. Target 25 to 35% of clients on annual by stage 2.
+
+**Upsell calendar:**
+
+| When | What |
+| --- | --- |
+| Day 0 | Business over Starter (domain + email included); review engine + chat |
+| Day 30 | Results report + review ask; missed-call text-back; booking or ordering |
+| Day 90 | Google profile management + AI visibility; AI receptionist for trades and busy salons |
+| Months 6 to 9 | Annual prepay; Growth tier; phones (PSTN angle) |
+| Month 11 | Renewal call with the year's results and a new feature: the key churn moment |
+
+**Retention:** Direct Debit (almost no failed-payment churn), annual prepay, the monthly value email, a £10/mo "pause" for seasonal businesses, a downgrade path to Starter instead of cancelling, outreach when traffic drops, and an exit survey. Most churn will be businesses closing, which you can't prevent. Quarterly one-question NPS: promoters get asked for a referral (one free month per referred client). Targets: churn under 2.5%/mo by stage 2, under 1.5% by stage 3.
+
+## Running emtrc on Claude
+
+**Cowork is the operator. Claude Code is the builder. n8n is the plumbing. You are the approver: about 45 to 60 minutes a day, in two review blocks (10:00 and 16:00).** Gmail stays draft-only for anything going to a prospect or client until a workflow has run clean for 4 weeks.
+
+**What changed in Claude by November 2026 (shapes the design):**
+
+- Chat and Cowork are merged. Cowork tasks run in the cloud by default (since 6 Oct 2026), and scheduled tasks run with your PC off ([support article](https://support.claude.com/en/articles/15520349-use-claude-cowork-on-web-desktop-and-mobile)) \[V\].
+- Scheduled tasks can be hourly, daily, weekly, weekdays or manual; each run is a fresh session with its own approval mode, model and folder ([scheduling](https://support.claude.com/en/articles/13854387-schedule-recurring-tasks-in-claude-cowork)) \[V\].
+- **Local folders (E:\\Key\\Projects\\EMTRC), local MCP servers, the browser and computer use still need the desktop app open** \[V\]. So mirror the knowledge base to Google Drive or a private GitHub repo, and keep local-only work for when the PC is on, until the always-on VM.
+- Start a task on your phone and get notified when it finishes or needs approval (Dispatch).
+- Claude Code runs cloud sessions against GitHub, with routines triggered on a schedule (at most hourly), by API call or by GitHub events ([routines docs](https://code.claude.com/docs/en/routines)).
+- **This account already has the plugins most roles need:** small-business (lead-finder, lead-triage, outreach-composer, proposal-builder, invoice-chase, inbox-manager, review-reputation, social-content-engine, monday-brief, report-builder), sales, marketing, searchfit-seo, legal, operations and cowork-plugin-management.
+
+### The AI org chart
+
+| # | Agent | Runs on | Schedule | Output | Your gate |
+| --- | --- | --- | --- | --- | --- |
+| 1 | Lead Researcher | Cowork scheduled task (or Code routine for bulk pulls) | Mon/Wed/Fri 09:00; one niche × borough per run | Scored leads with allowed channel, in Supabase/CRM | Weekly rule review; 10% spot-check |
+| 2 | Demo Builder | Claude Code routine, fired by n8n | When a lead scores above threshold; 10 a day cap | Demo URL + screenshot + Lighthouse score | Approve each demo |
+| 3 | Outreach Drafter | Cowork (outreach-composer) | After demo approval | Gmail drafts (Ltd only), Stannp postcard, call script | Approve every first touch |
+| 4 | Inbox & Support | Cowork | Hourly 08:00 to 18:00 weekdays | Labels, reply drafts, edit-request issues; unsubscribes applied instantly | You send |
+| 5 | Sales & Proposals | Cowork (proposal-builder, call-prep, call-summary) | On demand | Proposal + Stripe payment link | Price and discounts |
+| 6 | Onboarding | n8n (Stripe webhook) → Cowork | On payment | Client record, welcome email, intake form, domain checklist | Domain and licence purchases |
+| 7 | Site Builder & Edits | Claude Code (cloud session, GitHub @claude) | Intake complete / edit issue | Pull request, Cloudflare preview, QA report | Client sign-off + your merge |
+| 8 | Billing | Cowork scheduled + Stripe | 1st and 15th | Chasing drafts, recurring revenue, VAT run-rate | Suspensions |
+| 9 | Content & Social | Cowork + Canva + ElevenLabs + CapCut | Mon 08:00 | 5 posts, 3 video scripts, 1 blog in the queue | Approve before publishing |
+| 10 | Reporting | Cowork scheduled | 1st of month (clients); Fri (you) | Client report PDFs, founder dashboard | Read only |
+| 11 | QA & Compliance | Claude Code hooks + weekly Cowork audit | Every PR; Sun 18:00 | Accessibility/schema/Lighthouse checks; PECR suppression check; data retention purge; agent-log review | You read the audit |
+| 12 | Client AI delivery (stage 2+) | Claude Code + Cowork | On add-on sale | Chatbot knowledge base, Retell/GHL agent config, prompts stored in git | Test call before go-live |
+
+**Weekly rhythm:** Mon brief + content + leads; Tue demo and outreach approvals; Wed leads + calls; Thu builds and edits; Fri leads + weekly wrap + invoices; 1st of the month reports and billing.
+
+### Build the "emtrc-ops" plugin
+
+Use cowork-plugin-management to bundle your skills, connectors and commands (`/new-lead-batch`, `/demo`, `/proposal`, `/onboard`, `/client-report`). Custom skills to write first: emtrc-voice, lead-score-london (rules + PECR channel flag), demo-brief (lead → site.json), proposal-emtrc, pecr-check (blocks any send without a Ltd or consent flag), client-report, edit-request-triage (in scope vs quote), site-qa-checklist, faceless-video-script, gbp-post.
+
+### Folder layout: E:\\Key\\Projects\\EMTRC
+
+```text
+EMTRC\
+  00-admin\      company docs (World Finance Global Ltd, trading name), insurance, ICO, policies
+  01-kb\         CLAUDE.md (operating manual for all agents), brand, pricing, offers, tone,
+                 pecr-rules, faq, niche-playbooks\, boroughs
+  02-leads\      batches\, suppression.csv, scoring-rules.md
+  03-sales\      proposals\, scripts\, objections.md, templates\
+  04-clients\    <client>\ intake, brief, assets\, reports\, notes
+  05-builds\     templates\ (git), demos\, client repos (git)
+  06-marketing\  calendar, queue\, published\, video\
+  07-finance\    invoices\, mrr.xlsx, vat-tracker
+  08-ops\        runbooks\, agent-logs\, approvals, incidents
+  09-skills\     emtrc plugin and skill source (git)
+  plan\          these plans and research
+  99-archive\
+```
+
+Mirror 01-kb, 03-sales\\templates and 09-skills to Drive or GitHub. Client personal data lives in the CRM, not in loose files.
+
+### Rollout
+
+| Phase | When | Setup | Autonomy |
+| --- | --- | --- | --- |
+| 0 | Dec 2026, current plan | Folder tree + CLAUDE.md; Gmail/Drive/Calendar connected; Brevo MCP; GitHub + Cloudflare; template repo; try lead-finder, proposal-builder, social-content-engine by hand | Everything manual or draft |
+| 1 | Jan 2027, Max | emtrc-ops plugin; scheduled morning brief, inbox triage, lead batches; Hetzner + n8n; Stripe live; first Code routine for demos | Drafts only |
+| 2 | Feb to May 2027 | Payment → onboarding automation; GitHub edit loop; monthly reports; content pipeline; Supabase CRM; first client AI add-ons | Auto-send only templated, proven messages (receipts, booking confirmations) after 4 clean weeks |
+| 3 | Mid-2027 | Always-on VM running the desktop app + a dedicated Chrome profile; Agent SDK workers on an API key with a spend cap; uptime monitoring | Expand per workflow with audit logs; money, domains and first-touch outreach stay gated |
+| 4 | 2028 | Agents run the pipeline end to end; HaloPSA + Claude helpdesk; white-label partner portal | You approve exceptions |
+
+## Subscriptions: December and January
+
+**January's core spend is about £120 to £160/mo: Claude Max, a Hetzner VPS running n8n, Google Workspace for emtrc.com, and Canva Pro.** Everything else waits until revenue or volume justifies it.
+
+| Tool | When | Cost | Why | Verdict |
+| --- | --- | --- | --- | --- |
+| [Claude Max](https://claude.com/pricing) | Jan 2027 | $100/mo (about £90 incl. VAT \[K\]); includes $100/mo API credits \[S\] | The operator: Cowork + Code + scheduled tasks. Subscribe on the web, not mobile | **Buy.** Move to Ultra ($200) only after hitting the weekly limit 2 weeks running |
+| Anthropic API account | Jan 2027 | £20 to £50/mo hard cap | Client chat widgets, n8n and VPS jobs. Agent SDK billing on subscriptions is unsettled in 2026 \[S\] | **Buy** with a spend cap |
+| Hetzner VPS (CX33 class) | Jan 2027 | about €8 to €15/mo \[K\] | Runs n8n, cron workers, uptime checks; later the always-on desktop VM | **Buy** |
+| n8n self-hosted | Jan 2027 | Free | Webhooks, Stripe events, firing Code routines | **Use**; n8n Cloud (about €20 to €24) only if you won't run a server |
+| Google Workspace (emtrc.com) | Jan 2027 | £5.90/user/mo \[V\] | Professional mailbox + Drive knowledge base + the Gmail/Drive connectors Cowork uses | **Buy**; move emtrc.com off Zoho free |
+| Canva Pro | Jan 2027 | about £11 to £13/mo \[K\] | Social graphics, brand kit, Claude connector | **Buy** |
+| ElevenLabs Starter | Feb 2027 | $5/mo \[K\] | Faceless video voiceover | Buy when video starts |
+| CapCut Pro | Feb 2027 | about £8 to £10/mo \[K\] | Video editing + captions | Buy when video starts |
+| [Instantly Growth](https://instantly.ai/pricing) or Smartlead | When 300+ verified Ltd leads a month | Instantly $47/mo \[V\]; Smartlead about $39 \[K\] | Cold email to limited companies only | Wait |
+| Stannp | Stage 2 | Pay as you go, about £0.55 to £0.75 per card \[K\] | Personalised postcards | Pay per use |
+| GoHighLevel | At 3+ clients paying for AI add-ons | $297/mo \[V\] | Client-facing SMS, reviews, voice, calendars, white label. Not for internal ops (Claude does that) | Wait |
+| BrightLocal Track | First local-SEO client | $31 to $41/location \[V\] | Local SEO + AI visibility tracking | Per client |
+| Gemini Pro | Already owned | — | AI Studio builds, Veo/Imagen media, second opinion | Keep |
+| Make, Zapier paid, Lindy, Relevance AI | — | $10 to $50+ | Duplicate n8n or Cowork | **Skip** |
+
+**December (before Max):** stay on your current plans plus the v1 month-1 budget (£39, or £91 with the ICO fee). Use the time to build the folder tree, CLAUDE.md and templates, so January's Max subscription goes straight into automation.
+
+## Metrics, legal and risks
+
+**Run the business from one weekly dashboard:** demos built, touches by channel, interested, closes, recurring revenue, churn, cash collected, add-on attach rate. It starts as a Google Sheet, then Cowork builds a dashboard from it.
+
+### Targets by stage
+
+| Metric | Stage 1 (10) | Stage 2 (25) | Stage 3 (50 to 80) | Stage 4 (150+) |
+| --- | --- | --- | --- | --- |
+| Recurring revenue/mo | £500 to £700 | £1,700 to £3,000 | £4,000 to £7,000 | £10,000+ |
+| Avg revenue per client/mo | £50 to £65 | £70 to £85 | £80 to £95 | £60 to £80 (wholesale mix) |
+| Monthly churn | about 0% (in term) | under 2.5% | under 1.5% | under 1.5% |
+| Gross margin | 85 to 90% | 80 to 85% | 75 to 80% | 75%+ |
+| Cost to win a client (cash + time) | £200 to £400 (mostly time) | under £250 | under £300 | under £400 direct |
+| Lifetime value : acquisition cost | — | 8:1+ | 10:1+ | 5:1+ |
+| Your hours per close | under 15 | under 6 | under 2 | about 0 |
+| Clients on annual prepay | 10% | 25 to 35% | 35%+ | — |
+| Clients with an add-on | 0% | 30% | 50% | — |
+| emtrc Google reviews | 5+ | 20+ | 50+ | 100+ |
+
+### People and scale levers
+
+- **First VA (stage 2, once recurring revenue passes £1,200/mo):** a Philippines VA via OnlineJobs.ph, 20 hrs/week, about $400 to $600/mo, on a contractor agreement with data-processing and NDA terms. Claude writes the SOPs.
+- **Commission-only reps (stage 3):** £150 per Business close + 10% of their clients' monthly fees for 12 months, 90-day clawback. They must be genuinely self-employed, or they may be owed minimum wage; re-check the Employment Rights Act 2025 status changes before hiring. You are jointly liable for unlawful calls they make for you.
+- **Buying client books (stage 4):** small deals sell at a median 2.0× seller's earnings ([webhosting.today, Sep 2026](https://webhosting.today/2026/09/09/what-is-your-hosting-business-worth-the-smallest-deals-are-back-at-2-0x/)) \[V\]. Pay at most 1× annual recurring revenue, with 40%+ contingent on 12-month retention. Best deals are off-market: retiring London freelancers with 20 to 100 hosting clients. Live comparison: [Acquire.com listing, 38 clients, $122k/yr](https://app.acquire.com/public/146l8fwchy-subscription-website-design-management-service-122k-arr-38-active-clients-76-margins) \[S\]. Check domain ownership, Direct Debit transferability, contract assignment and GDPR before buying.
+- **Beyond London (stage 4):** Birmingham (42% of listings have no website), Manchester, Leeds, Bristol, Glasgow. The pipeline is national; replace walk-ins with postcards, calls and local reps.
+- **No franchising:** £10k to £30k of legal setup for a low-ticket product. White label gives the same leverage.
+
+### Legal and compliance checklist
+
+| Area | Requirement | When |
+| --- | --- | --- |
+| Company identity | "emtrc is a trading name of World Finance Global Limited" + company number + registered office on site, emails, invoices | Now |
+| ICO | Data protection fee: £52, or £47 by Direct Debit ([ICO](https://ico.org.uk/for-organisations/data-protection-fee/data-protection-fee)) \[V\] | Before the first lead list |
+| PECR | Ltd-only cold email; TPS/CTPS screening; no automated outbound calls; suppression list forever. Fines up to £17.5m or 4% of turnover since the Data (Use and Access) Act 2025 | Now |
+| UK GDPR | Privacy notice, legitimate interests assessment, 90-day lead deletion, DPAs with every processor (Cloudflare, Supabase, Brevo, Stripe, Zoho/Google, Anthropic, Retell, GHL) | Now / as added |
+| Claude data | Pro/Max are consumer terms: turn off "Help improve our AI models". Anthropic's DPA covers the API, Team and Enterprise, so run client customers' personal data through the API or a Team plan | Jan 2027 |
+| Client contract | Scope, 12-month term, edit allowance, 14-day suspension, client owns domain and content, AI-use disclosure, data processing addendum, liability cap | Before client 1 |
+| Insurance | Professional indemnity + public liability, £250k to £500k, about £150 to £300/yr \[K\] | Before client 1 |
+| Reviews | No paid or incentivised reviews (DMCC Act 2024) | Always |
+| Affiliates | Disclose affiliate links (ASA/CAP Code) | Stage 2 |
+| Phones | Ofcom General Conditions (999 location, contract rules for 10 or fewer staff, complaints code, dispute scheme membership) | Before selling lines |
+| VAT | Register before rolling 12-month turnover passes £90k | Stage 3 |
+| Accounting | Xero (official MCP server) once income justifies it; MTD for income tax from April 2027 applies to sole traders, not Ltd company profits | Stage 2 |
+
+### Risks
+
+| Risk | Mitigation |
+| --- | --- |
+| PECR breach | Allowed-channel field on every lead; pecr-check skill blocks sends; Ltd-only email |
+| Brevo or cold domains burned | Never cold email from Brevo or emtrc.com; lookalike domains; warmup; tracking off |
+| Claude limits or policy changes | Sonnet-class models for routine work; heavy runs overnight; API overflow with a cap; Ultra if needed; re-check terms quarterly |
+| Agent mistakes (wrong recipient, bad deploy, invented facts) | Draft-only email; branch protection; hooks; QA checklist; daily caps; logs in 08-ops; staged autonomy |
+| Prompt injection from inbound email and web pages | Triage agent can only classify and draft; never follows instructions or links in email; dedicated Chrome profile; each task gets only the connectors it needs |
+| GoHighLevel lock-in or price rises | Prompts, knowledge bases and client data in your own repo and Supabase |
+| Churn after the build | 12-month term, Direct Debit, monthly value email, add-ons |
+| Solo founder single point of failure | Knowledge base mirrored to Drive/git; runbooks; cloud scheduled tasks; VA from stage 2 |
+| Vendor price errors in this plan | Check every \[K\] figure before quoting a client (Section 12) |
+
+## Still to verify, and sources
+
+**20 of the 26 most important prices were checked on live vendor pages on 21 Nov 2026 over two passes. Cloudflare's .co.uk price is only partly confirmed, and 6 more are still unchecked because of the hourly page-load limit.** Before quoting any figure to a client or committing money, check it on the vendor's page.
+
+| Item | Result | Source |
+| --- | --- | --- |
+| Zoho Mail Lite | Confirmed in USD: 5 GB $1, 10 GB $1.25 per user/mo, annual only. GBP page didn't load | [zoho.com/mail/pricing](https://www.zoho.com/mail/pricing) |
+| Google Workspace UK | Confirmed: £5.90 / £11.80 / £18.40 per user/mo, annual | [workspace.google.com](https://workspace.google.com/intl/en_uk/pricing?region=GB) |
+| Microsoft 365 UK | Changed: Basic £5.40; Business Standard now includes Copilot at £18.10; Premium £24.60 (annual, ex VAT) | [microsoft.com](https://www.microsoft.com/en-gb/microsoft-365/business/compare-all-microsoft-365-business-products-b) |
+| Cloudflare Registrar .uk | Partly confirmed: .uk registered and renewed at cost; .co.uk not named; price only shown on search | [cloudflare.com](https://www.cloudflare.com/application-services/products/registrar/buy-uk-domains/) |
+| Porkbun .co.uk | Confirmed: $5.66 register and renew | [porkbun.com](https://porkbun.com/tld/co.uk) |
+| 20i Reseller | Confirmed: £39.99 / £69.99 / £99.99, first month £1; VAT not stated | [20i.com](https://www.20i.com/reseller-hosting) |
+| Krystal reseller | Confirmed: £20 / £35 / £70 (page has a VAT toggle) | [krystal.io](https://krystal.io/hosting/reseller) |
+| GoHighLevel | Confirmed: $97 / $297 / $497; AI Employee $50 or $97 per client account. Annual prices unclear | [gohighlevel.com/pricing](https://www.gohighlevel.com/pricing?rd=1) |
+| Retell AI | Confirmed: $0.055/min infrastructure + TTS + LLM + $0.015 telephony, typically $0.11 to $0.125/min; numbers $2/mo | [retellai.com/pricing](https://retellai.com/pricing) |
+| Instantly | Confirmed: Growth $47/mo | [instantly.ai](https://instantly.ai/pricing.md) |
+| Claude plans | Changed: Max $100/mo; $200 tier is now Ultra; Pro $20/mo | [claude.com/pricing](https://claude.com/pricing) |
+| Google Places Text Search | Confirmed: Enterprise SKU $35 per 1,000 with 1,000 free/mo; Pro $32 per 1,000 with 5,000 free; IDs-only free and unlimited | [Google Maps pricing](https://developers.google.com/maps/billing-and-pricing/pricing) |
+| ICO fee | Confirmed: tier 1 £52, £47 by Direct Debit | [ico.org.uk](https://ico.org.uk/for-organisations/data-protection-fee/data-protection-fee) |
+| Not yet checked | Vista Social, Stannp per-card price (its calculator needs a browser), Hetzner, Stammer, Chatbase, Huntress | — |
+
+**Second check, 21 Nov 2026 (7 more confirmed):**
+
+| Item | Live value | Source |
+| --- | --- | --- |
+| Smartlead | Base $39/mo ($32 annual); Pro $94 ($78) | [smartlead.ai/pricing](https://www.smartlead.ai/pricing) |
+| Yay.com reseller | No wholesale prices published; you set your own margins. Ask help@yay.com or 0330 122 6000 | [yay.com/reseller](https://www.yay.com/reseller/) |
+| BrightLocal | Per location: Track $41 ($31 annual), Manage $54 ($40), Grow $65 ($49) | [brightlocal.com/pricing](https://www.brightlocal.com/pricing/) |
+| n8n Cloud Starter | €20/mo billed annually, 2,500 executions | [n8n.io/pricing](https://n8n.io/pricing/) |
+| Stripe Bacs Direct Debit | 1%, minimum 20p, capped at £4 | [stripe.com/gb/pricing](https://stripe.com/gb/pricing) |
+| IASME Cyber Essentials | Micro (0 to 9 staff) £320 + VAT; small (10 to 49) £440 + VAT | [iasme.co.uk](https://iasme.co.uk/cyber-essentials/faq-cyber-essentials) |
+| Porkbun .com | $11.81 to register, renew or transfer | [porkbun.com](https://porkbun.com/products/domains/tld_pricing) |
+
+**Lead-pipeline cost note from the Places check:** asking for the website field puts each search on the Enterprise SKU, which has only 1,000 free calls a month (up to 20,000 businesses). To stretch the free tier, run the bulk search on the IDs-only SKU (free, unlimited) and fetch website details only for shortlisted places.
+
+**Other things to confirm:** whether Yay's white label covers your Ofcom duties; current Shopify partner earnings; Pax8 UK's security and backup catalogue; Claude Max GBP price and Agent SDK billing; Cyber Essentials v3.3 dates.
+
+**Full research with every source URL** is in `E:\Key\Projects\EMTRC\plan\research\`: round 1 (01 leads, 02 email and tracking, 03 white-label hosting, 04 AI/VoIP/IT, 05 pricing and automation) and round 2 (06 hosting, email and domains; 07 AI services catalogue; 08 VoIP, IT and other bolt-ons; 09 growth by stage; 10 Cowork and AI operations; 11 price verification). Each figure there is tagged \[V\] (read on the live page), \[S\] (search result only) or \[K\] (unverified).

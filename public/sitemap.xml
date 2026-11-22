@@ -1,8 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>https://example.co.uk/</loc></url>
-  <url><loc>https://example.co.uk/services</loc></url>
-  <url><loc>https://example.co.uk/gallery</loc></url>
-  <url><loc>https://example.co.uk/about</loc></url>
-  <url><loc>https://example.co.uk/contact</loc></url>
+  <url><loc>https://emtrc.com/</loc><priority>1.0</priority></url>
+  <url><loc>https://emtrc.com/services</loc><priority>0.9</priority></url>
+  <url><loc>https://emtrc.com/pricing</loc><priority>0.9</priority></url>
+  <url><loc>https://emtrc.com/ai-tools</loc><priority>0.9</priority></url>
+  <url><loc>https://emtrc.com/how-it-works</loc><priority>0.8</priority></url>
+  <url><loc>https://emtrc.com/work</loc><priority>0.8</priority></url>
+  <url><loc>https://emtrc.com/resources</loc><priority>0.8</priority></url>
+  <url><loc>https://emtrc.com/free-demo</loc><priority>0.9</priority></url>
+  <url><loc>https://emtrc.com/about</loc><priority>0.7</priority></url>
+  <url><loc>https://emtrc.com/contact</loc><priority>0.7</priority></url>
+  <url><loc>https://emtrc.com/privacy</loc><priority>0.3</priority></url>
+  <url><loc>https://emtrc.com/terms</loc><priority>0.3</priority></url>
 </urlset>

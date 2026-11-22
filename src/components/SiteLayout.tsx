@@ -8,13 +8,22 @@ import { DemoBanner } from './DemoBanner';
 
 interface SiteLayoutProps {
   children: ReactNode;
+  basePath?: string;
 }
 
-export function SiteLayout({ children }: SiteLayoutProps) {
+export function SiteLayout({ children, basePath = '' }: SiteLayoutProps) {
   const { site, theme, previewEnabled, activePresetId, selectPreset } = useSite();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const { pathname, hash } = useLocation();
   const navigate = useNavigate();
+
+  const homePath = basePath || '/';
+  const resolvePath = (to: string) => {
+    if (!basePath) return to;
+    if (to === '/') return basePath;
+    if (to.startsWith('/#')) return `${basePath}${to.slice(1)}`;
+    return `${basePath}${to}`;
+  };
 
   const navItems = getEnabledNavItems(site);
   const labels = getNicheLabels(site.niche);
@@ -46,8 +55,8 @@ export function SiteLayout({ children }: SiteLayoutProps) {
     setMobileMenuOpen(false);
     if (to.startsWith('/#')) {
       const id = to.slice(2);
-      if (pathname !== '/') {
-        navigate(to);
+      if (pathname !== homePath) {
+        navigate(resolvePath(to));
       } else {
         document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
       }
@@ -84,8 +93,9 @@ export function SiteLayout({ children }: SiteLayoutProps) {
                 data-testid="template-preview-select"
                 value={activePresetId}
                 onChange={(event) => {
-                  selectPreset(event.target.value);
-                  navigate('/');
+                  const nextId = event.target.value;
+                  selectPreset(nextId);
+                  navigate(basePath ? `/demos/${nextId}` : '/');
                 }}
                 className="max-w-[250px] sm:max-w-[390px] rounded border border-[#343B50] bg-[#181D2B] px-2.5 py-1 text-xs font-medium text-white focus:outline-none focus:ring-2 focus:ring-[#6B8AFF]"
               >
@@ -112,7 +122,7 @@ export function SiteLayout({ children }: SiteLayoutProps) {
         <div className="mx-auto flex h-14 md:h-16 max-w-[1200px] items-center justify-between gap-6 md:gap-8 px-5 sm:px-8">
           {/* Zone 1: Single-line brand wordmark */}
           <Link
-            to="/"
+            to={homePath}
             className={`font-display text-lg sm:text-xl font-bold text-[var(--site-ink)] whitespace-nowrap shrink-0 truncate max-w-[230px] sm:max-w-[300px] ${theme.headingTracking} ${theme.headingTransform}`}
           >
             {site.businessName}
@@ -139,7 +149,7 @@ export function SiteLayout({ children }: SiteLayoutProps) {
               ) : (
                 <NavLink
                   key={item.key}
-                  to={item.to}
+                  to={resolvePath(item.to)}
                   end={item.to === '/'}
                   className={({ isActive }) =>
                     `whitespace-nowrap shrink-0 py-1 transition-colors duration-150 ${
@@ -216,7 +226,7 @@ export function SiteLayout({ children }: SiteLayoutProps) {
                     </a>
                   ) : (
                     <NavLink
-                      to={item.to}
+                      to={resolvePath(item.to)}
                       end={item.to === '/'}
                       onClick={() => setMobileMenuOpen(false)}
                       className={({ isActive }) =>
@@ -267,7 +277,7 @@ export function SiteLayout({ children }: SiteLayoutProps) {
           <div className="grid grid-cols-1 gap-10 md:grid-cols-12">
             <div className="md:col-span-5">
               <Link
-                to="/"
+                to={homePath}
                 className={`font-display inline-block text-xl font-bold text-[var(--site-ink)] ${theme.headingTracking} ${theme.headingTransform}`}
               >
                 {site.businessName}
@@ -297,7 +307,7 @@ export function SiteLayout({ children }: SiteLayoutProps) {
                         {item.label}
                       </a>
                     ) : (
-                      <Link to={item.to} className="transition-colors hover:text-[var(--site-ink)]">
+                      <Link to={resolvePath(item.to)} className="transition-colors hover:text-[var(--site-ink)]">
                         {item.label}
                       </Link>
                     )}
