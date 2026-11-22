@@ -1,121 +1,66 @@
 import { Link } from 'react-router-dom';
-import {
-  ArrowRight,
-  Calendar,
-  Check,
-  Globe,
-  Mail,
-  MapPin,
-  ShieldCheck,
-  Sparkles,
-  Wrench,
-} from 'lucide-react';
+import { ArrowRight, Calendar, ShieldCheck } from 'lucide-react';
 import { SITE } from '../../content/site';
+import { SERVICE_DETAILS } from '../../content/services';
 import { EmtrcHead } from '../../components/emtrc/EmtrcHead';
 import { EmtrcLayout } from '../../components/emtrc/EmtrcLayout';
-import { Reveal } from '../../components/emtrc/Reveal';
+import {
+  EditorialHeading,
+  KickerRule,
+  Reveal,
+  StaggerContainer,
+  StaggerItem,
+} from '../../components/emtrc/Reveal';
+import { SafeImage } from '../../components/SafeImage';
 
-const SERVICE_CHAPTERS = [
+const SERVICE_GROUPS: readonly {
+  title: string;
+  subtitle: string;
+  category: 'Websites & foundations' | 'AI front desk' | 'Get found locally';
+}[] = [
   {
-    id: 'websites',
-    number: '01',
-    kicker: 'Websites & hosting',
-    headline: 'Mobile-first websites built to make your phone ring.',
-    body: 'Most London customers find you on their phone while walking down the high street or standing in a leaky kitchen. We build crisp, fast-loading sites with clear services, upfront prices, live opening hours and one-tap call or booking buttons — then host them on Cloudflare’s global edge with automatic SSL and daily backups.',
-    bullets: [
-      'Tailored 1-page or 5-page build using real photography and plain-English copy',
-      'Live UK opening status, tap-to-call, WhatsApp and Fresha / Booksy / Treatwell links',
-      '95+ mobile speed target — zero bloated WordPress plugins or broken updates',
-      'Working demo built and sent to your phone before you pay a penny',
-    ],
-    image: '/src/assets/images/emtrc_editorial_desk_craft_1795374293989.jpg',
-    imageAlt: 'Walnut studio desk with matte laptop, espresso cup and architectural grid notebook',
-    ctaLabel: 'See 15 live London demos',
-    ctaTo: '/work',
-    icon: Globe,
+    title: 'Websites & foundations',
+    subtitle: 'Your fast mobile-first website, domain registered in your own name, professional email and ongoing monthly edits.',
+    category: 'Websites & foundations',
   },
   {
-    id: 'foundations',
-    number: '02',
-    kicker: 'Domains & business email',
-    headline: 'Your own domain, in your own name — plus proper email.',
-    body: 'Quoting a £1,200 boiler job or a wedding hair booking from a personal Gmail or Hotmail address costs trust before you even arrive. We register your .co.uk or .com domain directly in your name and set up @yourbusiness email with full SPF, DKIM and DMARC records so your quotes land in inboxes, not junk folders.',
-    bullets: [
-      'Domain registered in your name — auth code handed over within 5 working days if you ever leave',
-      '1 standard @yourbusiness mailbox included on Business and Growth plans',
-      'Extra mailboxes £3/user/month, or Google Workspace / Microsoft 365 at list price + £2/month',
-      'Clean email migration from Gmail, Outlook or an old provider from £49 one-off',
-    ],
-    image: '/src/assets/images/emtrc_editorial_phone_studio_1795374293354.jpg',
-    imageAlt: 'London reception counter with wireless business handset and brass lamp',
-    ctaLabel: 'Compare plans & add-ons',
-    ctaTo: '/pricing',
-    icon: Mail,
+    title: 'AI front desk & cloud phones',
+    subtitle: 'Catch missed calls in 8 seconds, build 5-star Google reviews, answer enquiries 24/7 and move off copper landlines ahead of 31 January 2027.',
+    category: 'AI front desk',
   },
   {
-    id: 'local-seo',
-    number: '03',
-    kicker: 'Google Maps & AI search',
-    headline: 'Show up when neighbours search — on Google Maps and ChatGPT.',
-    body: 'Being buried on page two is the same as being closed. Every emtrc website is wired straight into your Google Business Profile with matching borough coverage, structured LocalBusiness Schema.org data, and clean service descriptions that both Google Maps and AI search engines understand immediately.',
-    bullets: [
-      'Google Business Profile categories, hours, booking links and services aligned',
-      'LocalBusiness + ProfessionalService JSON-LD structured data baked in from day one',
-      'Optional 3 dedicated London area pages on Growth to capture neighbouring postcodes',
-      'Automated Google review requests available to lift you into the Maps top three',
-    ],
-    image: '/src/assets/images/emtrc_hero_london_highstreet_1795374294553.jpg',
-    imageAlt: 'Independent London Victorian high street shops in warm morning sun',
-    ctaLabel: 'Download our Maps & AI Playbook',
-    ctaTo: '/resources#guide-maps-ai',
-    icon: MapPin,
+    title: 'Get found locally',
+    subtitle: 'Google Business Profile alignment, LocalBusiness schema and London borough pages so both Google Maps and AI search recommend you first.',
+    category: 'Get found locally',
   },
-  {
-    id: 'care',
-    number: '04',
-    kicker: 'Ongoing care & monthly edits',
-    headline: 'Need a price changed? Just text or email us.',
-    body: 'Small business owners should not spend Sunday evening wrestling with a page builder just to update bank-holiday opening hours or swap a menu photo. Every monthly plan includes hands-on edit time, uptime monitoring, security care and straight-talking results reporting.',
-    bullets: [
-      '15 mins/month on Starter, 30 mins on Business, 60 mins on Growth — most edits done in 24 hours',
-      'Privacy-friendly visitor and tap-to-call tracking (zero cookie banners, zero trackers)',
-      'Plain-English monthly results PDF on Growth showing calls, enquiries and top pages',
-      'Prefer to pay once? One-off build (£595) + £25/month Care Plan covers hosting, SSL & backups',
-    ],
-    image: '/src/assets/images/emtrc_editorial_guides_print_1795374293225.jpg',
-    imageAlt: 'Printed linen business playbooks on stone desk beside spectacles and espresso',
-    ctaLabel: 'See how a launch works',
-    ctaTo: '/how-it-works',
-    icon: Wrench,
-  },
-] as const;
+];
 
 export function EmtrcServicesPage() {
   return (
     <EmtrcLayout>
       <EmtrcHead
-        title="Services — Websites, Domains, Email & Local SEO | emtrc London"
-        description="Managed websites, domains in your name, business email, Google Maps local SEO and AI front-office tools for London small businesses."
+        title="Services — Websites, Email, Local SEO & AI Tools | emtrc London"
+        description="Explore all 8 emtrc services for London small businesses: managed websites, domains & email, local SEO, review engine, lead catcher, AI receptionist, cloud VoIP and monthly care."
       />
 
       {/* Editorial Hero */}
-      <section className="border-b border-[var(--emtrc-border)] pt-12 pb-16 sm:pt-16 sm:pb-20">
+      <section className="hero-editorial-wash border-b border-[var(--emtrc-border)] pt-12 pb-16 sm:pt-16 sm:pb-20">
         <div className="mx-auto max-w-[1200px] px-5 sm:px-8">
           <div className="grid grid-cols-1 gap-10 lg:grid-cols-12 lg:items-end">
             <div className="lg:col-span-8">
-              <p className="text-xs font-bold tracking-wide text-[var(--emtrc-brass)]">
-                Services · Everything under one London roof
-              </p>
-              <h1 className="mt-3 font-editorial text-4xl font-extrabold leading-[1.03] tracking-[-0.035em] text-[var(--emtrc-ink)] sm:text-6xl">
-                Websites, email &amp; local SEO.
-                <span className="block text-[var(--emtrc-muted)]">
-                  Handled properly from day one.
-                </span>
-              </h1>
+              <KickerRule>8 dedicated services · Everything under one London roof</KickerRule>
+              <EditorialHeading
+                as="h1"
+                immediate
+                line1="Everything your business needs online."
+                line2="Each with its own plain-English plan."
+                line2Tone="brass"
+                className="mt-4 font-editorial text-4xl font-extrabold leading-[1.02] tracking-[-0.035em] text-[var(--emtrc-ink)] sm:text-6xl"
+              />
               <p className="mt-5 max-w-2xl text-base leading-relaxed text-[var(--emtrc-muted)] sm:text-lg">
                 Start with a fast website that turns Google Maps searches into phone calls. Add
-                professional email, automated review requests, missed-call text-back or a 24/7 AI
-                receptionist whenever your business is ready.
+                professional email, automated review requests, missed-call text-back, a 24/7 AI
+                receptionist or cloud VoIP whenever your business is ready.
               </p>
             </div>
             <div className="flex flex-wrap gap-3 lg:col-span-4 lg:justify-end">
@@ -134,124 +79,106 @@ export function EmtrcServicesPage() {
               </Link>
             </div>
           </div>
-
-          {/* Quick section jump strip */}
-          <div className="mt-10 flex flex-wrap items-center gap-x-7 gap-y-2 border-t border-[var(--emtrc-border)] pt-5 text-sm font-medium text-[var(--emtrc-muted)]">
-            <a href="#websites" className="hover:text-[var(--emtrc-ink)] transition-colors">
-              01 · Managed websites
-            </a>
-            <a href="#foundations" className="hover:text-[var(--emtrc-ink)] transition-colors">
-              02 · Domains &amp; email
-            </a>
-            <a href="#local-seo" className="hover:text-[var(--emtrc-ink)] transition-colors">
-              03 · Google Maps &amp; AI search
-            </a>
-            <a href="#care" className="hover:text-[var(--emtrc-ink)] transition-colors">
-              04 · Monthly care &amp; edits
-            </a>
-            <Link
-              to="/ai-tools"
-              className="inline-flex items-center gap-1.5 font-semibold text-[var(--emtrc-accent)] hover:underline"
-            >
-              <Sparkles className="h-3.5 w-3.5" aria-hidden="true" />
-              <span>05 · AI Tools &amp; Cloud Phone →</span>
-            </Link>
-          </div>
         </div>
       </section>
 
-      {/* Alternating Service Chapters */}
+      {/* Grouped Directory of all 8 Dedicated Service Pages */}
       <section className="py-16 sm:py-24">
-        <div className="mx-auto max-w-[1200px] space-y-20 px-5 sm:space-y-28 sm:px-8">
-          {SERVICE_CHAPTERS.map((chapter, index) => {
-            const Icon = chapter.icon;
-            const imageLeft = index % 2 === 1;
+        <div className="mx-auto max-w-[1200px] space-y-20 px-5 sm:px-8">
+          {SERVICE_GROUPS.map((group) => {
+            const items = SERVICE_DETAILS.filter((s) => s.category === group.category);
             return (
-              <Reveal key={chapter.id}>
-                <article
-                  id={chapter.id}
-                  className="scroll-mt-24 grid grid-cols-1 gap-10 lg:grid-cols-12 lg:items-center"
-                >
-                  <div className={`lg:col-span-6 ${imageLeft ? 'lg:order-2' : 'lg:order-1'}`}>
-                    <div className="flex items-center gap-3 text-xs font-bold tracking-wide text-[var(--emtrc-brass)]">
-                      <Icon className="h-4 w-4" aria-hidden="true" />
-                      <span>
-                        {chapter.number} · {chapter.kicker}
-                      </span>
-                    </div>
-                    <h2 className="mt-3 font-editorial text-3xl font-extrabold leading-[1.08] tracking-[-0.03em] text-[var(--emtrc-ink)] sm:text-4xl">
-                      {chapter.headline}
+              <div key={group.title}>
+                <Reveal>
+                  <div className="max-w-2xl">
+                    <KickerRule>{group.category}</KickerRule>
+                    <h2 className="mt-3 font-editorial text-3xl font-extrabold tracking-[-0.03em] sm:text-4xl">
+                      {group.title}
                     </h2>
-                    <p className="mt-4 text-base leading-relaxed text-[var(--emtrc-muted)]">
-                      {chapter.body}
+                    <p className="mt-2.5 text-sm leading-relaxed text-[var(--emtrc-muted)] sm:text-base">
+                      {group.subtitle}
                     </p>
-                    <ul className="mt-6 space-y-3 border-t border-[var(--emtrc-border)] pt-6">
-                      {chapter.bullets.map((bullet) => (
-                        <li
-                          key={bullet}
-                          className="flex items-start gap-2.5 text-sm leading-relaxed text-[var(--emtrc-ink)]"
-                        >
-                          <Check
-                            className="mt-0.5 h-4 w-4 shrink-0 text-[var(--emtrc-accent)]"
-                            aria-hidden="true"
-                          />
-                          <span>{bullet}</span>
-                        </li>
-                      ))}
-                    </ul>
-                    <div className="mt-7">
-                      <Link
-                        to={chapter.ctaTo}
-                        className="group inline-flex items-center gap-2 text-sm font-semibold text-[var(--emtrc-accent)] hover:underline"
-                      >
-                        <span>{chapter.ctaLabel}</span>
-                        <ArrowRight
-                          className="h-4 w-4 transition-transform group-hover:translate-x-0.5"
-                          aria-hidden="true"
-                        />
-                      </Link>
-                    </div>
                   </div>
+                </Reveal>
 
-                  <div className={`lg:col-span-6 ${imageLeft ? 'lg:order-1' : 'lg:order-2'}`}>
-                    <div className="overflow-hidden rounded-2xl border border-[var(--emtrc-border)] bg-[var(--emtrc-sand)] shadow-sm">
-                      <img
-                        src={chapter.image}
-                        alt={chapter.imageAlt}
-                        loading={index === 0 ? 'eager' : 'lazy'}
-                        className="aspect-[4/3] w-full object-cover"
-                      />
-                    </div>
-                  </div>
-                </article>
-              </Reveal>
+                <StaggerContainer
+                  className={`mt-8 grid grid-cols-1 gap-6 ${
+                    items.length === 1 ? 'md:grid-cols-1 lg:grid-cols-12' : 'md:grid-cols-2 lg:grid-cols-3'
+                  }`}
+                >
+                  {items.map((service) => (
+                    <StaggerItem
+                      key={service.slug}
+                      className={items.length === 1 ? 'lg:col-span-8' : ''}
+                    >
+                      <article className="group flex h-full flex-col overflow-hidden rounded-2xl border border-[var(--emtrc-border)] bg-[var(--emtrc-surface)] transition-transform duration-200 hover:-translate-y-0.5 hover:border-[var(--emtrc-accent)]">
+                        <Link to={`/services/${service.slug}`} className="block overflow-hidden">
+                          <SafeImage
+                            src={service.heroImage}
+                            alt={service.heroAlt}
+                            width={1200}
+                            height={900}
+                            className="h-48 w-full object-cover transition-transform duration-300 group-hover:scale-[1.03]"
+                          />
+                        </Link>
+                        <div className="flex flex-1 flex-col justify-between p-6">
+                          <div>
+                            <p className="text-xs font-semibold text-[var(--emtrc-brass)]">
+                              {service.priceTag}
+                            </p>
+                            <h3 className="mt-1.5 font-editorial text-2xl font-bold leading-snug text-[var(--emtrc-ink)] group-hover:text-[var(--emtrc-accent)]">
+                              <Link to={`/services/${service.slug}`}>{service.shortTitle}</Link>
+                            </h3>
+                            <p className="mt-2.5 text-sm leading-relaxed text-[var(--emtrc-muted)]">
+                              {service.subheadline}
+                            </p>
+                          </div>
+
+                          <div className="mt-6 flex items-center justify-between border-t border-[var(--emtrc-border)] pt-4 text-xs font-semibold">
+                            <span className="text-[var(--emtrc-muted)]">
+                              {service.pains.length} pains solved · Interactive demo
+                            </span>
+                            <Link
+                              to={`/services/${service.slug}`}
+                              className="inline-flex items-center gap-1 text-[var(--emtrc-accent)] hover:underline"
+                            >
+                              <span>Explore service</span>
+                              <ArrowRight
+                                className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5"
+                                aria-hidden="true"
+                              />
+                            </Link>
+                          </div>
+                        </div>
+                      </article>
+                    </StaggerItem>
+                  ))}
+                </StaggerContainer>
+              </div>
             );
           })}
         </div>
       </section>
 
-      {/* Deep Midnight AI Bridge Banner */}
+      {/* Deep Midnight Promises Band */}
       <section className="border-t border-[var(--emtrc-navy-border)] bg-[var(--emtrc-navy)] py-16 text-[#F5F3EE] sm:py-24">
         <div className="mx-auto max-w-[1200px] px-5 sm:px-8">
           <div className="grid grid-cols-1 gap-10 lg:grid-cols-12 lg:items-center">
             <div className="lg:col-span-7">
-              <p className="text-xs font-bold tracking-wide text-[var(--emtrc-brass-light)]">
-                Add when you are ready
-              </p>
+              <KickerRule light>Zero risk to get started</KickerRule>
               <h2 className="mt-3 font-editorial text-3xl font-extrabold leading-[1.06] tracking-[-0.03em] text-white sm:text-5xl">
-                Ready to add AI call handling &amp; automated reviews?
+                See a working demo for your business before paying a penny.
               </h2>
               <p className="mt-4 max-w-xl text-base leading-relaxed text-[#BAC5DC]">
-                Most London clients start with our Business website plan (£69/month) and bolt on
-                Review Engine (£39/month), Lead Catcher (£79/month) or our 24/7 AI Receptionist
-                (£149/month) once they see the calls coming in.
+                Tell us your London borough, trade and prices. We build a real working demo within
+                2 working days so you can test it on your phone before deciding anything.
               </p>
               <div className="mt-7 flex flex-wrap gap-3">
                 <Link
-                  to="/ai-tools"
+                  to="/free-demo"
                   className="inline-flex items-center gap-2 rounded-lg bg-[var(--emtrc-accent)] px-5 py-3 text-sm font-semibold text-white transition-colors hover:bg-[var(--emtrc-accent-hover)]"
                 >
-                  <span>Explore AI tools &amp; Cloud Phone</span>
+                  <span>Get my free demo</span>
                   <ArrowRight className="h-4 w-4" aria-hidden="true" />
                 </Link>
                 <a

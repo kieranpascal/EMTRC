@@ -3,7 +3,7 @@ import { ArrowRight, Calendar } from 'lucide-react';
 import { SITE } from '../../content/site';
 import { EmtrcHead } from '../../components/emtrc/EmtrcHead';
 import { EmtrcLayout } from '../../components/emtrc/EmtrcLayout';
-import { Reveal } from '../../components/emtrc/Reveal';
+import { KickerRule, Reveal } from '../../components/emtrc/Reveal';
 import { SafeImage } from '../../components/SafeImage';
 
 export function EmtrcAiToolsPage() {
@@ -14,14 +14,12 @@ export function EmtrcAiToolsPage() {
         description="Review Engine, Lead Catcher (AI chat + missed-call text-back), 24/7 AI Receptionist and UK cloud Business Phones ahead of the 31 January 2027 PSTN switch-off."
       />
 
-      <section className="border-b border-[var(--emtrc-border)]">
+      <section className="hero-editorial-wash border-b border-[var(--emtrc-border)]">
         <div className="mx-auto max-w-[1200px] px-5 pt-14 pb-16 sm:px-8 sm:pt-20 sm:pb-20">
           <div className="grid grid-cols-1 items-center gap-10 lg:grid-cols-12">
             <div className="lg:col-span-7">
-              <p className="text-xs font-semibold tracking-wide text-[var(--emtrc-brass)]">
-                AI front desk &amp; business comms
-              </p>
-              <h1 className="mt-3 font-editorial text-4xl font-extrabold leading-[1.04] tracking-[-0.03em] sm:text-5xl">
+              <KickerRule>AI front desk &amp; business comms</KickerRule>
+              <h1 className="mt-4 font-editorial text-4xl font-extrabold leading-[1.04] tracking-[-0.03em] sm:text-5xl">
                 {SITE.aiTools.headline}
               </h1>
               <p className="mt-5 max-w-xl text-base leading-relaxed text-[var(--emtrc-muted)]">
@@ -132,7 +130,7 @@ export function EmtrcAiToolsPage() {
                         </div>
                       </div>
 
-                      <div className="mt-7">
+                      <div className="mt-7 flex flex-wrap items-center gap-3.5">
                         <a
                           href={SITE.brand.calendlyUrl}
                           target="_blank"
@@ -142,6 +140,15 @@ export function EmtrcAiToolsPage() {
                           <Calendar className="h-4 w-4" aria-hidden="true" />
                           <span>Book a call</span>
                         </a>
+                        <Link
+                          to={`/services/${tool.id}`}
+                          className={`inline-flex items-center gap-1.5 text-sm font-semibold transition-colors hover:underline ${
+                            isDarkHighlight ? 'text-[var(--emtrc-brass-light)]' : 'text-[var(--emtrc-accent)]'
+                          }`}
+                        >
+                          <span>Full service details</span>
+                          <ArrowRight className="h-4 w-4" aria-hidden="true" />
+                        </Link>
                       </div>
                     </div>
 

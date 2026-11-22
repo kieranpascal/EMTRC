@@ -1,7 +1,8 @@
 import { useEffect, useState } from 'react';
-import { AnimatePresence, motion, useReducedMotion } from 'motion/react';
+import { AnimatePresence, motion, useReducedMotion } from 'framer-motion';
 import { CheckCircle2, Globe, MessageSquare, PhoneCall, Star } from 'lucide-react';
 import { SITE } from '../../content/site';
+import emtrcLogoMark from '../../assets/images/emtrc_logo_emblem_1795377025072.jpg';
 import { SafeImage } from '../SafeImage';
 
 export function HeroPhonePreview() {
@@ -58,9 +59,14 @@ export function HeroPhonePreview() {
         {/* Mini App Header */}
         <div className="flex items-center justify-between border-b border-[#E4DEC9] px-4 py-2.5 dark:border-[#1E2A45]">
           <div className="flex items-center gap-2 min-w-0">
-            <span className="inline-flex h-6 w-6 shrink-0 items-center justify-center rounded-md bg-[#0B132B] text-xs font-extrabold text-[#F5F3EE] dark:bg-[#2347FF]">
-              e
-            </span>
+            <img
+              src={emtrcLogoMark}
+              alt="emtrc emblem"
+              width={24}
+              height={24}
+              referrerPolicy="no-referrer"
+              className="h-6 w-6 shrink-0 rounded-md object-cover ring-1 ring-[#0B132B]/15"
+            />
             <div className="min-w-0">
               <p className="truncate text-xs font-bold leading-tight">emtrc</p>
               <p className="truncate text-[10px] font-medium tracking-wide text-[#5C667A] dark:text-[#9AA6BE]">

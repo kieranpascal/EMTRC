@@ -1,7 +1,7 @@
 @import "tailwindcss";
 @custom-variant dark (&:where(.dark, .dark *));
-@import "@fontsource-variable/bricolage-grotesque";
-@import "@fontsource-variable/plus-jakarta-sans";
+@import "@fontsource-variable/fraunces";
+@import "@fontsource-variable/dm-sans";
 @import "@fontsource-variable/oswald";
 @import "@fontsource-variable/playfair-display";
 
@@ -20,8 +20,8 @@
   --emtrc-accent-hover: #1A37D6;
   --emtrc-brass: #B87B24;
   --emtrc-brass-light: #E2A94C;
-  --site-font-display: 'Bricolage Grotesque Variable', 'Bricolage Grotesque', system-ui, sans-serif;
-  --site-font-body: 'Plus Jakarta Sans Variable', 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+  --site-font-display: 'Fraunces Variable', 'Fraunces', Georgia, serif;
+  --site-font-body: 'DM Sans Variable', 'DM Sans', system-ui, -apple-system, sans-serif;
 }
 
 .dark {
@@ -58,7 +58,9 @@
   }
 
   h1, h2, h3, h4, .font-editorial {
-    font-family: 'Bricolage Grotesque Variable', 'Bricolage Grotesque', system-ui, sans-serif;
+    font-family: 'Fraunces Variable', 'Fraunces', Georgia, serif;
+    font-variation-settings: 'SOFT' 20, 'WONK' 0;
+    font-optical-sizing: auto;
     text-wrap: balance;
   }
 
@@ -84,6 +86,19 @@
 
 .dark .paper-texture {
   background-image: radial-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 0);
+}
+
+/* Warm architectural editorial hero wash (inspired by studio print paper lighting) */
+.hero-editorial-wash {
+  background-image:
+    radial-gradient(65% 75% at 78% 18%, rgba(184, 123, 36, 0.09) 0%, rgba(184, 123, 36, 0) 68%),
+    radial-gradient(50% 60% at 12% 85%, rgba(35, 71, 255, 0.05) 0%, rgba(35, 71, 255, 0) 70%);
+}
+
+.dark .hero-editorial-wash {
+  background-image:
+    radial-gradient(65% 75% at 78% 18%, rgba(226, 169, 76, 0.09) 0%, rgba(226, 169, 76, 0) 68%),
+    radial-gradient(50% 60% at 12% 85%, rgba(59, 91, 255, 0.08) 0%, rgba(59, 91, 255, 0) 70%);
 }
 
 /* Smooth editorial marquee */

@@ -1,9 +1,11 @@
 import { useState, type FormEvent } from 'react';
 import { ArrowRight, Check, CheckCircle2 } from 'lucide-react';
 import { SITE } from '../../content/site';
+import { useLanguage } from '../../context/LanguageContext';
 import { postStaticForm, validateNewsletterForm } from '../../utils/marketingForms';
 
 export function NewsletterBand() {
+  const { t } = useLanguage();
   const [email, setEmail] = useState('');
   const [honeypot, setHoneypot] = useState('');
   const [error, setError] = useState('');
@@ -45,13 +47,13 @@ export function NewsletterBand() {
         <div className="grid grid-cols-1 items-center gap-10 rounded-2xl border border-[var(--emtrc-navy-border)] bg-[var(--emtrc-navy-surface)] p-6 sm:p-10 lg:grid-cols-12">
           <div className="lg:col-span-6">
             <p className="text-xs font-semibold tracking-wide text-[var(--emtrc-brass-light)]">
-              {SITE.newsletter.eyebrow}
+              {t.newsletter.eyebrow}
             </p>
             <h2
               id="newsletter-heading"
               className="mt-2 font-editorial text-2xl font-bold tracking-tight text-white sm:text-3xl"
             >
-              {SITE.newsletter.headline}
+              {t.newsletter.headline}
             </h2>
             <ul className="mt-5 space-y-2.5 text-sm text-[#C7D0E4]">
               {SITE.newsletter.bullets.map((bullet) => (
@@ -73,7 +75,7 @@ export function NewsletterBand() {
                   <CheckCircle2 className="mt-0.5 h-5 w-5 shrink-0 text-[var(--emtrc-brass-light)]" aria-hidden="true" />
                   <div>
                     <p className="text-sm font-bold text-white">Subscribed</p>
-                    <p className="mt-1 text-sm text-[#C7D0E4]">{SITE.newsletter.successMessage}</p>
+                    <p className="mt-1 text-sm text-[#C7D0E4]">{t.newsletter.successMessage}</p>
                   </div>
                 </div>
               </div>
@@ -101,7 +103,7 @@ export function NewsletterBand() {
                     required
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
-                    placeholder={SITE.newsletter.placeholder}
+                    placeholder={t.newsletter.placeholder}
                     className="min-w-0 flex-1 rounded-lg border border-[#2C3D6B] bg-[#0B132B] px-4 py-3 text-sm text-white placeholder:text-[#7E8BA8] focus:border-[#5370FF] focus:outline-none"
                   />
                   <button
@@ -109,7 +111,7 @@ export function NewsletterBand() {
                     disabled={submitting}
                     className="group inline-flex items-center justify-center gap-2 rounded-lg bg-[#2347FF] px-6 py-3 text-sm font-semibold text-white whitespace-nowrap shrink-0 transition-colors hover:bg-[#3A5BFF] disabled:opacity-60"
                   >
-                    <span>{submitting ? 'Joining…' : SITE.newsletter.buttonLabel}</span>
+                    <span>{submitting ? 'Joining…' : t.newsletter.buttonLabel}</span>
                     <ArrowRight
                       className="h-4 w-4 transition-transform duration-150 group-hover:translate-x-0.5"
                       aria-hidden="true"
@@ -117,7 +119,7 @@ export function NewsletterBand() {
                   </button>
                 </div>
                 {error && <p className="mt-2 text-xs font-medium text-[#FCA5A5]">{error}</p>}
-                <p className="mt-3 text-xs text-[#9BA7C2]">{SITE.newsletter.disclaimer}</p>
+                <p className="mt-3 text-xs text-[#9BA7C2]">{t.newsletter.disclaimer}</p>
                 <p className="mt-2 text-xs text-[#7E8BA8]">
                   Fortnightly · 2 min read · Unsubscribe anytime
                 </p>

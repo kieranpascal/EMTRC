@@ -99,8 +99,35 @@ export const SITE = {
     label: 'PSTN 2027',
     text: 'Old BT copper phone lines switch off on 31 January 2027 — read our plain-English survival guide.',
     linkLabel: 'Get the free PDF',
-    to: '/resources#guides',
+    to: '/blog/uk-pstn-switch-off-31-january-2027-london-guide',
   },
+
+  tickerItems: [
+    {
+      badge: 'PSTN 2027',
+      text: 'Old BT copper phone lines switch off on 31 January 2027 — keep your 020 number.',
+      linkLabel: 'Read the guide',
+      to: '/blog/uk-pstn-switch-off-31-january-2027-london-guide',
+    },
+    {
+      badge: 'FREE DEMO',
+      text: 'See a real working website for your London business in 48 hours before paying a penny.',
+      linkLabel: 'Request yours',
+      to: '/free-demo',
+    },
+    {
+      badge: 'ANNUAL',
+      text: 'Prepay annually on Starter, Business or Growth and get 2 full months free.',
+      linkLabel: 'See pricing',
+      to: '/pricing',
+    },
+    {
+      badge: 'FREE PDF',
+      text: '14 practical fixes turning Google Maps searchers into real phone calls.',
+      linkLabel: 'Download free',
+      to: '/resources#guides',
+    },
+  ] as const,
 
   megaMenu: {
     services: [
@@ -108,24 +135,24 @@ export const SITE = {
         heading: 'Websites & foundations',
         items: [
           {
-            label: 'Managed websites',
-            description: 'Built, hosted and updated for one monthly price',
-            to: '/services#websites',
+            label: 'Managed Websites',
+            description: 'Fast mobile-first sites built, hosted and updated monthly',
+            to: '/services/websites',
           },
           {
-            label: 'Domains & business email',
+            label: 'Domains & Business Email',
             description: 'Your name on the domain, proper @yourbusiness inbox',
-            to: '/services#foundations',
+            to: '/services/domains-email',
           },
           {
-            label: 'Live London demos',
-            description: 'Explore 15 working demos across five local trades',
+            label: 'Monthly Care & Edits',
+            description: 'Text or email price changes, photos and hours — done in 24h',
+            to: '/services/care-plan',
+          },
+          {
+            label: 'Live London Demos (15)',
+            description: 'Click through working demos across five London trades',
             to: '/work',
-          },
-          {
-            label: 'How it works',
-            description: 'From free demo to live site in under a week',
-            to: '/how-it-works',
           },
         ],
       },
@@ -134,23 +161,23 @@ export const SITE = {
         items: [
           {
             label: 'Lead Catcher',
-            description: 'AI chat, missed-call text-back and review requests',
-            to: '/ai-tools#lead-catcher',
+            description: '24/7 AI chat, 8-second missed-call text-back & reviews',
+            to: '/services/lead-catcher',
           },
           {
             label: 'AI Receptionist',
-            description: 'Every call answered 24/7 and booked straight in',
-            to: '/ai-tools#ai-receptionist',
+            description: 'Every call answered 24/7 in a natural British voice',
+            to: '/services/ai-receptionist',
           },
           {
             label: 'Review Engine',
-            description: 'Polite post-visit requests and fast Google replies',
-            to: '/ai-tools#review-engine',
+            description: 'Polite DMCC-compliant Google review requests & replies',
+            to: '/services/review-engine',
           },
           {
             label: 'Business Phone (VoIP)',
-            description: 'Keep your 020 number ahead of the Jan 2027 switch-off',
-            to: '/ai-tools#business-phone',
+            description: 'Keep your 020 number ahead of the 31 Jan 2027 switch-off',
+            to: '/services/business-phone',
           },
         ],
       },
@@ -158,24 +185,24 @@ export const SITE = {
         heading: 'Get found locally',
         items: [
           {
-            label: 'Google Business Profile',
-            description: 'Categories, prices, photos and opening hours aligned',
-            to: '/services#local-seo',
+            label: 'Local SEO & AI Search',
+            description: 'Google Maps top-3 profile alignment + Schema for ChatGPT',
+            to: '/services/local-seo',
           },
           {
-            label: 'AI search visibility',
-            description: 'Structured data so Google Maps and ChatGPT recommend you',
-            to: '/services#local-seo',
-          },
-          {
-            label: 'Monthly results report',
-            description: 'Calls, clicks and enquiries in plain English',
-            to: '/services#care',
+            label: 'How it works',
+            description: 'From free 48-hour demo to live domain in one week',
+            to: '/how-it-works',
           },
           {
             label: 'One-off builds',
-            description: 'Prefer to pay once? £595 build + £25/month care',
+            description: 'Prefer to pay once? £595 build + £25/month care plan',
             to: '/pricing#one-off',
+          },
+          {
+            label: 'All 8 services',
+            description: 'Compare everything we handle under one London roof',
+            to: '/services',
           },
         ],
       },
@@ -216,8 +243,13 @@ export const SITE = {
         ],
       },
       {
-        heading: 'Learn & compare',
+        heading: 'Journal & guides',
         items: [
+          {
+            label: 'The emtrc Blog & Journal',
+            description: 'Plain-English guides on websites, Maps, AI & UK phones',
+            to: '/blog',
+          },
           {
             label: 'The London Local Dispatch',
             description: 'One plain-English email a fortnight — zero fluff',
@@ -367,8 +399,8 @@ export const SITE = {
           'Clear prices, live UK opening hours, tap-to-call buttons, Google Maps link-up and real photography. Hosted on Cloudflare’s global edge with SSL, daily backups and monthly edits done for you.',
         statValue: '95+',
         statLabel: 'Mobile Lighthouse target on every single launch',
-        linkLabel: 'See what is included',
-        linkTo: '/services#websites',
+        linkLabel: 'Explore Managed Websites',
+        linkTo: '/services/websites',
         image: '/src/assets/images/emtrc_editorial_desk_craft_1795374293989.jpg',
         imageAlt: 'Minimalist walnut studio desk with matte laptop, espresso and architectural notebook',
       },
@@ -380,8 +412,8 @@ export const SITE = {
           'When you cannot answer the phone, callers receive a polite text within seconds. After every job or appointment, satisfied customers get a simple link to leave a Google review — lifting you into the Maps top three.',
         statValue: '8 sec',
         statLabel: 'Average speed of automatic missed-call text-back',
-        linkLabel: 'Explore AI tools',
-        linkTo: '/ai-tools',
+        linkLabel: 'Explore Lead Catcher',
+        linkTo: '/services/lead-catcher',
         image: '/src/assets/images/emtrc_editorial_phone_studio_1795374293354.jpg',
         imageAlt: 'London studio reception desk with matte black wireless business phone and brass lamp',
       },
@@ -393,10 +425,10 @@ export const SITE = {
           'On 31 January 2027, legacy UK copper landlines retire. Keep your existing 020 number, route calls to your mobile or desk handset, and optionally switch on a 24/7 AI receptionist that books jobs while you work.',
         statValue: '24/7',
         statLabel: 'Calls answered and logged — evenings and bank holidays included',
-        linkLabel: 'Read the Jan 2027 phone guide',
-        linkTo: '/ai-tools#business-phone',
-        image: '/src/assets/images/trades_electrical_craft_1795373181964.jpg',
-        imageAlt: 'Neat modern UK residential utility installation',
+        linkLabel: 'Explore Business Phone (VoIP)',
+        linkTo: '/services/business-phone',
+        image: '/src/assets/images/emtrc_service_voip_office_1795375919862.jpg',
+        imageAlt: 'London shop counter with modern VoIP business handset beside Victorian sash window',
       },
       {
         id: 'guides',
@@ -859,9 +891,58 @@ export const SITE = {
 
   freeDemoSuccessMessage: "Thanks. We'll send your free demo within 2 working days.",
 
+  ownerVoices: {
+    disclosureNote:
+      'Representative London high-street workflows based on our live trade templates — real client case studies publish as our founding London cohort goes live.',
+    featured: {
+      quote:
+        '“Seeing our real barber shop website working on my phone in 48 hours before paying a penny made the decision obvious. Walk-ins actually know our fade prices and tap straight into Fresha.”',
+      name: 'Hackney E8 Barber Workflow',
+      role: '4-chair independent shop · Business plan + Review Engine',
+      metricValue: '0.9s',
+      metricLabel: 'Mobile load time on 4G',
+      demoPresetId: 'barber-bold-hackney',
+    },
+    cards: [
+      {
+        quote:
+          '“When I’m under a sink in Greenwich I cannot pick up. Missed-call text-back replies in 8 seconds and gets the postcode before they ring the next plumber.”',
+        name: 'SE10 Heating & Plumbing',
+        role: 'Emergency trade · Growth plan',
+        demoPresetId: 'trades-bold-greenwich',
+      },
+      {
+        quote:
+          '“We stopped chasing freelance developers every time we changed balayage prices. One WhatsApp message and our treatment menu updates the same day.”',
+        name: 'SW7 Hair & Beauty Studio',
+        role: 'Independent salon · Business plan',
+        demoPresetId: 'salon-elegant-kensington',
+      },
+      {
+        quote:
+          '“Having an instant postcode and bedroom quote form meant fewer tyre-kicker texts and far more serious end-of-tenancy bookings.”',
+        name: 'SW11 Local Cleaning Team',
+        role: 'Domestic & EoT cleaning · Business plan',
+        demoPresetId: 'cleaner-minimal-wandsworth',
+      },
+      {
+        quote:
+          '“Moving our 020 number onto cloud VoIP before the Jan 2027 copper switch-off took two weeks with zero missed orders.”',
+        name: 'SE15 Bakery & Café',
+        role: 'Neighbourhood café · Business + VoIP',
+        demoPresetId: 'cafe-elegant-southwark',
+      },
+    ] as const,
+  },
+
   legal: {
     draftBannerText:
       'Draft, under review — this document is provisional legal copy prepared for World Finance Global Limited trading as emtrc and is awaiting final solicitor sign-off.',
     lastUpdated: 'November 2026',
   },
 } as const;
+
+export { SERVICE_DETAILS, getServiceBySlug, type ServiceDetail } from './services';
+export { BLOG_ARTICLES, BLOG_CATEGORIES, getBlogArticleBySlug, type BlogArticle, type BlogCategory } from './blog';
+export { SUPPORTED_LANGUAGES, type LocaleCode } from './i18n';
+
