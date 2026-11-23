@@ -130,6 +130,73 @@ Paragraph with **bold** and \`inline code\`.
       );
       const imgPath = path.join(process.cwd(), article.image.replace(/^\//, ''));
       assert.ok(fs.existsSync(imgPath), `Missing blog hero image on disk: ${article.image}`);
+
+      const inlineImages = article.blocks.filter((b) => b.type === 'image');
+      assert.ok(
+        inlineImages.length >= 2,
+        `Expected article "${article.slug}" to have >=2 inline images (3+ total with hero), got ${inlineImages.length}`
+      );
+      for (const imgBlock of inlineImages) {
+        if (imgBlock.type === 'image') {
+          const inlinePath = path.join(process.cwd(), imgBlock.src.replace(/^\//, ''));
+          assert.ok(fs.existsSync(inlinePath), `Missing inline blog image on disk: ${imgBlock.src}`);
+        }
+      }
+
+      const charts = article.blocks.filter((b) => b.type === 'chart');
+      assert.ok(
+        charts.length >= 1,
+        `Expected article "${article.slug}" to include at least one interactive chart directive`
+      );
     }
+  });
+
+  it('parses captioned inline images and :::chart directives accurately', () => {
+    const sample = [
+      '![London barber fade](/src/assets/images/barber_fade_editorial_1795426201374.jpg "Clean precision work in Dalston.")',
+      '',
+      ':::chart pstn-cost-timeline',
+    ].join('\n');
+
+    const blocks = parseMarkdownBlocks(sample);
+    assert.equal(blocks.length, 2);
+    assert.equal(blocks[0].type, 'image');
+    if (blocks[0].type === 'image') {
+      assert.equal(blocks[0].alt, 'London barber fade');
+      assert.equal(blocks[0].src, '/src/assets/images/barber_fade_editorial_1795426201374.jpg');
+      assert.equal(blocks[0].caption, 'Clean precision work in Dalston.');
+    }
+    assert.equal(blocks[1].type, 'chart');
+    if (blocks[1].type === 'chart') {
+      assert.equal(blocks[1].chartId, 'pstn-cost-timeline');
+    }
+  });
+
+  it('confirms every /src/assets/images/ path referenced across Work, Services, Blog, Training, and Case Studies exists on disk', () => {
+    const filesToAudit = [
+      'src/pages/emtrc/EmtrcWorkPage.tsx',
+      'src/pages/emtrc/EmtrcBlogArticlePage.tsx',
+      'src/pages/emtrc/EmtrcServiceDetailPage.tsx',
+      'src/content/services.ts',
+      'src/content/caseStudies.ts',
+      'src/content/training.ts',
+      'src/content/site.ts',
+    ];
+
+    const imgRegex = /\/src\/assets\/images\/[A-Za-z0-9._-]+\.(?:jpg|jpeg|png|webp|svg)/g;
+    let totalRefs = 0;
+
+    for (const relFile of filesToAudit) {
+      const content = fs.readFileSync(path.join(process.cwd(), relFile), 'utf-8');
+      const matches = content.match(imgRegex) ?? [];
+      assert.ok(matches.length > 0, `Expected image references in ${relFile}`);
+      for (const ref of matches) {
+        totalRefs += 1;
+        const absPath = path.join(process.cwd(), ref.replace(/^\//, ''));
+        assert.ok(fs.existsSync(absPath), `Broken image reference in ${relFile}: ${ref}`);
+      }
+    }
+
+    assert.ok(totalRefs >= 35, `Expected at least 35 verified image references, checked ${totalRefs}`);
   });
 });

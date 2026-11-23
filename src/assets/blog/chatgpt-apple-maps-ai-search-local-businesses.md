@@ -52,6 +52,10 @@ Most small-business owners assume Google Business Profile is the only directory 
 
 In London — where iPhone market share among urban commuters sits well above 60% — leaving **Apple Business Connect** unclaimed is one of the easiest missed wins in local marketing. It costs £0, takes ten minutes to verify, and directly feeds Siri, Apple Maps and iOS Spotlight suggestions.
 
+:::chart ai-search-share
+
+![London café pastry counter and morning espresso service in natural daylight](/src/assets/images/cafe_brunch_pastry_1795373181666.jpg "Plain-HTML service menus with explicit prices, dietary tags and opening hours let ChatGPT and Apple Intelligence recommend your shop accurately.")
+
 ## The four technical pillars that make your business "AI-legible"
 
 You do not need gimmicky "AI SEO software" subscriptions. Making a local London business effortlessly readable to AI search engines comes down to four durable engineering habits:
@@ -90,6 +94,8 @@ Large language models weigh *descriptive* review phrases heavily. Compare two fi
 - Review B: *"Arrived in Blackheath within 40 minutes when our Worcester Bosch boiler lost pressure on a Sunday morning. Fixed upfront for the quoted £95."*
 
 Review B confirms your **borough**, **boiler brand**, **Sunday responsiveness** and **transparent pricing**. When someone asks an AI assistant for an honest Sunday boiler engineer near Blackheath, businesses backed by specific, recent reviews rise straight to the top.
+
+![London shop owner photographing craft work beside a printed local visibility checklist](/src/assets/images/emtrc_training_workshop_1795422463963.jpg "Consistent structured data across your .co.uk website, Google Business Profile and Apple Business Connect creates an unmistakable local entity signal.")
 
 ## Your 20-minute AI visibility checklist for this week
 

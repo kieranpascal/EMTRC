@@ -30,49 +30,64 @@ function AnimatedRoutes() {
   const prefersReduced = useReducedMotion();
 
   return (
-    <AnimatePresence
-      mode="wait"
-      onExitComplete={() => {
-        if (!location.hash) {
-          window.scrollTo({ top: 0, behavior: 'instant' as ScrollBehavior });
-        }
-      }}
-    >
-      <motion.div
-        key={location.pathname}
-        data-testid="page-transition-wrapper"
-        initial={prefersReduced ? false : { opacity: 0, y: 10 }}
-        animate={{ opacity: 1, y: 0 }}
-        exit={prefersReduced ? undefined : { opacity: 0, y: -8 }}
-        transition={{ duration: 0.26, ease: PAGE_EASE }}
+    <>
+      {/* Architectural Top Route Transition Accent Sweep */}
+      {!prefersReduced && (
+        <motion.div
+          key={`sweep-${location.pathname}`}
+          aria-hidden="true"
+          initial={{ scaleX: 0, opacity: 1 }}
+          animate={{ scaleX: 1, opacity: 0 }}
+          transition={{ duration: 0.55, ease: PAGE_EASE }}
+          style={{ transformOrigin: 'left' }}
+          className="pointer-events-none fixed inset-x-0 top-0 z-[70] h-[2.5px] bg-gradient-to-r from-[#E03528] via-[#FF8C73] to-[#E03528]"
+        />
+      )}
+
+      <AnimatePresence
+        mode="wait"
+        onExitComplete={() => {
+          if (!location.hash) {
+            window.scrollTo({ top: 0, behavior: 'instant' as ScrollBehavior });
+          }
+        }}
       >
-        <Routes location={location}>
-          <Route path="/" element={<EmtrcHomePage />} />
-          <Route path="/app" element={<EmtrcAppPage />} />
-          <Route path="/portal" element={<EmtrcPortalPage />} />
-          <Route path="/services" element={<EmtrcServicesPage />} />
-          <Route path="/services/:slug" element={<EmtrcServiceDetailPage />} />
-          <Route path="/pricing" element={<EmtrcPricingPage />} />
-          <Route path="/how-it-works" element={<EmtrcHowItWorksPage />} />
-          <Route path="/work" element={<EmtrcWorkPage />} />
-          <Route path="/case-studies" element={<EmtrcCaseStudiesPage />} />
-          <Route path="/case-studies/:slug" element={<EmtrcCaseStudyDetailPage />} />
-          <Route path="/training" element={<EmtrcTrainingPage />} />
-          <Route path="/faq" element={<EmtrcFaqPage />} />
-          <Route path="/ai-tools" element={<EmtrcAiToolsPage />} />
-          <Route path="/blog" element={<EmtrcBlogPage />} />
-          <Route path="/blog/:slug" element={<EmtrcBlogArticlePage />} />
-          <Route path="/resources" element={<EmtrcResourcesPage />} />
-          <Route path="/about" element={<EmtrcAboutPage />} />
-          <Route path="/contact" element={<EmtrcContactPage />} />
-          <Route path="/free-demo" element={<EmtrcFreeDemoPage />} />
-          <Route path="/privacy" element={<EmtrcPrivacyPage />} />
-          <Route path="/terms" element={<EmtrcTermsPage />} />
-          <Route path="/demos/:presetId/*" element={<EmtrcLiveDemoPage />} />
-          <Route path="*" element={<Navigate to="/" replace />} />
-        </Routes>
-      </motion.div>
-    </AnimatePresence>
+        <motion.div
+          key={location.pathname}
+          data-testid="page-transition-wrapper"
+          initial={prefersReduced ? false : { opacity: 0, y: 14, scale: 0.996 }}
+          animate={{ opacity: 1, y: 0, scale: 1 }}
+          exit={prefersReduced ? undefined : { opacity: 0, y: -10, scale: 0.998 }}
+          transition={{ duration: 0.32, ease: PAGE_EASE }}
+        >
+          <Routes location={location}>
+            <Route path="/" element={<EmtrcHomePage />} />
+            <Route path="/app" element={<EmtrcAppPage />} />
+            <Route path="/portal" element={<EmtrcPortalPage />} />
+            <Route path="/services" element={<EmtrcServicesPage />} />
+            <Route path="/services/:slug" element={<EmtrcServiceDetailPage />} />
+            <Route path="/pricing" element={<EmtrcPricingPage />} />
+            <Route path="/how-it-works" element={<EmtrcHowItWorksPage />} />
+            <Route path="/work" element={<EmtrcWorkPage />} />
+            <Route path="/case-studies" element={<EmtrcCaseStudiesPage />} />
+            <Route path="/case-studies/:slug" element={<EmtrcCaseStudyDetailPage />} />
+            <Route path="/training" element={<EmtrcTrainingPage />} />
+            <Route path="/faq" element={<EmtrcFaqPage />} />
+            <Route path="/ai-tools" element={<EmtrcAiToolsPage />} />
+            <Route path="/blog" element={<EmtrcBlogPage />} />
+            <Route path="/blog/:slug" element={<EmtrcBlogArticlePage />} />
+            <Route path="/resources" element={<EmtrcResourcesPage />} />
+            <Route path="/about" element={<EmtrcAboutPage />} />
+            <Route path="/contact" element={<EmtrcContactPage />} />
+            <Route path="/free-demo" element={<EmtrcFreeDemoPage />} />
+            <Route path="/privacy" element={<EmtrcPrivacyPage />} />
+            <Route path="/terms" element={<EmtrcTermsPage />} />
+            <Route path="/demos/:presetId/*" element={<EmtrcLiveDemoPage />} />
+            <Route path="*" element={<Navigate to="/" replace />} />
+          </Routes>
+        </motion.div>
+      </AnimatePresence>
+    </>
   );
 }
 

@@ -4,6 +4,7 @@ import { AnimatePresence, motion, useReducedMotion } from 'framer-motion';
 import {
   ArrowLeft,
   ArrowRight,
+  ArrowUpRight,
   BookOpen,
   Calendar,
   Check,
@@ -13,6 +14,7 @@ import {
   MapPin,
 } from 'lucide-react';
 import { SITE, type PdfGuideItem } from '../../content/site';
+import { SERVICE_DETAILS } from '../../content/services';
 import { BLOG_ARTICLES } from '../../content/blog';
 import { CASE_STUDIES } from '../../content/caseStudies';
 import { TRAINING_TRACKS } from '../../content/training';
@@ -23,18 +25,22 @@ import { EmtrcHead } from '../../components/emtrc/EmtrcHead';
 import { EmtrcLayout } from '../../components/emtrc/EmtrcLayout';
 import { HeroPhonePreview } from '../../components/emtrc/HeroPhonePreview';
 import { PdfDownloadModal } from '../../components/emtrc/PdfDownloadModal';
+import { MagneticLink } from '../../components/emtrc/MagneticLink';
 import {
   AnimatedCounter,
   EditorialHeading,
   HeroParallaxStage,
   KickerRule,
-  Magnetic,
   ParallaxFrame,
   Reveal,
   SpotlightCard,
   StaggerContainer,
   StaggerItem,
 } from '../../components/emtrc/Reveal';
+import { ScrollReveal, ScrollRevealItem } from '../../components/emtrc/ScrollReveal';
+import { AnimatedSectionHeader, SectionSeparator } from '../../components/emtrc/SectionSeparator';
+import { OrnamentalDivider } from '../../components/emtrc/OrnamentalDivider';
+import { LaunchWeekAnimatedIllustration } from '../../components/emtrc/AnimatedIllustrations';
 import { SafeImage } from '../../components/SafeImage';
 
 const HERO_EASE: [number, number, number, number] = [0.22, 1, 0.36, 1];
@@ -60,10 +66,10 @@ export function EmtrcHomePage() {
         includeHomeJsonLd
       />
 
-      {/* CHAPTER 1: Architectural London Editorial Hero with Mouse-Parallax Stage & Magnetic CTAs */}
+      {/* CHAPTER 1: High-Contrast Editorial Hero with Mouse-Parallax Stage & Magnetic CTAs */}
       <HeroParallaxStage className="hero-editorial-wash overflow-hidden border-b border-[var(--emtrc-border)]">
-        <div className="mx-auto max-w-[1200px] px-5 pt-12 pb-14 sm:px-8 sm:pt-18 sm:pb-20">
-          <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-12 lg:gap-10">
+        <div className="mx-auto max-w-[1200px] px-5 pt-9 pb-10 sm:px-8 sm:pt-12 sm:pb-12">
+          <div className="grid grid-cols-1 items-center gap-10 lg:grid-cols-12 lg:gap-10">
             <div className="lg:col-span-6">
               <Reveal immediate>
                 <KickerRule>{t.hero.kicker}</KickerRule>
@@ -76,40 +82,40 @@ export function EmtrcHomePage() {
                 line1={t.hero.headlineLine1}
                 line2={t.hero.headlineLine2}
                 line2Tone="accent"
-                className="mt-4 font-editorial text-[clamp(2.95rem,6.1vw,4.85rem)] font-bold leading-[0.98] tracking-[-0.035em] text-[var(--emtrc-ink)]"
+                className="mt-3 font-editorial text-[clamp(2.8rem,5.8vw,4.7rem)] font-bold leading-[0.98] tracking-[-0.025em] text-[var(--emtrc-ink)] [&>span:nth-child(2)>span]:font-editorial-italic [&>span:nth-child(2)>span]:font-normal"
               />
 
               <Reveal immediate delay={0.14}>
-                <p className="mt-6 max-w-xl text-base leading-relaxed text-[var(--emtrc-muted)] sm:text-lg">
+                <p className="mt-5 max-w-xl text-base leading-relaxed text-[var(--emtrc-muted)] sm:text-lg">
                   {t.hero.subheadline}
                 </p>
               </Reveal>
 
               <Reveal immediate delay={0.2}>
-                <div className="mt-8 flex flex-wrap items-center gap-3.5">
-                  <Magnetic>
-                    <Link
-                      to="/free-demo"
-                      className="group inline-flex items-center justify-center gap-2 rounded-lg bg-[var(--emtrc-accent)] px-6 py-3.5 text-sm font-semibold text-white whitespace-nowrap transition-colors hover:bg-[var(--emtrc-accent-hover)]"
-                    >
-                      <span>{t.hero.primaryCta}</span>
-                      <ArrowRight
-                        className="h-4 w-4 transition-transform duration-150 group-hover:translate-x-0.5"
-                        aria-hidden="true"
-                      />
-                    </Link>
-                  </Magnetic>
-                  <Magnetic strength={0.18}>
-                    <Link
-                      to="/app"
-                      className="inline-flex items-center justify-center rounded-lg border border-[var(--emtrc-border)] bg-[var(--emtrc-surface)] px-6 py-3.5 text-sm font-semibold text-[var(--emtrc-ink)] whitespace-nowrap transition-colors hover:border-[var(--emtrc-ink)]"
-                    >
-                      Explore the emtrc App
-                    </Link>
-                  </Magnetic>
+                <div className="mt-7 flex flex-wrap items-center gap-3">
+                  <MagneticLink
+                    to="/free-demo"
+                    strength={0.28}
+                    maxOffset={11}
+                    className="group inline-flex items-center justify-center gap-2 rounded-lg bg-[var(--emtrc-accent)] px-6 py-3.5 text-sm font-semibold text-white whitespace-nowrap shadow-[0_10px_28px_-8px_rgba(226,59,45,0.65)] transition-colors hover:bg-[var(--emtrc-accent-hover)]"
+                  >
+                    <span>{t.hero.primaryCta}</span>
+                    <ArrowRight
+                      className="h-4 w-4 transition-transform duration-150 group-hover:translate-x-0.5"
+                      aria-hidden="true"
+                    />
+                  </MagneticLink>
+                  <MagneticLink
+                    to="/app"
+                    strength={0.2}
+                    maxOffset={8}
+                    className="inline-flex items-center justify-center rounded-lg border border-[var(--emtrc-border)] bg-[var(--emtrc-surface)] px-6 py-3.5 text-sm font-semibold text-[var(--emtrc-ink)] whitespace-nowrap transition-colors hover:border-[var(--emtrc-accent)]"
+                  >
+                    {t.hero.exploreAppCta}
+                  </MagneticLink>
                 </div>
 
-                <p className="mt-6 text-sm text-[var(--emtrc-muted)]">
+                <p className="mt-5 text-sm text-[var(--emtrc-muted)]">
                   {t.hero.footnotePrefix}{' '}
                   <a
                     href={SITE.brand.calendlyUrl}
@@ -128,32 +134,32 @@ export function EmtrcHomePage() {
             </Reveal>
           </div>
 
-          {/* Live Animated Studio Telemetry Strip */}
-          <Reveal delay={0.1}>
-            <div className="mt-14 grid grid-cols-2 gap-6 border-t border-[var(--emtrc-border)] pt-8 lg:grid-cols-4">
+          {/* Live Animated Studio Telemetry Strip (IBM Plex Mono data metrics) */}
+          <Reveal delay={0.08}>
+            <div className="mt-10 grid grid-cols-2 gap-4 rounded-2xl border border-[var(--emtrc-border)] bg-[var(--emtrc-surface)] p-5 lg:grid-cols-4 lg:gap-6">
               <div>
-                <p className="font-editorial text-2xl font-bold text-[var(--emtrc-ink)] sm:text-3xl">
+                <p dir="ltr" className="inline-block font-mono-data text-2xl font-bold text-[var(--emtrc-ink)] sm:text-3xl">
                   <AnimatedCounter target={0.9} decimals={1} suffix="s" />
                 </p>
-                <p className="mt-1 text-xs text-[var(--emtrc-muted)]">Typical mobile 4G load time</p>
+                <p className="mt-1 text-xs text-[var(--emtrc-muted)]">{t.hero.stat1Label}</p>
               </div>
-              <div>
-                <p className="font-editorial text-2xl font-bold text-[var(--emtrc-accent)] sm:text-3xl">
+              <div className="lg:border-s lg:border-[var(--emtrc-border)] lg:ps-6">
+                <p dir="ltr" className="inline-block font-mono-data text-2xl font-bold text-[var(--emtrc-accent)] sm:text-3xl">
                   <AnimatedCounter target={48} suffix=" hrs" />
                 </p>
-                <p className="mt-1 text-xs text-[var(--emtrc-muted)]">To your free working demo</p>
+                <p className="mt-1 text-xs text-[var(--emtrc-muted)]">{t.hero.stat2Label}</p>
               </div>
-              <div>
-                <p className="font-editorial text-2xl font-bold text-[var(--emtrc-ink)] sm:text-3xl">
+              <div className="lg:border-s lg:border-[var(--emtrc-border)] lg:ps-6">
+                <p dir="ltr" className="inline-block font-mono-data text-2xl font-bold text-[var(--emtrc-ink)] sm:text-3xl">
                   <AnimatedCounter target={15} />
                 </p>
-                <p className="mt-1 text-xs text-[var(--emtrc-muted)]">Live London trade demos online</p>
+                <p className="mt-1 text-xs text-[var(--emtrc-muted)]">{t.hero.stat3Label}</p>
               </div>
-              <div>
-                <p className="font-editorial text-2xl font-bold text-[var(--emtrc-ink)] sm:text-3xl">
+              <div className="lg:border-s lg:border-[var(--emtrc-border)] lg:ps-6">
+                <p dir="ltr" className="inline-block font-mono-data text-2xl font-bold text-[var(--emtrc-ink)] sm:text-3xl">
                   <AnimatedCounter target={39} prefix="£" suffix="/mo" />
                 </p>
-                <p className="mt-1 text-xs text-[var(--emtrc-muted)]">Starting monthly managed plan</p>
+                <p className="mt-1 text-xs text-[var(--emtrc-muted)]">{t.hero.stat4Label}</p>
               </div>
             </div>
           </Reveal>
@@ -163,15 +169,15 @@ export function EmtrcHomePage() {
       {/* CHAPTER 2: Editorial Photography Marquee Strip */}
       <section
         aria-label="What emtrc handles for London businesses"
-        className="overflow-hidden border-b border-[var(--emtrc-border)] bg-[var(--emtrc-surface)] py-5"
+        className="overflow-hidden border-b border-[var(--emtrc-border)] bg-[var(--emtrc-surface)] py-4"
       >
         <div className="animate-emtrc-marquee items-center gap-8">
           {[...SITE.marqueeItems, ...SITE.marqueeItems].map((item, index) => (
-            <div key={`${item.text}-${index}`} className="flex items-center gap-5 shrink-0 pr-3">
+            <div key={`${item.text}-${index}`} className="flex items-center gap-4 shrink-0 pr-3">
               <span className="font-editorial text-sm font-bold tracking-tight text-[var(--emtrc-ink)] whitespace-nowrap">
                 {item.text}
               </span>
-              <div className="h-14 w-24 overflow-hidden rounded-lg border border-[var(--emtrc-border)] shrink-0">
+              <div className="h-12 w-20 overflow-hidden rounded-lg border border-[var(--emtrc-border)] shrink-0">
                 <SafeImage
                   src={item.image}
                   alt={item.alt}
@@ -185,23 +191,105 @@ export function EmtrcHomePage() {
         </div>
       </section>
 
-      {/* CHAPTER 3: Interactive Before & After Website Transformation */}
-      <section className="border-b border-[var(--emtrc-border)] bg-[var(--emtrc-canvas)]">
-        <div className="mx-auto max-w-[1200px] px-5 py-16 sm:px-8 sm:py-24">
-          <div className="mb-10 flex flex-col justify-between gap-6 lg:flex-row lg:items-end">
-            <Reveal>
-              <KickerRule>Why London clients choose a real studio over DIY AI</KickerRule>
-              <h2 className="mt-3 max-w-2xl font-editorial text-3xl font-bold leading-[1.06] tracking-[-0.025em] sm:text-5xl">
-                What your neighbours see today — vs with emtrc.
-              </h2>
+      <SectionSeparator variant="angle" from="surface" to="sand" accentColor="coral" />
+
+      {/* CHAPTER 3: High-Density Service Cards Bento Grid with Staggered Fade-In & Scale ScrollReveal */}
+      <section className="bg-[var(--emtrc-sand)]">
+        <div className="mx-auto max-w-[1200px] px-5 py-10 sm:px-8 sm:py-14">
+          <div className="flex flex-col justify-between gap-5 lg:flex-row lg:items-end">
+            <AnimatedSectionHeader
+              index="01"
+              kicker={t.homeSections.servicesKicker}
+              headline={t.homeSections.servicesLine1}
+              accentWord={t.homeSections.servicesLine2}
+              subtitle={t.homeSections.servicesSub}
+              tone="coral"
+              className="max-w-2xl"
+            />
+            <Reveal delay={0.08}>
+              <Link
+                to="/services"
+                className="group inline-flex items-center gap-1.5 font-mono-data text-xs font-semibold text-[var(--emtrc-accent)] whitespace-nowrap hover:underline"
+              >
+                <span>{t.homeSections.servicesAllLink}</span>
+                <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5" aria-hidden="true" />
+              </Link>
             </Reveal>
+          </div>
+
+          {/* Staggered Fade-in + Scale ScrollReveal applied directly to the Service Cards Grid */}
+          <ScrollReveal
+            data-testid="homepage-service-cards-grid"
+            autoWrapChildren={false}
+            staggerDelay={0.065}
+            className="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4"
+          >
+            {SERVICE_DETAILS.map((service, idx) => (
+              <ScrollRevealItem key={service.slug} className="col-span-1">
+                <Link
+                    to={`/services/${service.slug}`}
+                    data-testid={`home-service-card-${service.slug}`}
+                    className="group relative flex h-full min-h-[240px] flex-col justify-between overflow-hidden rounded-2xl border border-[var(--emtrc-navy-border)] bg-[#0B0D12] p-5 text-white transition-all duration-300 hover:-translate-y-1 hover:border-[var(--emtrc-accent)] hover:shadow-2xl"
+                  >
+                    <SafeImage
+                      src={service.heroImage}
+                      alt={service.heroAlt}
+                      width={900}
+                      height={620}
+                      className="absolute inset-0 h-full w-full object-cover opacity-55 transition-transform duration-700 group-hover:scale-[1.06] group-hover:opacity-65"
+                    />
+                    <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[#07080B]/95 via-[#07080B]/70 to-[#07080B]/40" />
+
+                    <div className="relative z-10 flex items-center justify-between gap-2">
+                      <span className="inline-flex items-center gap-1.5 rounded-md border border-white/12 bg-black/50 px-2 py-0.5 font-mono-data text-[10.5px] font-semibold text-[#FF9B85] backdrop-blur-sm">
+                        <span className="text-white">{String(idx + 1).padStart(2, '0')}</span>
+                        <span aria-hidden="true" className="text-white/35">/</span>
+                        <span className="truncate max-w-[160px]">{service.priceTag.split('·')[0].trim()}</span>
+                      </span>
+                      <span className="inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-white/15 bg-black/45 text-white backdrop-blur-sm transition-all duration-200 group-hover:scale-105 group-hover:border-[#FF8C73] group-hover:bg-[var(--emtrc-accent)]">
+                        <ArrowUpRight className="h-4 w-4" aria-hidden="true" />
+                      </span>
+                    </div>
+
+                    <div className="relative z-10 mt-14">
+                      <h3 className="font-editorial text-xl font-bold leading-snug text-white sm:text-2xl">
+                        {service.shortTitle}
+                      </h3>
+                      <p className="mt-1.5 line-clamp-2 text-xs leading-relaxed text-[#D4DBE8]">
+                        {service.menuDescription}
+                      </p>
+                    </div>
+                    <span
+                      aria-hidden="true"
+                      className="pointer-events-none absolute inset-x-0 bottom-0 z-10 h-[3px] origin-left scale-x-0 bg-[var(--emtrc-accent)] transition-transform duration-300 ease-out group-hover:scale-x-100"
+                    />
+                  </Link>
+                </ScrollRevealItem>
+            ))}
+          </ScrollReveal>
+        </div>
+      </section>
+
+      <SectionSeparator variant="architectural-ribbon" from="sand" to="surface" accentColor="amber" />
+
+      {/* CHAPTER 4: Interactive Before & After Website Transformation */}
+      <section className="bg-[var(--emtrc-surface)]">
+        <div className="mx-auto max-w-[1200px] px-5 py-10 sm:px-8 sm:py-14">
+          <div className="mb-7 flex flex-col justify-between gap-4 lg:flex-row lg:items-end">
+            <AnimatedSectionHeader
+              index="02"
+              kicker={t.homeSections.beforeAfterKicker}
+              headline={t.homeSections.beforeAfterHeadline}
+              tone="amber"
+              className="max-w-2xl"
+            />
             <Reveal delay={0.08}>
               <Link
                 to="/case-studies"
-                className="group inline-flex items-center gap-1.5 text-sm font-semibold text-[var(--emtrc-accent)] hover:underline"
+                className="group inline-flex items-center gap-1.5 font-mono-data text-xs font-semibold text-[var(--emtrc-accent)] hover:underline"
               >
-                <span>Explore all 5 London case studies</span>
-                <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" aria-hidden="true" />
+                <span>{t.homeSections.caseStudiesAllLink}</span>
+                <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5" aria-hidden="true" />
               </Link>
             </Reveal>
           </div>
@@ -212,32 +300,62 @@ export function EmtrcHomePage() {
         </div>
       </section>
 
-      {/* CHAPTER 4: Full-Bleed Obsidian Charcoal Interactive Capability Deck */}
-      <section className="bg-[var(--emtrc-navy)] text-[#F5F6F8]">
-        <div className="mx-auto max-w-[1200px] px-5 py-16 sm:px-8 sm:py-24">
-          <div className="max-w-2xl">
-            <Reveal>
-              <KickerRule light>{t.homeSections.deckKicker}</KickerRule>
-            </Reveal>
-            <EditorialHeading
-              as="h2"
-              line1={t.homeSections.deckLine1}
-              line2={t.homeSections.deckLine2}
-              line2Tone="brass-underline"
-              className="mt-3 font-editorial text-[clamp(2rem,4.4vw,3.4rem)] font-bold leading-[1.04] tracking-[-0.03em] text-white"
-            />
-            <Reveal delay={0.08}>
-              <p className="mt-5 text-base leading-relaxed text-[#B4BCCB]">
+      <SectionSeparator variant="wave" from="surface" to="obsidian" accentColor="coral" />
+
+      {/* CHAPTER 5: Full-Bleed Obsidian Interactive Capability Deck */}
+      <section className="bg-[#0B0D12] text-[#F5F6F8]">
+        <div className="mx-auto max-w-[1200px] px-5 py-10 sm:px-8 sm:py-14">
+          <div className="grid grid-cols-1 gap-6 lg:grid-cols-12 lg:items-end">
+            <div className="lg:col-span-7">
+              <Reveal>
+                <KickerRule light>{t.homeSections.deckKicker}</KickerRule>
+              </Reveal>
+              <EditorialHeading
+                as="h2"
+                line1={t.homeSections.deckLine1}
+                line2={t.homeSections.deckLine2}
+                line2Tone="brass-underline"
+                className="mt-2.5 font-editorial text-[clamp(2rem,4.2vw,3.2rem)] font-bold leading-[1.04] text-white [&>span:nth-child(2)>span]:font-editorial-italic [&>span:nth-child(2)>span]:font-normal"
+              />
+            </div>
+            <Reveal delay={0.08} className="lg:col-span-5">
+              <p className="text-sm leading-relaxed text-[#B4BCCB] sm:text-base">
                 {t.homeSections.deckSub}
               </p>
             </Reveal>
           </div>
 
-          <Reveal delay={0.1}>
+          <Reveal delay={0.08}>
             <div
               data-testid="capability-deck"
-              className="mt-12 rounded-2xl border border-[var(--emtrc-navy-border)] bg-[var(--emtrc-navy-surface)] p-5 sm:p-8 lg:p-10"
+              className="mt-8 rounded-2xl border border-[var(--emtrc-navy-border)] bg-[var(--emtrc-navy-surface)] p-5 sm:p-7 lg:p-8"
             >
+              {/* Interactive Pillar Selector Bar */}
+              <div className="mb-6 grid grid-cols-2 gap-2 border-b border-[var(--emtrc-navy-border)] pb-5 lg:grid-cols-4">
+                {slides.map((s, idx) => {
+                  const active = idx === slideIdx;
+                  return (
+                    <button
+                      key={s.id}
+                      type="button"
+                      onClick={() => setSlideIdx(idx)}
+                      className={`group rounded-xl border px-3.5 py-2.5 text-left transition-all ${
+                        active
+                          ? 'border-[var(--emtrc-accent)] bg-[var(--emtrc-accent)]/12 text-white'
+                          : 'border-white/8 bg-white/[0.02] text-[#9BA3B4] hover:border-white/20 hover:text-white'
+                      }`}
+                    >
+                      <p className={`font-mono-data text-[10px] font-semibold uppercase tracking-wider ${active ? 'text-[#FF8C73]' : 'text-[#6F788C]'}`}>
+                        Pillar 0{idx + 1}
+                      </p>
+                      <p className="mt-0.5 truncate text-xs font-semibold">
+                        {s.kicker.split('·')[1]?.trim() ?? s.kicker}
+                      </p>
+                    </button>
+                  );
+                })}
+              </div>
+
               <AnimatePresence mode="wait">
                 <motion.div
                   key={currentSlide.id}
@@ -245,7 +363,7 @@ export function EmtrcHomePage() {
                   animate={{ opacity: 1, x: 0 }}
                   exit={prefersReduced ? undefined : { opacity: 0, x: -14 }}
                   transition={{ duration: 0.25, ease: HERO_EASE }}
-                  className="grid grid-cols-1 items-center gap-8 lg:grid-cols-12 lg:gap-10"
+                  className="grid grid-cols-1 items-center gap-7 lg:grid-cols-12"
                 >
                   <div className="lg:col-span-6">
                     <div className="overflow-hidden rounded-xl border border-[var(--emtrc-navy-border)]">
@@ -254,7 +372,7 @@ export function EmtrcHomePage() {
                         alt={currentSlide.imageAlt}
                         width={1200}
                         height={900}
-                        className="h-[260px] w-full object-cover sm:h-[340px]"
+                        className="h-[250px] w-full object-cover sm:h-[320px]"
                       />
                     </div>
                   </div>
@@ -266,18 +384,18 @@ export function EmtrcHomePage() {
                     <h3 className="mt-2 font-editorial text-2xl font-bold leading-snug text-white sm:text-3xl">
                       {currentSlide.title}
                     </h3>
-                    <p className="mt-4 text-sm leading-relaxed text-[#B4BCCB] sm:text-base">
+                    <p className="mt-3 text-sm leading-relaxed text-[#B4BCCB] sm:text-base">
                       {currentSlide.description}
                     </p>
 
-                    <div className="mt-6 border-t border-[var(--emtrc-navy-border)] pt-5">
-                      <p className="font-mono-data text-4xl font-bold text-white">
+                    <div className="mt-5 border-t border-[var(--emtrc-navy-border)] pt-4">
+                      <p className="font-mono-data text-3xl font-bold text-white sm:text-4xl">
                         {currentSlide.statValue}
                       </p>
                       <p className="mt-1 text-xs text-[#9BA3B4]">{currentSlide.statLabel}</p>
                     </div>
 
-                    <div className="mt-6">
+                    <div className="mt-5">
                       <Link
                         to={currentSlide.linkTo}
                         className="group inline-flex items-center gap-1.5 text-sm font-semibold text-[var(--emtrc-brass-light)] hover:text-white transition-colors"
@@ -294,7 +412,7 @@ export function EmtrcHomePage() {
               </AnimatePresence>
 
               {/* Deck Controls */}
-              <div className="mt-8 flex items-center justify-between border-t border-[var(--emtrc-navy-border)] pt-6">
+              <div className="mt-6 flex items-center justify-between border-t border-[var(--emtrc-navy-border)] pt-5">
                 <button
                   type="button"
                   onClick={prevSlide}
@@ -336,82 +454,93 @@ export function EmtrcHomePage() {
         </div>
       </section>
 
-      {/* CHAPTER 5: Featured London Case Studies with Parallax Documentary Photography */}
-      <section className="border-b border-[var(--emtrc-border)] bg-[var(--emtrc-surface)]">
-        <div className="mx-auto max-w-[1200px] px-5 py-16 sm:px-8 sm:py-24">
-          <Reveal>
-            <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
-              <div className="max-w-2xl">
-                <KickerRule>London Case Studies · Real Trade Workflows</KickerRule>
-                <h2 className="mt-3 font-editorial text-3xl font-bold tracking-[-0.025em] sm:text-4xl">
-                  Built for Hackney barbers, Greenwich heating firms &amp; Peckham cafés.
-                </h2>
-              </div>
-              <Link
-                to="/case-studies"
-                className="group inline-flex items-center gap-1.5 text-sm font-semibold text-[var(--emtrc-accent)] whitespace-nowrap shrink-0 hover:underline"
-              >
-                <span>View all case studies</span>
-                <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" aria-hidden="true" />
-              </Link>
-            </div>
-          </Reveal>
+      <SectionSeparator variant="angle" from="obsidian" to="surface" accentColor="emerald" flip />
 
-          <StaggerContainer className="mt-10 grid grid-cols-1 gap-7 lg:grid-cols-3">
+      {/* CHAPTER 6: Featured London Case Studies with Documentary Photography */}
+      <section className="bg-[var(--emtrc-surface)]">
+        <div className="mx-auto max-w-[1200px] px-5 py-10 sm:px-8 sm:py-14">
+          <div className="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
+            <AnimatedSectionHeader
+              index="04"
+              kicker="London Case Studies · Real Trade Workflows"
+              headline="Built for Hackney barbers, Greenwich heating firms"
+              accentWord="& Peckham cafés."
+              tone="emerald"
+              className="max-w-2xl"
+            />
+            <Link
+              to="/case-studies"
+              className="group inline-flex items-center gap-1.5 font-mono-data text-xs font-semibold text-[var(--emtrc-accent)] whitespace-nowrap shrink-0 hover:underline"
+            >
+              <span>{t.homeSections.caseStudiesAllLink}</span>
+              <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5" aria-hidden="true" />
+            </Link>
+          </div>
+
+          <ScrollReveal className="mt-7 grid grid-cols-1 gap-6 lg:grid-cols-3">
             {featuredStudies.map((study) => (
-              <StaggerItem key={study.slug}>
-                <article className="group flex h-full flex-col overflow-hidden rounded-2xl border border-[var(--emtrc-border)] bg-[var(--emtrc-canvas)] transition-colors hover:border-[var(--emtrc-ink)]">
-                  <Link to={`/case-studies/${study.slug}`} className="block overflow-hidden">
-                    <ParallaxFrame offset={16} className="h-56 w-full">
-                      <SafeImage
-                        src={study.image}
-                        alt={study.imageAlt}
-                        width={900}
-                        height={640}
-                        className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.04]"
-                      />
-                    </ParallaxFrame>
-                  </Link>
-                  <div className="flex flex-1 flex-col justify-between p-6">
-                    <div>
-                      <div className="flex items-center justify-between gap-2 font-mono-data text-[11px]">
-                        <span className="font-semibold text-[var(--emtrc-accent)]">{study.trade}</span>
-                        <span className="inline-flex items-center gap-1 text-[var(--emtrc-muted)]">
-                          <MapPin className="h-3 w-3" aria-hidden="true" />
-                          {study.postcode}
-                        </span>
-                      </div>
-                      <h3 className="mt-2 font-editorial text-xl font-bold leading-snug text-[var(--emtrc-ink)] group-hover:text-[var(--emtrc-accent)]">
-                        <Link to={`/case-studies/${study.slug}`}>{study.businessName}</Link>
-                      </h3>
-                      <p className="mt-2 text-sm leading-relaxed text-[var(--emtrc-muted)]">
-                        {study.headline}
-                      </p>
-                    </div>
-                    <div className="mt-5 flex items-center justify-between border-t border-[var(--emtrc-border)] pt-4">
-                      <span className="font-mono-data text-sm font-bold text-[var(--emtrc-ink)]">
-                        {study.heroStat}
+              <article
+                key={study.slug}
+                className="group flex h-full flex-col overflow-hidden rounded-2xl border border-[var(--emtrc-border)] bg-[var(--emtrc-canvas)] transition-all duration-200 hover:-translate-y-1 hover:border-[var(--emtrc-accent)]"
+              >
+                <Link to={`/case-studies/${study.slug}`} className="block overflow-hidden">
+                  <ParallaxFrame offset={14} className="h-52 w-full">
+                    <SafeImage
+                      src={study.image}
+                      alt={study.imageAlt}
+                      width={900}
+                      height={640}
+                      className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.04]"
+                    />
+                  </ParallaxFrame>
+                </Link>
+                <div className="flex flex-1 flex-col justify-between p-5">
+                  <div>
+                    <div className="flex items-center justify-between gap-2 font-mono-data text-[11px]">
+                      <span className="font-semibold text-[var(--emtrc-accent)]">{study.trade}</span>
+                      <span className="inline-flex items-center gap-1 text-[var(--emtrc-muted)]">
+                        <MapPin className="h-3 w-3" aria-hidden="true" />
+                        {study.postcode}
                       </span>
-                      <Link
-                        to={`/case-studies/${study.slug}`}
-                        className="inline-flex items-center gap-1 text-xs font-semibold text-[var(--emtrc-accent)] hover:underline"
-                      >
-                        <span>Read case study</span>
-                        <ArrowRight className="h-3.5 w-3.5" aria-hidden="true" />
-                      </Link>
                     </div>
+                    <h3 className="mt-1.5 font-editorial text-xl font-bold leading-snug text-[var(--emtrc-ink)] group-hover:text-[var(--emtrc-accent)]">
+                      <Link to={`/case-studies/${study.slug}`}>{study.businessName}</Link>
+                    </h3>
+                    <p className="mt-2 text-sm leading-relaxed text-[var(--emtrc-muted)]">
+                      {study.headline}
+                    </p>
                   </div>
-                </article>
-              </StaggerItem>
+                  <div className="mt-4 flex items-center justify-between border-t border-[var(--emtrc-border)] pt-3.5">
+                    <span className="font-mono-data text-sm font-bold text-[var(--emtrc-ink)]">
+                      {study.heroStat}
+                    </span>
+                    <Link
+                      to={`/case-studies/${study.slug}`}
+                      className="inline-flex items-center gap-1 text-xs font-semibold text-[var(--emtrc-accent)] hover:underline"
+                    >
+                      <span>{t.homeSections.readCaseStudy}</span>
+                      <ArrowRight className="h-3.5 w-3.5" aria-hidden="true" />
+                    </Link>
+                  </div>
+                </div>
+              </article>
             ))}
-          </StaggerContainer>
+          </ScrollReveal>
         </div>
       </section>
 
-      {/* CHAPTER 6: Three Steps. Live This Week. (Sand Chapter + Savile Emerald Launch Dial) */}
-      <section className="border-b border-[var(--emtrc-border)] bg-[var(--emtrc-sand)]">
-        <div className="mx-auto max-w-[1200px] px-5 py-16 sm:px-8 sm:py-24">
-          <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-12">
+      <OrnamentalDivider
+        pattern="art-deco-chevron"
+        from="surface"
+        to="sand"
+        label="LAUNCH CADENCE · DAY 1 TO LIVE DOMAIN"
+        accentColor="coral"
+      />
+
+      {/* CHAPTER 7: Three Steps. Live This Week. (Compact Launch Cadence + Architectural Dial) */}
+      <section className="bg-[var(--emtrc-sand)]">
+        <div className="mx-auto max-w-[1200px] px-5 py-10 sm:px-8 sm:py-14">
+          <div className="grid grid-cols-1 items-center gap-10 lg:grid-cols-12">
             <div className="lg:col-span-7">
               <Reveal>
                 <KickerRule>{t.homeSections.rhythmKicker}</KickerRule>
@@ -421,24 +550,24 @@ export function EmtrcHomePage() {
                 line1={t.homeSections.rhythmLine1}
                 line2={t.homeSections.rhythmLine2}
                 line2Tone="accent"
-                className="mt-3 font-editorial text-3xl font-bold leading-[1.04] tracking-[-0.03em] sm:text-5xl"
+                className="mt-2.5 font-editorial text-3xl font-bold leading-[1.04] sm:text-5xl [&>span:nth-child(2)>span]:font-editorial-italic [&>span:nth-child(2)>span]:font-normal"
               />
               <Reveal delay={0.08}>
-                <p className="mt-4 max-w-xl text-sm leading-relaxed text-[var(--emtrc-muted)] sm:text-base">
+                <p className="mt-3 max-w-xl text-sm leading-relaxed text-[var(--emtrc-muted)] sm:text-base">
                   {SITE.rhythmSection.body}
                 </p>
               </Reveal>
 
-              <StaggerContainer className="mt-9 space-y-6">
+              <StaggerContainer className="mt-6 space-y-4">
                 {SITE.rhythmSection.steps.map((step) => (
                   <StaggerItem key={step.marker}>
-                    <div className="grid grid-cols-1 gap-2 border-t border-[var(--emtrc-border)] pt-5 sm:grid-cols-12 sm:gap-4">
-                      <p className="font-mono-data text-sm font-bold text-[var(--emtrc-accent)] sm:col-span-3">
+                    <div className="grid grid-cols-1 gap-1.5 border-t border-[var(--emtrc-border)] pt-4 sm:grid-cols-12 sm:gap-4">
+                      <p className="font-mono-data text-xs font-bold text-[var(--emtrc-accent)] sm:col-span-3">
                         {step.marker}
                       </p>
                       <div className="sm:col-span-9">
                         <h3 className="font-editorial text-lg font-bold">{step.title}</h3>
-                        <p className="mt-1.5 text-sm leading-relaxed text-[var(--emtrc-muted)]">
+                        <p className="mt-1 text-sm leading-relaxed text-[var(--emtrc-muted)]">
                           {step.description}
                         </p>
                       </div>
@@ -447,184 +576,107 @@ export function EmtrcHomePage() {
                 ))}
               </StaggerContainer>
 
-              <Reveal delay={0.12} className="mt-8">
+              <Reveal delay={0.1} className="mt-6">
                 <Link
                   to="/how-it-works"
                   className="group inline-flex items-center gap-1.5 text-sm font-semibold text-[var(--emtrc-ink)] underline underline-offset-4 hover:text-[var(--emtrc-accent)]"
                 >
-                  <span>See the full launch process</span>
+                  <span>{t.homeSections.rhythmFullLink}</span>
                   <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" aria-hidden="true" />
                 </Link>
               </Reveal>
             </div>
 
-            {/* Clean Architectural SVG Rhythm Dial (Savile Emerald + Obsidian) */}
             <div className="lg:col-span-5">
               <Reveal delay={0.12}>
-                <div className="mx-auto max-w-[380px] rounded-2xl border border-[var(--emtrc-border)] bg-[var(--emtrc-surface)] p-8">
-                  <svg
-                    viewBox="0 0 320 320"
-                    className="h-auto w-full"
-                    role="img"
-                    aria-label="Three-step emtrc cadence: Day 1 free demo, Day 3 live site and email, Monthly updates and reports"
-                  >
-                    <circle
-                      cx="160"
-                      cy="160"
-                      r="116"
-                      fill="none"
-                      stroke="currentColor"
-                      strokeOpacity="0.14"
-                      strokeWidth="2"
-                      strokeDasharray="6 6"
-                    />
-                    <circle
-                      cx="160"
-                      cy="160"
-                      r="116"
-                      fill="none"
-                      stroke="#C82419"
-                      strokeWidth="3.5"
-                      strokeDasharray="240 520"
-                      strokeLinecap="round"
-                      transform="rotate(-90 160 160)"
-                    />
-                    <text
-                      x="160"
-                      y="148"
-                      textAnchor="middle"
-                      fill="currentColor"
-                      fontSize="11"
-                      fontWeight="700"
-                      letterSpacing="2"
-                      opacity="0.65"
-                    >
-                      LAUNCH WEEK
-                    </text>
-                    <text
-                      x="160"
-                      y="174"
-                      textAnchor="middle"
-                      fill="currentColor"
-                      fontSize="24"
-                      fontWeight="800"
-                    >
-                      5 days
-                    </text>
-                    <text
-                      x="160"
-                      y="196"
-                      textAnchor="middle"
-                      fill="currentColor"
-                      fontSize="11"
-                      opacity="0.65"
-                    >
-                      demo to live domain
-                    </text>
-
-                    <circle cx="160" cy="44" r="24" fill="#0A0B0E" />
-                    <text x="160" y="48" textAnchor="middle" fill="#FFFFFF" fontSize="11" fontWeight="700">
-                      D1
-                    </text>
-                    <text x="160" y="14" textAnchor="middle" fill="currentColor" fontSize="11" fontWeight="600">
-                      Free demo built
-                    </text>
-
-                    <circle cx="260" cy="218" r="24" fill="#C82419" />
-                    <text x="260" y="222" textAnchor="middle" fill="#FFFFFF" fontSize="11" fontWeight="700">
-                      D3
-                    </text>
-                    <text x="260" y="260" textAnchor="middle" fill="currentColor" fontSize="11" fontWeight="600">
-                      Domain &amp; live
-                    </text>
-
-                    <circle cx="60" cy="218" r="24" fill="#262A36" />
-                    <text x="60" y="222" textAnchor="middle" fill="#FFFFFF" fontSize="11" fontWeight="700">
-                      MO
-                    </text>
-                    <text x="60" y="260" textAnchor="middle" fill="currentColor" fontSize="11" fontWeight="600">
-                      Edits &amp; reports
-                    </text>
-                  </svg>
-                </div>
+                <LaunchWeekAnimatedIllustration />
               </Reveal>
             </div>
           </div>
         </div>
       </section>
 
-      {/* CHAPTER 7: Live Interactive London Demos */}
-      <section className="border-b border-[var(--emtrc-border)]">
-        <div className="mx-auto max-w-[1200px] px-5 py-16 sm:px-8 sm:py-24">
-          <Reveal>
-            <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
-              <div className="max-w-2xl">
-                <KickerRule>{t.homeSections.workKicker}</KickerRule>
-                <h2 className="mt-3 font-editorial text-3xl font-bold tracking-[-0.025em] sm:text-4xl">
-                  {t.homeSections.workHeadline}
-                </h2>
-              </div>
-              <Link
-                to="/work"
-                className="group inline-flex items-center gap-1.5 text-sm font-semibold text-[var(--emtrc-accent)] whitespace-nowrap shrink-0 hover:underline"
-              >
-                <span>{t.homeSections.workAllLink}</span>
-                <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" aria-hidden="true" />
-              </Link>
-            </div>
-          </Reveal>
+      <SectionSeparator variant="architectural-ribbon" from="sand" to="obsidian" accentColor="coral" />
 
-          <StaggerContainer className="mt-10 grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+      {/* CHAPTER 8: Live Interactive London Demos (High-Contrast Obsidian Showcase Band) */}
+      <section className="bg-[#0B0D12] text-[#F5F6F8]">
+        <div className="mx-auto max-w-[1200px] px-5 py-10 sm:px-8 sm:py-14">
+          <div className="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
+            <AnimatedSectionHeader
+              index="05"
+              kicker={t.homeSections.workKicker}
+              headline={t.homeSections.workHeadline}
+              tone="coral"
+              light
+              className="max-w-2xl"
+            />
+            <Link
+              to="/work"
+              className="group inline-flex items-center gap-1.5 font-mono-data text-xs font-semibold text-[#FF8C73] whitespace-nowrap shrink-0 hover:underline"
+            >
+              <span>{t.homeSections.workAllLink}</span>
+              <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5" aria-hidden="true" />
+            </Link>
+          </div>
+
+          <ScrollReveal className="mt-7 grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
             {SITE.demoShowcase.map((demo) => (
-              <StaggerItem key={demo.id}>
-                <article className="group flex h-full flex-col overflow-hidden rounded-2xl border border-[var(--emtrc-border)] bg-[var(--emtrc-surface)] transition-colors hover:border-[var(--emtrc-ink)]">
-                  <Link to={`/demos/${demo.presetId}`} className="block overflow-hidden">
-                    <SafeImage
-                      src={demo.image}
-                      alt={demo.imageAlt}
-                      width={1200}
-                      height={900}
-                      className="h-52 w-full object-cover transition-transform duration-300 group-hover:scale-[1.03]"
-                    />
-                  </Link>
-                  <div className="flex flex-1 flex-col justify-between p-6">
-                    <div>
-                      <p className="font-mono-data text-[11px] font-medium text-[var(--emtrc-muted)]">
-                        {demo.niche} · {demo.borough}
-                      </p>
-                      <h3 className="mt-1.5 font-editorial text-xl font-bold leading-snug">
-                        {demo.businessName}
-                      </h3>
-                      <p className="mt-2 text-sm leading-relaxed text-[var(--emtrc-muted)]">
-                        {demo.outcome}
-                      </p>
-                    </div>
-                    <div className="mt-5 flex items-center justify-between border-t border-[var(--emtrc-border)] pt-4 text-xs">
-                      <span className="text-[var(--emtrc-muted)]">{demo.styleLabel}</span>
-                      <Link
-                        to={`/demos/${demo.presetId}`}
-                        className="inline-flex items-center gap-1 font-semibold text-[var(--emtrc-accent)] hover:underline"
-                      >
-                        <span>Open live demo</span>
-                        <ExternalLink className="h-3.5 w-3.5" aria-hidden="true" />
-                      </Link>
-                    </div>
+              <article
+                key={demo.id}
+                className="group flex h-full flex-col overflow-hidden rounded-2xl border border-[#232A38] bg-[#131722] transition-all duration-200 hover:-translate-y-1 hover:border-[#FF8C73]"
+              >
+                <Link to={`/demos/${demo.presetId}`} className="relative block overflow-hidden bg-[#0A0C10]">
+                  <SafeImage
+                    src={demo.image}
+                    alt={demo.imageAlt}
+                    width={1200}
+                    height={900}
+                    className="h-48 w-full object-cover transition-transform duration-500 group-hover:scale-[1.04]"
+                  />
+                  <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[#08090C]/85 via-transparent to-transparent" />
+                  <span className="absolute bottom-2.5 left-3.5 font-mono-data text-[11px] font-medium text-white/95">
+                    {demo.borough}
+                  </span>
+                </Link>
+                <div className="flex flex-1 flex-col justify-between p-5">
+                  <div>
+                    <p className="font-mono-data text-[11px] font-medium text-[#FF8C73]">
+                      {demo.niche}
+                    </p>
+                    <h3 className="mt-1 font-editorial text-xl font-bold leading-snug text-white">
+                      {demo.businessName}
+                    </h3>
+                    <p className="mt-2 text-sm leading-relaxed text-[#B4BCCB]">
+                      {demo.outcome}
+                    </p>
                   </div>
-                </article>
-              </StaggerItem>
+                  <div className="mt-4 flex items-center justify-between border-t border-[#232A38] pt-3.5 text-xs">
+                    <span className="font-mono-data text-[#8F9BB0]">{demo.styleLabel}</span>
+                    <Link
+                      to={`/demos/${demo.presetId}`}
+                      className="inline-flex items-center gap-1 font-semibold text-[#FF8C73] hover:text-white"
+                    >
+                      <span>{t.homeSections.openLiveDemo}</span>
+                      <ExternalLink className="h-3.5 w-3.5" aria-hidden="true" />
+                    </Link>
+                  </div>
+                </div>
+              </article>
             ))}
-          </StaggerContainer>
+          </ScrollReveal>
         </div>
       </section>
 
-      {/* CHAPTER 8: Owner Training Centre + FAQ Hub Spotlight */}
-      <section className="border-b border-[var(--emtrc-border)] bg-[var(--emtrc-surface)]">
-        <div className="mx-auto max-w-[1200px] px-5 py-16 sm:px-8 sm:py-24">
-          <div className="grid grid-cols-1 items-center gap-10 lg:grid-cols-12">
+      <SectionSeparator variant="wave" from="obsidian" to="surface" accentColor="amber" flip />
+
+      {/* CHAPTER 9: Owner Training Centre + FAQ Hub Spotlight */}
+      <section className="bg-[var(--emtrc-surface)]">
+        <div className="mx-auto max-w-[1200px] px-5 py-10 sm:px-8 sm:py-14">
+          <div className="grid grid-cols-1 items-center gap-8 lg:grid-cols-12">
             <div className="lg:col-span-6">
               <Reveal>
                 <div className="overflow-hidden rounded-2xl border border-[var(--emtrc-border)] bg-[var(--emtrc-navy)]">
-                  <ParallaxFrame offset={18} className="h-[340px] sm:h-[400px] w-full">
+                  <ParallaxFrame offset={16} className="h-[310px] sm:h-[360px] w-full">
                     <SafeImage
                       src="/src/assets/images/emtrc_training_workshop_1795422463963.jpg"
                       alt="London bakery owner shooting smartphone craft photography beside a printed Google Maps checklist"
@@ -639,20 +691,20 @@ export function EmtrcHomePage() {
 
             <div className="lg:col-span-6">
               <Reveal>
-                <KickerRule>Owner Training Centre &amp; Straight Answers</KickerRule>
-                <h2 className="mt-3 font-editorial text-3xl font-bold leading-tight tracking-[-0.025em] sm:text-4xl">
-                  Free checklists built for busy shop owners — not marketers.
+                <KickerRule>{t.homeSections.trainingKicker}</KickerRule>
+                <h2 className="mt-2.5 font-editorial text-3xl font-bold leading-tight sm:text-4xl">
+                  {t.homeSections.trainingHeadline}
                 </h2>
-                <p className="mt-4 text-sm leading-relaxed text-[var(--emtrc-muted)] sm:text-base">
-                  Whether you work with us today or next year, our interactive Training Centre walks you step by step through Google Maps hygiene, 5-minute daylight smartphone photography, UK DMCC-compliant reviews and preparing your 020 phone line before 31 January 2027.
+                <p className="mt-3 text-sm leading-relaxed text-[var(--emtrc-muted)] sm:text-base">
+                  {t.homeSections.trainingBody}
                 </p>
 
-                <div className="mt-6 grid grid-cols-1 gap-3 sm:grid-cols-2">
-                  {TRAINING_TRACKS.map((track) => (
+                <div className="mt-5 grid grid-cols-1 gap-3 sm:grid-cols-2">
+                  {TRAINING_TRACKS.slice(0, 4).map((track) => (
                     <Link
                       key={track.id}
                       to="/training"
-                      className="rounded-xl border border-[var(--emtrc-border)] bg-[var(--emtrc-canvas)] p-4 transition-colors hover:border-[var(--emtrc-accent)]"
+                      className="rounded-xl border border-[var(--emtrc-border)] bg-[var(--emtrc-canvas)] p-3.5 transition-colors hover:border-[var(--emtrc-accent)]"
                     >
                       <p className="font-mono-data text-[10px] font-semibold text-[var(--emtrc-accent)]">
                         {track.code} · {track.estimatedTime}
@@ -664,20 +716,20 @@ export function EmtrcHomePage() {
                   ))}
                 </div>
 
-                <div className="mt-7 flex flex-wrap items-center gap-3.5">
+                <div className="mt-6 flex flex-wrap items-center gap-3">
                   <Link
                     to="/training"
-                    className="inline-flex items-center gap-2 rounded-lg bg-[var(--emtrc-accent)] px-5 py-3 text-sm font-semibold text-white transition-colors hover:bg-[var(--emtrc-accent-hover)]"
+                    className="inline-flex items-center gap-2 rounded-lg bg-[var(--emtrc-accent)] px-5 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-[var(--emtrc-accent-hover)]"
                   >
                     <BookOpen className="h-4 w-4" aria-hidden="true" />
-                    <span>Open Training Centre</span>
+                    <span>{t.homeSections.trainingOpenCta}</span>
                   </Link>
                   <Link
                     to="/faq"
-                    className="inline-flex items-center gap-2 rounded-lg border border-[var(--emtrc-border)] bg-[var(--emtrc-canvas)] px-5 py-3 text-sm font-semibold text-[var(--emtrc-ink)] transition-colors hover:border-[var(--emtrc-ink)]"
+                    className="inline-flex items-center gap-2 rounded-lg border border-[var(--emtrc-border)] bg-[var(--emtrc-canvas)] px-5 py-2.5 text-sm font-semibold text-[var(--emtrc-ink)] transition-colors hover:border-[var(--emtrc-accent)]"
                   >
                     <HelpCircle className="h-4 w-4" aria-hidden="true" />
-                    <span>Browse all 24 FAQs</span>
+                    <span>{t.homeSections.trainingFaqCta}</span>
                   </Link>
                 </div>
               </Reveal>
@@ -686,222 +738,241 @@ export function EmtrcHomePage() {
         </div>
       </section>
 
-      {/* CHAPTER 9: The emtrc Journal (Static Markdown Blog Showcase) */}
-      <section className="border-b border-[var(--emtrc-border)]">
-        <div className="mx-auto max-w-[1200px] px-5 py-16 sm:px-8 sm:py-24">
-          <Reveal>
-            <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
-              <div className="max-w-2xl">
-                <KickerRule>{t.homeSections.blogKicker}</KickerRule>
-                <h2 className="mt-3 font-editorial text-3xl font-bold tracking-[-0.025em] sm:text-4xl">
-                  {t.homeSections.blogHeadline}
-                </h2>
-              </div>
-              <Link
-                to="/blog"
-                className="group inline-flex items-center gap-1.5 text-sm font-semibold text-[var(--emtrc-accent)] whitespace-nowrap shrink-0 hover:underline"
-              >
-                <span>{t.homeSections.blogAllLink}</span>
-                <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" aria-hidden="true" />
-              </Link>
-            </div>
-          </Reveal>
+      <OrnamentalDivider
+        pattern="georgian-fret"
+        from="surface"
+        to="canvas"
+        label="EMTRC SIGNALS · LONG-FORM LONDON FIELD INTELLIGENCE"
+        accentColor="blue"
+      />
 
-          <StaggerContainer className="mt-10 grid grid-cols-1 gap-6 lg:grid-cols-3">
+      {/* CHAPTER 10: The emtrc Journal (Static Markdown Blog Showcase with 4-Photo Gallery & Charts) */}
+      <section className="bg-[var(--emtrc-canvas)]">
+        <div className="mx-auto max-w-[1200px] px-5 py-10 sm:px-8 sm:py-14">
+          <div className="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
+            <AnimatedSectionHeader
+              index="06"
+              kicker={t.homeSections.blogKicker}
+              headline={t.homeSections.blogHeadline}
+              tone="blue"
+              className="max-w-2xl"
+            />
+            <Link
+              to="/blog"
+              className="group inline-flex items-center gap-1.5 font-mono-data text-xs font-semibold text-[var(--emtrc-accent)] whitespace-nowrap shrink-0 hover:underline"
+            >
+              <span>{t.homeSections.blogAllLink}</span>
+              <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5" aria-hidden="true" />
+            </Link>
+          </div>
+
+          <ScrollReveal className="mt-7 grid grid-cols-1 gap-6 lg:grid-cols-3">
             {journalHighlights.map((article) => (
-              <StaggerItem key={article.slug}>
-                <article className="group flex h-full flex-col overflow-hidden rounded-2xl border border-[var(--emtrc-border)] bg-[var(--emtrc-surface)] transition-colors hover:border-[var(--emtrc-ink)]">
-                  <Link to={`/blog/${article.slug}`} className="block overflow-hidden">
-                    <SafeImage
-                      src={article.image}
-                      alt={article.imageAlt}
-                      width={1200}
-                      height={900}
-                      className="h-48 w-full object-cover transition-transform duration-300 group-hover:scale-[1.03]"
-                    />
-                  </Link>
-                  <div className="flex flex-1 flex-col justify-between p-6">
-                    <div>
-                      <p className="font-mono-data text-[11px] font-medium text-[var(--emtrc-accent)]">
-                        {article.category} · {article.readTime}
-                      </p>
-                      <h3 className="mt-2 font-editorial text-xl font-bold leading-snug text-[var(--emtrc-ink)] group-hover:text-[var(--emtrc-accent)]">
-                        <Link to={`/blog/${article.slug}`}>{article.title}</Link>
-                      </h3>
-                      <p className="mt-2.5 text-sm leading-relaxed text-[var(--emtrc-muted)]">
-                        {article.excerpt}
-                      </p>
-                    </div>
-                    <div className="mt-5 border-t border-[var(--emtrc-border)] pt-4">
-                      <Link
-                        to={`/blog/${article.slug}`}
-                        className="inline-flex items-center gap-1.5 text-xs font-semibold text-[var(--emtrc-accent)] hover:underline"
-                      >
-                        <span>{t.blogPage.readArticle}</span>
-                        <ArrowRight className="h-3.5 w-3.5" aria-hidden="true" />
-                      </Link>
-                    </div>
-                  </div>
-                </article>
-              </StaggerItem>
-            ))}
-          </StaggerContainer>
-        </div>
-      </section>
-
-      {/* CHAPTER 10: Free PDF Guides Shelf */}
-      <section className="border-b border-[var(--emtrc-border)] bg-[var(--emtrc-sand)]">
-        <div className="mx-auto max-w-[1200px] px-5 py-16 sm:px-8 sm:py-24">
-          <Reveal>
-            <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
-              <div className="max-w-2xl">
-                <KickerRule>{t.homeSections.guidesKicker}</KickerRule>
-                <h2 className="mt-3 font-editorial text-3xl font-bold tracking-[-0.025em] sm:text-4xl">
-                  {t.homeSections.guidesHeadline}
-                </h2>
-              </div>
-              <Link
-                to="/resources"
-                className="text-sm font-semibold text-[var(--emtrc-ink)] underline underline-offset-4 hover:text-[var(--emtrc-accent)]"
+              <article
+                key={article.slug}
+                className="group flex h-full flex-col overflow-hidden rounded-2xl border border-[var(--emtrc-border)] bg-[var(--emtrc-surface)] transition-all duration-200 hover:-translate-y-1 hover:border-[var(--emtrc-accent)]"
               >
-                Search all resources →
-              </Link>
-            </div>
-          </Reveal>
-
-          <StaggerContainer className="mt-10 grid grid-cols-1 gap-6 lg:grid-cols-3">
-            {SITE.pdfGuides.map((guide) => (
-              <StaggerItem key={guide.id}>
-                <article className="flex h-full flex-col justify-between overflow-hidden rounded-2xl border border-[var(--emtrc-border)] bg-[var(--emtrc-surface)]">
+                <Link to={`/blog/${article.slug}`} className="relative block overflow-hidden bg-[var(--emtrc-navy)]">
+                  <SafeImage
+                    src={article.image}
+                    alt={article.imageAlt}
+                    width={1200}
+                    height={900}
+                    className="h-48 w-full object-cover transition-transform duration-500 group-hover:scale-[1.04]"
+                  />
+                  <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[#08090C]/75 via-transparent to-transparent" />
+                  <span className="absolute bottom-2.5 left-3.5 font-mono-data text-[10px] font-semibold uppercase tracking-wider text-[#FF8C73]">
+                    3 photos · Interactive chart
+                  </span>
+                </Link>
+                <div className="flex flex-1 flex-col justify-between p-5">
                   <div>
-                    <SafeImage
-                      src={guide.coverImage}
-                      alt={guide.coverAlt}
-                      width={1200}
-                      height={900}
-                      className="h-44 w-full object-cover"
-                    />
-                    <div className="p-6">
-                      <p className="font-mono-data text-[11px] font-medium text-[var(--emtrc-accent)]">
-                        {guide.category} · {guide.pages}
-                      </p>
-                      <h3 className="mt-1.5 font-editorial text-xl font-bold leading-snug">
-                        {guide.title}
-                      </h3>
-                      <p className="mt-2.5 text-sm leading-relaxed text-[var(--emtrc-muted)]">
-                        {guide.summary}
-                      </p>
-                    </div>
+                    <p className="font-mono-data text-[11px] font-medium text-[var(--emtrc-accent)]">
+                      {article.category} · {article.readTime}
+                    </p>
+                    <h3 className="mt-2 font-editorial text-xl font-bold leading-snug text-[var(--emtrc-ink)] group-hover:text-[var(--emtrc-accent)]">
+                      <Link to={`/blog/${article.slug}`}>{article.title}</Link>
+                    </h3>
+                    <p className="mt-2 text-sm leading-relaxed text-[var(--emtrc-muted)]">
+                      {article.excerpt}
+                    </p>
                   </div>
-                  <div className="border-t border-[var(--emtrc-border)] px-6 py-4">
-                    <button
-                      type="button"
-                      onClick={() => setSelectedGuide(guide)}
-                      className="inline-flex w-full items-center justify-center gap-2 rounded-lg bg-[var(--emtrc-navy)] px-4 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-[var(--emtrc-accent)] dark:bg-[var(--emtrc-accent)] dark:hover:bg-[var(--emtrc-accent-hover)]"
+                  <div className="mt-4 border-t border-[var(--emtrc-border)] pt-3.5">
+                    <Link
+                      to={`/blog/${article.slug}`}
+                      className="inline-flex items-center gap-1.5 text-xs font-semibold text-[var(--emtrc-accent)] hover:underline"
                     >
-                      <Download className="h-4 w-4" aria-hidden="true" />
-                      <span>Download free PDF</span>
-                    </button>
+                      <span>{t.blogPage.readArticle}</span>
+                      <ArrowRight className="h-3.5 w-3.5" aria-hidden="true" />
+                    </Link>
                   </div>
-                </article>
-              </StaggerItem>
+                </div>
+              </article>
             ))}
-          </StaggerContainer>
+          </ScrollReveal>
         </div>
       </section>
 
-      {/* CHAPTER 11: Clear Pricing Preview + 4 Guarantees */}
-      <section className="border-b border-[var(--emtrc-border)]">
-        <div className="mx-auto max-w-[1200px] px-5 py-16 sm:px-8 sm:py-24">
-          <Reveal>
-            <div className="max-w-2xl">
-              <KickerRule>{t.homeSections.pricingKicker}</KickerRule>
-              <h2 className="mt-3 font-editorial text-3xl font-bold tracking-[-0.025em] sm:text-4xl">
-                {t.homeSections.pricingHeadline}
-              </h2>
-              <p className="mt-3 text-sm leading-relaxed text-[var(--emtrc-muted)] sm:text-base">
-                {SITE.pricing.termSummary}
-              </p>
-            </div>
-          </Reveal>
+      <SectionSeparator variant="angle" from="canvas" to="sand" accentColor="amber" />
 
-          <StaggerContainer className="mt-10 grid grid-cols-1 gap-6 lg:grid-cols-3">
+      {/* CHAPTER 11: Free PDF Guides Shelf */}
+      <section className="bg-[var(--emtrc-sand)]">
+        <div className="mx-auto max-w-[1200px] px-5 py-10 sm:px-8 sm:py-14">
+          <div className="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
+            <AnimatedSectionHeader
+              index="07"
+              kicker={t.homeSections.guidesKicker}
+              headline={t.homeSections.guidesHeadline}
+              tone="amber"
+              className="max-w-2xl"
+            />
+            <Link
+              to="/resources"
+              className="font-mono-data text-xs font-semibold text-[var(--emtrc-ink)] underline underline-offset-4 hover:text-[var(--emtrc-accent)]"
+            >
+              {t.homeSections.guidesSearchLink}
+            </Link>
+          </div>
+
+          <ScrollReveal className="mt-7 grid grid-cols-1 gap-6 lg:grid-cols-3">
+            {SITE.pdfGuides.map((guide) => (
+              <article
+                key={guide.id}
+                className="flex h-full flex-col justify-between overflow-hidden rounded-2xl border border-[var(--emtrc-border)] bg-[var(--emtrc-surface)]"
+              >
+                <div>
+                  <SafeImage
+                    src={guide.coverImage}
+                    alt={guide.coverAlt}
+                    width={1200}
+                    height={900}
+                    className="h-44 w-full object-cover"
+                  />
+                  <div className="p-5">
+                    <p className="font-mono-data text-[11px] font-medium text-[var(--emtrc-accent)]">
+                      {guide.category} · {guide.pages}
+                    </p>
+                    <h3 className="mt-1.5 font-editorial text-xl font-bold leading-snug">
+                      {guide.title}
+                    </h3>
+                    <p className="mt-2 text-sm leading-relaxed text-[var(--emtrc-muted)]">
+                      {guide.summary}
+                    </p>
+                  </div>
+                </div>
+                <div className="border-t border-[var(--emtrc-border)] px-5 py-3.5">
+                  <button
+                    type="button"
+                    onClick={() => setSelectedGuide(guide)}
+                    className="inline-flex w-full items-center justify-center gap-2 rounded-lg bg-[var(--emtrc-navy)] px-4 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-[var(--emtrc-accent)] dark:bg-[var(--emtrc-accent)] dark:hover:bg-[var(--emtrc-accent-hover)]"
+                  >
+                    <Download className="h-4 w-4" aria-hidden="true" />
+                    <span>{t.homeSections.downloadPdfCta}</span>
+                  </button>
+                </div>
+              </article>
+            ))}
+          </ScrollReveal>
+        </div>
+      </section>
+
+      <SectionSeparator variant="architectural-ribbon" from="sand" to="surface" accentColor="emerald" />
+
+      {/* CHAPTER 12: Clear Pricing Preview + 4 Guarantees */}
+      <section className="bg-[var(--emtrc-surface)]">
+        <div className="mx-auto max-w-[1200px] px-5 py-10 sm:px-8 sm:py-14">
+          <AnimatedSectionHeader
+            index="08"
+            kicker={t.homeSections.pricingKicker}
+            headline={t.homeSections.pricingHeadline}
+            subtitle={SITE.pricing.termSummary}
+            tone="emerald"
+            className="max-w-2xl"
+          />
+
+          <ScrollReveal className="mt-7 grid grid-cols-1 gap-6 lg:grid-cols-3">
             {SITE.pricing.plans.map((plan) => {
               const calc = calculatePlanPricing(plan.monthlyPrice, 'monthly', SITE.flags.showExVat);
               const popular = Boolean(plan.badge);
               return (
-                <StaggerItem key={plan.id}>
-                  <SpotlightCard
-                    darkSurface={popular}
-                    className={`flex h-full flex-col justify-between rounded-2xl border p-7 ${
-                      popular
-                        ? 'border-[var(--emtrc-accent)] bg-[var(--emtrc-navy)] text-[#F5F6F8]'
-                        : 'border-[var(--emtrc-border)] bg-[var(--emtrc-surface)] text-[var(--emtrc-ink)]'
-                    }`}
-                  >
-                    <div>
-                      <div className="flex items-center justify-between gap-2">
-                        <h3 className="font-editorial text-2xl font-bold">{plan.name}</h3>
-                        {plan.badge && (
-                          <span className="font-mono-data text-xs font-semibold text-[var(--emtrc-brass-light)]">
-                            {plan.badge}
-                          </span>
-                        )}
-                      </div>
-                      <p className={`mt-2 text-sm ${popular ? 'text-[#B4BCCB]' : 'text-[var(--emtrc-muted)]'}`}>
-                        {plan.summary}
-                      </p>
-
-                      <div className="mt-6 flex items-baseline gap-1.5">
-                        <span className="font-editorial text-4xl font-bold tabular-nums">
-                          {formatGbp(calc.displayMonthly)}
+                <SpotlightCard
+                  key={plan.id}
+                  darkSurface={popular}
+                  className={`flex h-full flex-col justify-between rounded-2xl border p-6 ${
+                    popular
+                      ? 'border-[var(--emtrc-accent)] bg-[var(--emtrc-navy)] text-[#F5F6F8] shadow-2xl ring-1 ring-[var(--emtrc-accent)]/35'
+                      : 'border-[var(--emtrc-border)] bg-[var(--emtrc-surface)] text-[var(--emtrc-ink)]'
+                  }`}
+                >
+                  {popular && (
+                    <span
+                      aria-hidden="true"
+                      className="pointer-events-none absolute inset-x-0 top-0 h-[3px] bg-gradient-to-r from-[var(--emtrc-accent)] via-[#FF8C73] to-[var(--emtrc-accent)]"
+                    />
+                  )}
+                  <div>
+                    <div className="flex items-center justify-between gap-2">
+                      <h3 className="font-editorial text-2xl font-bold">{plan.name}</h3>
+                      {plan.badge && (
+                        <span className="font-mono-data text-xs font-semibold uppercase tracking-wider text-[var(--emtrc-brass-light)]">
+                          {plan.badge}
                         </span>
-                        <span className={`text-sm ${popular ? 'text-[#B4BCCB]' : 'text-[var(--emtrc-muted)]'}`}>
-                          /month{calc.vatSuffix}
-                        </span>
-                      </div>
-                      <p className={`mt-1 font-mono-data text-xs ${popular ? 'text-[#9BA3B4]' : 'text-[var(--emtrc-muted)]'}`}>
-                        + {formatGbp(plan.setupFee)} setup ({calc.dailyEquivalent} a day)
-                      </p>
-
-                      <ul className="mt-6 space-y-2.5 border-t border-current/15 pt-6 text-sm">
-                        {plan.features.slice(0, 5).map((feat) => (
-                          <li key={feat} className="flex items-start gap-2.5">
-                            <Check
-                              className={`mt-0.5 h-4 w-4 shrink-0 ${
-                                popular ? 'text-[var(--emtrc-brass-light)]' : 'text-[var(--emtrc-accent)]'
-                              }`}
-                              aria-hidden="true"
-                            />
-                            <span>{feat}</span>
-                          </li>
-                        ))}
-                      </ul>
+                      )}
                     </div>
+                    <p className={`mt-2 text-sm ${popular ? 'text-[#B4BCCB]' : 'text-[var(--emtrc-muted)]'}`}>
+                      {plan.summary}
+                    </p>
 
-                    <div className="mt-8">
-                      <Link
-                        to={plan.ctaTo}
-                        className={`inline-flex w-full items-center justify-center gap-2 rounded-lg px-5 py-3 text-sm font-semibold transition-colors ${
-                          popular
-                            ? 'bg-[var(--emtrc-accent)] text-white hover:bg-[var(--emtrc-accent-hover)]'
-                            : 'border border-[var(--emtrc-border)] bg-[var(--emtrc-canvas)] text-[var(--emtrc-ink)] hover:border-[var(--emtrc-ink)]'
-                        }`}
-                      >
-                        <span>{plan.ctaLabel}</span>
-                        <ArrowRight className="h-4 w-4" aria-hidden="true" />
-                      </Link>
+                    <div dir="ltr" className="mt-5 inline-flex items-baseline gap-1.5">
+                      <span className="font-mono-data text-4xl font-bold">
+                        {formatGbp(calc.displayMonthly)}
+                      </span>
+                      <span className={`font-mono-data text-xs ${popular ? 'text-[#B4BCCB]' : 'text-[var(--emtrc-muted)]'}`}>
+                        /month{calc.vatSuffix}
+                      </span>
                     </div>
-                  </SpotlightCard>
-                </StaggerItem>
+                    <p dir="ltr" className={`mt-1 font-mono-data text-xs ${popular ? 'text-[#9BA3B4]' : 'text-[var(--emtrc-muted)]'}`}>
+                      + {formatGbp(plan.setupFee)} setup ({calc.dailyEquivalent} a day)
+                    </p>
+
+                    <ul className="mt-5 space-y-2 border-t border-current/15 pt-5 text-sm">
+                      {plan.features.slice(0, 5).map((feat) => (
+                        <li key={feat} className="flex items-start gap-2.5">
+                          <Check
+                            className={`mt-0.5 h-4 w-4 shrink-0 ${
+                              popular ? 'text-[var(--emtrc-brass-light)]' : 'text-[var(--emtrc-accent)]'
+                            }`}
+                            aria-hidden="true"
+                          />
+                          <span>{feat}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+
+                  <div className="mt-6">
+                    <Link
+                      to={plan.ctaTo}
+                      className={`inline-flex w-full items-center justify-center gap-2 rounded-lg px-5 py-3 text-sm font-semibold transition-colors ${
+                        popular
+                          ? 'bg-[var(--emtrc-accent)] text-white hover:bg-[var(--emtrc-accent-hover)]'
+                          : 'border border-[var(--emtrc-border)] bg-[var(--emtrc-canvas)] text-[var(--emtrc-ink)] hover:border-[var(--emtrc-accent)]'
+                      }`}
+                    >
+                      <span>{plan.ctaLabel}</span>
+                      <ArrowRight className="h-4 w-4" aria-hidden="true" />
+                    </Link>
+                  </div>
+                </SpotlightCard>
               );
             })}
-          </StaggerContainer>
+          </ScrollReveal>
 
           <Reveal delay={0.08}>
-            <div className="mt-6 flex flex-wrap items-center justify-between gap-4 text-sm text-[var(--emtrc-muted)]">
+            <div className="mt-5 flex flex-wrap items-center justify-between gap-4 text-sm text-[var(--emtrc-muted)]">
               <p>
-                Prefer a one-off build? <strong className="text-[var(--emtrc-ink)]">£595 once + £25/month care plan.</strong>
+                Prefer a one-off build?{' '}
+                <strong className="font-mono-data text-[var(--emtrc-ink)]">£595 once + £25/month care plan.</strong>
               </p>
               <Link to="/pricing" className="font-semibold text-[var(--emtrc-accent)] hover:underline">
                 Compare all plans, annual savings &amp; add-ons →
@@ -910,13 +981,13 @@ export function EmtrcHomePage() {
           </Reveal>
 
           {/* 4 Guarantees Row */}
-          <StaggerContainer className="mt-16 grid grid-cols-1 gap-6 border-t border-[var(--emtrc-border)] pt-12 sm:grid-cols-2 lg:grid-cols-4">
+          <StaggerContainer className="mt-10 grid grid-cols-1 gap-6 border-t border-[var(--emtrc-border)] pt-8 sm:grid-cols-2 lg:grid-cols-4">
             {SITE.guarantees.map((g) => (
               <StaggerItem key={g.number}>
                 <p className="font-mono-data text-xs font-bold text-[var(--emtrc-accent)]">
                   {g.number}
                 </p>
-                <h3 className="mt-1.5 font-editorial text-base font-bold">{g.title}</h3>
+                <h3 className="mt-1 font-editorial text-base font-bold">{g.title}</h3>
                 <p className="mt-1.5 text-sm leading-relaxed text-[var(--emtrc-muted)]">
                   {g.description}
                 </p>
@@ -926,55 +997,59 @@ export function EmtrcHomePage() {
         </div>
       </section>
 
-      {/* CHAPTER 12: Dual Action Split Closing Conversion Band */}
+      {/* CHAPTER 13: Dual Action Split Closing Conversion Band */}
       <section>
-        <div className="mx-auto max-w-[1200px] px-5 py-16 sm:px-8 sm:py-20">
+        <div className="mx-auto max-w-[1200px] px-5 py-11 sm:px-8 sm:py-14">
           <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
             <Reveal>
-              <div className="h-full rounded-2xl border border-[var(--emtrc-navy-border)] bg-[var(--emtrc-navy)] p-8 sm:p-10 text-[#F5F6F8]">
+              <div className="h-full rounded-2xl border border-[var(--emtrc-navy-border)] bg-[var(--emtrc-navy)] p-7 sm:p-9 text-[#F5F6F8]">
                 <h2 className="font-editorial text-2xl font-bold sm:text-3xl text-white">
                   {t.homeSections.closingDemoTitle}
                 </h2>
                 <p className="mt-3 text-sm leading-relaxed text-[#B4BCCB] sm:text-base">
                   Send us your business name, London borough and trade. We build a working demo on our own time so you can test it on your phone before spending a penny.
                 </p>
-                <div className="mt-7 flex flex-wrap items-center gap-3">
-                  <Link
+                <div className="mt-6 flex flex-wrap items-center gap-3">
+                  <MagneticLink
                     to="/free-demo"
-                    className="inline-flex items-center gap-2 rounded-lg bg-[var(--emtrc-accent)] px-6 py-3 text-sm font-semibold text-white transition-colors hover:bg-[var(--emtrc-accent-hover)]"
+                    strength={0.26}
+                    maxOffset={10}
+                    className="inline-flex items-center gap-2 rounded-lg bg-[var(--emtrc-accent)] px-6 py-3 text-sm font-semibold text-white shadow-[0_8px_24px_-6px_rgba(226,59,45,0.55)] transition-colors hover:bg-[var(--emtrc-accent-hover)]"
                   >
                     <span>{t.hero.primaryCta}</span>
                     <ArrowRight className="h-4 w-4" aria-hidden="true" />
-                  </Link>
-                  <a
+                  </MagneticLink>
+                  <MagneticLink
                     href={SITE.brand.calendlyUrl}
                     target="_blank"
                     rel="noopener noreferrer"
+                    strength={0.2}
+                    maxOffset={8}
                     className="inline-flex items-center gap-2 rounded-lg border border-[#323C4E] px-5 py-3 text-sm font-semibold text-white transition-colors hover:bg-[#1A202C]"
                   >
                     <Calendar className="h-4 w-4" aria-hidden="true" />
                     <span>{t.bookCallShort}</span>
-                  </a>
+                  </MagneticLink>
                 </div>
               </div>
             </Reveal>
 
             <Reveal delay={0.08}>
-              <div className="h-full rounded-2xl border border-[var(--emtrc-border)] bg-[var(--emtrc-surface)] p-8 sm:p-10">
+              <div className="h-full rounded-2xl border border-[var(--emtrc-border)] bg-[var(--emtrc-surface)] p-7 sm:p-9">
                 <h2 className="font-editorial text-2xl font-bold sm:text-3xl">
                   {t.homeSections.closingGuideTitle}
                 </h2>
                 <p className="mt-3 text-sm leading-relaxed text-[var(--emtrc-muted)] sm:text-base">
                   Grab our free London Local Business Website Checklist PDF — 14 practical checks you can run on your own listing in ten minutes today.
                 </p>
-                <div className="mt-7">
+                <div className="mt-6">
                   <button
                     type="button"
                     onClick={() => setSelectedGuide(SITE.pdfGuides[0])}
                     className="inline-flex items-center gap-2 rounded-lg border border-[var(--emtrc-ink)] bg-[var(--emtrc-canvas)] px-6 py-3 text-sm font-semibold text-[var(--emtrc-ink)] transition-colors hover:bg-[var(--emtrc-ink)] hover:text-[var(--emtrc-canvas)]"
                   >
                     <Download className="h-4 w-4" aria-hidden="true" />
-                    <span>Get the free checklist PDF</span>
+                    <span>{t.homeSections.downloadPdfCta}</span>
                   </button>
                 </div>
               </div>

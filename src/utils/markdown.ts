@@ -22,7 +22,9 @@ export type MarkdownBlock =
   | { type: 'ul'; items: string[] }
   | { type: 'ol'; items: string[] }
   | { type: 'blockquote'; text: string }
-  | { type: 'table'; headers: string[]; rows: string[][] };
+  | { type: 'table'; headers: string[]; rows: string[][] }
+  | { type: 'image'; src: string; alt: string; caption?: string }
+  | { type: 'chart'; chartId: string };
 
 export interface ParsedMarkdownDocument {
   frontmatter: MarkdownFrontmatter;
@@ -32,7 +34,8 @@ export interface ParsedMarkdownDocument {
 
 /**
  * Pure client/build-time YAML frontmatter + Markdown parser for static blog posts.
- * Zero runtime dependencies; fully unit-tested.
+ * Supports headings, lists, blockquotes, pipe tables, captioned editorial images,
+ * and interactive chart directives (`:::chart <id>`). Zero runtime dependencies.
  */
 export function parseMarkdownDocument(raw: string): ParsedMarkdownDocument {
   const normalized = raw.replace(/\r\n/g, '\n').trim();
@@ -137,6 +140,9 @@ function isTableSeparator(line: string): boolean {
   return /^\|?(\s*:?-{3,}:?\s*\|)+\s*:?-{3,}:?\s*\|?$/.test(trimmed);
 }
 
+const IMAGE_LINE_RE = /^!\[([^\]]*)\]\((\S+?)(?:\s+"([^"]+)")?\)$/;
+const CHART_LINE_RE = /^:::chart\s+([a-z0-9-]+)$/i;
+
 export function parseMarkdownBlocks(markdown: string): MarkdownBlock[] {
   const blocks: MarkdownBlock[] = [];
   const lines = markdown.replace(/\r\n/g, '\n').split('\n');
@@ -145,6 +151,25 @@ export function parseMarkdownBlocks(markdown: string): MarkdownBlock[] {
   while (i < lines.length) {
     const line = lines[i].trim();
     if (!line) {
+      i++;
+      continue;
+    }
+
+    const chartMatch = CHART_LINE_RE.exec(line);
+    if (chartMatch) {
+      blocks.push({ type: 'chart', chartId: chartMatch[1].toLowerCase() });
+      i++;
+      continue;
+    }
+
+    const imgMatch = IMAGE_LINE_RE.exec(line);
+    if (imgMatch) {
+      blocks.push({
+        type: 'image',
+        alt: imgMatch[1].trim(),
+        src: imgMatch[2].trim(),
+        caption: imgMatch[3]?.trim(),
+      });
       i++;
       continue;
     }
@@ -212,6 +237,8 @@ export function parseMarkdownBlocks(markdown: string): MarkdownBlock[] {
     while (
       i < lines.length &&
       lines[i].trim() !== '' &&
+      !CHART_LINE_RE.test(lines[i].trim()) &&
+      !IMAGE_LINE_RE.test(lines[i].trim()) &&
       !lines[i].trim().startsWith('## ') &&
       !lines[i].trim().startsWith('### ') &&
       !lines[i].trim().startsWith('> ') &&

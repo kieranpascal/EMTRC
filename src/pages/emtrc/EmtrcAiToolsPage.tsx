@@ -4,7 +4,8 @@ import { SITE } from '../../content/site';
 import { EmtrcHead } from '../../components/emtrc/EmtrcHead';
 import { EmtrcLayout } from '../../components/emtrc/EmtrcLayout';
 import { KickerRule, Reveal } from '../../components/emtrc/Reveal';
-import { SafeImage } from '../../components/SafeImage';
+import { OrnamentalDivider } from '../../components/emtrc/OrnamentalDivider';
+import { AiCallCaptureIllustration } from '../../components/emtrc/AnimatedIllustrations';
 
 export function EmtrcAiToolsPage() {
   return (
@@ -46,20 +47,19 @@ export function EmtrcAiToolsPage() {
             </div>
 
             <div className="lg:col-span-5">
-              <div className="overflow-hidden rounded-2xl border border-[var(--emtrc-border)]">
-                <SafeImage
-                  src="/src/assets/images/emtrc_editorial_phone_studio_1795374293354.jpg"
-                  alt="Modern wireless business handset on a dark slate reception desk in London"
-                  width={1200}
-                  height={900}
-                  priority
-                  className="h-[320px] w-full object-cover"
-                />
-              </div>
+              <AiCallCaptureIllustration />
             </div>
           </div>
         </div>
       </section>
+
+      <OrnamentalDivider
+        pattern="barbican-grid"
+        from="surface"
+        to="canvas"
+        label="FOUR AI & CLOUD COMMS MODULES"
+        accentColor="coral"
+      />
 
       {/* AI Tool Cards with Clean HTML/CSS Workflow Diagrams */}
       <section className="py-16 sm:py-24">

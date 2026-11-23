@@ -1,49 +1,50 @@
 @import "tailwindcss";
 @custom-variant dark (&:where(.dark, .dark *));
-@import "@fontsource-variable/bricolage-grotesque";
-@import "@fontsource-variable/dm-sans";
+@import "@fontsource-variable/playfair-display";
+@import "@fontsource-variable/public-sans";
 @import "@fontsource/ibm-plex-mono/400.css";
 @import "@fontsource/ibm-plex-mono/500.css";
 @import "@fontsource/ibm-plex-mono/600.css";
 @import "@fontsource-variable/oswald";
-@import "@fontsource-variable/playfair-display";
+@import "@fontsource-variable/bricolage-grotesque";
 
 :root {
-  /* Swiss-London Architectural Gallery: Pure White + Cool Mist + Jet Carbon + Studio Vermilion */
-  --emtrc-canvas: #FFFFFF;
+  /* Light Editorial Gallery: Warm Architectural Stone + Crisp Ink + Studio Vermilion */
+  --emtrc-canvas: #F5F3EE;
   --emtrc-surface: #FFFFFF;
-  --emtrc-sand: #F4F5F7;
-  --emtrc-ink: #0A0B0E;
-  --emtrc-muted: #525866;
-  --emtrc-border: #E2E5EB;
-  --emtrc-navy: #0A0B0E;
-  --emtrc-navy-surface: #13151B;
-  --emtrc-navy-soft: #181B23;
-  --emtrc-navy-border: #262A36;
+  --emtrc-sand: #ECE9E1;
+  --emtrc-ink: #0E1015;
+  --emtrc-muted: #4B5160;
+  --emtrc-border: #DDD8CE;
+  --emtrc-navy: #0B0D12;
+  --emtrc-navy-surface: #13161F;
+  --emtrc-navy-soft: #191D28;
+  --emtrc-navy-border: #262C3B;
   --emtrc-accent: #C82419;
   --emtrc-accent-hover: #A61C12;
-  --emtrc-brass: #C82419;
-  --emtrc-brass-light: #FF6B5B;
-  --site-font-display: 'Bricolage Grotesque Variable', 'Bricolage Grotesque', system-ui, sans-serif;
-  --site-font-body: 'DM Sans Variable', 'DM Sans', system-ui, -apple-system, sans-serif;
+  --emtrc-brass: #B5491F;
+  --emtrc-brass-light: #FF765E;
+  --site-font-display: 'Playfair Display Variable', 'Playfair Display', Georgia, serif;
+  --site-font-body: 'Public Sans Variable', 'Public Sans', system-ui, -apple-system, sans-serif;
   --site-font-mono: 'IBM Plex Mono', ui-monospace, SFMono-Regular, monospace;
 }
 
 .dark {
-  --emtrc-canvas: #090A0D;
-  --emtrc-surface: #111318;
-  --emtrc-sand: #13151B;
-  --emtrc-ink: #F5F6F8;
-  --emtrc-muted: #98A0B2;
-  --emtrc-border: #232732;
-  --emtrc-navy: #060709;
-  --emtrc-navy-surface: #101218;
-  --emtrc-navy-soft: #151820;
-  --emtrc-navy-border: #232732;
-  --emtrc-accent: #E03528;
-  --emtrc-accent-hover: #F04438;
-  --emtrc-brass: #FF6B5B;
-  --emtrc-brass-light: #FF7F70;
+  /* Dark Architectural Studio: Deep Obsidian Slate + Elevated Carbon + Vermilion */
+  --emtrc-canvas: #08090C;
+  --emtrc-surface: #111319;
+  --emtrc-sand: #151821;
+  --emtrc-ink: #F5F4F0;
+  --emtrc-muted: #9BA3B5;
+  --emtrc-border: #222735;
+  --emtrc-navy: #050608;
+  --emtrc-navy-surface: #0E1016;
+  --emtrc-navy-soft: #161923;
+  --emtrc-navy-border: #252B3B;
+  --emtrc-accent: #E23B2D;
+  --emtrc-accent-hover: #F24D3F;
+  --emtrc-brass: #FF7B63;
+  --emtrc-brass-light: #FF8C73;
 }
 
 @layer base {
@@ -63,9 +64,19 @@
   }
 
   h1, h2, h3, h4, .font-editorial {
-    font-family: 'Bricolage Grotesque Variable', 'Bricolage Grotesque', system-ui, sans-serif;
-    letter-spacing: -0.032em;
+    font-family: 'Playfair Display Variable', 'Playfair Display', Georgia, serif;
+    letter-spacing: -0.024em;
     text-wrap: balance;
+  }
+
+  .dark h1, .dark h2, .dark h3, .dark h4, .dark .font-editorial {
+    letter-spacing: -0.018em;
+  }
+
+  .font-editorial-italic {
+    font-family: 'Playfair Display Variable', 'Playfair Display', Georgia, serif;
+    font-style: italic;
+    font-weight: 500;
   }
 
   .font-display {
@@ -77,7 +88,7 @@
   }
 
   .font-mono-data {
-    font-family: var(--site-font-mono);
+    font-family: 'IBM Plex Mono', ui-monospace, SFMono-Regular, monospace;
     font-variant-numeric: tabular-nums;
   }
 
@@ -87,22 +98,25 @@
   }
 }
 
-/* Subtle Swiss architectural drafting hairline grid on editorial heroes */
+/* Subtle architectural drafting grid on editorial heroes */
 .hero-editorial-wash {
   background-image:
-    linear-gradient(to right, rgba(10, 11, 14, 0.032) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(10, 11, 14, 0.032) 1px, transparent 1px);
-  background-size: 80px 80px;
+    radial-gradient(circle at 82% 18%, rgba(200, 36, 25, 0.08), transparent 46%),
+    linear-gradient(to right, rgba(14, 16, 21, 0.04) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(14, 16, 21, 0.04) 1px, transparent 1px);
+  background-size: 100% 100%, 72px 72px, 72px 72px;
 }
 
 .dark .hero-editorial-wash {
   background-image:
-    linear-gradient(to right, rgba(255, 255, 255, 0.032) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(255, 255, 255, 0.032) 1px, transparent 1px);
-  background-size: 80px 80px;
+    radial-gradient(circle at 82% 18%, rgba(226, 59, 45, 0.14), transparent 48%),
+    radial-gradient(circle at 14% 78%, rgba(255, 140, 115, 0.06), transparent 44%),
+    linear-gradient(to right, rgba(255, 255, 255, 0.035) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.035) 1px, transparent 1px);
+  background-size: 100% 100%, 100% 100%, 72px 72px, 72px 72px;
 }
 
-/* Clean gallery canvas */
+/* Editorial surface canvas */
 .paper-texture {
   background-color: var(--emtrc-canvas);
 }

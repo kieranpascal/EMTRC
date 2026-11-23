@@ -58,7 +58,7 @@ export function HeroPhonePreview() {
       onMouseLeave={() => setPaused(false)}
     >
       {/* Background Depth Plane: Authentic East London Owner Holding Smartphone Outside Shopfront */}
-      <ParallaxLayer depth={-10} tilt={2} className="relative ml-auto w-[84%] sm:w-[80%]">
+      <ParallaxLayer depth={-10} tilt={2} className="relative ml-auto w-[80%] sm:w-[76%]">
         <div className="relative overflow-hidden rounded-2xl border border-[var(--emtrc-border)] bg-[#0A0B0E] shadow-xl">
           <SafeImage
             src="/src/assets/images/emtrc_app_hero_mobile_1795424181857.jpg"
@@ -66,111 +66,131 @@ export function HeroPhonePreview() {
             width={1200}
             height={900}
             priority
-            className="h-[395px] w-full object-cover object-center sm:h-[485px] brightness-[0.9] contrast-[1.04]"
+            className="h-[460px] w-full object-cover object-center sm:h-[550px] brightness-[0.88] contrast-[1.04]"
           />
           <div
             aria-hidden="true"
-            className="pointer-events-none absolute inset-0 bg-gradient-to-tr from-[#0A0B0E]/75 via-[#0A0B0E]/15 to-transparent"
+            className="pointer-events-none absolute inset-0 bg-gradient-to-tr from-[#0A0B0E]/80 via-[#0A0B0E]/20 to-transparent"
           />
-          <div className="pointer-events-none absolute right-4 bottom-4 hidden rounded-lg border border-white/15 bg-[#0A0B0E]/82 px-3 py-2 backdrop-blur-md sm:block">
+          <div className="pointer-events-none absolute right-4 bottom-4 hidden rounded-lg border border-white/15 bg-[#0A0B0E]/84 px-3 py-2 backdrop-blur-md sm:block">
             <p className="font-mono-data text-[10px] tracking-wider text-white/65">LONDON E8 · LIVE</p>
             <p className="mt-0.5 text-xs font-semibold text-white">0.9s mobile paint · 4G</p>
           </div>
         </div>
       </ParallaxLayer>
 
-      {/* Foreground Depth Plane: Precision Anodized Titanium iPhone 16 Pro UI */}
+      {/* Foreground Depth Plane: Tall Sleek Anodized Titanium Smartphone (~19.5:9 aspect) */}
       <ParallaxLayer
         depth={16}
         tilt={3.5}
-        className="relative z-20 -mt-[345px] sm:-mt-[425px] w-[92%] max-w-[356px]"
+        className="relative z-20 -mt-[420px] sm:-mt-[515px] w-[282px] sm:w-[304px]"
       >
         <div
+          dir="ltr"
           data-testid="hero-phone-preview"
-          className="rounded-[40px] bg-gradient-to-b from-[#3A3D45] via-[#1B1D22] to-[#2B2E36] p-[2.5px] shadow-[0_32px_70px_-15px_rgba(10,11,14,0.48)]"
+          className="relative rounded-[44px] bg-gradient-to-b from-[#454A56] via-[#1B1E25] to-[#2F333E] p-[3px] shadow-[0_36px_80px_-14px_rgba(6,8,12,0.62)]"
         >
-          <div className="overflow-hidden rounded-[38px] bg-[#0B0C10] text-white">
-            {/* iOS Status Bar + Dynamic Island */}
-            <div className="flex items-center justify-between px-6 pt-3.5 pb-2 text-[11px] font-semibold tracking-tight text-white/90">
-              <span className="font-mono-data">09:41</span>
-              <span
-                aria-hidden="true"
-                className="flex h-[22px] w-[86px] items-center justify-end rounded-full bg-black px-2 ring-1 ring-white/10"
-              >
-                <span className="h-2 w-2 rounded-full bg-[#1C1F2B] ring-1 ring-white/15" />
-              </span>
-              <span className="inline-flex items-center gap-1.5 text-white/85">
-                <Wifi className="h-3 w-3" aria-hidden="true" />
-                <span className="font-mono-data text-[10px]">5G</span>
-              </span>
-            </div>
+          {/* Machined Titanium Side Hardware Buttons */}
+          <span
+            aria-hidden="true"
+            className="pointer-events-none absolute top-[104px] -left-[3px] h-7 w-[3px] rounded-l-sm bg-[#4A505E]"
+          />
+          <span
+            aria-hidden="true"
+            className="pointer-events-none absolute top-[146px] -left-[3px] h-11 w-[3px] rounded-l-sm bg-[#4A505E]"
+          />
+          <span
+            aria-hidden="true"
+            className="pointer-events-none absolute top-[198px] -left-[3px] h-11 w-[3px] rounded-l-sm bg-[#4A505E]"
+          />
+          <span
+            aria-hidden="true"
+            className="pointer-events-none absolute top-[156px] -right-[3px] h-16 w-[3px] rounded-r-sm bg-[#4A505E]"
+          />
 
-            {/* App Top Bar */}
-            <div className="flex items-center justify-between px-5 pt-1.5 pb-3">
-              <div className="flex items-center gap-2.5 min-w-0">
-                <EmtrcMark inverted className="h-7 w-7" />
-                <div className="min-w-0">
-                  <p className="truncate text-[13px] font-bold leading-tight text-white">
-                    Kingsland Blade
-                  </p>
-                  <p className="truncate font-mono-data text-[10px] text-[#98A0B2]">
-                    emtrc App · Hackney E8
-                  </p>
-                </div>
+          <div className="flex min-h-[555px] sm:min-h-[585px] flex-col justify-between overflow-hidden rounded-[41px] bg-[#0A0C10] text-white">
+            <div>
+              {/* iOS Status Bar + Dynamic Island */}
+              <div className="flex items-center justify-between px-6 pt-3.5 pb-2 text-[11px] font-semibold tracking-tight text-white/90">
+                <span className="font-mono-data">09:41</span>
+                <span
+                  aria-hidden="true"
+                  className="flex h-[22px] w-[84px] items-center justify-end rounded-full bg-black px-2 ring-1 ring-white/10"
+                >
+                  <span className="h-2 w-2 rounded-full bg-[#1C1F2B] ring-1 ring-white/15" />
+                </span>
+                <span className="inline-flex items-center gap-1.5 text-white/85">
+                  <Wifi className="h-3 w-3" aria-hidden="true" />
+                  <span className="font-mono-data text-[10px]">5G</span>
+                </span>
               </div>
-              <span className="rounded-md bg-white/[0.08] px-2 py-1 font-mono-data text-[10px] font-semibold text-[#FF6B5B]">
-                LIVE
-              </span>
-            </div>
 
-            {/* Animated Segmented Control */}
-            <div
-              role="tablist"
-              aria-label="Preview emtrc mobile app"
-              className="mx-4 grid grid-cols-4 gap-1 rounded-xl bg-[#151821] p-1 ring-1 ring-white/[0.07]"
-            >
-              {TABS.map((tab) => {
-                const selected = tab.id === activeTab;
-                return (
-                  <button
-                    key={tab.id}
-                    type="button"
-                    role="tab"
-                    aria-label={tab.ariaLabel}
-                    aria-selected={selected}
-                    onClick={() => {
-                      setActiveTab(tab.id);
-                      setPaused(true);
-                    }}
-                    className={`relative rounded-lg py-1.5 text-[11px] font-semibold transition-colors ${
-                      selected ? 'text-[#0A0B0E]' : 'text-[#98A0B2] hover:text-white'
-                    }`}
-                  >
-                    {selected && (
-                      <motion.span
-                        layoutId="hero-phone-tab-indicator"
-                        transition={{ type: 'spring', stiffness: 380, damping: 32 }}
-                        className="absolute inset-0 rounded-lg bg-white shadow-sm"
-                      />
-                    )}
-                    <span className="relative z-10">{tab.label}</span>
-                  </button>
-                );
-              })}
-            </div>
+              {/* App Top Bar */}
+              <div className="flex items-center justify-between px-4 pt-1.5 pb-3">
+                <div className="flex items-center gap-2.5 min-w-0">
+                  <EmtrcMark inverted className="h-7 w-7 shrink-0" />
+                  <div className="min-w-0">
+                    <p className="truncate text-[13px] font-bold leading-tight text-white">
+                      Kingsland Blade
+                    </p>
+                    <p className="truncate font-mono-data text-[10px] text-[#98A0B2]">
+                      emtrc App · Hackney E8
+                    </p>
+                  </div>
+                </div>
+                <span className="rounded-md bg-white/[0.08] px-2 py-1 font-mono-data text-[10px] font-semibold text-[#FF6B5B]">
+                  LIVE
+                </span>
+              </div>
 
-            {/* Dynamic Screen Viewport */}
-            <div className="min-h-[305px] px-4 pt-3.5 pb-4">
-              <AnimatePresence mode="wait" initial={false}>
-                {activeTab === 'overview' && (
-                  <motion.div
-                    key="overview"
-                    initial={prefersReduced ? false : { opacity: 0, y: 8 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={prefersReduced ? undefined : { opacity: 0, y: -6 }}
-                    transition={{ duration: 0.2, ease: [0.22, 1, 0.36, 1] }}
-                    className="space-y-3"
-                  >
+              {/* Animated Segmented Control */}
+              <div
+                role="tablist"
+                aria-label="Preview emtrc mobile app"
+                className="mx-3.5 grid grid-cols-4 gap-1 rounded-xl bg-[#151821] p-1 ring-1 ring-white/[0.07]"
+              >
+                {TABS.map((tab) => {
+                  const selected = tab.id === activeTab;
+                  return (
+                    <button
+                      key={tab.id}
+                      type="button"
+                      role="tab"
+                      aria-label={tab.ariaLabel}
+                      aria-selected={selected}
+                      onClick={() => {
+                        setActiveTab(tab.id);
+                        setPaused(true);
+                      }}
+                      className={`relative rounded-lg py-1.5 text-[11px] font-semibold transition-colors ${
+                        selected ? 'text-[#0A0B0E]' : 'text-[#98A0B2] hover:text-white'
+                      }`}
+                    >
+                      {selected && (
+                        <motion.span
+                          layoutId="hero-phone-tab-indicator"
+                          transition={{ type: 'spring', stiffness: 380, damping: 32 }}
+                          className="absolute inset-0 rounded-lg bg-white shadow-sm"
+                        />
+                      )}
+                      <span className="relative z-10">{tab.label}</span>
+                    </button>
+                  );
+                })}
+              </div>
+
+              {/* Tall Smartphone Screen Viewport */}
+              <div className="min-h-[378px] px-3.5 pt-3.5 pb-3">
+                <AnimatePresence mode="wait" initial={false}>
+                  {activeTab === 'overview' && (
+                    <motion.div
+                      key="overview"
+                      initial={prefersReduced ? false : { opacity: 0, y: 8 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={prefersReduced ? undefined : { opacity: 0, y: -6 }}
+                      transition={{ duration: 0.2, ease: [0.22, 1, 0.36, 1] }}
+                      className="space-y-2.5"
+                    >
                     {/* Hero KPI Card with Crisp Bar Sparkline */}
                     <div className="rounded-2xl bg-[#141720] p-4 ring-1 ring-white/[0.08]">
                       <div className="flex items-start justify-between">
@@ -238,12 +258,20 @@ export function HeroPhonePreview() {
                       </div>
                     </div>
 
-                    {/* Live Activity Line */}
-                    <div className="flex items-center justify-between rounded-xl bg-white/[0.05] px-3.5 py-2.5 text-xs">
-                      <span className="text-white/90">Fresha booking · Skin Fade</span>
-                      <span className="font-mono-data text-[10px] font-semibold text-[#FF6B5B]">
-                        14:30 · £36
-                      </span>
+                    {/* Live Activity Lines */}
+                    <div className="space-y-2">
+                      <div className="flex items-center justify-between rounded-xl bg-white/[0.05] px-3 py-2 text-[11px]">
+                        <span className="truncate text-white/90">Fresha booking · Skin Fade</span>
+                        <span className="font-mono-data text-[10px] font-semibold text-[#FF6B5B] shrink-0">
+                          14:30 · £36
+                        </span>
+                      </div>
+                      <div className="flex items-center justify-between rounded-xl bg-white/[0.04] px-3 py-2 text-[11px]">
+                        <span className="truncate text-white/80">Missed call SMS · E8</span>
+                        <span className="font-mono-data text-[10px] font-semibold text-emerald-400 shrink-0">
+                          Replied 8s
+                        </span>
+                      </div>
                     </div>
                   </motion.div>
                 )}
@@ -404,6 +432,7 @@ export function HeroPhonePreview() {
                   </motion.div>
                 )}
               </AnimatePresence>
+            </div>
             </div>
 
             {/* Bottom iOS Tab Dock + Home Bar */}

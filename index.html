@@ -23,10 +23,12 @@
       (function () {
         try {
           var saved = localStorage.getItem('emtrc-theme');
-          if (saved === 'dark') {
+          if (saved !== 'light') {
             document.documentElement.classList.add('dark');
           }
-        } catch (e) {}
+        } catch (e) {
+          document.documentElement.classList.add('dark');
+        }
       })();
     </script>
   </head>

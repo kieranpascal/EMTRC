@@ -50,6 +50,10 @@ Understanding the difference between the old copper bundle and the post-2027 dig
 
 Notice the practical win hidden inside a forced regulatory change: once your `020` number lives in the cloud instead of a Victorian copper junction box under the pavement, you never lose a booking when your shop shuts early, when you are out quoting a boiler job in Lewisham, or if you move to a bigger unit three streets away.
 
+:::chart pstn-cost-timeline
+
+![East London independent shopfront glowing at blue hour dusk on a cobblestone high street](/src/assets/images/london_studio_dusk_header_1795426202168.jpg "Independent London parades from Hackney to Greenwich are porting legacy 020 copper lines to Cloud VoIP well ahead of the January 2027 bottleneck.")
+
 ## The exact 5-step porting sequence to keep your 020 number safely
 
 Your `020 7` or `020 8` landline is printed on fascia signage, van vinyl, loyalty cards, Google Business Profile, Yell, Checkatrade and thousands of old customer invoices. Protecting it requires following one strict order of operations:
@@ -81,6 +85,8 @@ A properly configured business VoIP setup actually makes you *more* resilient th
 
 - **Automatic 4G/5G mobile failover**: The moment your shop router loses mains power or broadband, calls to your `020` number automatically fail over within 2 seconds to your mobile app over 4G/5G or divert to a nominated UK mobile number.
 - **£45 mini-UPS battery backup**: A palm-sized DC uninterruptible power supply plugged behind your router keeps shop broadband, card payments and desk VoIP handsets running for 3 to 4 hours during a local UK Power Networks outage.
+
+![London business owner reviewing cloud 020 phone call alerts on a smartphone outside a brick shopfront](/src/assets/images/emtrc_app_hero_mobile_1795424181857.jpg "With Cloud VoIP + mobile failover, your 020 London landline rings straight through on 4G/5G even during local broadband maintenance.")
 
 ## Your 15-minute Friday afternoon action plan
 

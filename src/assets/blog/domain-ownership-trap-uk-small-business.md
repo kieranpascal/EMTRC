@@ -60,6 +60,10 @@ Moving a domain you legally own is painless once you know the two exact UK mecha
 | **`.co.uk` / `.uk`** | **Nominet UK** | Current registrar updates the **IPS Tag** to the new registrar's tag (e.g. `CLOUDFLARE`) | Minutes to 24 hours | £0 transfer fee (only standard £15/yr renewal if due) |
 | **`.com` / `.org` / `.net`** | **ICANN** | Current registrar disables transfer lock and provides your **EPP Auth Code** | 3 to 5 days | £0 exit fee (standard £20/yr renewal extends expiry by +1 year) |
 
+:::chart agency-ownership
+
+![East London high street storefront glowing warmly at dusk](/src/assets/images/london_studio_dusk_header_1795426202168.jpg "Your .co.uk domain is the digital lease to your high-street brand — it should always be registered in your own company name at Nominet.")
+
 ### What about my `@yourbusiness.co.uk` email during a transfer?
 
 This is the number-one fear that stops business owners from fixing a bad web setup — and it is completely avoidable. When handled properly, **your email never drops for a single second**:
@@ -76,6 +80,8 @@ If you discover today that an unresponsive or uncooperative agency holds your `.
 - **Direct Nominet Online Services recovery**: If your company or personal name is already listed as the legal **Registrant**, you can log directly into **Nominet Online Services** (`secure.nominet.org.uk`) and request a **Registrant-initiated IPS tag change** for a small Nominet admin fee (approx. £10 + VAT) — bypassing a vanished agency entirely.
 - **Dispute Resolution Service (DRS)**: If an agency registered your trading name in *their* own name in bad faith after you paid them to build your website, gather your original invoices showing payment for the domain and website. Often a calm, formal letter referencing **Nominet's Dispute Resolution Service** is enough for an agency to release the tag immediately rather than lose a formal ruling.
 - **Email & DNS independence**: Even before a transfer finishes, always make sure your business email runs on a proper independent mailbox (Zoho Mail, Google Workspace or Microsoft 365) rather than a cheap cPanel webmail inbox tied to an agency's hosting server.
+
+![Bright Georgian London interior after professional end-of-tenancy service](/src/assets/images/london_clean_townhouse_1795426201377.jpg "Pre-populating MX, SPF, DKIM and DMARC records at Cloudflare DNS before switching nameservers guarantees zero dropped customer emails.")
 
 ## The four non-negotiable lines every UK web contract should include
 

@@ -1,6 +1,7 @@
 import { createContext, useContext, useEffect, useMemo, useState, type ReactNode } from 'react';
 import {
   getDictionary,
+  isRtlLocale,
   resolveLocale,
   SUPPORTED_LANGUAGES,
   type LanguageOption,
@@ -13,6 +14,7 @@ interface LanguageContextValue {
   setLocale: (next: LocaleCode) => void;
   t: UiDictionary;
   languages: readonly LanguageOption[];
+  isRtl: boolean;
 }
 
 const LanguageContext = createContext<LanguageContextValue | null>(null);
@@ -35,6 +37,7 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
   useEffect(() => {
     if (typeof document !== 'undefined') {
       document.documentElement.lang = locale === 'en' ? 'en-GB' : locale;
+      document.documentElement.dir = isRtlLocale(locale) ? 'rtl' : 'ltr';
     }
   }, [locale]);
 
@@ -54,6 +57,7 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
       setLocale,
       t: getDictionary(locale),
       languages: SUPPORTED_LANGUAGES,
+      isRtl: isRtlLocale(locale),
     }),
     [locale]
   );

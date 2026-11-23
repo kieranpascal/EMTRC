@@ -1,0 +1,58 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 48 48" fill="none" role="img" aria-label="emtrc London architectural minimalist logo">
+  <defs>
+    <linearGradient id="london-slate" x1="2" y1="2" x2="46" y2="46" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#191E2A" />
+      <stop offset="55%" stop-color="#0E1118" />
+      <stop offset="100%" stop-color="#07090D" />
+    </linearGradient>
+    <linearGradient id="london-stone" x1="10" y1="10" x2="38" y2="38" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#FFFFFF" />
+      <stop offset="100%" stop-color="#DCE2EE" />
+    </linearGradient>
+    <linearGradient id="london-vermilion" x1="27" y1="11" x2="39" y2="21" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#F24B3B" />
+      <stop offset="100%" stop-color="#C82419" />
+    </linearGradient>
+  </defs>
+
+  <!-- Chamfered London minimalist architectural monolith -->
+  <path
+    d="M10 2H38L46 10V38L38 46H10L2 38V10L10 2Z"
+    fill="url(#london-slate)"
+    stroke="#FFFFFF"
+    stroke-opacity="0.18"
+    stroke-width="1.5"
+  />
+
+  <!-- Precision architectural blueprint inner frame -->
+  <path
+    d="M12.5 6.5H35.5L41.5 12.5V35.5L35.5 41.5H12.5L6.5 35.5V12.5L12.5 6.5Z"
+    stroke="#FFFFFF"
+    stroke-opacity="0.1"
+    stroke-width="1"
+  />
+
+  <!-- Bold geometric modernist pylon & horizontal cantilevered lintel -->
+  <path
+    d="M11.5 36.5V11.5H25.5V16.2H16.2V36.5H11.5Z"
+    fill="url(#london-stone)"
+  />
+
+  <!-- Barbican-inspired minimalist concrete vault & cantilevered deck -->
+  <path
+    d="M19.5 36.5V26.2C19.5 22.5 22.5 19.5 26.2 19.5H36.5V24.2H26.4C24.9 24.2 24.2 25.1 24.2 26.4V31.8H36.5V36.5H19.5Z"
+    fill="url(#london-stone)"
+  />
+
+  <!-- Bold architectural shadow beam -->
+  <rect x="27" y="26.9" width="9.5" height="2.4" rx="0.5" fill="#7D89A3" fill-opacity="0.78" />
+
+  <!-- London Signal Vermilion cantilevered keystone prism -->
+  <path
+    d="M27.8 11.5H36.5V17H27.8L29.6 11.5Z"
+    fill="url(#london-vermilion)"
+  />
+
+  <!-- Bold architectural plinth datum line -->
+  <rect x="11.5" y="38.2" width="25" height="1.5" rx="0.75" fill="#E23B2D" />
+</svg>

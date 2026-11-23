@@ -5,7 +5,11 @@ import path from 'node:path';
 import { getServiceBySlug, SERVICE_DETAILS } from '../content/services';
 import { BLOG_CATEGORIES, buildBlogCatalog } from '../content/blogLoader';
 import { CASE_STUDIES, getCaseStudyBySlug } from '../content/caseStudies';
-import { TRAINING_TRACKS } from '../content/training';
+import {
+  LONDON_MARKETING_CALENDAR,
+  OWNER_SCRIPTS_VAULT,
+  TRAINING_TRACKS,
+} from '../content/training';
 import { ALL_FAQS, FAQ_CATEGORIES } from '../content/faqs';
 
 function loadDiskMarkdownArticles() {
@@ -73,8 +77,8 @@ describe('static markdown blog catalog', () => {
 });
 
 describe('case studies, training centre & FAQ hub catalogs', () => {
-  it('validates all 5 London case studies with on-disk photography and valid demo links', () => {
-    assert.equal(CASE_STUDIES.length, 5);
+  it('validates all 6 London case studies with on-disk photography and valid demo links', () => {
+    assert.equal(CASE_STUDIES.length, 6);
     for (const cs of CASE_STUDIES) {
       assert.equal(getCaseStudyBySlug(cs.slug)?.slug, cs.slug);
       const presetPath = path.join(process.cwd(), 'examples', `${cs.demoPresetId}.json`);
@@ -85,25 +89,56 @@ describe('case studies, training centre & FAQ hub catalogs', () => {
     }
   });
 
-  it('validates all 4 training tracks and 12 lessons with unique IDs', () => {
-    assert.equal(TRAINING_TRACKS.length, 4);
+  it('validates all 6 training tracks (18 deep lessons), owner scripts vault, and 12-month calendar', () => {
+    assert.equal(TRAINING_TRACKS.length, 6);
     const lessonIds = new Set<string>();
     for (const track of TRAINING_TRACKS) {
       assert.ok(getServiceBySlug(track.relatedServiceSlug), `Invalid service slug ${track.relatedServiceSlug}`);
+      const coverPath = path.join(process.cwd(), track.coverImage.replace(/^\//, ''));
+      assert.ok(fs.existsSync(coverPath), `Missing training track cover image on disk: ${track.coverImage}`);
       assert.ok(track.lessons.length >= 3);
       for (const lesson of track.lessons) {
         assert.ok(!lessonIds.has(lesson.id), `Duplicate training lesson ID ${lesson.id}`);
         lessonIds.add(lesson.id);
-        assert.ok(lesson.steps.length >= 3);
+        assert.ok(lesson.steps.length >= 4, `Lesson ${lesson.id} should have >= 4 actionable steps`);
+        assert.ok(lesson.whyItMatters.length >= 80, `Lesson ${lesson.id} needs rich whyItMatters copy`);
+        assert.ok(lesson.commonMistake.length >= 40, `Lesson ${lesson.id} needs commonMistake guidance`);
       }
     }
+    assert.equal(lessonIds.size, 18);
+    assert.ok(OWNER_SCRIPTS_VAULT.length >= 6);
+    assert.equal(LONDON_MARKETING_CALENDAR.length, 4);
+    const totalCalendarMonths = LONDON_MARKETING_CALENDAR.reduce((sum, q) => sum + q.tasks.length, 0);
+    assert.equal(totalCalendarMonths, 12);
   });
 
-  it('validates all 24 FAQs across all 6 categories', () => {
-    assert.equal(ALL_FAQS.length, 24);
+  it('validates all 30 comprehensive FAQs across all 6 categories', () => {
+    assert.equal(ALL_FAQS.length, 30);
     const seenCats = new Set(ALL_FAQS.map((f) => f.category));
     for (const cat of FAQ_CATEGORIES) {
       assert.ok(seenCats.has(cat), `FAQ category ${cat} should have entries`);
+      const countInCat = ALL_FAQS.filter((f) => f.category === cat).length;
+      assert.ok(countInCat >= 5, `FAQ category ${cat} should have >= 5 entries, got ${countInCat}`);
+    }
+    for (const faq of ALL_FAQS) {
+      assert.ok(faq.answer.length >= 160, `FAQ ${faq.id} answer should be thorough`);
+      assert.ok(faq.deepDive.length >= 160, `FAQ ${faq.id} deepDive should be thorough`);
+      assert.equal(faq.keyPoints.length, 3, `FAQ ${faq.id} should have 3 keyPoints`);
     }
   });
+
+  it('ships bespoke London minimalist architectural SVG logo and Cloudflare Pages SPA _redirects', () => {
+    const logoPath = path.join(process.cwd(), 'src/assets/logo.svg');
+    assert.ok(fs.existsSync(logoPath), 'src/assets/logo.svg must exist');
+    const logoSvg = fs.readFileSync(logoPath, 'utf-8');
+    assert.ok(logoSvg.includes('<svg') && logoSvg.includes('</svg>'), 'logo.svg must be valid SVG');
+    assert.ok(logoSvg.includes('viewBox="0 0 48 48"'), 'logo.svg must define an explicit square viewBox');
+    assert.ok(!logoSvg.includes('<text'), 'logo.svg must be bespoke architectural paths, not a plain text letter');
+
+    const redirectsPath = path.join(process.cwd(), 'public/_redirects');
+    assert.ok(fs.existsSync(redirectsPath), 'public/_redirects must exist');
+    const redirects = fs.readFileSync(redirectsPath, 'utf-8').trim();
+    assert.equal(redirects, '/* /index.html 200');
+  });
 });
+

@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useMemo, useState } from 'react';
 import { Link, Navigate, useParams } from 'react-router-dom';
 import { AnimatePresence, motion, useReducedMotion } from 'framer-motion';
 import {
@@ -13,6 +13,7 @@ import { getServiceBySlug, SERVICE_DETAILS } from '../../content/services';
 import { useLanguage } from '../../context/LanguageContext';
 import { EmtrcHead } from '../../components/emtrc/EmtrcHead';
 import { EmtrcLayout } from '../../components/emtrc/EmtrcLayout';
+import { GalleryCarousel, type GallerySlide } from '../../components/emtrc/GalleryCarousel';
 import {
   EditorialHeading,
   KickerRule,
@@ -20,8 +21,123 @@ import {
   StaggerContainer,
   StaggerItem,
 } from '../../components/emtrc/Reveal';
+import { AnimatedSectionHeader, SectionSeparator } from '../../components/emtrc/SectionSeparator';
 import { ServicePreviewPhone } from '../../components/emtrc/ServicePreviewPhone';
-import { SafeImage } from '../../components/SafeImage';
+
+const SERVICE_EXTRA_SLIDES: Record<string, readonly GallerySlide[]> = {
+  websites: [
+    {
+      src: '/src/assets/images/london_cafe_storefront_morning_1795428788037.jpg',
+      alt: 'East London neighbourhood sourdough bakery and coffee bar storefront',
+      caption: 'Sub-second mobile shopfronts built for London cafés, barbers, salons and trades.',
+      tag: 'EAST LONDON · STOREFRONT',
+    },
+    {
+      src: '/src/assets/images/london_salon_balayage_studio_1795428787038.jpg',
+      alt: 'South Kensington hair studio interior photographed in crisp natural window light',
+      caption: 'Categorised treatment menus and transparent pricing that turn walk-by searchers into bookings.',
+      tag: 'SOUTH KENSINGTON · SALON BUILD',
+    },
+  ],
+  'domains-email': [
+    {
+      src: '/src/assets/images/london_studio_dusk_header_1795426202168.jpg',
+      alt: 'Independent London studio street at blue hour dusk',
+      caption: 'Your .co.uk or .com domain stays legally registered in your own business name — zero agency lock-in.',
+      tag: 'OWNERSHIP GUARANTEE',
+    },
+    {
+      src: '/src/assets/images/london_electrician_smart_lighting_1795428787002.jpg',
+      alt: 'London electrician working inside a modern renovated terraced townhouse',
+      caption: 'Authenticated SPF, DKIM and DMARC DNS records so customer quotes land in primary inboxes.',
+      tag: 'INBOX DELIVERABILITY',
+    },
+  ],
+  'local-seo': [
+    {
+      src: '/src/assets/images/barber_fade_editorial_1795426201374.jpg',
+      alt: 'Master London barber crafting a crisp skin fade in Hackney',
+      caption: 'Primary category alignment, borough pages and LocalBusiness schema built for the Google Maps 3-Pack.',
+      tag: 'GOOGLE MAPS · TOP 3',
+    },
+    {
+      src: '/src/assets/images/london_cafe_storefront_morning_1795428788037.jpg',
+      alt: 'Independent East London sourdough bakery facade',
+      caption: 'Structured HTML service lists readable by ChatGPT, Perplexity and Apple Intelligence.',
+      tag: 'AI SEARCH · CITATIONS',
+    },
+  ],
+  'review-engine': [
+    {
+      src: '/src/assets/images/salon_manicure_studio_1795426201499.jpg',
+      alt: 'Sunlit Islington manicure table with botanical bottles and crisp linen',
+      caption: 'Polite 2-hour post-appointment SMS invitations that stay 100% compliant with the UK DMCC Act.',
+      tag: 'UK DMCC COMPLIANT',
+    },
+    {
+      src: '/src/assets/images/london_clean_townhouse_1795426201377.jpg',
+      alt: 'Spotless Georgian London townhouse living room after a professional clean',
+      caption: 'Turn every finished job into verified borough-specific social proof on Google Maps.',
+      tag: 'VERIFIED 5-STAR VELOCITY',
+    },
+  ],
+  'lead-catcher': [
+    {
+      src: '/src/assets/images/london_boiler_engineer_work_1795428786510.jpg',
+      alt: 'British Gas Safe heating engineer inspecting combi boiler pipework',
+      caption: 'Hands busy on a boiler install? Missed callers receive an instant branded SMS within 8 seconds.',
+      tag: '8-SECOND RECOVERY',
+    },
+    {
+      src: '/src/assets/images/emtrc_london_plumber_van_1795422464729.jpg',
+      alt: 'London trade engineer checking recovered SMS enquiries beside his van',
+      caption: 'Every SMS reply lands directly in your emtrc mobile app so you book the job between visits.',
+      tag: 'LIVE SMS INBOX',
+    },
+  ],
+  'ai-receptionist': [
+    {
+      src: '/src/assets/images/london_electrician_smart_lighting_1795428787002.jpg',
+      alt: 'Certified UK domestic electrician testing architectural brass dimmers',
+      caption: 'Natural British-voice reception answering emergency call-outs, pricing questions and bookings 24/7.',
+      tag: '24/7 BRITISH VOICE',
+    },
+    {
+      src: '/src/assets/images/emtrc_app_hero_mobile_1795424181857.jpg',
+      alt: 'London shop owner reading instant AI call transcripts on smartphone',
+      caption: 'Instant structured call summary texted to your pocket the moment the caller hangs up.',
+      tag: 'INSTANT TRANSCRIPT',
+    },
+  ],
+  'business-phone': [
+    {
+      src: '/src/assets/images/london_studio_dusk_header_1795426202168.jpg',
+      alt: 'East London high-street premises ready for Cloud VoIP',
+      caption: 'Port your 020 landline safely before the 31 January 2027 Openreach copper switch-off.',
+      tag: 'PSTN 2027 READY',
+    },
+    {
+      src: '/src/assets/images/emtrc_app_hero_mobile_1795424181857.jpg',
+      alt: 'London business owner answering 020 calls on mobile VoIP app outside shopfront',
+      caption: 'Ring reception handset and mobile app simultaneously with automatic after-hours routing.',
+      tag: '020 IN YOUR POCKET',
+    },
+  ],
+  'care-plan': [
+    {
+      src: '/src/assets/images/emtrc_london_studio_team_1795422461958.jpg',
+      alt: 'emtrc London studio team reviewing monthly site updates and performance telemetry',
+      caption: 'Send price changes or bank-holiday hours on WhatsApp — our London studio publishes within 24 hours.',
+      tag: '24H HUMAN EDIT SLA',
+    },
+    {
+      src: '/src/assets/images/london_boiler_engineer_work_1795428786510.jpg',
+      alt: 'Independent London tradesperson focused on client craft while emtrc handles website maintenance',
+      caption: 'Cloudflare edge security, SSL renewals, daily backups and plain-English monthly call reports.',
+      tag: 'ZERO ADMIN OVERHEAD',
+    },
+  ],
+};
 
 export function EmtrcServiceDetailPage() {
   const { slug } = useParams<{ slug: string }>();
@@ -29,6 +145,40 @@ export function EmtrcServiceDetailPage() {
   const { t } = useLanguage();
   const prefersReduced = useReducedMotion();
   const [openFaqKey, setOpenFaqKey] = useState<string | null>('0-0');
+
+  const gallerySlides = useMemo<GallerySlide[]>(() => {
+    if (!service) return [];
+    const extras = SERVICE_EXTRA_SLIDES[service.slug] ?? [
+      {
+        src: '/src/assets/images/london_studio_dusk_header_1795426202168.jpg',
+        alt: 'East London independent studio at dusk',
+        caption: 'Designed and supported directly from London for all 32 boroughs.',
+        tag: 'LONDON STUDIO',
+      },
+      {
+        src: '/src/assets/images/emtrc_app_hero_mobile_1795424181857.jpg',
+        alt: 'London business owner managing calls and edits from smartphone',
+        caption: 'Managed seamlessly from the emtrc pocket app and Client Portal.',
+        tag: 'MOBILE CONTROL',
+      },
+    ];
+
+    return [
+      {
+        src: service.heroImage,
+        alt: service.heroAlt,
+        caption: service.heroAlt,
+        tag: `${service.shortTitle.toUpperCase()} · OVERVIEW`,
+      },
+      {
+        src: service.secondaryImage,
+        alt: service.secondaryAlt,
+        caption: service.secondaryAlt,
+        tag: 'IN THE FIELD',
+      },
+      ...extras,
+    ];
+  }, [service]);
 
   if (!service) {
     return <Navigate to="/services" replace />;
@@ -45,22 +195,31 @@ export function EmtrcServiceDetailPage() {
         description={service.subheadline}
       />
 
-      {/* CHAPTER 1: Editorial Service Hero with Warm Radial Wash */}
-      <section className="hero-editorial-wash overflow-hidden border-b border-[var(--emtrc-border)]">
-        <div className="mx-auto max-w-[1200px] px-5 pt-10 pb-16 sm:px-8 sm:pt-14 sm:pb-24">
+      {/* CHAPTER 1: Dark Architectural Service Hero + Swipeable 4-Photo GalleryCarousel */}
+      <section className="relative overflow-hidden bg-[#090B10] text-[#F5F4F0]">
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute inset-0 opacity-[0.14]"
+          style={{
+            backgroundImage:
+              'linear-gradient(to right, rgba(255,255,255,0.08) 1px, transparent 1px), linear-gradient(to bottom, rgba(255,255,255,0.08) 1px, transparent 1px)',
+            backgroundSize: '68px 68px',
+          }}
+        />
+        <div className="relative mx-auto max-w-[1200px] px-5 pt-8 pb-12 sm:px-8 sm:pt-12 sm:pb-16">
           <Link
             to="/services"
-            className="inline-flex items-center gap-1.5 text-xs font-semibold text-[var(--emtrc-muted)] hover:text-[var(--emtrc-ink)] transition-colors"
+            className="inline-flex items-center gap-1.5 font-mono-data text-xs font-semibold text-[#9BA3B5] hover:text-white transition-colors"
           >
             <ArrowLeft className="h-3.5 w-3.5" aria-hidden="true" />
             <span>{t.servicePage.backToServices}</span>
-            <span aria-hidden="true" className="text-[var(--emtrc-border)]">/</span>
-            <span className="text-[var(--emtrc-ink)]">{service.shortTitle}</span>
+            <span aria-hidden="true" className="text-white/25">/</span>
+            <span className="text-[#FF8C73]">{service.shortTitle}</span>
           </Link>
 
-          <div className="mt-7 grid grid-cols-1 items-center gap-12 lg:grid-cols-12">
-            <div className="lg:col-span-7">
-              <KickerRule>
+          <div className="mt-7 grid grid-cols-1 items-center gap-10 lg:grid-cols-12">
+            <div className="lg:col-span-6">
+              <KickerRule light>
                 {service.category} · {service.priceTag}
               </KickerRule>
 
@@ -69,15 +228,15 @@ export function EmtrcServiceDetailPage() {
                 immediate
                 line1={service.headlineLine1}
                 line2={service.headlineLine2}
-                line2Tone="brass"
-                className="mt-4 font-editorial text-[clamp(2.5rem,5.4vw,4.35rem)] font-extrabold leading-[1.01] tracking-[-0.035em] text-[var(--emtrc-ink)]"
+                line2Tone="accent"
+                className="mt-4 font-editorial text-[clamp(2.35rem,5vw,4rem)] font-bold leading-[1.02] tracking-[-0.025em] text-white [&>span:nth-child(2)>span]:font-editorial-italic [&>span:nth-child(2)>span]:font-normal"
               />
 
-              <p className="mt-6 max-w-2xl text-base leading-relaxed text-[var(--emtrc-muted)] sm:text-lg">
+              <p className="mt-5 max-w-xl text-base leading-relaxed text-[#C2C9D9] sm:text-lg">
                 {service.subheadline}
               </p>
 
-              <div className="mt-8 flex flex-wrap items-center gap-3.5">
+              <div className="mt-7 flex flex-wrap items-center gap-3.5">
                 <Link
                   to={service.closingCtaTo}
                   className="group inline-flex items-center justify-center gap-2 rounded-lg bg-[var(--emtrc-accent)] px-6 py-3.5 text-sm font-semibold text-white whitespace-nowrap transition-colors hover:bg-[var(--emtrc-accent-hover)]"
@@ -92,49 +251,48 @@ export function EmtrcServiceDetailPage() {
                   href={SITE.brand.calendlyUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center justify-center gap-2 rounded-lg border border-[var(--emtrc-border)] bg-[var(--emtrc-surface)] px-5 py-3.5 text-sm font-semibold text-[var(--emtrc-ink)] whitespace-nowrap transition-colors hover:border-[var(--emtrc-ink)]"
+                  className="inline-flex items-center justify-center gap-2 rounded-lg border border-white/20 bg-white/5 px-5 py-3.5 text-sm font-semibold text-white whitespace-nowrap transition-colors hover:border-white/45"
                 >
-                  <Calendar className="h-4 w-4 text-[var(--emtrc-brass)]" aria-hidden="true" />
+                  <Calendar className="h-4 w-4 text-[#FF8C73]" aria-hidden="true" />
                   <span>{t.hero.footnoteLink}</span>
                 </a>
               </div>
             </div>
 
-            <div className="lg:col-span-5">
-              <div className="overflow-hidden rounded-2xl border border-[var(--emtrc-border)] bg-[var(--emtrc-sand)] shadow-lg">
-                <SafeImage
-                  src={service.heroImage}
-                  alt={service.heroAlt}
-                  width={1200}
-                  height={900}
-                  className="aspect-[4/3] w-full object-cover"
-                />
-              </div>
+            <div className="lg:col-span-6">
+              <GalleryCarousel
+                slides={gallerySlides}
+                title={`${service.shortTitle} · 4-Photo Gallery`}
+                aspect="16/10"
+                darkSurface
+              />
             </div>
           </div>
         </div>
       </section>
 
-      {/* CHAPTER 2: "— THE PAIN THIS KILLS" 4-Card Diagnostic Grid (Klyara signature) */}
-      <section className="border-b border-[var(--emtrc-border)] bg-[var(--emtrc-surface)]">
-        <div className="mx-auto max-w-[1200px] px-5 py-16 sm:px-8 sm:py-24">
-          <Reveal>
-            <KickerRule>{t.servicePage.painKicker}</KickerRule>
-            <h2 className="mt-3 font-editorial text-3xl font-extrabold tracking-[-0.03em] sm:text-5xl">
-              {t.servicePage.painHeadline}
-            </h2>
-          </Reveal>
+      <SectionSeparator variant="angle" from="obsidian" to="sand" accentColor="coral" />
 
-          <StaggerContainer className="mt-10 grid grid-cols-1 gap-6 md:grid-cols-2">
+      {/* CHAPTER 2: "THE PAIN THIS KILLS" 4-Card Diagnostic Grid */}
+      <section className="bg-[var(--emtrc-sand)]">
+        <div className="mx-auto max-w-[1200px] px-5 py-12 sm:px-8 sm:py-16">
+          <AnimatedSectionHeader
+            index="01"
+            kicker={t.servicePage.painKicker}
+            headline={t.servicePage.painHeadline}
+            tone="coral"
+          />
+
+          <StaggerContainer className="mt-8 grid grid-cols-1 gap-5 md:grid-cols-2">
             {service.pains.map((pain, idx) => (
               <StaggerItem key={pain.title}>
-                <article className="flex h-full flex-col justify-between rounded-2xl border border-[var(--emtrc-border)] bg-[var(--emtrc-canvas)] p-7">
+                <article className="flex h-full flex-col justify-between rounded-2xl border border-[var(--emtrc-border)] bg-[var(--emtrc-surface)] p-6 shadow-xs transition-colors hover:border-[var(--emtrc-accent)]">
                   <div>
-                    <div className="flex items-center justify-between gap-4 text-xs">
-                      <span className="font-editorial font-extrabold text-[var(--emtrc-muted)]">
+                    <div className="flex items-center justify-between gap-4 font-mono-data text-xs">
+                      <span className="font-bold text-[var(--emtrc-muted)]">
                         0{idx + 1}
                       </span>
-                      <span className="font-semibold text-[var(--emtrc-brass)]">
+                      <span className="font-semibold text-[var(--emtrc-accent)]">
                         {pain.costLabel}
                       </span>
                     </div>
@@ -147,7 +305,7 @@ export function EmtrcServiceDetailPage() {
                   </div>
                   <div className="mt-5 flex items-start gap-2.5 border-t border-[var(--emtrc-border)] pt-4 text-sm font-semibold text-[var(--emtrc-ink)]">
                     <Check
-                      className="mt-0.5 h-4 w-4 shrink-0 text-[var(--emtrc-accent)]"
+                      className="mt-0.5 h-4 w-4 shrink-0 text-emerald-500"
                       aria-hidden="true"
                     />
                     <span>{pain.solution}</span>
@@ -159,35 +317,33 @@ export function EmtrcServiceDetailPage() {
         </div>
       </section>
 
-      {/* CHAPTER 3: "Watch it actually work." 3 Steps + Interactive ServicePreviewPhone */}
-      <section className="border-b border-[var(--emtrc-navy-border)] bg-[var(--emtrc-navy)] text-[#F5F3EE]">
-        <div className="mx-auto max-w-[1200px] px-5 py-16 sm:px-8 sm:py-24">
-          <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-12">
-            <div className="lg:col-span-6">
-              <Reveal>
-                <KickerRule light>How it runs week to week</KickerRule>
-                <EditorialHeading
-                  as="h2"
-                  line1={t.servicePage.watchHeadline1}
-                  line2={t.servicePage.watchHeadline2}
-                  line2Tone="brass-underline"
-                  className="mt-3 font-editorial text-[clamp(2.1rem,4.4vw,3.5rem)] font-extrabold leading-[1.03] tracking-[-0.03em] text-white"
-                />
-                <p className="mt-5 max-w-xl text-base leading-relaxed text-[#BAC5DC]">
-                  {service.watchIntro}
-                </p>
-              </Reveal>
+      <SectionSeparator variant="architectural-ribbon" from="sand" to="obsidian" accentColor="amber" />
 
-              <StaggerContainer className="mt-10 space-y-6">
+      {/* CHAPTER 3: "Watch it actually work." 3 Steps + Tall Interactive ServicePreviewPhone */}
+      <section className="bg-[#0B0D12] text-[#F5F3EE]">
+        <div className="mx-auto max-w-[1200px] px-5 py-12 sm:px-8 sm:py-16">
+          <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-12">
+            <div className="lg:col-span-7">
+              <AnimatedSectionHeader
+                index="02"
+                kicker="How it runs week to week"
+                headline={t.servicePage.watchHeadline1}
+                accentWord={t.servicePage.watchHeadline2}
+                subtitle={service.watchIntro}
+                tone="amber"
+                light
+              />
+
+              <StaggerContainer className="mt-8 space-y-5">
                 {service.steps.map((step) => (
                   <StaggerItem key={step.num}>
-                    <div className="grid grid-cols-12 gap-4 border-t border-[var(--emtrc-navy-border)] pt-5">
-                      <span className="col-span-2 font-editorial text-lg font-extrabold text-[var(--emtrc-brass-light)]">
+                    <div className="grid grid-cols-12 gap-4 rounded-xl border border-white/10 bg-white/[0.03] p-4">
+                      <span className="col-span-2 font-mono-data text-lg font-bold text-[#FF8C73]">
                         {step.num}
                       </span>
                       <div className="col-span-10">
                         <h3 className="font-editorial text-lg font-bold text-white">{step.title}</h3>
-                        <p className="mt-1.5 text-sm leading-relaxed text-[#BAC5DC]">{step.body}</p>
+                        <p className="mt-1 text-sm leading-relaxed text-[#BAC5DC]">{step.body}</p>
                       </div>
                     </div>
                   </StaggerItem>
@@ -195,7 +351,7 @@ export function EmtrcServiceDetailPage() {
               </StaggerContainer>
             </div>
 
-            <div className="lg:col-span-6">
+            <div className="lg:col-span-5">
               <Reveal delay={0.1}>
                 <ServicePreviewPhone appTitle={service.previewAppTitle} tabs={service.previewTabs} />
               </Reveal>
@@ -204,23 +360,25 @@ export function EmtrcServiceDetailPage() {
         </div>
       </section>
 
-      {/* CHAPTER 4: "Who this is for." 3 London Trade Personas */}
-      <section className="border-b border-[var(--emtrc-border)] bg-[var(--emtrc-sand)]">
-        <div className="mx-auto max-w-[1200px] px-5 py-16 sm:px-8 sm:py-24">
-          <Reveal>
-            <KickerRule>Built for independent London operators</KickerRule>
-            <h2 className="mt-3 font-editorial text-3xl font-extrabold tracking-[-0.03em] sm:text-5xl">
-              {t.servicePage.whoHeadline}
-            </h2>
-          </Reveal>
+      <SectionSeparator variant="wave" from="obsidian" to="surface" accentColor="emerald" />
 
-          <StaggerContainer className="mt-10 grid grid-cols-1 gap-6 lg:grid-cols-3">
-            {service.personas.map((persona) => (
+      {/* CHAPTER 4: "Who this is for." 3 London Trade Personas */}
+      <section className="bg-[var(--emtrc-surface)]">
+        <div className="mx-auto max-w-[1200px] px-5 py-12 sm:px-8 sm:py-16">
+          <AnimatedSectionHeader
+            index="03"
+            kicker="Built for independent London operators"
+            headline={t.servicePage.whoHeadline}
+            tone="emerald"
+          />
+
+          <StaggerContainer className="mt-8 grid grid-cols-1 gap-6 lg:grid-cols-3">
+            {service.personas.map((persona, pIdx) => (
               <StaggerItem key={persona.title}>
-                <article className="flex h-full flex-col justify-between rounded-2xl border border-[var(--emtrc-border)] bg-[var(--emtrc-surface)] p-7">
+                <article className="flex h-full flex-col justify-between rounded-2xl border border-[var(--emtrc-border)] bg-[var(--emtrc-canvas)] p-6">
                   <div>
-                    <p className="text-xs font-bold tracking-wide text-[var(--emtrc-brass)]">
-                      {persona.tag}
+                    <p className="font-mono-data text-[11px] font-bold uppercase tracking-wider text-emerald-600 dark:text-emerald-400">
+                      0{pIdx + 1} · {persona.tag}
                     </p>
                     <h3 className="mt-2 font-editorial text-xl font-bold leading-snug text-[var(--emtrc-ink)]">
                       {persona.title}
@@ -236,65 +394,62 @@ export function EmtrcServiceDetailPage() {
         </div>
       </section>
 
-      {/* CHAPTER 5: "Why ours beats DIY." Split Documentary Photo + Proof Points */}
-      <section className="border-b border-[var(--emtrc-border)]">
-        <div className="mx-auto max-w-[1200px] px-5 py-16 sm:px-8 sm:py-24">
-          <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-12">
+      <SectionSeparator variant="editorial-rule" from="surface" to="sand" label="Craftsmanship & Ownership" accentColor="coral" />
+
+      {/* CHAPTER 5: "Why ours beats DIY." Split GalleryCarousel + Proof Points */}
+      <section className="bg-[var(--emtrc-sand)]">
+        <div className="mx-auto max-w-[1200px] px-5 py-12 sm:px-8 sm:py-16">
+          <div className="grid grid-cols-1 items-center gap-10 lg:grid-cols-12">
             <div className="lg:col-span-6">
               <Reveal>
-                <div className="overflow-hidden rounded-2xl border border-[var(--emtrc-border)] bg-[var(--emtrc-sand)]">
-                  <SafeImage
-                    src={service.secondaryImage}
-                    alt={service.secondaryAlt}
-                    width={1200}
-                    height={900}
-                    className="aspect-[4/3] w-full object-cover"
-                  />
-                </div>
+                <GalleryCarousel
+                  slides={[...gallerySlides].reverse()}
+                  title="London Proof & Craftsmanship"
+                  aspect="4/3"
+                />
               </Reveal>
             </div>
 
             <div className="lg:col-span-6">
-              <Reveal>
-                <KickerRule>Built properly, owned by you</KickerRule>
-                <EditorialHeading
-                  as="h2"
-                  line1={t.servicePage.whyHeadline1}
-                  line2={t.servicePage.whyHeadline2}
-                  line2Tone="accent"
-                  className="mt-3 font-editorial text-3xl font-extrabold leading-[1.04] tracking-[-0.03em] sm:text-5xl"
-                />
-                <ul className="mt-8 space-y-4 border-t border-[var(--emtrc-border)] pt-7">
-                  {service.whyUsPoints.map((point) => (
-                    <li key={point} className="flex items-start gap-3 text-sm leading-relaxed sm:text-base">
-                      <Check
-                        className="mt-1 h-4 w-4 shrink-0 text-[var(--emtrc-accent)]"
-                        aria-hidden="true"
-                      />
-                      <span className="text-[var(--emtrc-ink)]">{point}</span>
-                    </li>
-                  ))}
-                </ul>
-              </Reveal>
+              <AnimatedSectionHeader
+                index="04"
+                kicker="Built properly, owned by you"
+                headline={t.servicePage.whyHeadline1}
+                accentWord={t.servicePage.whyHeadline2}
+                tone="coral"
+              />
+              <ul className="mt-7 space-y-3.5 border-t border-[var(--emtrc-border)] pt-6">
+                {service.whyUsPoints.map((point) => (
+                  <li key={point} className="flex items-start gap-3 text-sm leading-relaxed sm:text-base">
+                    <Check
+                      className="mt-1 h-4 w-4 shrink-0 text-[var(--emtrc-accent)]"
+                      aria-hidden="true"
+                    />
+                    <span className="text-[var(--emtrc-ink)]">{point}</span>
+                  </li>
+                ))}
+              </ul>
             </div>
           </div>
         </div>
       </section>
 
-      {/* CHAPTER 6: Grouped Expandable FAQ Accordions (Klyara signature) */}
-      <section className="border-b border-[var(--emtrc-border)] bg-[var(--emtrc-surface)]">
-        <div className="mx-auto max-w-[960px] px-5 py-16 sm:px-8 sm:py-24">
-          <Reveal>
-            <KickerRule>{t.servicePage.faqKicker}</KickerRule>
-            <h2 className="mt-3 font-editorial text-3xl font-extrabold tracking-[-0.03em] sm:text-4xl">
-              {t.servicePage.faqHeadline}
-            </h2>
-          </Reveal>
+      <SectionSeparator variant="angle" from="sand" to="surface" accentColor="blue" flip />
 
-          <div className="mt-10 space-y-10" data-testid="service-faq-groups">
+      {/* CHAPTER 6: Grouped Expandable FAQ Accordions */}
+      <section className="bg-[var(--emtrc-surface)]">
+        <div className="mx-auto max-w-[960px] px-5 py-12 sm:px-8 sm:py-16">
+          <AnimatedSectionHeader
+            index="05"
+            kicker={t.servicePage.faqKicker}
+            headline={t.servicePage.faqHeadline}
+            tone="blue"
+          />
+
+          <div className="mt-9 space-y-8" data-testid="service-faq-groups">
             {service.faqGroups.map((group, gIdx) => (
               <div key={group.groupTitle}>
-                <h3 className="text-xs font-bold tracking-wider text-[var(--emtrc-brass)]">
+                <h3 className="font-mono-data text-xs font-bold uppercase tracking-wider text-[var(--emtrc-accent)]">
                   {group.groupTitle}
                 </h3>
                 <div className="mt-3 divide-y divide-[var(--emtrc-border)] border-y border-[var(--emtrc-border)]">
@@ -343,25 +498,28 @@ export function EmtrcServiceDetailPage() {
         </div>
       </section>
 
-      {/* CHAPTER 7: Related Services + Tailored Closing CTA */}
-      <section className="py-16 sm:py-24">
-        <div className="mx-auto max-w-[1200px] px-5 sm:px-8">
-          <Reveal>
-            <KickerRule>{t.servicePage.relatedKicker}</KickerRule>
-            <h2 className="mt-3 font-editorial text-2xl font-extrabold tracking-[-0.025em] sm:text-3xl">
-              {t.servicePage.relatedHeadline}
-            </h2>
-          </Reveal>
+      <SectionSeparator variant="angle" from="surface" to="canvas" accentColor="coral" />
 
-          <div className="mt-8 grid grid-cols-1 gap-6 md:grid-cols-3">
+      {/* CHAPTER 7: Related Services + Tailored Closing CTA */}
+      <section className="bg-[var(--emtrc-canvas)] py-12 sm:py-16">
+        <div className="mx-auto max-w-[1200px] px-5 sm:px-8">
+          <AnimatedSectionHeader
+            kicker={t.servicePage.relatedKicker}
+            headline={t.servicePage.relatedHeadline}
+            tone="coral"
+          />
+
+          <div className="mt-7 grid grid-cols-1 gap-6 md:grid-cols-3">
             {relatedServices.map((rel) => (
               <Link
                 key={rel.slug}
                 to={`/services/${rel.slug}`}
-                className="group flex flex-col justify-between rounded-2xl border border-[var(--emtrc-border)] bg-[var(--emtrc-surface)] p-6 transition-transform duration-200 hover:-translate-y-0.5 hover:border-[var(--emtrc-accent)]"
+                className="group flex flex-col justify-between rounded-2xl border border-[var(--emtrc-border)] bg-[var(--emtrc-surface)] p-6 transition-all duration-200 hover:-translate-y-1 hover:border-[var(--emtrc-accent)] hover:shadow-lg"
               >
                 <div>
-                  <p className="text-xs font-semibold text-[var(--emtrc-brass)]">{rel.category}</p>
+                  <p className="font-mono-data text-[11px] font-semibold uppercase tracking-wider text-[var(--emtrc-accent)]">
+                    {rel.category}
+                  </p>
                   <h3 className="mt-2 font-editorial text-xl font-bold text-[var(--emtrc-ink)] group-hover:text-[var(--emtrc-accent)]">
                     {rel.shortTitle}
                   </h3>
@@ -369,7 +527,7 @@ export function EmtrcServiceDetailPage() {
                     {rel.menuDescription}
                   </p>
                 </div>
-                <p className="mt-5 inline-flex items-center gap-1.5 text-xs font-semibold text-[var(--emtrc-accent)]">
+                <p className="mt-5 inline-flex items-center gap-1.5 font-mono-data text-xs font-semibold text-[var(--emtrc-accent)]">
                   <span>Read full details</span>
                   <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5" aria-hidden="true" />
                 </p>
@@ -378,14 +536,14 @@ export function EmtrcServiceDetailPage() {
           </div>
 
           {/* Closing Band */}
-          <Reveal className="mt-14">
-            <div className="rounded-2xl border border-[var(--emtrc-navy-border)] bg-[var(--emtrc-navy)] p-8 text-[#F5F3EE] sm:p-12">
+          <Reveal className="mt-12">
+            <div className="rounded-2xl border border-[var(--emtrc-navy-border)] bg-[#0B0D12] p-8 text-[#F5F3EE] sm:p-11">
               <div className="grid grid-cols-1 items-center gap-8 lg:grid-cols-12">
                 <div className="lg:col-span-8">
-                  <p className="text-xs font-semibold text-[var(--emtrc-brass-light)]">
+                  <p className="font-mono-data text-xs font-semibold text-[#FF8C73]">
                     {service.priceTag}
                   </p>
-                  <h2 className="mt-2 font-editorial text-3xl font-extrabold leading-tight text-white sm:text-4xl">
+                  <h2 className="mt-2 font-editorial text-3xl font-bold leading-tight text-white sm:text-4xl">
                     {service.closingHeadline}
                   </h2>
                   <p className="mt-3 max-w-2xl text-sm leading-relaxed text-[#BAC5DC] sm:text-base">

@@ -46,6 +46,10 @@ When we audit local sites across London trades, salons and hospitality, the exac
 | **Bloated 6-second WordPress / Wix site** | White screen + cookie banner + chat pop-up | 53% leave after 3 seconds | Static Cloudflare edge site (<1.0s first paint) |
 | **Hidden phone number & vague hours** | `"Contact us for pricing"` with broken form | 60%+ call the next pin on Maps | Live UK open badge + fixed thumb-zone call bar |
 
+:::chart speed-conversion
+
+![Warm travertine nail and beauty boutique table in Islington with daylight window shadows](/src/assets/images/salon_manicure_studio_1795426201499.jpg "Publishing transparent HTML treatment prices and durations removes the #1 reason mobile visitors bounce back to Google Maps.")
+
 ### 1. The Instagram login wall trap
 
 Many brilliant East and South London barbers, lash studios and independent cafés assume an active Instagram grid replaces a website. It does not — for two mechanical reasons.
@@ -77,6 +81,8 @@ Pick up your own phone right now, switch off Wi-Fi so you are on 4G, search your
 3. **One unmistakable primary action**: Is there a high-contrast **Tap to call** or **Book a chair** button sitting comfortably inside the lower thumb zone?
 4. **Trust proof beside the claim**: Are your real Google star rating, review count, or trade credentials (`Gas Safe`, `NICEIC`, `DBS Checked`) visible right beside the CTA?
 5. **Real documentary photography**: Do the images show your actual craft, clean interior or finished London work rather than generic American stock photos?
+
+![Spotless Georgian London townhouse living room with herringbone oak flooring and tall sash windows](/src/assets/images/london_clean_townhouse_1795426201377.jpg "High-contrast local craft photography paired with a sub-second Cloudflare static build signals immediate studio-grade trust.")
 
 ## The simple maths of fixing a leaky front door
 

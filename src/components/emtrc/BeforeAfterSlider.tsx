@@ -183,28 +183,50 @@ export function BeforeAfterSlider({
         {/* Draggable Divider Line & Handle */}
         <div
           style={{ left: `${position}%` }}
-          className="pointer-events-none absolute inset-y-0 z-20 -ml-[1.5px] w-[3px] bg-white shadow-[0_0_20px_rgba(0,0,0,0.45)]"
+          className="pointer-events-none absolute inset-y-0 z-20 -ml-[1.5px] w-[3px] bg-white shadow-[0_0_20px_rgba(0,0,0,0.5)]"
         >
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 flex h-11 w-11 items-center justify-center rounded-full border-2 border-white bg-[var(--emtrc-accent)] text-white shadow-xl">
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 flex h-12 w-12 items-center justify-center rounded-full border-2 border-white bg-[var(--emtrc-accent)] text-white shadow-[0_0_0_6px_rgba(226,59,45,0.22),0_12px_28px_rgba(0,0,0,0.45)]">
             <ArrowLeftRight className="h-4 w-4" aria-hidden="true" />
           </div>
         </div>
       </div>
 
-      {/* Accessible range control + summary row */}
+      {/* Accessible range control + quick-snap presets + summary row */}
       <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-        <label className="flex items-center gap-3 text-xs text-[var(--emtrc-muted)]">
-          <span className="whitespace-nowrap font-medium">Drag comparison</span>
-          <input
-            type="range"
-            min={12}
-            max={88}
-            value={position}
-            aria-label="Compare before and after London website redesign"
-            onChange={(e) => setPosition(Number(e.target.value))}
-            className="w-40 accent-[var(--emtrc-accent)] cursor-pointer"
-          />
-        </label>
+        <div className="flex flex-wrap items-center gap-3">
+          <label className="flex items-center gap-3 text-xs text-[var(--emtrc-muted)]">
+            <span className="whitespace-nowrap font-medium">Drag comparison</span>
+            <input
+              type="range"
+              min={12}
+              max={88}
+              value={position}
+              aria-label="Compare before and after London website redesign"
+              onChange={(e) => setPosition(Number(e.target.value))}
+              className="w-36 accent-[var(--emtrc-accent)] cursor-pointer"
+            />
+          </label>
+          <div className="inline-flex items-center gap-1 rounded-lg border border-[var(--emtrc-border)] bg-[var(--emtrc-canvas)] p-0.5 font-mono-data text-[10.5px]">
+            {[
+              { label: 'Before', value: 82 },
+              { label: 'Split', value: 44 },
+              { label: 'After', value: 14 },
+            ].map((preset) => (
+              <button
+                key={preset.label}
+                type="button"
+                onClick={() => setPosition(preset.value)}
+                className={`rounded-md px-2.5 py-1 font-semibold transition-colors ${
+                  Math.abs(position - preset.value) <= 6
+                    ? 'bg-[var(--emtrc-accent)] text-white'
+                    : 'text-[var(--emtrc-muted)] hover:text-[var(--emtrc-ink)]'
+                }`}
+              >
+                {preset.label}
+              </button>
+            ))}
+          </div>
+        </div>
         <p className="inline-flex items-center gap-1.5 text-xs font-medium text-[var(--emtrc-ink)]">
           <CheckCircle2 className="h-3.5 w-3.5 text-[var(--emtrc-accent)]" aria-hidden="true" />
           Same local London shop — radically clearer mobile conversion in 48 hours.

@@ -1,8 +1,9 @@
 import { useEffect, useRef, useState, type ReactNode } from 'react';
-import { Link, NavLink, useLocation } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { AnimatePresence, motion, useReducedMotion } from 'framer-motion';
 import {
   ArrowRight,
+  ArrowUpRight,
   Calendar,
   Check,
   ChevronDown,
@@ -17,9 +18,11 @@ import {
 import { SITE } from '../../content/site';
 import { SERVICE_DETAILS } from '../../content/services';
 import { useLanguage } from '../../context/LanguageContext';
+import { SafeImage } from '../SafeImage';
 import { EmtrcLogo } from './EmtrcLogo';
+import { MagneticLink } from './MagneticLink';
 import { NewsletterBand } from './NewsletterBand';
-import { ScrollProgressBar } from './Reveal';
+import { ScrollProgressBar } from './ScrollProgressBar';
 
 type MegaKey = 'services' | 'resources' | null;
 
@@ -28,18 +31,21 @@ interface EmtrcLayoutProps {
   hideNewsletter?: boolean;
 }
 
+const EASE: [number, number, number, number] = [0.22, 1, 0.36, 1];
+
 export function EmtrcLayout({ children, hideNewsletter = false }: EmtrcLayoutProps) {
   const { pathname, hash } = useLocation();
   const prefersReduced = useReducedMotion();
   const { locale, setLocale, t, languages } = useLanguage();
 
   const [openMega, setOpenMega] = useState<MegaKey>(null);
+  const [hoveredServiceSlug, setHoveredServiceSlug] = useState<string>(SERVICE_DETAILS[0].slug);
   const [langMenuOpen, setLangMenuOpen] = useState(false);
   const [tickerIdx, setTickerIdx] = useState(0);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [mobileSection, setMobileSection] = useState<'services' | 'resources' | null>('services');
   const [dark, setDark] = useState<boolean>(() => {
-    if (typeof document === 'undefined') return false;
+    if (typeof document === 'undefined') return true;
     return document.documentElement.classList.contains('dark');
   });
 
@@ -60,7 +66,6 @@ export function EmtrcLayout({ children, hideNewsletter = false }: EmtrcLayoutPro
     window.scrollTo(0, 0);
   }, [pathname, hash]);
 
-  // Rotate top utility bar ticker every 6 seconds unless reduced motion is enabled
   useEffect(() => {
     if (prefersReduced) return;
     const id = window.setInterval(() => {
@@ -131,13 +136,15 @@ export function EmtrcLayout({ children, hideNewsletter = false }: EmtrcLayoutPro
   const handleMegaLeave = () => {
     closeTimerRef.current = window.setTimeout(() => {
       setOpenMega(null);
-    }, 150);
+    }, 160);
   };
 
   const currentTicker = SITE.tickerItems[tickerIdx] ?? SITE.tickerItems[0];
   const currentLangOption = languages.find((l) => l.code === locale) ?? languages[0];
   const isServicesActive = pathname === '/services' || pathname.startsWith('/services/');
   const isBlogActive = pathname === '/blog' || pathname.startsWith('/blog/');
+  const activeServicePreview =
+    SERVICE_DETAILS.find((s) => s.slug === hoveredServiceSlug) ?? SERVICE_DETAILS[0];
 
   const serviceHeadings = [
     t.megaHeadings.websitesFoundations,
@@ -158,13 +165,12 @@ export function EmtrcLayout({ children, hideNewsletter = false }: EmtrcLayoutPro
 
       {/* Slim non-sticky desktop utility bar: rotating London news ticker + contact + multilingual switcher */}
       <div className="hidden md:block relative z-50 border-b border-[var(--emtrc-navy-border)] bg-[var(--emtrc-navy)] text-[#DCE3F2]">
-        <div className="mx-auto flex h-10 max-w-[1200px] items-center justify-between gap-4 px-8 text-xs">
-          {/* Rotating editorial news ticker */}
+        <div className="mx-auto flex h-9 max-w-[1200px] items-center justify-between gap-4 px-8 text-xs">
           <div className="flex items-center gap-3 min-w-0 flex-1 overflow-hidden">
-            <span className="text-[11px] font-bold tracking-wider text-[var(--emtrc-brass-light)] whitespace-nowrap shrink-0">
+            <span className="font-mono-data text-[10px] font-semibold uppercase tracking-wider text-[var(--emtrc-brass-light)] whitespace-nowrap shrink-0">
               {currentTicker.badge}
             </span>
-            <span aria-hidden="true" className="text-[#516085] shrink-0">·</span>
+            <span aria-hidden="true" className="text-[#4B566E] shrink-0">·</span>
             <div className="min-w-0 flex-1 overflow-hidden">
               <AnimatePresence mode="wait">
                 <motion.div
@@ -172,7 +178,7 @@ export function EmtrcLayout({ children, hideNewsletter = false }: EmtrcLayoutPro
                   initial={prefersReduced ? false : { opacity: 0, y: 6 }}
                   animate={{ opacity: 1, y: 0 }}
                   exit={prefersReduced ? undefined : { opacity: 0, y: -6 }}
-                  transition={{ duration: 0.24, ease: [0.22, 1, 0.36, 1] }}
+                  transition={{ duration: 0.24, ease: EASE }}
                   className="flex items-center gap-2.5 min-w-0"
                 >
                   <p className="truncate text-[#C7D0E4]">{currentTicker.text}</p>
@@ -187,7 +193,6 @@ export function EmtrcLayout({ children, hideNewsletter = false }: EmtrcLayoutPro
             </div>
           </div>
 
-          {/* Right utility controls: Call + Email + Language Selector */}
           <div className="flex items-center gap-4 shrink-0">
             <a
               href={SITE.brand.calendlyUrl}
@@ -216,7 +221,7 @@ export function EmtrcLayout({ children, hideNewsletter = false }: EmtrcLayoutPro
                 aria-haspopup="listbox"
                 aria-label="Change language"
                 onClick={() => setLangMenuOpen((prev) => !prev)}
-                className="inline-flex items-center gap-1.5 rounded-md px-1.5 py-1 text-xs font-semibold text-white transition-colors hover:text-[var(--emtrc-brass-light)] whitespace-nowrap"
+                className="inline-flex items-center gap-1.5 rounded-md px-1.5 py-1 font-mono-data text-xs font-semibold text-white transition-colors hover:text-[var(--emtrc-brass-light)] whitespace-nowrap"
               >
                 <Globe className="h-3.5 w-3.5 text-[var(--emtrc-brass-light)]" aria-hidden="true" />
                 <span>{currentLangOption.shortLabel}</span>
@@ -236,7 +241,7 @@ export function EmtrcLayout({ children, hideNewsletter = false }: EmtrcLayoutPro
                     animate={{ opacity: 1, y: 0 }}
                     exit={prefersReduced ? undefined : { opacity: 0, y: 4 }}
                     transition={{ duration: 0.14 }}
-                    className="absolute right-0 top-full mt-2 w-48 overflow-hidden rounded-xl border border-[#262D3B] bg-[#0D1014] p-1.5 shadow-2xl"
+                    className="absolute right-0 top-full mt-2 grid w-[348px] grid-cols-2 gap-1 overflow-hidden rounded-xl border border-[#262D3B] bg-[#0D1014] p-2 shadow-2xl"
                   >
                     {languages.map((lang) => {
                       const active = lang.code === locale;
@@ -251,17 +256,22 @@ export function EmtrcLayout({ children, hideNewsletter = false }: EmtrcLayoutPro
                             setLocale(lang.code);
                             setLangMenuOpen(false);
                           }}
-                          className={`flex w-full items-center justify-between rounded-lg px-3 py-2 text-left text-xs transition-colors ${
+                          className={`flex w-full items-center justify-between gap-2 rounded-lg px-2.5 py-2 text-left text-xs transition-colors ${
                             active
                               ? 'bg-[var(--emtrc-accent)] font-semibold text-white'
                               : 'text-[#DCE3F2] hover:bg-[#19202B] hover:text-white'
                           }`}
                         >
-                          <span>
-                            <span className="font-bold mr-2">{lang.shortLabel}</span>
-                            {lang.nativeName}
+                          <span className="truncate">
+                            <span className="font-mono-data font-bold mr-1.5">{lang.shortLabel}</span>
+                            <span>{lang.nativeName}</span>
                           </span>
-                          {active && <Check className="h-3.5 w-3.5 shrink-0" aria-hidden="true" />}
+                          <span className="flex items-center gap-1 shrink-0">
+                            {lang.dir === 'rtl' && (
+                              <span className="font-mono-data text-[9px] uppercase opacity-75">RTL</span>
+                            )}
+                            {active && <Check className="h-3.5 w-3.5 shrink-0" aria-hidden="true" />}
+                          </span>
                         </button>
                       );
                     })}
@@ -273,154 +283,161 @@ export function EmtrcLayout({ children, hideNewsletter = false }: EmtrcLayoutPro
         </div>
       </div>
 
-      {/* Sticky Editorial Header + Mega Menu */}
+      {/* Sticky Editorial Glass Header + Photographic Studio Mega Menu */}
       <header
-        className="sticky top-0 z-40 border-b border-[var(--emtrc-border)] bg-[var(--emtrc-canvas)]/92 backdrop-blur-md"
+        className="sticky top-0 z-40 border-b border-[var(--emtrc-border)] bg-[var(--emtrc-canvas)]/90 backdrop-blur-xl transition-colors"
         onMouseLeave={handleMegaLeave}
       >
-        <div className="mx-auto flex h-14 md:h-[74px] max-w-[1200px] items-center justify-between gap-4 px-5 sm:px-8">
+        <div className="mx-auto flex h-14 md:h-[70px] max-w-[1200px] items-center justify-between gap-4 px-5 sm:px-8">
           {/* Zone 1: Brand mark + wordmark */}
           <Link to="/" className="group focus-visible:rounded-lg shrink-0" aria-label="emtrc home">
             <EmtrcLogo />
           </Link>
 
-          {/* Zone 2: Rich single-line navigation with Mega Menu triggers */}
+          {/* Zone 2: Clean single-line navigation with springy MagneticLink & live Mega Menu triggers */}
           <nav
             aria-label="Main navigation"
-            className="hidden lg:flex items-center gap-5 xl:gap-6 text-sm font-medium text-[var(--emtrc-muted)]"
+            className="hidden lg:flex items-center gap-1 xl:gap-2 text-sm font-medium text-[var(--emtrc-muted)]"
           >
-            <button
-              type="button"
-              data-testid="mega-trigger-services"
-              aria-expanded={openMega === 'services'}
-              onMouseEnter={() => handleMegaEnter('services')}
-              onClick={() => handleMegaToggle('services')}
-              className={`inline-flex items-center gap-1 rounded-md px-2 py-1.5 whitespace-nowrap shrink-0 transition-colors ${
-                openMega === 'services' || isServicesActive
-                  ? 'bg-[var(--emtrc-sand)] text-[var(--emtrc-ink)] font-semibold'
-                  : 'hover:text-[var(--emtrc-ink)]'
-              }`}
-            >
-              <span>{t.nav.services}</span>
-              <ChevronDown
-                className={`h-3.5 w-3.5 transition-transform duration-150 ${
-                  openMega === 'services' ? 'rotate-180' : ''
+            <MagneticLink strength={0.18} maxOffset={6}>
+              <button
+                type="button"
+                data-testid="mega-trigger-services"
+                aria-expanded={openMega === 'services'}
+                onMouseEnter={() => handleMegaEnter('services')}
+                onClick={() => handleMegaToggle('services')}
+                className={`inline-flex items-center gap-1 rounded-lg px-3 py-2 whitespace-nowrap shrink-0 transition-colors ${
+                  openMega === 'services' || isServicesActive
+                    ? 'bg-[var(--emtrc-sand)] text-[var(--emtrc-ink)] font-semibold'
+                    : 'hover:bg-[var(--emtrc-sand)]/60 hover:text-[var(--emtrc-ink)]'
                 }`}
-                aria-hidden="true"
-              />
-            </button>
+              >
+                <span>{t.nav.services}</span>
+                <ChevronDown
+                  className={`h-3.5 w-3.5 transition-transform duration-200 ${
+                    openMega === 'services' ? 'rotate-180 text-[var(--emtrc-accent)]' : ''
+                  }`}
+                  aria-hidden="true"
+                />
+              </button>
+            </MagneticLink>
 
-            <NavLink
-              to="/app"
-              onMouseEnter={() => setOpenMega(null)}
-              className={({ isActive }) =>
-                `whitespace-nowrap shrink-0 py-1 transition-colors ${
-                  isActive
-                    ? 'text-[var(--emtrc-ink)] font-semibold underline underline-offset-8 decoration-2 decoration-[var(--emtrc-accent)]'
-                    : 'hover:text-[var(--emtrc-ink)]'
-                }`
-              }
-            >
-              The App
-            </NavLink>
+            {[
+              { to: '/work', label: t.nav.work },
+              { to: '/app', label: t.nav.theApp },
+              { to: '/pricing', label: t.nav.pricing },
+              { to: '/blog', label: t.nav.blog, matchPrefix: isBlogActive },
+            ].map((item) => (
+              <MagneticLink
+                key={item.to}
+                navLink
+                strength={0.18}
+                maxOffset={6}
+                to={item.to}
+                onMouseEnter={() => setOpenMega(null)}
+                className={({ isActive }) => {
+                  const active = isActive || Boolean(item.matchPrefix);
+                  return `relative rounded-lg px-3 py-2 whitespace-nowrap shrink-0 transition-colors ${
+                    active
+                      ? 'text-[var(--emtrc-ink)] font-semibold'
+                      : 'hover:bg-[var(--emtrc-sand)]/60 hover:text-[var(--emtrc-ink)]'
+                  }`;
+                }}
+              >
+                {({ isActive }) => {
+                  const active = isActive || Boolean(item.matchPrefix);
+                  return (
+                    <>
+                      <span>{item.label}</span>
+                      {active && (
+                        <motion.span
+                          layoutId="header-active-indicator"
+                          transition={{ type: 'spring', stiffness: 420, damping: 32 }}
+                          className="absolute right-3 bottom-0.5 left-3 h-[2px] rounded-full bg-[var(--emtrc-accent)]"
+                        />
+                      )}
+                    </>
+                  );
+                }}
+              </MagneticLink>
+            ))}
 
-            <NavLink
-              to="/work"
-              onMouseEnter={() => setOpenMega(null)}
-              className={({ isActive }) =>
-                `whitespace-nowrap shrink-0 py-1 transition-colors ${
-                  isActive
-                    ? 'text-[var(--emtrc-ink)] font-semibold underline underline-offset-8 decoration-2 decoration-[var(--emtrc-accent)]'
-                    : 'hover:text-[var(--emtrc-ink)]'
-                }`
-              }
-            >
-              {t.nav.work}
-            </NavLink>
-
-            <NavLink
-              to="/pricing"
-              onMouseEnter={() => setOpenMega(null)}
-              className={({ isActive }) =>
-                `whitespace-nowrap shrink-0 py-1 transition-colors ${
-                  isActive
-                    ? 'text-[var(--emtrc-ink)] font-semibold underline underline-offset-8 decoration-2 decoration-[var(--emtrc-accent)]'
-                    : 'hover:text-[var(--emtrc-ink)]'
-                }`
-              }
-            >
-              {t.nav.pricing}
-            </NavLink>
-
-            <NavLink
-              to="/blog"
-              onMouseEnter={() => setOpenMega(null)}
-              className={`whitespace-nowrap shrink-0 py-1 transition-colors ${
-                isBlogActive
-                  ? 'text-[var(--emtrc-ink)] font-semibold underline underline-offset-8 decoration-2 decoration-[var(--emtrc-accent)]'
-                  : 'hover:text-[var(--emtrc-ink)]'
-              }`}
-            >
-              {t.nav.blog}
-            </NavLink>
-
-            <button
-              type="button"
-              data-testid="mega-trigger-resources"
-              aria-expanded={openMega === 'resources'}
-              onMouseEnter={() => handleMegaEnter('resources')}
-              onClick={() => handleMegaToggle('resources')}
-              className={`inline-flex items-center gap-1 rounded-md px-2 py-1.5 whitespace-nowrap shrink-0 transition-colors ${
-                openMega === 'resources' ||
-                pathname === '/resources' ||
-                pathname === '/how-it-works' ||
-                pathname === '/training' ||
-                pathname === '/faq' ||
-                pathname.startsWith('/case-studies')
-                  ? 'bg-[var(--emtrc-sand)] text-[var(--emtrc-ink)] font-semibold'
-                  : 'hover:text-[var(--emtrc-ink)]'
-              }`}
-            >
-              <span>{t.nav.resources}</span>
-              <ChevronDown
-                className={`h-3.5 w-3.5 transition-transform duration-150 ${
-                  openMega === 'resources' ? 'rotate-180' : ''
+            <MagneticLink strength={0.18} maxOffset={6}>
+              <button
+                type="button"
+                data-testid="mega-trigger-resources"
+                aria-expanded={openMega === 'resources'}
+                onMouseEnter={() => handleMegaEnter('resources')}
+                onClick={() => handleMegaToggle('resources')}
+                className={`inline-flex items-center gap-1 rounded-lg px-3 py-2 whitespace-nowrap shrink-0 transition-colors ${
+                  openMega === 'resources' ||
+                  pathname === '/resources' ||
+                  pathname === '/how-it-works' ||
+                  pathname === '/training' ||
+                  pathname === '/faq' ||
+                  pathname.startsWith('/case-studies')
+                    ? 'bg-[var(--emtrc-sand)] text-[var(--emtrc-ink)] font-semibold'
+                    : 'hover:bg-[var(--emtrc-sand)]/60 hover:text-[var(--emtrc-ink)]'
                 }`}
-                aria-hidden="true"
-              />
-            </button>
+              >
+                <span>{t.nav.resources}</span>
+                <ChevronDown
+                  className={`h-3.5 w-3.5 transition-transform duration-200 ${
+                    openMega === 'resources' ? 'rotate-180 text-[var(--emtrc-accent)]' : ''
+                  }`}
+                  aria-hidden="true"
+                />
+              </button>
+            </MagneticLink>
           </nav>
 
-          {/* Zone 3: Client Portal + Theme switch + Primary CTA + Mobile menu trigger */}
-          <div className="flex items-center gap-2.5 shrink-0">
-            <Link
+          {/* Zone 3: Client Portal + Tactile Theme Toggle + Primary CTA + Mobile trigger */}
+          <div className="flex items-center gap-2 shrink-0">
+            <MagneticLink
               to="/portal"
+              strength={0.18}
+              maxOffset={5}
               data-testid="header-portal-link"
-              className="hidden md:inline-flex items-center gap-1.5 rounded-lg px-3 py-2 text-sm font-semibold text-[var(--emtrc-ink)] whitespace-nowrap shrink-0 transition-colors hover:bg-[var(--emtrc-sand)]"
+              wrapperClassName="hidden md:inline-flex"
+              className="inline-flex items-center gap-1.5 rounded-lg px-2.5 py-2 text-xs font-semibold text-[var(--emtrc-muted)] whitespace-nowrap shrink-0 transition-colors hover:bg-[var(--emtrc-sand)] hover:text-[var(--emtrc-ink)]"
             >
-              <Lock className="h-3.5 w-3.5 text-[var(--emtrc-muted)]" aria-hidden="true" />
-              <span>Client Portal</span>
-            </Link>
+              <Lock className="h-3.5 w-3.5" aria-hidden="true" />
+              <span>{t.nav.clientPortal}</span>
+            </MagneticLink>
 
             <button
               type="button"
+              data-testid="theme-toggle-btn"
               onClick={toggleTheme}
-              aria-label={dark ? 'Switch to light mode' : 'Switch to dark mode'}
-              className="inline-flex h-10 w-10 items-center justify-center rounded-lg border border-[var(--emtrc-border)] bg-[var(--emtrc-surface)] text-[var(--emtrc-ink)] transition-colors hover:border-[var(--emtrc-ink)]"
+              aria-label={dark ? t.theme.switchToLight : t.theme.switchToDark}
+              className="inline-flex h-9 items-center gap-1.5 rounded-lg border border-[var(--emtrc-border)] bg-[var(--emtrc-surface)] px-2.5 font-mono-data text-[11px] font-semibold text-[var(--emtrc-ink)] transition-colors hover:border-[var(--emtrc-accent)]"
             >
-              {dark ? <Sun className="h-4 w-4" aria-hidden="true" /> : <Moon className="h-4 w-4" aria-hidden="true" />}
+              {dark ? (
+                <>
+                  <Sun className="h-3.5 w-3.5 text-[#FF8C73]" aria-hidden="true" />
+                  <span className="hidden xl:inline">{t.theme.light}</span>
+                </>
+              ) : (
+                <>
+                  <Moon className="h-3.5 w-3.5 text-[var(--emtrc-accent)]" aria-hidden="true" />
+                  <span className="hidden xl:inline">{t.theme.dark}</span>
+                </>
+              )}
             </button>
 
-            <Link
+            <MagneticLink
               to="/free-demo"
-              className="group hidden sm:inline-flex items-center gap-2 rounded-lg bg-[var(--emtrc-accent)] px-4 py-2.5 text-sm font-semibold text-white whitespace-nowrap shrink-0 transition-colors hover:bg-[var(--emtrc-accent-hover)]"
+              strength={0.26}
+              maxOffset={9}
+              wrapperClassName="hidden sm:inline-flex"
+              className="group inline-flex items-center gap-2 rounded-lg bg-[var(--emtrc-accent)] px-4 py-2 text-sm font-semibold text-white whitespace-nowrap shrink-0 shadow-[0_6px_20px_-6px_rgba(226,59,45,0.55)] transition-colors hover:bg-[var(--emtrc-accent-hover)]"
             >
               <span>{t.nav.freeDemoCta}</span>
               <ArrowRight
                 className="h-4 w-4 transition-transform duration-150 group-hover:translate-x-0.5"
                 aria-hidden="true"
               />
-            </Link>
+            </MagneticLink>
 
             <button
               type="button"
@@ -435,82 +452,125 @@ export function EmtrcLayout({ children, hideNewsletter = false }: EmtrcLayoutPro
           </div>
         </div>
 
-        {/* Desktop Mega Menu Panels (Klyara-grade structured dropdown linking to all 8 individual service pages) */}
+        {/* Desktop Mega Menu Panels with Live Interactive Photographic Preview */}
         <AnimatePresence>
           {openMega && (
             <motion.div
               key={openMega}
               data-testid={`mega-panel-${openMega}`}
-              initial={prefersReduced ? false : { opacity: 0, y: -6 }}
+              initial={prefersReduced ? false : { opacity: 0, y: -8 }}
               animate={{ opacity: 1, y: 0 }}
-              exit={prefersReduced ? undefined : { opacity: 0, y: -6 }}
-              transition={{ duration: 0.18, ease: [0.22, 1, 0.36, 1] }}
+              exit={prefersReduced ? undefined : { opacity: 0, y: -8 }}
+              transition={{ duration: 0.2, ease: EASE }}
               onMouseEnter={() => handleMegaEnter(openMega)}
               onMouseLeave={handleMegaLeave}
-              className="hidden lg:block absolute inset-x-0 top-full border-b border-[var(--emtrc-border)] bg-[var(--emtrc-canvas)] shadow-xl"
+              className="hidden lg:block absolute inset-x-0 top-full border-b border-[var(--emtrc-border)] bg-[var(--emtrc-surface)]/98 backdrop-blur-2xl shadow-2xl"
             >
-              <div className="mx-auto max-w-[1200px] px-8 pt-7 pb-6">
+              <div className="mx-auto max-w-[1200px] px-8 pt-6 pb-6">
                 {openMega === 'services' ? (
                   <>
-                    <div className="grid grid-cols-12 gap-8">
+                    <div className="grid grid-cols-12 gap-7">
                       {SITE.megaMenu.services.map((col, idx) => (
                         <div
                           key={col.heading}
                           className={`col-span-3 ${
-                            idx > 0 ? 'border-l border-[var(--emtrc-border)] pl-7' : ''
+                            idx > 0 ? 'border-l border-[var(--emtrc-border)] pl-6' : ''
                           }`}
                         >
-                          <p className="text-xs font-bold tracking-wide text-[var(--emtrc-brass)]">
+                          <p className="font-mono-data text-[10px] font-semibold uppercase tracking-wider text-[var(--emtrc-accent)]">
                             {serviceHeadings[idx] ?? col.heading}
                           </p>
-                          <ul className="mt-4 space-y-3.5">
-                            {col.items.map((item) => (
-                              <li key={item.label}>
-                                <Link
-                                  to={item.to}
-                                  onClick={() => setOpenMega(null)}
-                                  className="group block rounded-lg p-1.5 -mx-1.5 transition-colors hover:bg-[var(--emtrc-sand)]"
-                                >
-                                  <p className="text-sm font-semibold text-[var(--emtrc-ink)] group-hover:text-[var(--emtrc-accent)]">
-                                    {item.label}
-                                  </p>
-                                  <p className="mt-0.5 text-xs leading-snug text-[var(--emtrc-muted)]">
-                                    {item.description}
-                                  </p>
-                                </Link>
-                              </li>
-                            ))}
+                          <ul className="mt-3.5 space-y-2">
+                            {col.items.map((item) => {
+                              const slug = item.to.replace('/services/', '');
+                              const isPreviewed = hoveredServiceSlug === slug;
+                              return (
+                                <li key={item.label}>
+                                  <Link
+                                    to={item.to}
+                                    onMouseEnter={() => {
+                                      if (SERVICE_DETAILS.some((s) => s.slug === slug)) {
+                                        setHoveredServiceSlug(slug);
+                                      }
+                                    }}
+                                    onClick={() => setOpenMega(null)}
+                                    className={`group block rounded-xl p-2.5 -mx-2.5 transition-colors ${
+                                      isPreviewed
+                                        ? 'bg-[var(--emtrc-sand)]'
+                                        : 'hover:bg-[var(--emtrc-sand)]/70'
+                                    }`}
+                                  >
+                                    <div className="flex items-center justify-between gap-2">
+                                      <p className="text-sm font-semibold text-[var(--emtrc-ink)] group-hover:text-[var(--emtrc-accent)]">
+                                        {item.label}
+                                      </p>
+                                      <ArrowUpRight
+                                        className="h-3.5 w-3.5 text-[var(--emtrc-muted)] opacity-0 transition-opacity group-hover:opacity-100 group-hover:text-[var(--emtrc-accent)]"
+                                        aria-hidden="true"
+                                      />
+                                    </div>
+                                    <p className="mt-0.5 text-xs leading-snug text-[var(--emtrc-muted)]">
+                                      {item.description}
+                                    </p>
+                                  </Link>
+                                </li>
+                              );
+                            })}
                           </ul>
                         </div>
                       ))}
 
-                      {/* Column 4: Dark Spotlight Cards */}
-                      <div className="col-span-3 border-l border-[var(--emtrc-border)] pl-7 space-y-3">
-                        <p className="text-xs font-bold tracking-wide text-[var(--emtrc-brass)]">
-                          {t.megaHeadings.startOnUs}
+                      {/* Column 4: Dynamic Live Photographic Service Preview */}
+                      <div className="col-span-3 border-l border-[var(--emtrc-border)] pl-6">
+                        <p className="font-mono-data text-[10px] font-semibold uppercase tracking-wider text-[var(--emtrc-muted)]">
+                          {t.megaHeadings.livePreview}
                         </p>
-                        {SITE.megaMenu.servicesSpotlights.map((spot) => (
-                          <Link
-                            key={spot.title}
-                            to={spot.to}
-                            onClick={() => setOpenMega(null)}
-                            className="group block rounded-xl border border-[var(--emtrc-navy-border)] bg-[var(--emtrc-navy)] p-4 text-[#F5F3EE] transition-transform duration-150 hover:-translate-y-0.5"
+                        <AnimatePresence mode="wait">
+                          <motion.div
+                            key={activeServicePreview.slug}
+                            initial={prefersReduced ? false : { opacity: 0, scale: 0.98 }}
+                            animate={{ opacity: 1, scale: 1 }}
+                            exit={prefersReduced ? undefined : { opacity: 0, scale: 0.98 }}
+                            transition={{ duration: 0.18, ease: EASE }}
+                            className="mt-3 overflow-hidden rounded-xl border border-[var(--emtrc-navy-border)] bg-[var(--emtrc-navy)] text-white"
                           >
-                            <p className="font-editorial text-sm font-bold text-white">{spot.title}</p>
-                            <p className="mt-1 text-xs leading-relaxed text-[#BAC5DC]">
-                              {spot.description}
-                            </p>
-                            <p className="mt-2.5 inline-flex items-center gap-1 text-xs font-semibold text-[var(--emtrc-brass-light)]">
-                              <span>{spot.cta}</span>
-                              <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5" aria-hidden="true" />
-                            </p>
-                          </Link>
-                        ))}
+                            <div className="relative h-36 w-full overflow-hidden">
+                              <SafeImage
+                                src={activeServicePreview.heroImage}
+                                alt={activeServicePreview.heroAlt}
+                                width={640}
+                                height={420}
+                                priority
+                                className="h-full w-full object-cover"
+                              />
+                              <div className="absolute inset-0 bg-gradient-to-t from-[#08090C] via-[#08090C]/35 to-transparent" />
+                              <span className="absolute bottom-2.5 left-3 font-mono-data text-[11px] font-semibold text-[#FF8C73]">
+                                {activeServicePreview.priceTag}
+                              </span>
+                            </div>
+                            <div className="p-4">
+                              <p className="font-editorial text-base font-bold text-white">
+                                {activeServicePreview.shortTitle}
+                              </p>
+                              <p className="mt-1 line-clamp-2 text-xs leading-relaxed text-[#B4BCCB]">
+                                {activeServicePreview.subheadline}
+                              </p>
+                              <Link
+                                to={`/services/${activeServicePreview.slug}`}
+                                onClick={() => setOpenMega(null)}
+                                className="mt-3 inline-flex items-center gap-1.5 font-mono-data text-[11px] font-semibold text-[#FF8C73] hover:text-white"
+                              >
+                                <span>{t.megaHeadings.exploreService}</span>
+                                <ArrowRight className="h-3.5 w-3.5" aria-hidden="true" />
+                              </Link>
+                            </div>
+                          </motion.div>
+                        </AnimatePresence>
                       </div>
                     </div>
 
                     {/* Mega Menu Bottom Utility Strip */}
-                    <div className="mt-6 flex items-center justify-between border-t border-[var(--emtrc-border)] pt-4 text-xs font-semibold">
+                    <div className="mt-5 flex items-center justify-between border-t border-[var(--emtrc-border)] pt-4 text-xs font-semibold">
                       <div className="flex items-center gap-6">
                         <Link
                           to="/services"
@@ -536,7 +596,7 @@ export function EmtrcLayout({ children, hideNewsletter = false }: EmtrcLayoutPro
                         <Link
                           to="/work"
                           onClick={() => setOpenMega(null)}
-                          className="text-[var(--emtrc-brass)] hover:underline"
+                          className="text-[var(--emtrc-accent)] hover:underline"
                         >
                           {t.nav.allDemos}
                         </Link>
@@ -552,24 +612,24 @@ export function EmtrcLayout({ children, hideNewsletter = false }: EmtrcLayoutPro
                     </div>
                   </>
                 ) : (
-                  <div className="grid grid-cols-12 gap-8">
+                  <div className="grid grid-cols-12 gap-7">
                     {SITE.megaMenu.resources.map((col, idx) => (
                       <div
                         key={col.heading}
                         className={`col-span-4 ${
-                          idx > 0 ? 'border-l border-[var(--emtrc-border)] pl-7' : ''
+                          idx > 0 ? 'border-l border-[var(--emtrc-border)] pl-6' : ''
                         }`}
                       >
-                        <p className="text-xs font-bold tracking-wide text-[var(--emtrc-brass)]">
+                        <p className="font-mono-data text-[10px] font-semibold uppercase tracking-wider text-[var(--emtrc-accent)]">
                           {resourceHeadings[idx] ?? col.heading}
                         </p>
-                        <ul className="mt-4 space-y-3.5">
+                        <ul className="mt-3.5 space-y-2">
                           {col.items.map((item) => (
                             <li key={item.label}>
                               <Link
                                 to={item.to}
                                 onClick={() => setOpenMega(null)}
-                                className="group block rounded-lg p-1.5 -mx-1.5 transition-colors hover:bg-[var(--emtrc-sand)]"
+                                className="group block rounded-xl p-2.5 -mx-2.5 transition-colors hover:bg-[var(--emtrc-sand)]"
                               >
                                 <p className="text-sm font-semibold text-[var(--emtrc-ink)] group-hover:text-[var(--emtrc-accent)]">
                                   {item.label}
@@ -584,25 +644,38 @@ export function EmtrcLayout({ children, hideNewsletter = false }: EmtrcLayoutPro
                       </div>
                     ))}
 
-                    <div className="col-span-4 border-l border-[var(--emtrc-border)] pl-7 space-y-3">
+                    <div className="col-span-4 border-l border-[var(--emtrc-border)] pl-6">
                       <Link
                         to="/case-studies"
                         onClick={() => setOpenMega(null)}
-                        className="group block rounded-xl border border-[var(--emtrc-navy-border)] bg-[var(--emtrc-navy)] p-5 text-[#F5F6F8]"
+                        className="group block overflow-hidden rounded-xl border border-[var(--emtrc-navy-border)] bg-[var(--emtrc-navy)] text-white"
                       >
-                        <p className="font-mono-data text-[11px] font-semibold text-[var(--emtrc-brass-light)]">
-                          LONDON TRANSFORMATIONS
-                        </p>
-                        <p className="mt-1.5 font-editorial text-lg font-bold text-white">
-                          Before &amp; after London case studies.
-                        </p>
-                        <p className="mt-1.5 text-xs leading-relaxed text-[#B4BCCB]">
-                          Drag the interactive comparison and inspect live 5-page builds across Hackney, Greenwich, SW7 and SE15.
-                        </p>
-                        <p className="mt-3 inline-flex items-center gap-1.5 text-xs font-semibold text-[var(--emtrc-brass-light)]">
-                          <span>View case studies</span>
-                          <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5" aria-hidden="true" />
-                        </p>
+                        <div className="relative h-32 w-full overflow-hidden">
+                          <SafeImage
+                            src="/src/assets/images/emtrc_london_barber_craft_1795422463841.jpg"
+                            alt="East London independent barber craft studio"
+                            width={640}
+                            height={380}
+                            priority
+                            className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                          />
+                          <div className="absolute inset-0 bg-gradient-to-t from-[#08090C] via-[#08090C]/40 to-transparent" />
+                          <span className="absolute bottom-2 left-3 font-mono-data text-[10px] font-semibold uppercase tracking-wider text-[#FF8C73]">
+                            {t.nav.caseStudies}
+                          </span>
+                        </div>
+                        <div className="p-4">
+                          <p className="font-editorial text-lg font-bold text-white">
+                            {t.homeSections.beforeAfterHeadline}
+                          </p>
+                          <p className="mt-1.5 text-xs leading-relaxed text-[#B4BCCB]">
+                            Hackney · Greenwich · South Kensington · Battersea · Peckham
+                          </p>
+                          <p className="mt-3 inline-flex items-center gap-1.5 font-mono-data text-[11px] font-semibold text-[#FF8C73]">
+                            <span>{t.homeSections.caseStudiesAllLink}</span>
+                            <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5" aria-hidden="true" />
+                          </p>
+                        </div>
                       </Link>
                     </div>
                   </div>
@@ -619,20 +692,19 @@ export function EmtrcLayout({ children, hideNewsletter = false }: EmtrcLayoutPro
             aria-label="Mobile navigation"
             className="lg:hidden border-t border-[var(--emtrc-border)] bg-[var(--emtrc-surface)] px-5 py-5 max-h-[82vh] overflow-y-auto"
           >
-            {/* Mobile Language Selector Strip */}
-            <div className="mb-4 flex items-center justify-between gap-2 rounded-xl border border-[var(--emtrc-border)] bg-[var(--emtrc-canvas)] p-2.5">
+            <div className="mb-4 rounded-xl border border-[var(--emtrc-border)] bg-[var(--emtrc-canvas)] p-3">
               <div className="flex items-center gap-1.5 text-xs font-semibold text-[var(--emtrc-muted)]">
-                <Globe className="h-3.5 w-3.5 text-[var(--emtrc-brass)]" aria-hidden="true" />
-                <span>Language</span>
+                <Globe className="h-3.5 w-3.5 text-[var(--emtrc-accent)]" aria-hidden="true" />
+                <span>{t.nav.languageLabel} (10)</span>
               </div>
-              <div className="flex items-center gap-1" role="group" aria-label="Language selector">
+              <div className="mt-2.5 grid grid-cols-5 gap-1.5" role="group" aria-label="Language selector">
                 {languages.map((lang) => (
                   <button
                     key={lang.code}
                     type="button"
                     data-testid={`mobile-lang-${lang.code}`}
                     onClick={() => setLocale(lang.code)}
-                    className={`rounded-md px-2 py-1 text-xs font-bold transition-colors ${
+                    className={`rounded-md px-1.5 py-1.5 text-center font-mono-data text-xs font-bold transition-colors ${
                       locale === lang.code
                         ? 'bg-[var(--emtrc-accent)] text-white'
                         : 'text-[var(--emtrc-muted)] hover:bg-[var(--emtrc-sand)] hover:text-[var(--emtrc-ink)]'
@@ -677,7 +749,7 @@ export function EmtrcLayout({ children, hideNewsletter = false }: EmtrcLayoutPro
               )}
 
               <Link to="/app" className="block rounded-lg px-3 py-2.5 text-base font-semibold text-[var(--emtrc-ink)]">
-                The emtrc App
+                {t.nav.theApp}
               </Link>
               <Link to="/work" className="block rounded-lg px-3 py-2.5 text-base font-semibold text-[var(--emtrc-ink)]">
                 {t.nav.work} (15)
@@ -706,10 +778,10 @@ export function EmtrcLayout({ children, hideNewsletter = false }: EmtrcLayoutPro
               {mobileSection === 'resources' && (
                 <div className="space-y-1 pl-3 pb-2">
                   <Link to="/case-studies" className="block rounded-md px-3 py-1.5 text-sm font-semibold text-[var(--emtrc-accent)]">
-                    London Case Studies
+                    {t.nav.caseStudies}
                   </Link>
                   <Link to="/training" className="block rounded-md px-3 py-1.5 text-sm text-[var(--emtrc-muted)] hover:text-[var(--emtrc-ink)]">
-                    Owner Training Centre
+                    {t.nav.training}
                   </Link>
                   <Link to="/resources#guides" className="block rounded-md px-3 py-1.5 text-sm text-[var(--emtrc-muted)] hover:text-[var(--emtrc-ink)]">
                     {t.nav.pdfLibrary}
@@ -718,7 +790,7 @@ export function EmtrcLayout({ children, hideNewsletter = false }: EmtrcLayoutPro
                     {t.nav.howItWorks}
                   </Link>
                   <Link to="/faq" className="block rounded-md px-3 py-1.5 text-sm text-[var(--emtrc-muted)] hover:text-[var(--emtrc-ink)]">
-                    {t.nav.faq} (24 answers)
+                    {t.nav.faq}
                   </Link>
                 </div>
               )}
@@ -744,7 +816,7 @@ export function EmtrcLayout({ children, hideNewsletter = false }: EmtrcLayoutPro
                 className="inline-flex w-full items-center justify-center gap-2 rounded-lg border border-[var(--emtrc-border)] bg-[var(--emtrc-canvas)] px-5 py-3 text-sm font-semibold text-[var(--emtrc-ink)]"
               >
                 <Lock className="h-4 w-4" aria-hidden="true" />
-                <span>Client Portal</span>
+                <span>{t.nav.clientPortal}</span>
               </Link>
               <a
                 href={SITE.brand.calendlyUrl}
@@ -766,18 +838,18 @@ export function EmtrcLayout({ children, hideNewsletter = false }: EmtrcLayoutPro
 
       {!hideNewsletter && <NewsletterBand />}
 
-      {/* Deep Midnight Editorial Footer */}
+      {/* Deep Obsidian Editorial Footer (Zero giant watermark) */}
       <footer className="overflow-hidden border-t border-[var(--emtrc-navy-border)] bg-[var(--emtrc-navy)] text-[#D6DEF0]">
-        <div className="mx-auto max-w-[1200px] px-5 pt-14 pb-8 sm:px-8">
+        <div className="mx-auto max-w-[1200px] px-5 pt-12 pb-8 sm:px-8">
           <div className="grid grid-cols-1 gap-10 md:grid-cols-12">
             <div className="md:col-span-4">
               <Link to="/" aria-label="emtrc home">
-                <EmtrcLogo inverted />
+                <EmtrcLogo variant="light" showSublabel />
               </Link>
               <p className="mt-4 max-w-sm text-sm leading-relaxed text-[#A9B5CE]">
-                Websites, domains, business email and AI front-office tools for London local businesses. Built, hosted and looked after for one monthly price.
+                {t.footer.tagline}
               </p>
-              <div className="mt-6 space-y-2.5 text-sm">
+              <div className="mt-5 space-y-2 text-sm">
                 <p>
                   <a
                     href={`mailto:${SITE.brand.email}`}
@@ -796,15 +868,35 @@ export function EmtrcLayout({ children, hideNewsletter = false }: EmtrcLayoutPro
                     {t.hero.footnoteLink} →
                   </a>
                 </p>
-                <p className="text-xs text-[#8E9BB5]">{SITE.brand.serviceArea}</p>
+                <p className="font-mono-data text-xs text-[#8E9BB5]">{SITE.brand.serviceArea}</p>
+              </div>
+
+              {/* Crisp Studio Social Links */}
+              <div
+                data-testid="footer-social-links"
+                className="mt-5 flex flex-wrap items-center gap-2 border-t border-white/10 pt-4"
+              >
+                {SITE.brand.socials.map((soc) => (
+                  <a
+                    key={soc.id}
+                    href={soc.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={`emtrc on ${soc.label}`}
+                    className="inline-flex items-center gap-1 rounded-lg border border-white/12 bg-white/[0.04] px-2.5 py-1.5 font-mono-data text-[11px] font-medium text-[#CBD5E1] transition-colors hover:border-[#FF8C73] hover:text-white"
+                  >
+                    <span>{soc.label}</span>
+                    <ArrowUpRight className="h-3 w-3 opacity-70" aria-hidden="true" />
+                  </a>
+                ))}
               </div>
             </div>
 
             <div className="md:col-span-3">
-              <h2 className="font-body text-xs font-bold tracking-wide text-[var(--emtrc-brass-light)]">
+              <h2 className="font-mono-data text-[11px] font-semibold uppercase tracking-wider text-[var(--emtrc-brass-light)]">
                 {t.footer.services}
               </h2>
-              <ul className="mt-4 space-y-2.5 text-sm text-[#BAC5DC]">
+              <ul className="mt-3.5 space-y-2 text-sm text-[#BAC5DC]">
                 {SERVICE_DETAILS.map((srv) => (
                   <li key={srv.slug}>
                     <Link to={`/services/${srv.slug}`} className="hover:text-white transition-colors">
@@ -816,43 +908,43 @@ export function EmtrcLayout({ children, hideNewsletter = false }: EmtrcLayoutPro
             </div>
 
             <div className="md:col-span-3">
-              <h2 className="font-body text-xs font-bold tracking-wide text-[var(--emtrc-brass-light)]">
+              <h2 className="font-mono-data text-[11px] font-semibold uppercase tracking-wider text-[var(--emtrc-brass-light)]">
                 {t.footer.guidesDemos}
               </h2>
-              <ul className="mt-4 space-y-2.5 text-sm text-[#BAC5DC]">
+              <ul className="mt-3.5 space-y-2 text-sm text-[#BAC5DC]">
                 <li><Link to="/free-demo" className="hover:text-white transition-colors">{t.nav.freeDemoCta}</Link></li>
-                <li><Link to="/case-studies" className="hover:text-white transition-colors">London Case Studies</Link></li>
-                <li><Link to="/training" className="hover:text-white transition-colors">Owner Training Centre</Link></li>
-                <li><Link to="/work" className="hover:text-white transition-colors">Live London demos (15)</Link></li>
-                <li><Link to="/blog" className="hover:text-white transition-colors">The emtrc Blog &amp; Journal</Link></li>
-                <li><Link to="/resources#guides" className="hover:text-white transition-colors">Free PDF Playbooks (3)</Link></li>
-                <li><Link to="/faq" className="hover:text-white transition-colors">Straight answers (FAQ)</Link></li>
+                <li><Link to="/case-studies" className="hover:text-white transition-colors">{t.nav.caseStudies}</Link></li>
+                <li><Link to="/training" className="hover:text-white transition-colors">{t.nav.training}</Link></li>
+                <li><Link to="/work" className="hover:text-white transition-colors">{t.nav.allDemos}</Link></li>
+                <li><Link to="/blog" className="hover:text-white transition-colors">{t.nav.blog}</Link></li>
+                <li><Link to="/resources#guides" className="hover:text-white transition-colors">{t.nav.pdfLibrary}</Link></li>
+                <li><Link to="/faq" className="hover:text-white transition-colors">{t.nav.faq}</Link></li>
               </ul>
             </div>
 
             <div className="md:col-span-2">
-              <h2 className="font-body text-xs font-bold tracking-wide text-[var(--emtrc-brass-light)]">
+              <h2 className="font-mono-data text-[11px] font-semibold uppercase tracking-wider text-[var(--emtrc-brass-light)]">
                 {t.footer.company}
               </h2>
-              <ul className="mt-4 space-y-2.5 text-sm text-[#BAC5DC]">
-                <li><Link to="/app" className="hover:text-white transition-colors">The emtrc App</Link></li>
-                <li><Link to="/portal" className="hover:text-white transition-colors">Client Portal</Link></li>
+              <ul className="mt-3.5 space-y-2 text-sm text-[#BAC5DC]">
+                <li><Link to="/app" className="hover:text-white transition-colors">{t.nav.theApp}</Link></li>
+                <li><Link to="/portal" className="hover:text-white transition-colors">{t.nav.clientPortal}</Link></li>
                 <li><Link to="/pricing" className="hover:text-white transition-colors">{t.nav.pricing}</Link></li>
                 <li><Link to="/ai-tools" className="hover:text-white transition-colors">{t.nav.aiTools}</Link></li>
                 <li><Link to="/how-it-works" className="hover:text-white transition-colors">{t.nav.howItWorks}</Link></li>
                 <li><Link to="/about" className="hover:text-white transition-colors">{t.nav.about}</Link></li>
                 <li><Link to="/contact" className="hover:text-white transition-colors">{t.nav.contact}</Link></li>
-                <li><Link to="/privacy" className="hover:text-white transition-colors">Privacy policy</Link></li>
-                <li><Link to="/terms" className="hover:text-white transition-colors">Terms</Link></li>
+                <li><Link to="/privacy" className="hover:text-white transition-colors">{t.footer.privacy}</Link></li>
+                <li><Link to="/terms" className="hover:text-white transition-colors">{t.footer.terms}</Link></li>
               </ul>
             </div>
           </div>
 
-          <div className="mt-12 flex flex-col gap-3 border-t border-[var(--emtrc-navy-border)] pt-6 text-xs text-[#8E9BB5] sm:flex-row sm:items-center sm:justify-between">
+          <div className="mt-10 flex flex-col gap-3 border-t border-[var(--emtrc-navy-border)] pt-5 text-xs text-[#8E9BB5] sm:flex-row sm:items-center sm:justify-between">
             <p>
               © {new Date().getFullYear()} {SITE.brand.legalLine}
             </p>
-            <p>
+            <p className="font-mono-data">
               {SITE.flags.showExVat ? 'All prices ex VAT · ' : ''}{t.footer.noCookies}
             </p>
           </div>

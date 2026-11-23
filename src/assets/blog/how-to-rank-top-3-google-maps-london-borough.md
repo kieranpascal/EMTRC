@@ -48,6 +48,10 @@ Not every field inside Google Business Profile carries equal weight. Focus your 
 | **4** | **Structured Services & Prices** | Blank Services tab | Every core service listed with plain-English descriptions and realistic £ prices |
 | **5** | **Fresh Real Photography** | 2 dark photos uploaded at launch years ago | 2–4 crisp natural-light interior, team & finished-work photos uploaded monthly |
 
+:::chart maps-ranking-weights
+
+![Master London barber crafting a crisp skin fade inside an East London barbershop](/src/assets/images/barber_fade_editorial_1795426201374.jpg "Real documentary craft shots uploaded monthly consistently outperform stock photos in Google Maps Local Pack engagement.")
+
 ## Pillar 1: Nail your categories, services and NAP consistency
 
 Google's local algorithm cross-checks your Google Business Profile against your website, Apple Business Connect, Bing Places, Yell and UK trade registers (`Gas Safe`, `NICEIC`, `Checkatrade`).
@@ -94,6 +98,8 @@ Google's vision models inspect uploaded business photos to verify physical legit
 - Shoot **landscape (4:3)** for hero/interior views and square shots of finished craft (fresh cuts, spotless kitchens, tidy copper pipework, morning pastries).
 - Never upload blurry screenshots, heavy text-overlaid Canva flyers or stock images downloaded from the web — Google frequently rejects or suppresses stock imagery.
 - Aim to add **2 to 4 genuine new photos every month** to both your Google Business Profile and your website gallery.
+
+![London shopper comparing local Google Maps listings on a smartphone along a Victorian high street](/src/assets/images/emtrc_mobile_maps_search_1795424180037.jpg "Over 65% of local London phone calls go straight to the top three pins before a searcher ever taps 'More places'.")
 
 ## A realistic 90-day London ranking timeline
 

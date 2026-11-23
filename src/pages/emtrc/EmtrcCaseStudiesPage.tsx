@@ -4,9 +4,8 @@ import { motion } from 'framer-motion';
 import { ArrowRight, ExternalLink, MapPin } from 'lucide-react';
 import { EmtrcHead } from '../../components/emtrc/EmtrcHead';
 import { EmtrcLayout } from '../../components/emtrc/EmtrcLayout';
+import { PageHeader } from '../../components/emtrc/PageHeader';
 import {
-  AnimatedCounter,
-  EditorialHeading,
   KickerRule,
   ParallaxFrame,
   Reveal,
@@ -14,6 +13,8 @@ import {
   StaggerItem,
 } from '../../components/emtrc/Reveal';
 import { BeforeAfterSlider } from '../../components/emtrc/BeforeAfterSlider';
+import { OrnamentalDivider } from '../../components/emtrc/OrnamentalDivider';
+import { MapsRankingOrbitIllustration } from '../../components/emtrc/AnimatedIllustrations';
 import { SafeImage } from '../../components/SafeImage';
 import { CASE_STUDIES } from '../../content/caseStudies';
 import { SITE } from '../../content/site';
@@ -41,71 +42,29 @@ export function EmtrcCaseStudiesPage() {
         title="London Case Studies — Before & After Websites | emtrc"
         description="See how emtrc transforms London barbers, heating engineers, salons, cleaners and cafés from social-only or slow websites into sub-second local call generators."
       />
-      {/* Editorial Hero */}
-      <section className="hero-editorial-wash border-b border-[var(--emtrc-border)]">
-        <div className="mx-auto max-w-[1200px] px-5 pt-12 pb-14 sm:px-8 sm:pt-16 sm:pb-20">
-          <div className="grid grid-cols-1 items-end gap-10 lg:grid-cols-12">
-            <div className="lg:col-span-8">
-              <Reveal immediate>
-                <KickerRule>London Case Studies · Architecture &amp; Outcomes</KickerRule>
-              </Reveal>
-              <EditorialHeading
-                as="h1"
-                immediate
-                delay={0.05}
-                line1="What a 48-hour rebuild"
-                line2="actually looks like in London."
-                line2Tone="accent"
-                className="mt-5 font-editorial text-4xl font-bold leading-[1.03] tracking-tight sm:text-5xl lg:text-[3.5rem]"
-              />
-              <Reveal immediate delay={0.14}>
-                <p className="mt-6 max-w-2xl text-base leading-relaxed text-[var(--emtrc-muted)] sm:text-lg">
-                  Every case study below pairs a real London high-street bottleneck — hidden prices, missed calls on site, slow PDF menus or domain lock-in — with a live, clickable working build you can inspect on your phone right now.
-                </p>
-              </Reveal>
-            </div>
 
-            <div className="lg:col-span-4">
-              <Reveal immediate delay={0.18}>
-                <div className="grid grid-cols-2 gap-4 border-t border-[var(--emtrc-border)] pt-6 lg:border-t-0 lg:border-l lg:pt-0 lg:pl-7">
-                  <div>
-                    <p className="font-editorial text-3xl font-bold text-[var(--emtrc-ink)]">
-                      <AnimatedCounter target={0.9} decimals={1} suffix="s" />
-                    </p>
-                    <p className="mt-1 text-xs text-[var(--emtrc-muted)]">Typical mobile 4G paint</p>
-                  </div>
-                  <div>
-                    <p className="font-editorial text-3xl font-bold text-[var(--emtrc-accent)]">
-                      <AnimatedCounter target={48} suffix="h" />
-                    </p>
-                    <p className="mt-1 text-xs text-[var(--emtrc-muted)]">To first live demo link</p>
-                  </div>
-                  <div>
-                    <p className="font-editorial text-3xl font-bold text-[var(--emtrc-ink)]">
-                      <AnimatedCounter target={99} suffix="/100" />
-                    </p>
-                    <p className="mt-1 text-xs text-[var(--emtrc-muted)]">Mobile Lighthouse target</p>
-                  </div>
-                  <div>
-                    <p className="font-editorial text-3xl font-bold text-[var(--emtrc-ink)]">
-                      <AnimatedCounter target={15} />
-                    </p>
-                    <p className="mt-1 text-xs text-[var(--emtrc-muted)]">Live London demos online</p>
-                  </div>
-                </div>
-              </Reveal>
-            </div>
-          </div>
-        </div>
-      </section>
+      <PageHeader
+        kicker="London Case Studies · Architecture & Outcomes"
+        headlineLine1="What a 48-hour rebuild"
+        headlineLine2="actually looks like in London."
+        description="Every case study below pairs a real London high-street bottleneck — hidden prices, missed calls on site, slow PDF menus or domain lock-in — with a live, clickable working build you can inspect on your phone right now."
+        backdropImage="/src/assets/images/emtrc_london_barber_craft_1795422463841.jpg"
+        backdropAlt="Independent East London barber shop studio interior"
+        metrics={[
+          { value: '0.9s', label: 'Typical mobile 4G paint' },
+          { value: '48h', label: 'To first live demo link' },
+          { value: '99/100', label: 'Mobile Lighthouse target' },
+          { value: '15', label: 'Live London demos online' },
+        ]}
+      />
 
       {/* Interactive Before / After Website Comparison */}
       <section className="border-b border-[var(--emtrc-border)] bg-[var(--emtrc-surface)]">
-        <div className="mx-auto max-w-[1200px] px-5 py-16 sm:px-8 sm:py-20">
-          <div className="mb-8 flex flex-col justify-between gap-4 sm:flex-row sm:items-end">
+        <div className="mx-auto max-w-[1200px] px-5 py-11 sm:px-8 sm:py-14">
+          <div className="mb-7 flex flex-col justify-between gap-4 sm:flex-row sm:items-end">
             <Reveal>
               <KickerRule>Interactive Comparison</KickerRule>
-              <h2 className="mt-3 font-editorial text-3xl font-bold tracking-tight sm:text-4xl">
+              <h2 className="mt-2.5 font-editorial text-3xl font-bold tracking-tight sm:text-4xl">
                 Drag to compare before &amp; after.
               </h2>
             </Reveal>
@@ -153,38 +112,31 @@ export function EmtrcCaseStudiesPage() {
           </p>
         </div>
 
-        <StaggerContainer className="mt-10 grid grid-cols-1 gap-8 md:grid-cols-2">
-          {filtered.map((study, idx) => (
-            <StaggerItem
-              key={study.slug}
-              className={idx === 0 && filtered.length > 2 ? 'md:col-span-2' : ''}
-            >
-              <article
-                className={`group overflow-hidden rounded-2xl border border-[var(--emtrc-border)] bg-[var(--emtrc-surface)] transition-colors hover:border-[var(--emtrc-ink)] ${
-                  idx === 0 && filtered.length > 2 ? 'grid grid-cols-1 lg:grid-cols-12' : 'flex h-full flex-col'
-                }`}
-              >
-                <div
-                  className={`relative overflow-hidden bg-[var(--emtrc-navy)] ${
-                    idx === 0 && filtered.length > 2 ? 'lg:col-span-6 min-h-[290px]' : 'h-60'
-                  }`}
-                >
-                  <ParallaxFrame offset={18} className="h-full w-full">
+        <StaggerContainer
+          className={`mt-10 grid grid-cols-1 gap-7 ${
+            filtered.length === 1
+              ? 'max-w-2xl'
+              : filtered.length === 2
+                ? 'md:grid-cols-2'
+                : 'md:grid-cols-2 lg:grid-cols-3'
+          }`}
+        >
+          {filtered.map((study) => (
+            <StaggerItem key={study.slug}>
+              <article className="group flex h-full flex-col overflow-hidden rounded-2xl border border-[var(--emtrc-border)] bg-[var(--emtrc-surface)] transition-all duration-200 hover:-translate-y-1 hover:border-[var(--emtrc-accent)] hover:shadow-xl">
+                <div className="relative h-56 overflow-hidden bg-[var(--emtrc-navy)]">
+                  <ParallaxFrame offset={14} className="h-full w-full">
                     <SafeImage
                       src={study.image}
                       alt={study.imageAlt}
                       width={960}
                       height={640}
-                      className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"
+                      className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.04]"
                     />
                   </ParallaxFrame>
                 </div>
 
-                <div
-                  className={`flex flex-1 flex-col justify-between p-6 sm:p-8 ${
-                    idx === 0 && filtered.length > 2 ? 'lg:col-span-6' : ''
-                  }`}
-                >
+                <div className="flex flex-1 flex-col justify-between p-6">
                   <div>
                     <div className="flex flex-wrap items-center justify-between gap-2 font-mono-data text-[11px] text-[var(--emtrc-muted)]">
                       <span className="font-semibold text-[var(--emtrc-accent)]">
@@ -251,9 +203,22 @@ export function EmtrcCaseStudiesPage() {
           ))}
         </StaggerContainer>
 
+        <div className="mt-14">
+          <OrnamentalDivider
+            pattern="art-deco-chevron"
+            from="canvas"
+            to="canvas"
+            label="LONDON BOROUGH VISIBILITY RADAR"
+            accentColor="emerald"
+          />
+          <div className="mt-8">
+            <MapsRankingOrbitIllustration />
+          </div>
+        </div>
+
         {/* Representative disclosure & CTA */}
         <Reveal>
-          <div className="mt-14 rounded-2xl border border-[var(--emtrc-border)] bg-[var(--emtrc-navy)] p-8 text-white sm:p-10">
+          <div className="mt-12 rounded-2xl border border-[var(--emtrc-border)] bg-[var(--emtrc-navy)] p-8 text-white sm:p-10">
             <div className="grid grid-cols-1 items-center gap-8 lg:grid-cols-12">
               <div className="lg:col-span-8">
                 <KickerRule light>Built around your exact shop or trade</KickerRule>

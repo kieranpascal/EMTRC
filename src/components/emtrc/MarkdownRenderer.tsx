@@ -1,6 +1,9 @@
 import { Fragment, type ReactNode } from 'react';
+import { motion, useReducedMotion } from 'framer-motion';
 import { Check } from 'lucide-react';
 import type { MarkdownBlock } from '../../utils/markdown';
+import { SafeImage } from '../SafeImage';
+import { BlogDataChart } from './BlogDataChart';
 
 interface MarkdownRendererProps {
   blocks: readonly MarkdownBlock[];
@@ -41,6 +44,8 @@ function renderInline(text: string): ReactNode[] {
 }
 
 export function MarkdownRenderer({ blocks }: MarkdownRendererProps) {
+  const prefersReduced = useReducedMotion();
+
   return (
     <div data-testid="markdown-article-body" className="space-y-6">
       {blocks.map((block, idx) => {
@@ -49,7 +54,7 @@ export function MarkdownRenderer({ blocks }: MarkdownRendererProps) {
             return (
               <h2
                 key={idx}
-                className="pt-4 font-editorial text-2xl font-bold tracking-tight text-[var(--emtrc-ink)] sm:text-[1.75rem]"
+                className="pt-4 font-editorial text-2xl font-bold tracking-tight text-[var(--emtrc-ink)] sm:text-[1.85rem]"
               >
                 {renderInline(block.text)}
               </h2>
@@ -75,13 +80,44 @@ export function MarkdownRenderer({ blocks }: MarkdownRendererProps) {
               </p>
             );
 
+          case 'image':
+            return (
+              <motion.figure
+                key={idx}
+                data-testid="blog-inline-figure"
+                initial={prefersReduced ? false : { opacity: 0, scale: 0.97, y: 14 }}
+                whileInView={{ opacity: 1, scale: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.2 }}
+                transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
+                className="my-8 overflow-hidden rounded-2xl border border-[var(--emtrc-border)] bg-[var(--emtrc-surface)]"
+              >
+                <div className="overflow-hidden">
+                  <SafeImage
+                    src={block.src}
+                    alt={block.alt}
+                    width={1200}
+                    height={800}
+                    className="aspect-[16/10] w-full object-cover transition-transform duration-500 hover:scale-[1.02]"
+                  />
+                </div>
+                {block.caption && (
+                  <figcaption className="border-t border-[var(--emtrc-border)] px-4 py-3 font-mono-data text-[11px] leading-relaxed text-[var(--emtrc-muted)]">
+                    {block.caption}
+                  </figcaption>
+                )}
+              </motion.figure>
+            );
+
+          case 'chart':
+            return <BlogDataChart key={idx} chartId={block.chartId} />;
+
           case 'blockquote':
             return (
               <blockquote
                 key={idx}
                 className="my-6 rounded-xl border border-[var(--emtrc-border)] bg-[var(--emtrc-sand)] p-6 sm:p-7"
               >
-                <p className="font-editorial text-lg font-semibold leading-snug text-[var(--emtrc-ink)] sm:text-xl">
+                <p className="font-editorial-italic text-lg leading-snug text-[var(--emtrc-ink)] sm:text-xl">
                   “{renderInline(block.text)}”
                 </p>
               </blockquote>
@@ -92,7 +128,7 @@ export function MarkdownRenderer({ blocks }: MarkdownRendererProps) {
               <ul key={idx} className="space-y-3 text-base leading-relaxed text-[var(--emtrc-ink)]">
                 {block.items.map((item, itemIdx) => (
                   <li key={itemIdx} className="flex items-start gap-3">
-                    <span className="mt-1.5 inline-flex h-5 w-5 shrink-0 items-center justify-center rounded-md bg-[var(--emtrc-accent)]/12 text-[var(--emtrc-accent)]">
+                    <span className="mt-1.5 inline-flex h-5 w-5 shrink-0 items-center justify-center rounded-md bg-[var(--emtrc-accent)]/14 text-[var(--emtrc-accent)]">
                       <Check className="h-3.5 w-3.5" aria-hidden="true" />
                     </span>
                     <span className="text-[var(--emtrc-muted)]">{renderInline(item)}</span>

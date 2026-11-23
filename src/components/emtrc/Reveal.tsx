@@ -266,28 +266,7 @@ export function SpotlightCard({ children, className = '', darkSurface = false }:
   );
 }
 
-/**
- * Scroll-driven reading progress hairline pinned to top of the viewport.
- */
-export function ScrollProgressBar() {
-  const prefersReduced = useReducedMotion();
-  const { scrollYProgress } = useScroll();
-  const scaleX = useSpring(scrollYProgress, {
-    stiffness: 180,
-    damping: 30,
-    restDelta: 0.001,
-  });
-
-  if (prefersReduced) return null;
-
-  return (
-    <motion.div
-      aria-hidden="true"
-      style={{ scaleX, transformOrigin: '0% 50%' }}
-      className="fixed inset-x-0 top-0 z-50 h-[2.5px] bg-[var(--emtrc-accent)] pointer-events-none"
-    />
-  );
-}
+export { ScrollProgressBar } from './ScrollProgressBar';
 
 interface ParallaxFrameProps {
   children: ReactNode;

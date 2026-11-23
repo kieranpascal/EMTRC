@@ -1,7 +1,18 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none">
-  <rect x="2" y="2" width="60" height="60" rx="14" fill="#0A0B0E"/>
-  <path d="M16 19H44.5L39.5 25.5H16V19Z" fill="#FFFFFF"/>
-  <path d="M16 30H34.5L30 36.5H16V30Z" fill="#FFFFFF" fill-opacity="0.82"/>
-  <path d="M16 41H48V47H16V41Z" fill="#FFFFFF"/>
-  <rect x="39" y="30" width="9" height="6.5" rx="1.5" fill="#E03528"/>
+<svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 48 48" fill="none">
+  <defs>
+    <linearGradient id="fav-slate" x1="2" y1="2" x2="46" y2="46" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#191E2A" />
+      <stop offset="55%" stop-color="#0E1118" />
+      <stop offset="100%" stop-color="#07090D" />
+    </linearGradient>
+    <linearGradient id="fav-vermilion" x1="27" y1="11" x2="39" y2="21" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#F24B3B" />
+      <stop offset="100%" stop-color="#C82419" />
+    </linearGradient>
+  </defs>
+  <path d="M10 2H38L46 10V38L38 46H10L2 38V10L10 2Z" fill="url(#fav-slate)" stroke="#FFFFFF" stroke-opacity="0.18" stroke-width="1.5" />
+  <path d="M11.5 36.5V11.5H25.5V16.2H16.2V36.5H11.5Z" fill="#FFFFFF" />
+  <path d="M19.5 36.5V26.2C19.5 22.5 22.5 19.5 26.2 19.5H36.5V24.2H26.4C24.9 24.2 24.2 25.1 24.2 26.4V31.8H36.5V36.5H19.5Z" fill="#FFFFFF" />
+  <path d="M27.8 11.5H36.5V17H27.8L29.6 11.5Z" fill="url(#fav-vermilion)" />
+  <rect x="11.5" y="38.2" width="25" height="1.5" rx="0.75" fill="#E23B2D" />
 </svg>

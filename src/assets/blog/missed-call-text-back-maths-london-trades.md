@@ -51,6 +51,10 @@ You do not need speculative marketing projections to see the financial cost of u
 
 Even at half those numbers, rescuing **one single boiler call-out** or **two salon appointments** pays for the entire **emtrc Lead Catcher (£79/month)** or **Growth plan (£129/month)** with hundreds of pounds of clear profit left over.
 
+:::chart missed-call-roi
+
+![Precision copper heating pipework installed by a London heating engineer](/src/assets/images/trades_precision_heating_1795370825196.jpg "When your hands are busy soldering copper pipework or fitting a consumer unit, an 8-second SMS keeps the caller from ringing the next listing on Google Maps.")
+
 ## Why 8 seconds matters more than 8 minutes
 
 Timing is the entire psychological secret behind missed-call text-back.
@@ -78,6 +82,8 @@ Not every London business needs voice AI immediately. Here is our straight-talki
 ### Upgrade to AI Receptionist (£149/month) if:
 - You handle **urgent emergency call-outs** (leaks, lockouts, electrical trips) or high-value clinic/salon bookings where callers strongly prefer speaking to a voice immediately rather than texting.
 - You want calls answered live on the third ring — including evenings, weekends and bank holidays — in a natural British voice that captures postcode, job details and books directly into your calendar while texting you a crisp 3-line summary.
+
+![Independent London salon stylist finishing a client appointment beside natural daylight windows](/src/assets/images/salon_manicure_studio_1795426201499.jpg "Salons, clinics and multi-van trades recover 35% to 55% of missed rings when callers receive a warm, instant text with a direct booking link.")
 
 ## Three rules to make missed-call automation feel genuinely human
 

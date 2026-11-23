@@ -386,72 +386,103 @@ export function EmtrcAppPage() {
               </AnimatePresence>
             </div>
 
-            {/* Right: Interactive Titanium Phone Reflecting Selected Module */}
+            {/* Right: Sleek Tall Titanium Smartphone Reflecting Selected Module */}
             <div className="lg:col-span-5">
-              <div className="mx-auto max-w-[360px] rounded-[42px] bg-gradient-to-b from-[#3E424D] via-[#1C1F26] to-[#2C303B] p-[2.5px] shadow-[0_32px_80px_-18px_rgba(0,0,0,0.8)]">
-                <div className="overflow-hidden rounded-[40px] bg-[#0B0C10] p-5 text-white">
-                  <div className="flex items-center justify-between pb-4 font-mono-data text-[11px] text-white/75">
-                    <span>09:41</span>
-                    <span className="h-5 w-20 rounded-full bg-black ring-1 ring-white/10" aria-hidden="true" />
-                    <span>5G</span>
-                  </div>
+              <div
+                data-testid="app-simulator-phone"
+                className="relative mx-auto max-w-[306px] rounded-[44px] bg-gradient-to-b from-[#454A56] via-[#1B1E25] to-[#2F333E] p-[3px] shadow-[0_34px_85px_-16px_rgba(0,0,0,0.85)]"
+              >
+                {/* Machined Side Hardware Buttons */}
+                <span aria-hidden="true" className="pointer-events-none absolute top-[104px] -left-[3px] h-7 w-[3px] rounded-l-sm bg-[#4A505E]" />
+                <span aria-hidden="true" className="pointer-events-none absolute top-[146px] -left-[3px] h-11 w-[3px] rounded-l-sm bg-[#4A505E]" />
+                <span aria-hidden="true" className="pointer-events-none absolute top-[198px] -left-[3px] h-11 w-[3px] rounded-l-sm bg-[#4A505E]" />
+                <span aria-hidden="true" className="pointer-events-none absolute top-[156px] -right-[3px] h-16 w-[3px] rounded-r-sm bg-[#4A505E]" />
 
-                  <div className="flex items-center justify-between border-b border-white/10 pb-3.5">
-                    <div className="flex items-center gap-2.5">
-                      <EmtrcMark inverted className="h-7 w-7" />
-                      <div>
-                        <p className="text-xs font-bold text-white">emtrc App</p>
-                        <p className="font-mono-data text-[10px] text-[#98A0B2]">
-                          {activeModule.label}
-                        </p>
-                      </div>
+                <div className="flex min-h-[568px] flex-col justify-between overflow-hidden rounded-[41px] bg-[#0A0C10] p-4 text-white">
+                  <div>
+                    <div className="flex items-center justify-between px-2 pb-3 font-mono-data text-[11px] text-white/80">
+                      <span>09:41</span>
+                      <span
+                        className="flex h-[22px] w-[82px] items-center justify-end rounded-full bg-black px-2 ring-1 ring-white/10"
+                        aria-hidden="true"
+                      >
+                        <span className="h-2 w-2 rounded-full bg-[#1C1F2B] ring-1 ring-white/15" />
+                      </span>
+                      <span>5G</span>
                     </div>
-                    <BellRing className="h-4 w-4 text-[#FF6B5B]" aria-hidden="true" />
+
+                    <div className="flex items-center justify-between border-b border-white/10 pb-3">
+                      <div className="flex items-center gap-2.5">
+                        <EmtrcMark inverted className="h-7 w-7" />
+                        <div>
+                          <p className="text-xs font-bold text-white">emtrc App</p>
+                          <p className="font-mono-data text-[10px] text-[#98A0B2]">
+                            {activeModule.label}
+                          </p>
+                        </div>
+                      </div>
+                      <BellRing className="h-4 w-4 text-[#FF6B5B]" aria-hidden="true" />
+                    </div>
+
+                    <AnimatePresence mode="wait">
+                      <motion.div
+                        key={activeModule.id}
+                        data-testid="app-simulator-screen"
+                        initial={prefersReduced ? false : { opacity: 0, x: 12 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        exit={prefersReduced ? undefined : { opacity: 0, x: -12 }}
+                        transition={{ duration: 0.22, ease: [0.22, 1, 0.36, 1] }}
+                        className="min-h-[390px] pt-4"
+                      >
+                        <p className="font-editorial text-lg font-bold text-white">
+                          {activeModule.screenTitle}
+                        </p>
+                        <p className="mt-0.5 text-xs text-[#98A0B2]">{activeModule.screenSubtitle}</p>
+
+                        <div className="mt-4 space-y-2.5">
+                          {activeModule.screenItems.map((item) => (
+                            <div
+                              key={item.primary}
+                              className="rounded-xl bg-[#151822] p-3.5 ring-1 ring-white/[0.08]"
+                            >
+                              <div className="flex items-center justify-between gap-2">
+                                <p className="text-xs font-semibold text-white truncate">
+                                  {item.primary}
+                                </p>
+                                <span
+                                  className={`font-mono-data text-[10px] font-semibold whitespace-nowrap ${
+                                    item.highlight ? 'text-[#FF6B5B]' : 'text-[#98A0B2]'
+                                  }`}
+                                >
+                                  {item.meta}
+                                </span>
+                              </div>
+                              <p className="mt-1 text-[11px] leading-snug text-[#A5AEBE]">
+                                {item.secondary}
+                              </p>
+                            </div>
+                          ))}
+                        </div>
+
+                        <div className="mt-4 flex items-center justify-between rounded-xl border border-white/10 bg-white/[0.04] px-3.5 py-2.5">
+                          <span className="font-mono-data text-[10px] uppercase tracking-wider text-[#98A0B2]">
+                            Cloudflare Edge
+                          </span>
+                          <span className="font-mono-data text-[10px] font-semibold text-emerald-400">
+                            {activeModule.metricValue} · Active
+                          </span>
+                        </div>
+                      </motion.div>
+                    </AnimatePresence>
                   </div>
 
-                  <AnimatePresence mode="wait">
-                    <motion.div
-                      key={activeModule.id}
-                      data-testid="app-simulator-screen"
-                      initial={prefersReduced ? false : { opacity: 0, x: 12 }}
-                      animate={{ opacity: 1, x: 0 }}
-                      exit={prefersReduced ? undefined : { opacity: 0, x: -12 }}
-                      transition={{ duration: 0.22, ease: [0.22, 1, 0.36, 1] }}
-                      className="min-h-[300px] pt-4"
-                    >
-                      <p className="font-editorial text-lg font-bold text-white">
-                        {activeModule.screenTitle}
-                      </p>
-                      <p className="mt-0.5 text-xs text-[#98A0B2]">{activeModule.screenSubtitle}</p>
-
-                      <div className="mt-4 space-y-2.5">
-                        {activeModule.screenItems.map((item) => (
-                          <div
-                            key={item.primary}
-                            className="rounded-xl bg-[#151822] p-3.5 ring-1 ring-white/[0.08]"
-                          >
-                            <div className="flex items-center justify-between gap-2">
-                              <p className="text-xs font-semibold text-white truncate">
-                                {item.primary}
-                              </p>
-                              <span
-                                className={`font-mono-data text-[10px] font-semibold whitespace-nowrap ${
-                                  item.highlight ? 'text-[#FF6B5B]' : 'text-[#98A0B2]'
-                                }`}
-                              >
-                                {item.meta}
-                              </span>
-                            </div>
-                            <p className="mt-1 text-[11px] leading-snug text-[#A5AEBE]">
-                              {item.secondary}
-                            </p>
-                          </div>
-                        ))}
-                      </div>
-                    </motion.div>
-                  </AnimatePresence>
-
-                  <div className="mx-auto mt-5 h-1 w-24 rounded-full bg-white/25" aria-hidden="true" />
+                  <div className="border-t border-white/10 pt-3">
+                    <div className="flex items-center justify-between px-2 font-mono-data text-[10px] text-[#7D8596]">
+                      <span>iOS &amp; Android</span>
+                      <span className="text-white/80">Synced live</span>
+                    </div>
+                    <div className="mx-auto mt-3 h-1 w-24 rounded-full bg-white/25" aria-hidden="true" />
+                  </div>
                 </div>
               </div>
             </div>

@@ -22,7 +22,7 @@ export default defineConfig(() => {
         },
         load(id: string) {
           if (id === resolvedVirtualSiteId) {
-            const siteJsonPath = path.resolve(__dirname, 'public/site.json');
+            const siteJsonPath = path.resolve(import.meta.dirname, 'public/site.json');
             const raw = fs.readFileSync(siteJsonPath, 'utf-8');
             // Validate JSON at build time so syntax errors fail fast.
             JSON.parse(raw);
@@ -41,8 +41,8 @@ export default defineConfig(() => {
           if (error) {
             return;
           }
-          const distDir = path.resolve(__dirname, 'dist');
-          const srcAssets = path.resolve(__dirname, 'src/assets');
+          const distDir = path.resolve(import.meta.dirname, 'dist');
+          const srcAssets = path.resolve(import.meta.dirname, 'src/assets');
           const distAssets = path.resolve(distDir, 'src/assets');
           if (fs.existsSync(distDir) && fs.existsSync(srcAssets)) {
             fs.cpSync(srcAssets, distAssets, {recursive: true, force: true});
@@ -50,9 +50,12 @@ export default defineConfig(() => {
         },
       },
     ],
+    build: {
+      chunkSizeWarningLimit: 1100,
+    },
     resolve: {
       alias: {
-        '@': path.resolve(__dirname, '.'),
+        '@': path.resolve(import.meta.dirname, '.'),
       },
     },
     server: {

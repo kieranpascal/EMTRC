@@ -202,6 +202,41 @@ export const CASE_STUDIES: readonly CaseStudy[] = [
     ownerNote:
       'Representative SE15 café & bakery build — inspect the full live Bellenden Roastery demo.',
   },
+  {
+    slug: 'regent-park-electrical-camden',
+    businessName: 'Regent Park Electrical',
+    trade: 'Plumber & Heating',
+    borough: 'Camden',
+    postcode: 'NW1',
+    planUsed: 'Growth (£129/mo) + AI Receptionist',
+    turnaround: '46 hours to live demo',
+    headline: 'Winning EICR landlord certificates and domestic rewires across Camden NW1 & Primrose Hill.',
+    summary:
+      'NICEIC-certified electricians lose lucrative rewiring and EV-charger quotes when homeowners cannot verify credentials or request a fixed estimate on mobile.',
+    heroStat: '99/100',
+    heroStatLabel: 'Lighthouse mobile score + NICEIC trust strip',
+    image: '/src/assets/images/london_electrician_smart_lighting_1795428787002.jpg',
+    imageAlt: 'Certified London domestic electrician installing brushed brass architectural dimmer switches in Camden NW1',
+    demoPresetId: 'trades-elegant-camden',
+    challenge:
+      'Camden landlords and Victorian townhouse renovators searching for EICR safety certificates or architectural lighting upgrades encountered slow directory listings with zero transparent pricing.',
+    whatWeBuilt: [
+      'Architectural trade shopfront showcasing NICEIC approval, £5m public liability and upfront EICR rates.',
+      'Dedicated NW1, NW3 and N1 coverage pages structured with Electrician Schema.org JSON-LD.',
+      'Instant quote request form capturing property size, fuseboard photo readiness and postcode.',
+      '24/7 AI Receptionist fallback answering evening fault calls and booking daytime inspections.',
+    ],
+    outcome:
+      'Landlords and homeowners verify NICEIC registration in two seconds and submit complete inspection requests — cutting wasted back-and-forth calls.',
+    metrics: [
+      { label: 'Mobile paint speed', before: '5.1s directory profile', after: '0.8 seconds' },
+      { label: 'EICR quote clarity', before: 'Call for estimate', after: 'Fixed band upfront' },
+      { label: 'Evening fault capture', before: 'Missed / voicemail', after: '24/7 AI Receptionist' },
+      { label: 'Domain control', before: 'Third-party listing', after: 'regentparkelectrical.co.uk' },
+    ],
+    ownerNote:
+      'Representative North London NICEIC electrical build — explore the full live Regent Park Electrical demo.',
+  },
 ];
 
 export function getCaseStudyBySlug(slug: string | undefined): CaseStudy | undefined {

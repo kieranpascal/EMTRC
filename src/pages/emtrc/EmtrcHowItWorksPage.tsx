@@ -4,6 +4,8 @@ import { SITE } from '../../content/site';
 import { EmtrcHead } from '../../components/emtrc/EmtrcHead';
 import { EmtrcLayout } from '../../components/emtrc/EmtrcLayout';
 import { Reveal } from '../../components/emtrc/Reveal';
+import { OrnamentalDivider } from '../../components/emtrc/OrnamentalDivider';
+import { LaunchWeekAnimatedIllustration } from '../../components/emtrc/AnimatedIllustrations';
 
 const TIMELINE_DETAILS = [
   {
@@ -91,18 +93,20 @@ export function EmtrcHowItWorksPage() {
 
             <div className="lg:col-span-5">
               <Reveal immediate delay={0.1}>
-                <div className="overflow-hidden rounded-2xl border border-[var(--emtrc-border)] bg-[var(--emtrc-navy)] shadow-lg">
-                  <img
-                    src="/src/assets/images/emtrc_london_plumber_van_1795422464729.jpg"
-                    alt="London heating engineer inspecting precision copper pipework"
-                    className="aspect-[4/3] w-full object-cover"
-                  />
-                </div>
+                <LaunchWeekAnimatedIllustration />
               </Reveal>
             </div>
           </div>
         </div>
       </section>
+
+      <OrnamentalDivider
+        pattern="georgian-fret"
+        from="surface"
+        to="canvas"
+        label="FOUR CLEAR STAGES · DAY 0 TO LIVE"
+        accentColor="coral"
+      />
 
       {/* Structured 4-Stage Launch Timeline */}
       <section className="py-16 sm:py-24">

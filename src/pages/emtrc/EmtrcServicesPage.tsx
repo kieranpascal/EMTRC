@@ -2,40 +2,73 @@ import { Link } from 'react-router-dom';
 import { ArrowRight, Calendar, ShieldCheck } from 'lucide-react';
 import { SITE } from '../../content/site';
 import { SERVICE_DETAILS } from '../../content/services';
+import { useLanguage } from '../../context/LanguageContext';
 import { EmtrcHead } from '../../components/emtrc/EmtrcHead';
 import { EmtrcLayout } from '../../components/emtrc/EmtrcLayout';
+import { PageHeader } from '../../components/emtrc/PageHeader';
+import { KickerRule } from '../../components/emtrc/Reveal';
+import { ScrollReveal, ScrollRevealItem } from '../../components/emtrc/ScrollReveal';
 import {
-  EditorialHeading,
-  KickerRule,
-  Reveal,
-  StaggerContainer,
-  StaggerItem,
-} from '../../components/emtrc/Reveal';
+  AnimatedSectionHeader,
+  SectionSeparator,
+  type BandTone,
+  type SeparatorVariant,
+} from '../../components/emtrc/SectionSeparator';
+import { LondonEdgeSpeedIllustration } from '../../components/emtrc/AnimatedIllustrations';
 import { SafeImage } from '../../components/SafeImage';
 
 const SERVICE_GROUPS: readonly {
+  index: string;
   title: string;
+  accentWord: string;
   subtitle: string;
   category: 'Websites & foundations' | 'AI front desk' | 'Get found locally';
+  tone: 'coral' | 'amber' | 'emerald';
+  bandTone: BandTone;
+  separatorVariant: SeparatorVariant;
+  isDarkBand: boolean;
 }[] = [
   {
-    title: 'Websites & foundations',
-    subtitle: 'Your fast mobile-first website, domain registered in your own name, professional email and ongoing monthly edits.',
+    index: '01',
+    title: 'Websites &',
+    accentWord: 'foundations.',
+    subtitle:
+      'Your fast mobile-first website, domain registered in your own name, professional email and ongoing monthly edits.',
     category: 'Websites & foundations',
+    tone: 'coral',
+    bandTone: 'sand',
+    separatorVariant: 'angle',
+    isDarkBand: false,
   },
   {
-    title: 'AI front desk & cloud phones',
-    subtitle: 'Catch missed calls in 8 seconds, build 5-star Google reviews, answer enquiries 24/7 and move off copper landlines ahead of 31 January 2027.',
+    index: '02',
+    title: 'AI front desk &',
+    accentWord: 'cloud phones.',
+    subtitle:
+      'Catch missed calls in 8 seconds, build 5-star Google reviews, answer enquiries 24/7 and move off copper landlines ahead of 31 January 2027.',
     category: 'AI front desk',
+    tone: 'amber',
+    bandTone: 'obsidian',
+    separatorVariant: 'architectural-ribbon',
+    isDarkBand: true,
   },
   {
-    title: 'Get found locally',
-    subtitle: 'Google Business Profile alignment, LocalBusiness schema and London borough pages so both Google Maps and AI search recommend you first.',
+    index: '03',
+    title: 'Get found',
+    accentWord: 'locally first.',
+    subtitle:
+      'Google Business Profile alignment, LocalBusiness schema and London borough pages so both Google Maps and AI search recommend you first.',
     category: 'Get found locally',
+    tone: 'emerald',
+    bandTone: 'surface',
+    separatorVariant: 'wave',
+    isDarkBand: false,
   },
 ];
 
 export function EmtrcServicesPage() {
+  const { t } = useLanguage();
+
   return (
     <EmtrcLayout>
       <EmtrcHead
@@ -43,106 +76,144 @@ export function EmtrcServicesPage() {
         description="Explore all 8 emtrc services for London small businesses: managed websites, domains & email, local SEO, review engine, lead catcher, AI receptionist, cloud VoIP and monthly care."
       />
 
-      {/* Editorial Hero */}
-      <section className="hero-editorial-wash border-b border-[var(--emtrc-border)] pt-12 pb-16 sm:pt-16 sm:pb-20">
-        <div className="mx-auto max-w-[1200px] px-5 sm:px-8">
-          <div className="grid grid-cols-1 gap-10 lg:grid-cols-12 lg:items-end">
-            <div className="lg:col-span-8">
-              <KickerRule>8 dedicated services · Everything under one London roof</KickerRule>
-              <EditorialHeading
-                as="h1"
-                immediate
-                line1="Everything your business needs online."
-                line2="Each with its own plain-English plan."
-                line2Tone="brass"
-                className="mt-4 font-editorial text-4xl font-extrabold leading-[1.02] tracking-[-0.035em] text-[var(--emtrc-ink)] sm:text-6xl"
-              />
-              <p className="mt-5 max-w-2xl text-base leading-relaxed text-[var(--emtrc-muted)] sm:text-lg">
-                Start with a fast website that turns Google Maps searches into phone calls. Add
-                professional email, automated review requests, missed-call text-back, a 24/7 AI
-                receptionist or cloud VoIP whenever your business is ready.
-              </p>
-            </div>
-            <div className="flex flex-wrap gap-3 lg:col-span-4 lg:justify-end">
-              <Link
-                to="/free-demo"
-                className="inline-flex items-center gap-2 rounded-lg bg-[var(--emtrc-accent)] px-5 py-3 text-sm font-semibold text-white transition-colors hover:bg-[var(--emtrc-accent-hover)]"
-              >
-                <span>Get my free demo</span>
-                <ArrowRight className="h-4 w-4" aria-hidden="true" />
-              </Link>
-              <Link
-                to="/pricing"
-                className="inline-flex items-center gap-2 rounded-lg border border-[var(--emtrc-border)] bg-[var(--emtrc-surface)] px-5 py-3 text-sm font-semibold text-[var(--emtrc-ink)] transition-colors hover:border-[var(--emtrc-ink)]"
-              >
-                <span>View pricing</span>
-              </Link>
-            </div>
+      <PageHeader
+        kicker={t.servicesPage.kicker}
+        headlineLine1={t.servicesPage.headlineLine1}
+        headlineLine2={t.servicesPage.headlineLine2}
+        description={t.servicesPage.description}
+        backdropImage="/src/assets/images/london_studio_dusk_header_1795426202168.jpg"
+        backdropAlt="East London independent workshop and studio storefront at dusk"
+        actions={
+          <div className="flex flex-wrap gap-3">
+            <Link
+              to="/free-demo"
+              className="inline-flex items-center gap-2 rounded-lg bg-[var(--emtrc-accent)] px-5 py-3 text-sm font-semibold text-white transition-colors hover:bg-[var(--emtrc-accent-hover)]"
+            >
+              <span>{t.hero.primaryCta}</span>
+              <ArrowRight className="h-4 w-4" aria-hidden="true" />
+            </Link>
+            <Link
+              to="/pricing"
+              className="inline-flex items-center gap-2 rounded-lg border border-white/20 bg-white/5 px-5 py-3 text-sm font-semibold text-white transition-colors hover:border-white/40"
+            >
+              <span>{t.servicesPage.viewPricing}</span>
+            </Link>
           </div>
-        </div>
-      </section>
+        }
+        metrics={[
+          { value: '08', label: 'Dedicated London services' },
+          { value: '£39/mo', label: 'Starting managed plan' },
+          { value: '8 sec', label: 'Missed-call SMS speed' },
+          { value: '100%', label: 'Client-owned domain' },
+        ]}
+      />
 
-      {/* Grouped Directory of all 8 Dedicated Service Pages */}
-      <section className="py-16 sm:py-24">
-        <div className="mx-auto max-w-[1200px] space-y-20 px-5 sm:px-8">
-          {SERVICE_GROUPS.map((group) => {
-            const items = SERVICE_DETAILS.filter((s) => s.category === group.category);
-            return (
-              <div key={group.title}>
-                <Reveal>
-                  <div className="max-w-2xl">
-                    <KickerRule>{group.category}</KickerRule>
-                    <h2 className="mt-3 font-editorial text-3xl font-extrabold tracking-[-0.03em] sm:text-4xl">
-                      {group.title}
-                    </h2>
-                    <p className="mt-2.5 text-sm leading-relaxed text-[var(--emtrc-muted)] sm:text-base">
-                      {group.subtitle}
-                    </p>
-                  </div>
-                </Reveal>
+      {/* Alternating Colour-Blocked Service Groups Joined by Architectural SectionSeparators */}
+      {SERVICE_GROUPS.map((group, gIdx) => {
+        const items = SERVICE_DETAILS.filter((s) => s.category === group.category);
+        const prevBand: BandTone = gIdx === 0 ? 'obsidian' : SERVICE_GROUPS[gIdx - 1].bandTone;
+        const sectionBgClass =
+          group.bandTone === 'obsidian'
+            ? 'bg-[#0B0D12] text-white'
+            : group.bandTone === 'sand'
+              ? 'bg-[var(--emtrc-sand)] text-[var(--emtrc-ink)]'
+              : 'bg-[var(--emtrc-surface)] text-[var(--emtrc-ink)]';
 
-                <StaggerContainer
+        return (
+          <div key={group.title}>
+            <SectionSeparator
+              variant={group.separatorVariant}
+              from={prevBand}
+              to={group.bandTone}
+              accentColor={group.tone}
+              flip={gIdx % 2 === 1}
+            />
+
+            <section className={`py-11 sm:py-15 ${sectionBgClass}`}>
+              <div className="mx-auto max-w-[1200px] px-5 sm:px-8">
+                <AnimatedSectionHeader
+                  index={group.index}
+                  kicker={group.category}
+                  headline={group.title}
+                  accentWord={group.accentWord}
+                  subtitle={group.subtitle}
+                  tone={group.tone}
+                  light={group.isDarkBand}
+                />
+
+                <ScrollReveal
+                  autoWrapChildren={false}
                   className={`mt-8 grid grid-cols-1 gap-6 ${
-                    items.length === 1 ? 'md:grid-cols-1 lg:grid-cols-12' : 'md:grid-cols-2 lg:grid-cols-3'
+                    items.length === 1
+                      ? 'lg:grid-cols-12 lg:items-stretch'
+                      : items.length === 4
+                        ? 'md:grid-cols-2 lg:grid-cols-2'
+                        : 'md:grid-cols-2 lg:grid-cols-3'
                   }`}
                 >
                   {items.map((service) => (
-                    <StaggerItem
+                    <ScrollRevealItem
                       key={service.slug}
-                      className={items.length === 1 ? 'lg:col-span-8' : ''}
+                      className={items.length === 1 ? 'lg:col-span-7' : ''}
                     >
-                      <article className="group flex h-full flex-col overflow-hidden rounded-2xl border border-[var(--emtrc-border)] bg-[var(--emtrc-surface)] transition-transform duration-200 hover:-translate-y-0.5 hover:border-[var(--emtrc-accent)]">
-                        <Link to={`/services/${service.slug}`} className="block overflow-hidden">
+                      <article
+                        className={`group flex h-full flex-col overflow-hidden rounded-2xl border transition-all duration-200 hover:-translate-y-1 hover:border-[var(--emtrc-accent)] hover:shadow-xl ${
+                          group.isDarkBand
+                            ? 'border-white/12 bg-[#131722] text-white'
+                            : 'border-[var(--emtrc-border)] bg-[var(--emtrc-canvas)] text-[var(--emtrc-ink)]'
+                        }`}
+                      >
+                        <Link
+                          to={`/services/${service.slug}`}
+                          className="relative block overflow-hidden bg-[#08090C]"
+                        >
                           <SafeImage
                             src={service.heroImage}
                             alt={service.heroAlt}
                             width={1200}
                             height={900}
-                            className="h-48 w-full object-cover transition-transform duration-300 group-hover:scale-[1.03]"
+                            className="h-52 w-full object-cover transition-transform duration-500 group-hover:scale-[1.04]"
                           />
+                          <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[#08090C]/85 via-transparent to-transparent" />
+                          <span className="absolute bottom-3 left-4 font-mono-data text-xs font-semibold text-[#FF8C73]">
+                            {service.priceTag}
+                          </span>
                         </Link>
-                        <div className="flex flex-1 flex-col justify-between p-6">
+                        <div className="flex flex-1 flex-col justify-between p-5">
                           <div>
-                            <p className="text-xs font-semibold text-[var(--emtrc-brass)]">
-                              {service.priceTag}
-                            </p>
-                            <h3 className="mt-1.5 font-editorial text-2xl font-bold leading-snug text-[var(--emtrc-ink)] group-hover:text-[var(--emtrc-accent)]">
+                            <h3
+                              className={`font-editorial text-2xl font-bold leading-snug transition-colors group-hover:text-[var(--emtrc-accent)] ${
+                                group.isDarkBand ? 'text-white' : 'text-[var(--emtrc-ink)]'
+                              }`}
+                            >
                               <Link to={`/services/${service.slug}`}>{service.shortTitle}</Link>
                             </h3>
-                            <p className="mt-2.5 text-sm leading-relaxed text-[var(--emtrc-muted)]">
+                            <p
+                              className={`mt-2 text-sm leading-relaxed ${
+                                group.isDarkBand ? 'text-[#B4BCCB]' : 'text-[var(--emtrc-muted)]'
+                              }`}
+                            >
                               {service.subheadline}
                             </p>
                           </div>
 
-                          <div className="mt-6 flex items-center justify-between border-t border-[var(--emtrc-border)] pt-4 text-xs font-semibold">
-                            <span className="text-[var(--emtrc-muted)]">
-                              {service.pains.length} pains solved · Interactive demo
+                          <div
+                            className={`mt-5 flex items-center justify-between border-t pt-3.5 text-xs font-semibold ${
+                              group.isDarkBand ? 'border-white/10' : 'border-[var(--emtrc-border)]'
+                            }`}
+                          >
+                            <span
+                              className={`font-mono-data ${
+                                group.isDarkBand ? 'text-[#8E96A8]' : 'text-[var(--emtrc-muted)]'
+                              }`}
+                            >
+                              {service.pains.length} pains solved · 4-photo gallery
                             </span>
                             <Link
                               to={`/services/${service.slug}`}
                               className="inline-flex items-center gap-1 text-[var(--emtrc-accent)] hover:underline"
                             >
-                              <span>Explore service</span>
+                              <span>{t.servicesPage.exploreService}</span>
                               <ArrowRight
                                 className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5"
                                 aria-hidden="true"
@@ -151,59 +222,67 @@ export function EmtrcServicesPage() {
                           </div>
                         </div>
                       </article>
-                    </StaggerItem>
+                    </ScrollRevealItem>
                   ))}
-                </StaggerContainer>
+                  {items.length === 1 && (
+                    <ScrollRevealItem className="lg:col-span-5 flex flex-col justify-center">
+                      <LondonEdgeSpeedIllustration />
+                    </ScrollRevealItem>
+                  )}
+                </ScrollReveal>
               </div>
-            );
-          })}
-        </div>
-      </section>
+            </section>
+          </div>
+        );
+      })}
 
-      {/* Deep Midnight Promises Band */}
-      <section className="border-t border-[var(--emtrc-navy-border)] bg-[var(--emtrc-navy)] py-16 text-[#F5F3EE] sm:py-24">
+      <SectionSeparator variant="angle" from="surface" to="obsidian" accentColor="coral" />
+
+      {/* Deep Obsidian Promises Band */}
+      <section className="bg-[#0B0D12] py-12 text-[#F5F3EE] sm:py-16">
         <div className="mx-auto max-w-[1200px] px-5 sm:px-8">
-          <div className="grid grid-cols-1 gap-10 lg:grid-cols-12 lg:items-center">
+          <div className="grid grid-cols-1 gap-8 lg:grid-cols-12 lg:items-center">
             <div className="lg:col-span-7">
               <KickerRule light>Zero risk to get started</KickerRule>
-              <h2 className="mt-3 font-editorial text-3xl font-extrabold leading-[1.06] tracking-[-0.03em] text-white sm:text-5xl">
+              <h2 className="mt-3 font-editorial text-3xl font-bold leading-[1.06] text-white sm:text-5xl">
                 See a working demo for your business before paying a penny.
               </h2>
               <p className="mt-4 max-w-xl text-base leading-relaxed text-[#BAC5DC]">
                 Tell us your London borough, trade and prices. We build a real working demo within
                 2 working days so you can test it on your phone before deciding anything.
               </p>
-              <div className="mt-7 flex flex-wrap gap-3">
+              <div className="mt-6 flex flex-wrap gap-3">
                 <Link
                   to="/free-demo"
                   className="inline-flex items-center gap-2 rounded-lg bg-[var(--emtrc-accent)] px-5 py-3 text-sm font-semibold text-white transition-colors hover:bg-[var(--emtrc-accent-hover)]"
                 >
-                  <span>Get my free demo</span>
+                  <span>{t.hero.primaryCta}</span>
                   <ArrowRight className="h-4 w-4" aria-hidden="true" />
                 </Link>
                 <a
                   href={SITE.brand.calendlyUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 rounded-lg border border-[var(--emtrc-navy-border)] bg-[var(--emtrc-navy-soft)] px-5 py-3 text-sm font-semibold text-white transition-colors hover:border-[var(--emtrc-brass-light)]"
+                  className="inline-flex items-center gap-2 rounded-lg border border-white/15 bg-white/[0.04] px-5 py-3 text-sm font-semibold text-white transition-colors hover:border-white/40"
                 >
-                  <Calendar className="h-4 w-4 text-[var(--emtrc-brass-light)]" aria-hidden="true" />
-                  <span>Book a 15-minute call</span>
+                  <Calendar className="h-4 w-4 text-[#FF8C73]" aria-hidden="true" />
+                  <span>{t.hero.footnoteLink}</span>
                 </a>
               </div>
             </div>
 
             <div className="lg:col-span-5">
-              <div className="rounded-2xl border border-[var(--emtrc-navy-border)] bg-[var(--emtrc-navy-soft)] p-6 sm:p-7">
-                <div className="flex items-center gap-2 text-xs font-bold tracking-wide text-[var(--emtrc-brass-light)]">
+              <div className="rounded-2xl border border-white/12 bg-[#131722] p-6">
+                <div className="flex items-center gap-2 font-mono-data text-xs font-semibold uppercase tracking-wider text-[#FF8C73]">
                   <ShieldCheck className="h-4 w-4" aria-hidden="true" />
                   <span>Our four plain-English promises</span>
                 </div>
-                <ul className="mt-5 divide-y divide-[var(--emtrc-navy-border)]">
+                <ul className="mt-4 divide-y divide-white/10">
                   {SITE.guarantees.map((g) => (
-                    <li key={g.number} className="py-3.5 first:pt-0 last:pb-0">
+                    <li key={g.number} className="py-3 first:pt-0 last:pb-0">
                       <p className="font-editorial text-sm font-bold text-white">
-                        {g.number} · {g.title}
+                        <span className="font-mono-data text-[#FF8C73] mr-2">{g.number}</span>
+                        {g.title}
                       </p>
                       <p className="mt-1 text-xs leading-relaxed text-[#A9B5CE]">{g.description}</p>
                     </li>

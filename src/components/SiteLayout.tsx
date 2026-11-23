@@ -5,6 +5,7 @@ import { PREVIEW_PRESET_GROUPS, useSite } from '../context/SiteContext';
 import { getEnabledNavItems, getNicheLabels } from '../utils/niche';
 import { normalizeTelHref, normalizeWhatsappHref } from '../utils/seo';
 import { DemoBanner } from './DemoBanner';
+import { EmtrcMark } from './emtrc/EmtrcLogo';
 
 interface SiteLayoutProps {
   children: ReactNode;
@@ -82,6 +83,13 @@ export function SiteLayout({ children, basePath = '' }: SiteLayoutProps) {
         >
           <div className="mx-auto flex max-w-[1200px] flex-wrap items-center justify-between gap-2 px-5 py-1.5 sm:px-8 text-xs">
             <div className="flex items-center gap-2.5 min-w-0">
+              <Link
+                to="/work"
+                aria-label="Back to emtrc showcase"
+                className="inline-flex items-center gap-1.5 shrink-0 hover:opacity-90 transition-opacity"
+              >
+                <EmtrcMark inverted className="h-5 w-5" />
+              </Link>
               <label
                 htmlFor="template-preset-select"
                 className="font-semibold text-white whitespace-nowrap shrink-0"

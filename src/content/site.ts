@@ -77,6 +77,13 @@ export const SITE = {
       'emtrc is a trading name of World Finance Global Limited, registered in England and Wales.',
     companyNumber: '[Company number — update before launch]',
     registeredOffice: '[Registered office address — update before launch]',
+    socials: [
+      { id: 'instagram', label: 'Instagram', href: 'https://instagram.com/emtrc.london' },
+      { id: 'x', label: 'X (Twitter)', href: 'https://x.com/emtrclondon' },
+      { id: 'linkedin', label: 'LinkedIn', href: 'https://linkedin.com/company/emtrc' },
+      { id: 'youtube', label: 'YouTube', href: 'https://youtube.com/@emtrclondon' },
+      { id: 'whatsapp', label: 'WhatsApp', href: 'https://wa.me/442079460900' },
+    ] as const,
   },
 
   flags: {
@@ -241,8 +248,8 @@ export const SITE = {
             to: '/training',
           },
           {
-            label: 'The emtrc Blog & Journal',
-            description: 'Searchable plain-English guides on websites, Maps, AI & UK phones',
+            label: 'Signals — Field Journal',
+            description: 'Searchable plain-English London guides on websites, Maps, AI & UK phones',
             to: '/blog',
           },
           {
@@ -650,8 +657,7 @@ export const SITE = {
       { item: 'Review Engine (standalone bolt-on)', price: '£39 / month', note: 'Automatic review requests + AI reply drafts' },
       { item: 'Extra website page', price: '£49 one-off', note: 'Local area page, specialist service page or menu' },
       { item: 'Email setup & migration', price: 'From £49 one-off', note: 'Move cleanly off Gmail/Hotmail without losing mail' },
-      { item: '.co.uk domain registration & renewal', price: '£15 / year', note: 'Included free on Business & Growth plans' },
-      { item: '.com domain registration & renewal', price: '£20 / year', note: 'Included free on Business & Growth plans' },
+      { item: '.co.uk / .com domain registration & renewal', price: '£15–£20 / year', note: 'Included free on Business & Growth plans — always registered in your name' },
     ],
     comparisonRows: [
       { feature: 'Pages included', starter: '1 page', business: 'Up to 5 pages', growth: 'Up to 5 + 3 local pages' },
