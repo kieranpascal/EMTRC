@@ -18,7 +18,7 @@ import { EmtrcLayout } from '../../components/emtrc/EmtrcLayout';
 import { GalleryCarousel, type GallerySlide } from '../../components/emtrc/GalleryCarousel';
 import { PageHeader } from '../../components/emtrc/PageHeader';
 import { ScrollReveal, ScrollRevealItem } from '../../components/emtrc/ScrollReveal';
-import { AnimatedSectionHeader, SectionSeparator } from '../../components/emtrc/SectionSeparator';
+import { AnimatedSectionHeader } from '../../components/emtrc/SectionSeparator';
 import { SafeImage } from '../../components/SafeImage';
 
 export interface WorkPresetMeta {
@@ -333,10 +333,8 @@ export function EmtrcWorkPage() {
         }
       />
 
-      <SectionSeparator variant="angle" from="obsidian" to="sand" accentColor="coral" />
-
       {/* Live Website Portfolio Browser + Mobile Device Showcase Grid */}
-      <section className="bg-[var(--emtrc-sand)] py-10 sm:py-14">
+      <section className="border-b border-[var(--emtrc-border)] bg-[var(--emtrc-sand)] py-10 sm:py-14">
         <div className="mx-auto max-w-[1240px] px-5 sm:px-8">
           <div className="mb-8 flex flex-col justify-between gap-4 sm:flex-row sm:items-end">
             <AnimatedSectionHeader
@@ -490,8 +488,6 @@ export function EmtrcWorkPage() {
           </ScrollReveal>
         </div>
       </section>
-
-      <SectionSeparator variant="architectural-ribbon" from="sand" to="obsidian" accentColor="amber" />
 
       {/* Hyper-Relevant London Craft Photography Carousel + Custom Demo CTA */}
       <section className="bg-[#0B0D12] py-12 text-[#F5F3EE] sm:py-16">

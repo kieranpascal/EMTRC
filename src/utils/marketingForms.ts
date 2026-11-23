@@ -85,12 +85,46 @@ export function validatePdfDownloadForm(
   return errors;
 }
 
+export interface ContactEnquiryFormData {
+  name: string;
+  businessName: string;
+  email: string;
+  phone: string;
+  borough: string;
+  serviceInterest: string;
+  message: string;
+  consent: boolean;
+  websiteHoneypot: string;
+}
+
 export function validateNewsletterForm(
   data: NewsletterFormData
 ): Partial<Record<keyof NewsletterFormData, string>> {
   const errors: Partial<Record<keyof NewsletterFormData, string>> = {};
   if (!isValidEmail(data.email)) {
     errors.email = 'Enter a valid email address.';
+  }
+  return errors;
+}
+
+export function validateContactEnquiryForm(
+  data: ContactEnquiryFormData
+): Partial<Record<keyof ContactEnquiryFormData, string>> {
+  const errors: Partial<Record<keyof ContactEnquiryFormData, string>> = {};
+  if (!data.name.trim() || data.name.trim().length < 2) {
+    errors.name = 'Enter your full name.';
+  }
+  if (!isValidEmail(data.email)) {
+    errors.email = 'Enter a valid email address so our London studio can reply.';
+  }
+  if (!data.serviceInterest.trim()) {
+    errors.serviceInterest = 'Select what you would like help with.';
+  }
+  if (!data.message.trim() || data.message.trim().length < 10) {
+    errors.message = 'Tell us briefly about your business or question (at least 10 characters).';
+  }
+  if (!data.consent) {
+    errors.consent = 'Confirm emtrc can reply to your enquiry.';
   }
   return errors;
 }

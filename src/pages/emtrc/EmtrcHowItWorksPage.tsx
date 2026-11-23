@@ -4,7 +4,6 @@ import { SITE } from '../../content/site';
 import { EmtrcHead } from '../../components/emtrc/EmtrcHead';
 import { EmtrcLayout } from '../../components/emtrc/EmtrcLayout';
 import { Reveal } from '../../components/emtrc/Reveal';
-import { OrnamentalDivider } from '../../components/emtrc/OrnamentalDivider';
 import { LaunchWeekAnimatedIllustration } from '../../components/emtrc/AnimatedIllustrations';
 
 const TIMELINE_DETAILS = [
@@ -99,14 +98,6 @@ export function EmtrcHowItWorksPage() {
           </div>
         </div>
       </section>
-
-      <OrnamentalDivider
-        pattern="georgian-fret"
-        from="surface"
-        to="canvas"
-        label="FOUR CLEAR STAGES · DAY 0 TO LIVE"
-        accentColor="coral"
-      />
 
       {/* Structured 4-Stage Launch Timeline */}
       <section className="py-16 sm:py-24">

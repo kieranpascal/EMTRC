@@ -1,20 +1,14 @@
 import { Link } from 'react-router-dom';
 import { ArrowRight, Calendar, ShieldCheck } from 'lucide-react';
 import { SITE } from '../../content/site';
-import { SERVICE_DETAILS } from '../../content/services';
+import { SERVICE_DETAILS, type ServiceDetail } from '../../content/services';
 import { useLanguage } from '../../context/LanguageContext';
 import { EmtrcHead } from '../../components/emtrc/EmtrcHead';
 import { EmtrcLayout } from '../../components/emtrc/EmtrcLayout';
 import { PageHeader } from '../../components/emtrc/PageHeader';
 import { KickerRule } from '../../components/emtrc/Reveal';
 import { ScrollReveal, ScrollRevealItem } from '../../components/emtrc/ScrollReveal';
-import {
-  AnimatedSectionHeader,
-  SectionSeparator,
-  type BandTone,
-  type SeparatorVariant,
-} from '../../components/emtrc/SectionSeparator';
-import { LondonEdgeSpeedIllustration } from '../../components/emtrc/AnimatedIllustrations';
+import { AnimatedSectionHeader } from '../../components/emtrc/SectionSeparator';
 import { SafeImage } from '../../components/SafeImage';
 
 const SERVICE_GROUPS: readonly {
@@ -22,10 +16,9 @@ const SERVICE_GROUPS: readonly {
   title: string;
   accentWord: string;
   subtitle: string;
-  category: 'Websites & foundations' | 'AI front desk' | 'Get found locally';
+  category: ServiceDetail['category'];
   tone: 'coral' | 'amber' | 'emerald';
-  bandTone: BandTone;
-  separatorVariant: SeparatorVariant;
+  bandClass: string;
   isDarkBand: boolean;
 }[] = [
   {
@@ -33,35 +26,32 @@ const SERVICE_GROUPS: readonly {
     title: 'Websites &',
     accentWord: 'foundations.',
     subtitle:
-      'Your fast mobile-first website, domain registered in your own name, professional email and ongoing monthly edits.',
+      'Your fast mobile-first website, domain registered in your own name, professional email, 24-hour edits and PSTN-ready 020 Cloud VoIP.',
     category: 'Websites & foundations',
     tone: 'coral',
-    bandTone: 'sand',
-    separatorVariant: 'angle',
+    bandClass: 'border-b border-[var(--emtrc-border)] bg-[var(--emtrc-sand)] text-[var(--emtrc-ink)]',
     isDarkBand: false,
   },
   {
     index: '02',
-    title: 'AI front desk &',
-    accentWord: 'cloud phones.',
+    title: 'AI agents &',
+    accentWord: 'automation.',
     subtitle:
-      'Catch missed calls in 8 seconds, build 5-star Google reviews, answer enquiries 24/7 and move off copper landlines ahead of 31 January 2027.',
-    category: 'AI front desk',
+      'Personal AI owner assistants, exclusive London B2B & local sales pipelines, 8-second missed-call text-back and 24/7 British voice reception.',
+    category: 'AI agents & automation',
     tone: 'amber',
-    bandTone: 'obsidian',
-    separatorVariant: 'architectural-ribbon',
+    bandClass: 'border-b border-white/10 bg-[#0B0D12] text-white',
     isDarkBand: true,
   },
   {
     index: '03',
-    title: 'Get found',
-    accentWord: 'locally first.',
+    title: 'Growth, SEO &',
+    accentWord: 'intelligence.',
     subtitle:
-      'Google Business Profile alignment, LocalBusiness schema and London borough pages so both Google Maps and AI search recommend you first.',
-    category: 'Get found locally',
+      'Consistent local social management, live London competitor price benchmarking, Google Maps 3-Pack rank tracking and DMCC-compliant reviews.',
+    category: 'Growth, SEO & reviews',
     tone: 'emerald',
-    bandTone: 'surface',
-    separatorVariant: 'wave',
+    bandClass: 'border-b border-[var(--emtrc-border)] bg-[var(--emtrc-surface)] text-[var(--emtrc-ink)]',
     isDarkBand: false,
   },
 ];
@@ -72,15 +62,15 @@ export function EmtrcServicesPage() {
   return (
     <EmtrcLayout>
       <EmtrcHead
-        title="Services — Websites, Email, Local SEO & AI Tools | emtrc London"
-        description="Explore all 8 emtrc services for London small businesses: managed websites, domains & email, local SEO, review engine, lead catcher, AI receptionist, cloud VoIP and monthly care."
+        title="Services — 12 Website, AI Agent, SEO & Growth Services | emtrc London"
+        description="Explore all 12 emtrc services for London small businesses: managed websites, Personal AI Agents, AI Sales Leads, AI Social Management, Competitor Pricing Intelligence, Local SEO Rank Tracking, Reviews and Cloud VoIP."
       />
 
       <PageHeader
         kicker={t.servicesPage.kicker}
         headlineLine1={t.servicesPage.headlineLine1}
         headlineLine2={t.servicesPage.headlineLine2}
-        description={t.servicesPage.description}
+        description="Twelve focused services built for independent London businesses — from fast mobile websites and 020 Cloud VoIP to Personal AI Agents, AI Sales Leads, Social Management, Competitor Pricing Intelligence, SEO Ranking and Reviews."
         backdropImage="/src/assets/images/london_studio_dusk_header_1795426202168.jpg"
         backdropAlt="East London independent workshop and studio storefront at dusk"
         actions={
@@ -101,142 +91,110 @@ export function EmtrcServicesPage() {
           </div>
         }
         metrics={[
-          { value: '08', label: 'Dedicated London services' },
+          { value: '12', label: 'Dedicated London services' },
           { value: '£39/mo', label: 'Starting managed plan' },
           { value: '8 sec', label: 'Missed-call SMS speed' },
           { value: '100%', label: 'Client-owned domain' },
         ]}
       />
 
-      {/* Alternating Colour-Blocked Service Groups Joined by Architectural SectionSeparators */}
-      {SERVICE_GROUPS.map((group, gIdx) => {
+      {/* Three Balanced Service Chapters (4 Services Each = 2x2 Even Rows, Zero Orphan Cards) */}
+      {SERVICE_GROUPS.map((group) => {
         const items = SERVICE_DETAILS.filter((s) => s.category === group.category);
-        const prevBand: BandTone = gIdx === 0 ? 'obsidian' : SERVICE_GROUPS[gIdx - 1].bandTone;
-        const sectionBgClass =
-          group.bandTone === 'obsidian'
-            ? 'bg-[#0B0D12] text-white'
-            : group.bandTone === 'sand'
-              ? 'bg-[var(--emtrc-sand)] text-[var(--emtrc-ink)]'
-              : 'bg-[var(--emtrc-surface)] text-[var(--emtrc-ink)]';
 
         return (
-          <div key={group.title}>
-            <SectionSeparator
-              variant={group.separatorVariant}
-              from={prevBand}
-              to={group.bandTone}
-              accentColor={group.tone}
-              flip={gIdx % 2 === 1}
-            />
+          <section key={group.title} className={`py-12 sm:py-16 ${group.bandClass}`}>
+            <div className="mx-auto max-w-[1200px] px-5 sm:px-8">
+              <AnimatedSectionHeader
+                index={group.index}
+                kicker={group.category}
+                headline={group.title}
+                accentWord={group.accentWord}
+                subtitle={group.subtitle}
+                tone={group.tone}
+                light={group.isDarkBand}
+              />
 
-            <section className={`py-11 sm:py-15 ${sectionBgClass}`}>
-              <div className="mx-auto max-w-[1200px] px-5 sm:px-8">
-                <AnimatedSectionHeader
-                  index={group.index}
-                  kicker={group.category}
-                  headline={group.title}
-                  accentWord={group.accentWord}
-                  subtitle={group.subtitle}
-                  tone={group.tone}
-                  light={group.isDarkBand}
-                />
-
-                <ScrollReveal
-                  autoWrapChildren={false}
-                  className={`mt-8 grid grid-cols-1 gap-6 ${
-                    items.length === 1
-                      ? 'lg:grid-cols-12 lg:items-stretch'
-                      : items.length === 4
-                        ? 'md:grid-cols-2 lg:grid-cols-2'
-                        : 'md:grid-cols-2 lg:grid-cols-3'
-                  }`}
-                >
-                  {items.map((service) => (
-                    <ScrollRevealItem
-                      key={service.slug}
-                      className={items.length === 1 ? 'lg:col-span-7' : ''}
+              <ScrollReveal
+                autoWrapChildren={false}
+                className="mt-8 grid grid-cols-1 gap-6 md:grid-cols-2"
+              >
+                {items.map((service) => (
+                  <ScrollRevealItem key={service.slug}>
+                    <article
+                      data-testid={`service-card-${service.slug}`}
+                      className={`group flex h-full flex-col overflow-hidden rounded-2xl border transition-all duration-200 hover:-translate-y-1 hover:border-[var(--emtrc-accent)] hover:shadow-xl ${
+                        group.isDarkBand
+                          ? 'border-white/12 bg-[#131722] text-white'
+                          : 'border-[var(--emtrc-border)] bg-[var(--emtrc-canvas)] text-[var(--emtrc-ink)]'
+                      }`}
                     >
-                      <article
-                        className={`group flex h-full flex-col overflow-hidden rounded-2xl border transition-all duration-200 hover:-translate-y-1 hover:border-[var(--emtrc-accent)] hover:shadow-xl ${
-                          group.isDarkBand
-                            ? 'border-white/12 bg-[#131722] text-white'
-                            : 'border-[var(--emtrc-border)] bg-[var(--emtrc-canvas)] text-[var(--emtrc-ink)]'
-                        }`}
+                      <Link
+                        to={`/services/${service.slug}`}
+                        className="relative block overflow-hidden bg-[#08090C]"
                       >
-                        <Link
-                          to={`/services/${service.slug}`}
-                          className="relative block overflow-hidden bg-[#08090C]"
-                        >
-                          <SafeImage
-                            src={service.heroImage}
-                            alt={service.heroAlt}
-                            width={1200}
-                            height={900}
-                            className="h-52 w-full object-cover transition-transform duration-500 group-hover:scale-[1.04]"
-                          />
-                          <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[#08090C]/85 via-transparent to-transparent" />
-                          <span className="absolute bottom-3 left-4 font-mono-data text-xs font-semibold text-[#FF8C73]">
-                            {service.priceTag}
-                          </span>
-                        </Link>
-                        <div className="flex flex-1 flex-col justify-between p-5">
-                          <div>
-                            <h3
-                              className={`font-editorial text-2xl font-bold leading-snug transition-colors group-hover:text-[var(--emtrc-accent)] ${
-                                group.isDarkBand ? 'text-white' : 'text-[var(--emtrc-ink)]'
-                              }`}
-                            >
-                              <Link to={`/services/${service.slug}`}>{service.shortTitle}</Link>
-                            </h3>
-                            <p
-                              className={`mt-2 text-sm leading-relaxed ${
-                                group.isDarkBand ? 'text-[#B4BCCB]' : 'text-[var(--emtrc-muted)]'
-                              }`}
-                            >
-                              {service.subheadline}
-                            </p>
-                          </div>
-
-                          <div
-                            className={`mt-5 flex items-center justify-between border-t pt-3.5 text-xs font-semibold ${
-                              group.isDarkBand ? 'border-white/10' : 'border-[var(--emtrc-border)]'
+                        <SafeImage
+                          src={service.heroImage}
+                          alt={service.heroAlt}
+                          width={1200}
+                          height={900}
+                          className="h-52 w-full object-cover transition-transform duration-500 group-hover:scale-[1.04]"
+                        />
+                        <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[#08090C]/85 via-transparent to-transparent" />
+                        <span className="absolute bottom-3 left-4 font-mono-data text-xs font-semibold text-[#FF8C73]">
+                          {service.priceTag}
+                        </span>
+                      </Link>
+                      <div className="flex flex-1 flex-col justify-between p-5 sm:p-6">
+                        <div>
+                          <h3
+                            className={`font-editorial text-2xl font-bold leading-snug transition-colors group-hover:text-[var(--emtrc-accent)] ${
+                              group.isDarkBand ? 'text-white' : 'text-[var(--emtrc-ink)]'
                             }`}
                           >
-                            <span
-                              className={`font-mono-data ${
-                                group.isDarkBand ? 'text-[#8E96A8]' : 'text-[var(--emtrc-muted)]'
-                              }`}
-                            >
-                              {service.pains.length} pains solved · 4-photo gallery
-                            </span>
-                            <Link
-                              to={`/services/${service.slug}`}
-                              className="inline-flex items-center gap-1 text-[var(--emtrc-accent)] hover:underline"
-                            >
-                              <span>{t.servicesPage.exploreService}</span>
-                              <ArrowRight
-                                className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5"
-                                aria-hidden="true"
-                              />
-                            </Link>
-                          </div>
+                            <Link to={`/services/${service.slug}`}>{service.shortTitle}</Link>
+                          </h3>
+                          <p
+                            className={`mt-2 text-sm leading-relaxed ${
+                              group.isDarkBand ? 'text-[#B4BCCB]' : 'text-[var(--emtrc-muted)]'
+                            }`}
+                          >
+                            {service.subheadline}
+                          </p>
                         </div>
-                      </article>
-                    </ScrollRevealItem>
-                  ))}
-                  {items.length === 1 && (
-                    <ScrollRevealItem className="lg:col-span-5 flex flex-col justify-center">
-                      <LondonEdgeSpeedIllustration />
-                    </ScrollRevealItem>
-                  )}
-                </ScrollReveal>
-              </div>
-            </section>
-          </div>
+
+                        <div
+                          className={`mt-5 flex items-center justify-between border-t pt-3.5 text-xs font-semibold ${
+                            group.isDarkBand ? 'border-white/10' : 'border-[var(--emtrc-border)]'
+                          }`}
+                        >
+                          <span
+                            className={`font-mono-data ${
+                              group.isDarkBand ? 'text-[#8E96A8]' : 'text-[var(--emtrc-muted)]'
+                            }`}
+                          >
+                            {service.pains.length} pains solved · Interactive walkthrough
+                          </span>
+                          <Link
+                            to={`/services/${service.slug}`}
+                            className="inline-flex items-center gap-1 text-[var(--emtrc-accent)] hover:underline whitespace-nowrap"
+                          >
+                            <span>{t.servicesPage.exploreService}</span>
+                            <ArrowRight
+                              className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5"
+                              aria-hidden="true"
+                            />
+                          </Link>
+                        </div>
+                      </div>
+                    </article>
+                  </ScrollRevealItem>
+                ))}
+              </ScrollReveal>
+            </div>
+          </section>
         );
       })}
-
-      <SectionSeparator variant="angle" from="surface" to="obsidian" accentColor="coral" />
 
       {/* Deep Obsidian Promises Band */}
       <section className="bg-[#0B0D12] py-12 text-[#F5F3EE] sm:py-16">

@@ -35,7 +35,7 @@ export interface ServiceFaqGroup {
 export interface ServiceDetail {
   slug: string;
   shortTitle: string;
-  category: 'Websites & foundations' | 'AI front desk' | 'Get found locally';
+  category: 'Websites & foundations' | 'AI agents & automation' | 'Growth, SEO & reviews';
   menuDescription: string;
   priceTag: string;
   headlineLine1: string;
@@ -453,14 +453,14 @@ export const SERVICE_DETAILS: readonly ServiceDetail[] = [
   },
   {
     slug: 'local-seo',
-    shortTitle: 'Local SEO & AI Search',
-    category: 'Get found locally',
-    menuDescription: 'Google Business Profile, Maps 3-Pack and AI search visibility',
-    priceTag: 'Included on Business & Growth · +3 area pages on Growth',
+    shortTitle: 'Local SEO & Rank Tracking',
+    category: 'Growth, SEO & reviews',
+    menuDescription: 'Google Maps 3-Pack rank tracking, borough SEO & AI search citations',
+    priceTag: 'Included on Business & Growth · Weekly Rank Tracking',
     headlineLine1: 'Own your London borough',
-    headlineLine2: 'on Maps and AI search.',
+    headlineLine2: 'on Maps, SEO and AI search.',
     subheadline:
-      'A smart website buried on page four is a shop with the shutters down. We align your Google Business Profile, bake in LocalBusiness Schema.org data, and structure your borough pages so neighbours find you on Google Maps, Apple Maps and ChatGPT.',
+      'A smart website buried on page four is a shop with the shutters down. We align your Google Business Profile, bake in LocalBusiness Schema.org data, and track your live weekly keyword & Google Maps 3-Pack rankings across every London postcode you serve.',
     heroImage: '/src/assets/images/emtrc_blog_maps_phone_1795375920087.jpg',
     heroAlt: 'Smartphone beside ceramic flat white and London planning notebook on warm travertine',
     secondaryImage: '/src/assets/images/emtrc_hero_london_highstreet_1795374294553.jpg',
@@ -642,9 +642,9 @@ export const SERVICE_DETAILS: readonly ServiceDetail[] = [
   },
   {
     slug: 'review-engine',
-    shortTitle: 'Review Engine',
-    category: 'AI front desk',
-    menuDescription: 'DMCC-compliant Google review requests & drafted replies',
+    shortTitle: 'Reviews & Reputation Engine',
+    category: 'Growth, SEO & reviews',
+    menuDescription: 'DMCC-compliant Google review requests, sentiment alerts & drafted replies',
     priceTag: '£39/month standalone · Included in Lead Catcher & Growth',
     headlineLine1: 'Five-star Google reviews,',
     headlineLine2: 'asked properly every week.',
@@ -832,7 +832,7 @@ export const SERVICE_DETAILS: readonly ServiceDetail[] = [
   {
     slug: 'lead-catcher',
     shortTitle: 'Lead Catcher',
-    category: 'AI front desk',
+    category: 'AI agents & automation',
     menuDescription: '24/7 AI website chat, 8-sec missed-call SMS & reviews',
     priceTag: '£79/month bundle · Included in Growth (£129/mo)',
     headlineLine1: 'Catch every missed call',
@@ -1021,7 +1021,7 @@ export const SERVICE_DETAILS: readonly ServiceDetail[] = [
   {
     slug: 'ai-receptionist',
     shortTitle: 'AI Receptionist',
-    category: 'AI front desk',
+    category: 'AI agents & automation',
     menuDescription: '24/7 British voice call answering, qualification & diary booking',
     priceTag: '£149/month + £199 setup',
     headlineLine1: 'Every phone call answered,',
@@ -1210,7 +1210,7 @@ export const SERVICE_DETAILS: readonly ServiceDetail[] = [
   {
     slug: 'business-phone',
     shortTitle: 'Business Phone (VoIP)',
-    category: 'AI front desk',
+    category: 'Websites & foundations',
     menuDescription: 'Keep your 020 number before copper lines switch off 31 Jan 2027',
     priceTag: 'Pre-register now · Ready ahead of 31 January 2027',
     headlineLine1: 'Keep your 020 number',
@@ -1399,7 +1399,7 @@ export const SERVICE_DETAILS: readonly ServiceDetail[] = [
   {
     slug: 'care-plan',
     shortTitle: 'Monthly Care & Reports',
-    category: 'Get found locally',
+    category: 'Websites & foundations',
     menuDescription: 'Cloudflare hosting, SSL, backups, fast edits & monthly call reports',
     priceTag: 'Included on all monthly plans · £25/mo with One-off build',
     headlineLine1: 'Your website stays fast,',
@@ -1575,6 +1575,726 @@ export const SERVICE_DETAILS: readonly ServiceDetail[] = [
     closingCtaLabel: 'Compare all plans',
     closingCtaTo: '/pricing',
     relatedSlugs: ['websites', 'domains-email', 'local-seo'],
+  },
+  {
+    slug: 'personal-ai-agents',
+    shortTitle: 'Personal AI Agents',
+    category: 'AI agents & automation',
+    menuDescription: 'Dedicated owner AI assistant for inbox triage, supplier chasing & daily WhatsApp briefs',
+    priceTag: '£99/month · Custom trained to your business',
+    headlineLine1: 'A calm private AI assistant',
+    headlineLine2: 'that clears your admin before 8am.',
+    subheadline:
+      'Built specifically for busy London founders and trade directors drowning in emails, supplier quotes, diary clashes and WhatsApp messages. Your Personal AI Agent triages your inbox, chases unpaid quotes, drafts replies in your tone and sends a crisp 7:30am morning brief.',
+    heroImage: '/src/assets/images/service_personal_ai_agent_1795443159030.jpg',
+    heroAlt: 'London studio founder reviewing a morning AI agent schedule on smartphone and notebook by sunlit Crittall windows',
+    secondaryImage: '/src/assets/images/emtrc_editorial_desk_craft_1795374293989.jpg',
+    secondaryAlt: 'Minimalist walnut studio desk with clean schedule notebook and laptop',
+    pains: [
+      {
+        title: 'Two hours of evening inbox admin',
+        costLabel: 'Costs your evenings',
+        problem:
+          'After 10 hours on tools or on the shop floor, sorting 60 supplier emails, quote requests and diary changes drains every spare evening.',
+        solution: 'Inbox triaged automatically with ready-to-approve reply drafts queued in the emtrc App',
+      },
+      {
+        title: 'Forgotten quote follow-ups',
+        costLabel: 'Costs £1,000s a quarter',
+        problem:
+          'You send a £600 estimate on Tuesday, get busy on Wednesday, and forget to follow up — handing the job to whoever chased them.',
+        solution: 'Polite, human-sounding follow-up reminders drafted at Day 2 and Day 5 automatically',
+      },
+      {
+        title: 'Messy supplier & invoice chasing',
+        costLabel: 'Costs cashflow',
+        problem:
+          'Chasing wholesalers, landlords, accountants and overdue invoices sits on sticky notes until it becomes urgent.',
+        solution: 'Automated weekly chase queue that only sends once you tap Approve on your phone',
+      },
+      {
+        title: 'Generic ChatGPT prompts that sound robotic',
+        costLabel: 'Costs your reputation',
+        problem:
+          'Off-the-shelf AI tools know nothing about your London postcodes, pricing rules or British tone of voice.',
+        solution: 'Private agent trained exclusively on your rate card, calendar rules and real phrasing',
+      },
+    ],
+    watchIntro:
+      'Tap through a typical morning inside the emtrc App showing how your Personal AI Agent prepares your day before your first coffee.',
+    previewAppTitle: 'Personal AI Agent · Morning Desk',
+    previewTabs: [
+      {
+        id: 'brief',
+        tabLabel: '7:30am Brief',
+        headerSub: 'DAILY EXECUTIVE SUMMARY',
+        title: 'Today in 4 lines',
+        subtitle: 'Delivered via emtrc App & WhatsApp',
+        rows: [
+          { label: 'Confirmed jobs today', value: '6 bookings (£1,420)', highlight: true },
+          { label: 'Urgent inbox items', value: '2 drafts ready' },
+          { label: 'Overdue quote chases', value: '3 ready to send' },
+          { label: 'Supplier deliveries', value: '10:30am · Confirmed' },
+        ],
+        footnote: 'One calm 30-second scan replaces forty minutes of inbox digging.',
+      },
+      {
+        id: 'triage',
+        tabLabel: 'Inbox Triage',
+        headerSub: 'GMAIL · OUTLOOK · ZOHO',
+        title: 'Zero spam, drafts ready',
+        subtitle: 'Human approval before anything sends',
+        rows: [
+          { label: 'New client quote (N1)', value: 'Drafted · £340', highlight: true },
+          { label: 'Landlord EICR renewal', value: 'Drafted · Thu 14:00' },
+          { label: 'Wholesale parts order', value: 'Matched to invoice' },
+          { label: 'Cold sales pitches', value: '14 archived quietly' },
+        ],
+        footnote: 'Nothing leaves your @yourbusiness mailbox without your one-tap approval.',
+      },
+      {
+        id: 'followups',
+        tabLabel: 'Quote Chaser',
+        headerSub: 'REVENUE RECOVERY',
+        title: 'Polite automatic nudges',
+        subtitle: 'Turns silent quotes into booked slots',
+        rows: [
+          { label: 'Sent quotes open', value: '5 quotes (£2,850)' },
+          { label: 'Day-3 polite check-in', value: '2 replied today', highlight: true },
+          { label: 'Converted this week', value: '+£1,190 rescued', highlight: true },
+          { label: 'Tone setting', value: 'Warm British plain' },
+        ],
+        footnote: 'Sounds like you wrote it on a quiet tea break — never pushy.',
+      },
+      {
+        id: 'privacy',
+        tabLabel: 'UK Privacy',
+        headerSub: 'ISOLATED WORKSPACE',
+        title: 'Your data stays private',
+        subtitle: 'Never used to train public AI models',
+        rows: [
+          { label: 'Data residency', value: 'UK / EU encrypted', highlight: true },
+          { label: 'Approval mode', value: 'Owner sign-off' },
+          { label: 'Pause switch', value: '1-tap in App' },
+          { label: 'Monthly fee', value: '£99 / month' },
+        ],
+        footnote: 'Strict least-privilege access — full audit log of every draft and action.',
+      },
+    ],
+    steps: [
+      {
+        num: '01',
+        title: 'We map your daily admin bottlenecks',
+        body: 'In a 20-minute call we capture your prices, email tone, calendar rules, common customer questions and recurring supplier chores.',
+      },
+      {
+        num: '02',
+        title: 'Private agent wired to your inbox & diary',
+        body: 'We connect cleanly to Gmail, Outlook, Zoho Mail, Google Calendar and WhatsApp with strict approval guardrails so nothing sends unsupervised.',
+      },
+      {
+        num: '03',
+        title: 'One-tap daily control inside the emtrc App',
+        body: 'Review your 7:30am morning summary, tap Approve on drafted replies and quote chases, and get back 6–10 hours every single week.',
+      },
+    ],
+    personas: [
+      {
+        tag: 'Solo founders',
+        title: 'Owners doing every job',
+        description:
+          'Reclaim your Sunday nights from quoting, chasing invoices and clearing cluttered email threads.',
+      },
+      {
+        tag: 'Multi-van trades',
+        title: 'Busy directors & estimators',
+        description:
+          'Keep diaries tight, chase pending quotes automatically and route supplier updates without hiring office staff.',
+      },
+      {
+        tag: 'Multi-chair studios',
+        title: 'Salon & clinic managers',
+        description:
+          'Automate VIP rebooking nudges, staff rota reminders and stock reorder drafts in one place.',
+      },
+    ],
+    whyUsPoints: [
+      'Trained strictly on your London trade, rate card and natural British writing style',
+      'Human-in-the-loop approval by default — review and tap Approve in 3 seconds inside the emtrc App',
+      'Connects directly to Gmail, Microsoft 365, Zoho Mail, Google Calendar and WhatsApp',
+      'Zero data shared with public AI training pools — UK GDPR compliant',
+      'Built, hosted and tuned by our London team — no DIY Zapier nightmares',
+    ],
+    faqGroups: [
+      {
+        groupTitle: 'The essentials',
+        questions: [
+          {
+            q: 'Will my Personal AI Agent send emails or messages without me checking?',
+            a: 'By default, no. Every reply, quote follow-up and supplier chase lands in your emtrc App approval queue so you tap Approve or Edit first. Once you trust specific routine messages (like confirming an appointment time), you can opt those into automatic send.',
+          },
+          {
+            q: 'Does it work with my existing Gmail, Outlook or Zoho inbox?',
+            a: 'Yes. It integrates securely via official OAuth connections with Google Workspace, Microsoft 365 and Zoho Mail — keeping all replies inside your real business address.',
+          },
+        ],
+      },
+      {
+        groupTitle: 'Setup & pricing',
+        questions: [
+          {
+            q: 'How long does it take to train my Personal AI Agent?',
+            a: 'Most agents go live within 5 working days of your 20-minute onboarding call. We tune the prompts with you across the first two weeks until the tone is indistinguishable from your own.',
+          },
+        ],
+      },
+    ],
+    closingHeadline: 'Get back 8 hours a week without hiring an office manager.',
+    closingBody:
+      'Book a 15-minute live demonstration of a Personal AI Agent running inside the emtrc App.',
+    closingCtaLabel: 'Book an AI Agent demo',
+    closingCtaTo: '/contact',
+    relatedSlugs: ['ai-sales-leads', 'ai-receptionist', 'lead-catcher'],
+  },
+  {
+    slug: 'ai-sales-leads',
+    shortTitle: 'AI Sales Leads',
+    category: 'AI agents & automation',
+    menuDescription: 'Targeted London B2B & local prospect lists, qualification & polite outreach',
+    priceTag: '£119/month · Verified London prospect pipeline',
+    headlineLine1: 'Warm London enquiries,',
+    headlineLine2: 'qualified before you dial.',
+    subheadline:
+      'Stop paying £40 a lead to shared trade directories that sell the same enquiry to six competitors. Our AI Sales Leads engine identifies ideal local commercial & residential partners in your London boroughs, researches each business, and runs polite, compliant outreach that books straight into your diary.',
+    heroImage: '/src/assets/images/service_ai_sales_leads_1795443156927.jpg',
+    heroAlt: 'Independent London founder reviewing qualified local sales leads on smartphone outside a Shoreditch brick workshop',
+    secondaryImage: '/src/assets/images/emtrc_london_plumber_van_1795422464729.jpg',
+    secondaryAlt: 'London trades director checking booked commercial maintenance enquiries beside van',
+    pains: [
+      {
+        title: 'Paying Checkatrade / Bark for shared leads',
+        costLabel: 'Costs £250–£600/mo',
+        problem:
+          'Lead marketplaces sell the exact same enquiry to 5 competitors at once — turning every quote into a race to the bottom on price.',
+        solution: 'Exclusive leads owned 100% by your business, never shared with competitors',
+      },
+      {
+        title: 'Feast-or-famine quiet months',
+        costLabel: 'Costs steady cashflow',
+        problem:
+          'Relying purely on word-of-mouth leaves sudden quiet weeks in January, February and August with empty vans or chairs.',
+        solution: 'Predictable weekly pipeline of local letting agents, offices, shops and property managers',
+      },
+      {
+        title: 'Zero time for cold research & outreach',
+        costLabel: 'Costs growth',
+        problem:
+          'Building clean London prospect lists, checking contact emails and following up politely takes hours nobody has.',
+        solution: 'AI enriches verified London prospects and runs measured, PECR-compliant outreach automatically',
+      },
+      {
+        title: 'Spammy templates that hurt your brand',
+        costLabel: 'Costs trust',
+        problem:
+          'Mass blasts saying “Dear Sir/Madam, hope this email finds you well” get deleted instantly and damage your domain reputation.',
+        solution: 'Short, bespoke borough-specific notes sent from warmed domains with high reply rates',
+      },
+    ],
+    watchIntro:
+      'Inspect a live London B2B & local pipeline inside the emtrc App — from verified prospect discovery to booked discovery calls.',
+    previewAppTitle: 'AI Sales Leads · London Pipeline',
+    previewTabs: [
+      {
+        id: 'prospects',
+        tabLabel: 'New Leads',
+        headerSub: 'VERIFIED LONDON CONTACTS',
+        title: 'Exclusive local targets',
+        subtitle: 'Filtered by borough, trade & company size',
+        rows: [
+          { label: 'Hackney Lettings Ltd (E8)', value: '140 properties · Hot', highlight: true },
+          { label: 'Clerkenwell Dental (EC1)', value: 'Commercial clean', highlight: true },
+          { label: 'Greenwich Property Mgmt', value: 'Boiler maintenance' },
+          { label: 'Islington Boutique Hotel', value: 'Monthly retainer' },
+        ],
+        footnote: 'Every prospect is verified for active business status and local borough match.',
+      },
+      {
+        id: 'outreach',
+        tabLabel: 'Outreach',
+        headerSub: 'BESPOKE PLAIN-ENGLISH NOTES',
+        title: 'High-reply introductions',
+        subtitle: 'Tailored to each recipient’s street & sector',
+        rows: [
+          { label: 'Emails dispatched (week)', value: '85 personalised' },
+          { label: 'Open rate', value: '64% verified', highlight: true },
+          { label: 'Positive replies', value: '7 conversations', highlight: true },
+          { label: 'Domain health (DKIM)', value: '100% protected' },
+        ],
+        footnote: 'Sent on dedicated warmed sending infrastructure so your main domain stays spotless.',
+      },
+      {
+        id: 'qualify',
+        tabLabel: 'Qualification',
+        headerSub: 'AI REPLY TRIAGE',
+        title: 'Only warm leads reach you',
+        subtitle: 'Questions answered & slots proposed',
+        rows: [
+          { label: 'Budget & scope check', value: 'Confirmed upfront' },
+          { label: 'Postcode match', value: 'Within 4 miles', highlight: true },
+          { label: 'Site visit booked', value: 'Thu 11:00 · E8', highlight: true },
+          { label: 'Uninterested replies', value: 'Suppressed cleanly' },
+        ],
+        footnote: 'You spend time quoting serious local buyers, never chasing dead numbers.',
+      },
+      {
+        id: 'roi',
+        tabLabel: 'Pipeline Value',
+        headerSub: 'MONTHLY TRACKING',
+        title: 'Clear return per pound',
+        subtitle: 'Tracked inside emtrc App & Portal',
+        rows: [
+          { label: 'Active pipeline value', value: '£8,400', highlight: true },
+          { label: 'Retainers won (30d)', value: '2 commercial' },
+          { label: 'Lead exclusivity', value: '100% yours' },
+          { label: 'Monthly investment', value: '£119 / month' },
+        ],
+        footnote: 'One recurring commercial contract pays for an entire year of AI Sales Leads.',
+      },
+    ],
+    steps: [
+      {
+        num: '01',
+        title: 'Define your ideal London buyers & postcodes',
+        body: 'Whether you want local letting agents, hospitality venues, offices, landlords or corporate wellness bookings, we lock in your exact target profile.',
+      },
+      {
+        num: '02',
+        title: 'AI verifies prospects & writes bespoke intros',
+        body: 'We verify corporate emails (UK B2B PECR-compliant), enrich each company with real local context, and send measured daily introductions for your approval.',
+      },
+      {
+        num: '03',
+        title: 'Warm replies drop straight into your App',
+        body: 'Interested prospects are alerted instantly in your emtrc App with full company context so you close the deal or confirm the booked site visit.',
+      },
+    ],
+    personas: [
+      {
+        tag: 'Commercial cleaners',
+        title: 'Offices, studios & EoT agencies',
+        description:
+          'Win recurring weekly office cleaning contracts and high-volume letting-agent end-of-tenancy accounts.',
+      },
+      {
+        tag: 'Trades & maintenance',
+        title: 'Landlord & block managers',
+        description:
+          'Build direct relationships with London estate agents, facilities managers and commercial premises.',
+      },
+      {
+        tag: 'Hospitality & wellness',
+        title: 'Corporate catering & local B2B',
+        description:
+          'Fill weekday mornings with office pastry contracts, corporate grooming perks and studio partnerships.',
+      },
+    ],
+    whyUsPoints: [
+      '100% exclusive leads — never resold to five competing trades in your borough',
+      'Strictly UK B2B & PECR compliant with instant opt-out suppression and clean deliverability',
+      'Separate warmed outreach domain protects your primary @yourbusiness mailbox reputation',
+      'Live pipeline visibility inside the emtrc App alongside your calls and quotes',
+      'Zero long-term agency retainer — pause or switch target boroughs anytime',
+    ],
+    faqGroups: [
+      {
+        groupTitle: 'Compliance & quality',
+        questions: [
+          {
+            q: 'Is B2B email outreach legal in the UK under GDPR and PECR?',
+            a: 'Yes, when executed properly. Under UK PECR rules, contacting corporate subscribers (Ltd companies, LLPs, partnerships) with genuinely relevant business services, transparent identity and a one-click opt-out is lawful under legitimate interest. We never scrape or blast personal Gmail/consumer addresses.',
+          },
+          {
+            q: 'Will outreach ever risk my main website domain going to spam?',
+            a: 'No. We configure a dedicated lookalike sending domain with full SPF, DKIM and DMARC warm-up so your core @yourbusiness domain remains 100% insulated.',
+          },
+        ],
+      },
+      {
+        groupTitle: 'Results & control',
+        questions: [
+          {
+            q: 'Do I approve the outreach messaging before anything goes out?',
+            a: 'Always. You sign off the exact target criteria, London boroughs and sample messages before the first campaign starts.',
+          },
+        ],
+      },
+    ],
+    closingHeadline: 'Build an exclusive London pipeline you actually own.',
+    closingBody:
+      'Tell us your target boroughs and ideal commercial clients — we will show you 15 sample verified prospects on a 15-minute call.',
+    closingCtaLabel: 'Request sample London leads',
+    closingCtaTo: '/contact',
+    relatedSlugs: ['personal-ai-agents', 'competitor-pricing', 'local-seo'],
+  },
+  {
+    slug: 'ai-social-management',
+    shortTitle: 'AI Social Management',
+    category: 'Growth, SEO & reviews',
+    menuDescription: 'Weekly London Instagram, TikTok, LinkedIn & Google Posts drafted, scheduled & replied',
+    priceTag: '£89/month · 12–16 branded posts + Google updates',
+    headlineLine1: 'Consistent local social posts,',
+    headlineLine2: 'without living on Instagram.',
+    subheadline:
+      'London customers check your Instagram and Google Business photos before they book. Send us raw phone snaps from your shop floor or van in 10 seconds — our AI Social Management turns them into sharp, on-brand posts, reels captions, Google updates and instant DM replies every single week.',
+    heroImage: '/src/assets/images/service_ai_social_mgmt_1795443158490.jpg',
+    heroAlt: 'Creative director framing a natural sunlit product and espresso shot on smartphone inside an East London shop',
+    secondaryImage: '/src/assets/images/cafe_brunch_pastry_1795373181666.jpg',
+    secondaryAlt: 'Artisan London sourdough brunch and pastry photographed in natural window light',
+    pains: [
+      {
+        title: 'Last Instagram post was 4 months ago',
+        costLabel: 'Costs walk-in trust',
+        problem:
+          'When a local customer checks your Instagram and sees a dusty feed from last summer, they wonder if you are still open.',
+        solution: '3–4 crisp, authentic posts every week across Instagram, Facebook & Google Business Profile',
+      },
+      {
+        title: 'Unanswered Instagram & Facebook DMs',
+        costLabel: 'Costs instant bookings',
+        problem:
+          'Clients message “Do you have anything free Saturday?” at 8pm and book somewhere else when you reply the next afternoon.',
+        solution: 'Instant polite DM assistant answering prices, hours and sending your booking link in seconds',
+      },
+      {
+        title: '£750/month social media agencies',
+        costLabel: 'Costs too much',
+        problem:
+          'Traditional social agencies charge £600–£1,200/month and still post generic stock quotes that look nothing like your shop.',
+        solution: 'Your real photos, real London street vibe and studio polish for £89/month',
+      },
+      {
+        title: 'Forgetting Google Business Profile posts',
+        costLabel: 'Costs Maps visibility',
+        problem:
+          'Google rewards active profiles that post weekly photos, seasonal offers and completed jobs — yet almost no local shop remembers.',
+        solution: 'Every social update automatically cross-posted as an optimised Google Maps update',
+      },
+    ],
+    watchIntro:
+      'Preview the weekly content calendar inside the emtrc App — upload raw phone shots in seconds and tap Approve on your entire week.',
+    previewAppTitle: 'AI Social Studio · Weekly Queue',
+    previewTabs: [
+      {
+        id: 'calendar',
+        tabLabel: 'Content Queue',
+        headerSub: 'INSTAGRAM · GOOGLE · TIKTOK',
+        title: '4 posts queued this week',
+        subtitle: 'One-tap approve or swap caption',
+        rows: [
+          { label: 'Tue 11:00 · IG + Google', value: 'Fresh balayage reel', highlight: true },
+          { label: 'Thu 09:00 · IG Story', value: 'Last 2 Fri slots alert', highlight: true },
+          { label: 'Fri 16:30 · Google Post', value: 'Weekend walk-in hours' },
+          { label: 'Sun 18:00 · Carousel', value: '5-star Hackney review' },
+        ],
+        footnote: 'Built from your real smartphone snaps — zero cheesy stock graphics.',
+      },
+      {
+        id: 'dms',
+        tabLabel: 'DM Replies',
+        headerSub: '24/7 SOCIAL INBOX',
+        title: 'DMs converted to bookings',
+        subtitle: 'Instagram, Facebook & WhatsApp unified',
+        rows: [
+          { label: '@maya_e8 (20:14)', value: 'Asked cut price → Sent', highlight: true },
+          { label: 'Booking link tapped', value: 'Booked Sat 10:30 ✓', highlight: true },
+          { label: 'Response speed', value: '14 seconds avg' },
+          { label: 'Escalated to owner', value: 'Custom colour query' },
+        ],
+        footnote: 'Never lose a Saturday booking sitting unread in Instagram Message Requests.',
+      },
+      {
+        id: 'reviews-to-posts',
+        tabLabel: 'Review Graphics',
+        headerSub: 'AUTO SOCIAL PROOF',
+        title: '5-star reviews turned visual',
+        subtitle: 'Branded editorial cards in your fonts',
+        rows: [
+          { label: 'New Google 5★ review', value: 'Auto-styled card' },
+          { label: 'Typography & palette', value: 'Matched to website', highlight: true },
+          { label: 'Borough geo-tags', value: 'Hackney · E8 · Dalston' },
+          { label: 'Time spent by owner', value: '0 minutes' },
+        ],
+        footnote: 'Turns your best Google reviews into high-trust Instagram & Facebook proof.',
+      },
+      {
+        id: 'insights',
+        tabLabel: 'Local Reach',
+        headerSub: 'PLAIN-ENGLISH METRICS',
+        title: 'Real borough clicks',
+        subtitle: 'Calls & bookings, not vanity likes',
+        rows: [
+          { label: 'Local London reach', value: '6,840 neighbours', highlight: true },
+          { label: 'Profile booking clicks', value: '64 this month', highlight: true },
+          { label: 'Google Maps photo views', value: '+41% vs last mo' },
+          { label: 'Monthly plan', value: '£89 / month' },
+        ],
+        footnote: 'Every post links back to your website, Maps listing or booking button.',
+      },
+    ],
+    steps: [
+      {
+        num: '01',
+        title: 'Drop raw phone photos into the emtrc App',
+        body: 'Snap a fresh haircut, finished boiler install, morning pastry tray or sparkling kitchen in 5 seconds — no editing or caption writing required.',
+      },
+      {
+        num: '02',
+        title: 'AI + studio polish drafts your full weekly schedule',
+        body: 'We colour-grade, crop for Instagram/TikTok/Google Maps, write grounded London captions with local hashtags, and queue your week for one-tap sign-off.',
+      },
+      {
+        num: '03',
+        title: 'Published automatically + DMs answered in seconds',
+        body: 'Posts publish at peak local times while our DM assistant answers routine price, postcode and booking enquiries 24/7.',
+      },
+    ],
+    personas: [
+      {
+        tag: 'Visual high street',
+        title: 'Barbers, hair, nails & beauty',
+        description:
+          'Turn every great fade, balayage or manicure into consistent bookings without losing your evenings to Canva.',
+      },
+      {
+        tag: 'Food & hospitality',
+        title: 'Cafés, bakeries & delis',
+        description:
+          'Showcase morning bakes, seasonal specials and weekend brunch queues across Instagram and Google Maps.',
+      },
+      {
+        tag: 'Craft trades',
+        title: 'Cleaners, sparks & builders',
+        description:
+          'Publish sharp before-and-after transformations that prove craftsmanship to local London homeowners.',
+      },
+    ],
+    whyUsPoints: [
+      'Uses your authentic shop, team and finished-job photos — never generic AI clipart',
+      'Cross-posts simultaneously to Instagram, Facebook, LinkedIn and Google Business Profile',
+      'Includes 24/7 Instagram & Facebook DM reply assistant wired to your booking link',
+      'One-tap weekly approval queue inside the emtrc App — full control in 60 seconds',
+      'Fraction of the cost of a £750/month London social media agency',
+    ],
+    faqGroups: [
+      {
+        groupTitle: 'How content works',
+        questions: [
+          {
+            q: 'What if I forget to send photos during a busy week?',
+            a: 'We build a reusable library of your best shop, team, service and 5-star review assets during onboarding so your channels stay active and authentic even during your busiest weeks.',
+          },
+          {
+            q: 'Can I edit or veto any post before it publishes?',
+            a: 'Yes. Every Monday your queued posts appear in the emtrc App — tap Approve All, tweak a word, or swap a photo in seconds.',
+          },
+        ],
+      },
+      {
+        groupTitle: 'Platforms & pricing',
+        questions: [
+          {
+            q: 'Which platforms are included in the £89/month plan?',
+            a: 'Instagram (Feed & Stories), Facebook, Google Business Profile updates and LinkedIn (optional for B2B trades). TikTok short-form reels editing is available as a bolt-on.',
+          },
+        ],
+      },
+    ],
+    closingHeadline: 'Look active, local and bookable every single week.',
+    closingBody:
+      'See sample posts crafted around your actual London business on a quick 15-minute call.',
+    closingCtaLabel: 'Preview your social calendar',
+    closingCtaTo: '/contact',
+    relatedSlugs: ['review-engine', 'local-seo', 'personal-ai-agents'],
+  },
+  {
+    slug: 'competitor-pricing',
+    shortTitle: 'Competitor Pricing Intelligence',
+    category: 'Growth, SEO & reviews',
+    menuDescription: 'Live London borough competitor price tracking, margin alerts & SEO gap reports',
+    priceTag: '£69/month · Weekly borough benchmark alerts',
+    headlineLine1: 'Know what every competitor',
+    headlineLine2: 'within 2 miles charges.',
+    subheadline:
+      'Most independent London businesses guess their prices once a year — either undercharging by £8–£25 per job or losing bookings silently when a rival launches an offer. Our Competitor Pricing Intelligence tracks up to 15 local competitors weekly across prices, offers, Google reviews and SEO rankings.',
+    heroImage: '/src/assets/images/service_competitor_pricing_1795443232556.jpg',
+    heroAlt: 'Minimalist London studio workbench with laptop displaying clean pricing benchmark tables beside a printed London borough map',
+    secondaryImage: '/src/assets/images/emtrc_mobile_maps_search_1795424180037.jpg',
+    secondaryAlt: 'London customer comparing local businesses and pricing on Google Maps',
+    pains: [
+      {
+        title: 'Quietly undercharging your borough',
+        costLabel: 'Costs £500–£1,800/mo',
+        problem:
+          'When neighbouring shops quietly raise a cut from £32 to £38 or a boiler service from £85 to £110, staying stuck on old prices drains pure profit.',
+        solution: 'Weekly side-by-side price benchmarks against up to 15 named competitors in your postcode',
+      },
+      {
+        title: 'Blindsided by rival offers & promos',
+        costLabel: 'Costs weekend slots',
+        problem:
+          'A competitor two streets over launches a midweek intro offer or new package and you only find out when regulars mention it.',
+        solution: 'Instant alert inside the emtrc App whenever a tracked competitor changes prices or offers',
+      },
+      {
+        title: 'No idea why a rival outranks you on Maps',
+        costLabel: 'Costs daily calls',
+        problem:
+          'Seeing a newer shop sit above you in the Google 3-Pack without knowing whether it is reviews, categories, speed or keywords.',
+        solution: 'Side-by-side Maps rank, review velocity & keyword gap breakdown every Monday',
+      },
+      {
+        title: 'Hours wasted checking websites manually',
+        costLabel: 'Costs your Sunday',
+        problem:
+          'Clicking through ten Fresha menus, Treatwell pages and trade websites by hand takes hours and quickly gets abandoned.',
+        solution: 'Automated monitoring summarised in one clean 2-minute dashboard inside your emtrc App',
+      },
+    ],
+    watchIntro:
+      'Explore how Competitor Pricing & SEO Intelligence tracks rival London menus, hourly rates, Maps positions and margin opportunities.',
+    previewAppTitle: 'Competitor Watch · Borough Radar',
+    previewTabs: [
+      {
+        id: 'pricing',
+        tabLabel: 'Price Matrix',
+        headerSub: '12 TRACKED RIVALS · 2 MILE RADIUS',
+        title: 'Your rates vs local median',
+        subtitle: 'Updated automatically every Monday',
+        rows: [
+          { label: 'Skin Fade (Your price)', value: '£32 (Median £36)', highlight: true },
+          { label: 'Boiler Service (Yours)', value: '£95 (Median £112)', highlight: true },
+          { label: '2-Bed EoT Clean (Yours)', value: '£215 (Median £220)' },
+          { label: 'Margin upside identified', value: '+£640 / month', highlight: true },
+        ],
+        footnote: 'Spot safe £3–£15 price adjustments backed by real local borough data.',
+      },
+      {
+        id: 'alerts',
+        tabLabel: 'Live Alerts',
+        headerSub: 'CHANGE DETECTION',
+        title: 'Competitor movements',
+        subtitle: 'Menus, offers & opening-hour changes',
+        rows: [
+          { label: 'Rival A (0.4 mi)', value: 'Raised cuts +£4', highlight: true },
+          { label: 'Rival B (0.8 mi)', value: 'Added Sunday hours' },
+          { label: 'Rival C (1.1 mi)', value: 'Dropped off 3-Pack' },
+          { label: '1-tap site update', value: 'Sync new price →', highlight: true },
+        ],
+        footnote: 'Decide to match or adjust a price? Dispatch the edit straight to our studio in one tap.',
+      },
+      {
+        id: 'seo-ranks',
+        tabLabel: 'SEO & Maps',
+        headerSub: 'BOROUGH RANK TRACKER',
+        title: 'Local keyword scoreboard',
+        subtitle: 'Google Maps 3-Pack + organic rank',
+        rows: [
+          { label: '“barber hackney e8”', value: '#2 Maps (↑ 3)', highlight: true },
+          { label: '“emergency plumber se10”', value: '#1 Maps (Held)', highlight: true },
+          { label: '“balayage chelsea sw3”', value: '#3 Maps (↑ 2)' },
+          { label: 'Review gap to #1', value: 'Only 6 reviews' },
+        ],
+        footnote: 'Know the exact review and keyword gap separating you from the #1 Maps spot.',
+      },
+      {
+        id: 'digest',
+        tabLabel: 'Action Brief',
+        headerSub: 'MONDAY 08:00 BRIEFING',
+        title: '3 concrete weekly moves',
+        subtitle: 'Plain English, zero spreadsheets',
+        rows: [
+          { label: 'Move 01', value: 'Lift weekend rate +£3', highlight: true },
+          { label: 'Move 02', value: 'Add “EV charger” page' },
+          { label: 'Move 03', value: 'Send 8 review invites' },
+          { label: 'Monthly fee', value: '£69 / month' },
+        ],
+        footnote: 'One smart price adjustment usually returns 5x–10x the monthly subscription.',
+      },
+    ],
+    steps: [
+      {
+        num: '01',
+        title: 'Pick up to 15 local London competitors',
+        body: 'Tell us the shops or firms you compete with — or let us pull the top 15 ranking businesses across your postcode and neighbouring boroughs.',
+      },
+      {
+        num: '02',
+        title: 'Automated weekly price, review & rank tracking',
+        body: 'Every week our system checks public service menus, Fresha/Treatwell/website pricing, Google Maps 3-Pack rankings and new review velocity.',
+      },
+      {
+        num: '03',
+        title: 'Act in one tap inside the emtrc App',
+        body: 'Review your Monday benchmark brief, spot margin opportunities, and tap once to ask our studio to update your own website & Google price list.',
+      },
+    ],
+    personas: [
+      {
+        tag: 'Salons & barbers',
+        title: 'Service-menu businesses',
+        description:
+          'Benchmark every cut, colour, balayage and nail treatment against neighbouring studios in your postcode.',
+      },
+      {
+        tag: 'Trades & cleaners',
+        title: 'Call-out & fixed-rate firms',
+        description:
+          'Track local hourly rates, EICR/CP12 prices and end-of-tenancy packages without undercutting your own margin.',
+      },
+      {
+        tag: 'Multi-site owners',
+        title: 'Growing London brands',
+        description:
+          'Compare pricing power and Google Maps share of voice across multiple London boroughs at once.',
+      },
+    ],
+    whyUsPoints: [
+      'Tracks up to 15 named London competitors weekly across websites, booking menus & Google Maps',
+      'Combines Competitor Pricing Benchmarks with live Local SEO & Maps 3-Pack Rank Tracking',
+      'Zero complex BI tools — delivered as clean, tabular cards inside the emtrc App every Monday',
+      'Connected directly to your emtrc studio edit queue so price updates go live inside 24 hours',
+      'One modest £3–£5 margin adjustment pays for the entire service in a single weekend',
+    ],
+    faqGroups: [
+      {
+        groupTitle: 'Data & accuracy',
+        questions: [
+          {
+            q: 'Where does the competitor pricing and ranking data come from?',
+            a: 'Strictly from publicly published business websites, public online booking menus (such as Fresha, Booksy and Treatwell) and live London postcode Google Maps / organic search checks — completely ethical and transparent.',
+          },
+          {
+            q: 'Can I change which competitors or keywords are tracked?',
+            a: 'Yes, anytime. Just message us inside the emtrc App to swap competitors or add new high-margin services you want to monitor.',
+          },
+        ],
+      },
+      {
+        groupTitle: 'Pricing & pairing',
+        questions: [
+          {
+            q: 'Does it pair with Local SEO & Review Engine?',
+            a: 'Yes — that is where it shines. When Competitor Watch shows a rival is only 5 Google reviews ahead of you for a high-value keyword, you can trigger review invites and update your service page immediately.',
+          },
+        ],
+      },
+    ],
+    closingHeadline: 'Stop guessing your prices in the dark.',
+    closingBody:
+      'Request a complimentary 5-competitor pricing & Maps snapshot for your London postcode on a 15-minute call.',
+    closingCtaLabel: 'Get a borough snapshot',
+    closingCtaTo: '/contact',
+    relatedSlugs: ['local-seo', 'review-engine', 'ai-sales-leads'],
   },
 ];
 

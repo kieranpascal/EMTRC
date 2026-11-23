@@ -62,10 +62,7 @@ export function LaunchWeekAnimatedIllustration() {
       {/* Top Bar */}
       <div className="flex items-center justify-between border-b border-white/10 pb-3">
         <div className="flex items-center gap-2">
-          <span className="relative flex h-2.5 w-2.5">
-            <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[#34D399] opacity-60" />
-            <span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-[#34D399]" />
-          </span>
+          <span className="h-2 w-2 rounded-sm bg-[#34D399]" aria-hidden="true" />
           <span className="font-mono-data text-[10px] font-semibold uppercase tracking-[0.16em] text-[#CBD5E1]">
             LIVE LAUNCH PIPELINE · LONDON
           </span>
@@ -379,7 +376,7 @@ export function AiCallCaptureIllustration() {
           </span>
         </div>
         <span className="inline-flex items-center gap-1 font-mono-data text-[10px] text-[#34D399]">
-          <Radio className="h-3 w-3 animate-pulse" aria-hidden="true" />
+          <Radio className="h-3 w-3" aria-hidden="true" />
           <span>8s SLA</span>
         </span>
       </div>

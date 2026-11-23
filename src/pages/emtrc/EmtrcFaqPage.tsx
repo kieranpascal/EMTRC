@@ -16,7 +16,7 @@ import { EmtrcHead } from '../../components/emtrc/EmtrcHead';
 import { EmtrcLayout } from '../../components/emtrc/EmtrcLayout';
 import { PageHeader } from '../../components/emtrc/PageHeader';
 import { Reveal } from '../../components/emtrc/Reveal';
-import { AnimatedSectionHeader, SectionSeparator } from '../../components/emtrc/SectionSeparator';
+import { AnimatedSectionHeader } from '../../components/emtrc/SectionSeparator';
 import { ALL_FAQS, FAQ_CATEGORIES, type FaqCategory } from '../../content/faqs';
 import { SITE } from '../../content/site';
 import { matchesSearchQuery } from '../../utils/markdown';
@@ -125,10 +125,8 @@ export function EmtrcFaqPage() {
         }
       />
 
-      <SectionSeparator variant="angle" from="obsidian" to="sand" accentColor="coral" />
-
       {/* Main 2-Column Editorial Knowledge Base */}
-      <section className="bg-[var(--emtrc-sand)]">
+      <section className="border-b border-[var(--emtrc-border)] bg-[var(--emtrc-sand)]">
         <div className="mx-auto max-w-[1200px] px-5 py-10 sm:px-8 sm:py-14">
           <div className="grid grid-cols-1 gap-8 lg:grid-cols-12 lg:items-start">
             {/* Sticky Left Sidebar: Topic Chapters + Written Guarantees */}
@@ -353,8 +351,6 @@ export function EmtrcFaqPage() {
           </div>
         </div>
       </section>
-
-      <SectionSeparator variant="wave" from="sand" to="obsidian" accentColor="emerald" />
 
       {/* High-Contrast Closing Help Band */}
       <section className="bg-[#0B0D12] text-white">

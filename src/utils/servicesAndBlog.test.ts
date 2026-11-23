@@ -24,10 +24,19 @@ function loadDiskMarkdownArticles() {
 }
 
 describe('dedicated service pages catalog', () => {
-  it('defines 8 unique standalone services with full editorial depth', () => {
-    assert.equal(SERVICE_DETAILS.length, 8);
+  it('defines 12 unique standalone services with full editorial depth across 3 balanced categories', () => {
+    assert.equal(SERVICE_DETAILS.length, 12);
     const slugs = new Set(SERVICE_DETAILS.map((s) => s.slug));
-    assert.equal(slugs.size, 8);
+    assert.equal(slugs.size, 12);
+
+    const categoryCounts = new Map<string, number>();
+    for (const s of SERVICE_DETAILS) {
+      categoryCounts.set(s.category, (categoryCounts.get(s.category) ?? 0) + 1);
+    }
+    assert.equal(categoryCounts.size, 3, 'Should define 3 balanced service categories');
+    for (const [cat, count] of categoryCounts.entries()) {
+      assert.equal(count, 4, `Category "${cat}" should have exactly 4 services for even 2x2 rows`);
+    }
 
     for (const service of SERVICE_DETAILS) {
       assert.equal(getServiceBySlug(service.slug)?.slug, service.slug);

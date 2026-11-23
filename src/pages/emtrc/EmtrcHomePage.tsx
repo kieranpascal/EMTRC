@@ -38,8 +38,7 @@ import {
   StaggerItem,
 } from '../../components/emtrc/Reveal';
 import { ScrollReveal, ScrollRevealItem } from '../../components/emtrc/ScrollReveal';
-import { AnimatedSectionHeader, SectionSeparator } from '../../components/emtrc/SectionSeparator';
-import { OrnamentalDivider } from '../../components/emtrc/OrnamentalDivider';
+import { AnimatedSectionHeader } from '../../components/emtrc/SectionSeparator';
 import { LaunchWeekAnimatedIllustration } from '../../components/emtrc/AnimatedIllustrations';
 import { SafeImage } from '../../components/SafeImage';
 
@@ -191,10 +190,8 @@ export function EmtrcHomePage() {
         </div>
       </section>
 
-      <SectionSeparator variant="angle" from="surface" to="sand" accentColor="coral" />
-
       {/* CHAPTER 3: High-Density Service Cards Bento Grid with Staggered Fade-In & Scale ScrollReveal */}
-      <section className="bg-[var(--emtrc-sand)]">
+      <section className="border-b border-[var(--emtrc-border)] bg-[var(--emtrc-sand)]">
         <div className="mx-auto max-w-[1200px] px-5 py-10 sm:px-8 sm:py-14">
           <div className="flex flex-col justify-between gap-5 lg:flex-row lg:items-end">
             <AnimatedSectionHeader
@@ -270,10 +267,8 @@ export function EmtrcHomePage() {
         </div>
       </section>
 
-      <SectionSeparator variant="architectural-ribbon" from="sand" to="surface" accentColor="amber" />
-
       {/* CHAPTER 4: Interactive Before & After Website Transformation */}
-      <section className="bg-[var(--emtrc-surface)]">
+      <section className="border-b border-[var(--emtrc-border)] bg-[var(--emtrc-surface)]">
         <div className="mx-auto max-w-[1200px] px-5 py-10 sm:px-8 sm:py-14">
           <div className="mb-7 flex flex-col justify-between gap-4 lg:flex-row lg:items-end">
             <AnimatedSectionHeader
@@ -300,10 +295,8 @@ export function EmtrcHomePage() {
         </div>
       </section>
 
-      <SectionSeparator variant="wave" from="surface" to="obsidian" accentColor="coral" />
-
       {/* CHAPTER 5: Full-Bleed Obsidian Interactive Capability Deck */}
-      <section className="bg-[#0B0D12] text-[#F5F6F8]">
+      <section className="border-b border-[var(--emtrc-navy-border)] bg-[#0B0D12] text-[#F5F6F8]">
         <div className="mx-auto max-w-[1200px] px-5 py-10 sm:px-8 sm:py-14">
           <div className="grid grid-cols-1 gap-6 lg:grid-cols-12 lg:items-end">
             <div className="lg:col-span-7">
@@ -454,10 +447,8 @@ export function EmtrcHomePage() {
         </div>
       </section>
 
-      <SectionSeparator variant="angle" from="obsidian" to="surface" accentColor="emerald" flip />
-
       {/* CHAPTER 6: Featured London Case Studies with Documentary Photography */}
-      <section className="bg-[var(--emtrc-surface)]">
+      <section className="border-b border-[var(--emtrc-border)] bg-[var(--emtrc-surface)]">
         <div className="mx-auto max-w-[1200px] px-5 py-10 sm:px-8 sm:py-14">
           <div className="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
             <AnimatedSectionHeader
@@ -529,16 +520,8 @@ export function EmtrcHomePage() {
         </div>
       </section>
 
-      <OrnamentalDivider
-        pattern="art-deco-chevron"
-        from="surface"
-        to="sand"
-        label="LAUNCH CADENCE · DAY 1 TO LIVE DOMAIN"
-        accentColor="coral"
-      />
-
       {/* CHAPTER 7: Three Steps. Live This Week. (Compact Launch Cadence + Architectural Dial) */}
-      <section className="bg-[var(--emtrc-sand)]">
+      <section className="border-b border-[var(--emtrc-border)] bg-[var(--emtrc-sand)]">
         <div className="mx-auto max-w-[1200px] px-5 py-10 sm:px-8 sm:py-14">
           <div className="grid grid-cols-1 items-center gap-10 lg:grid-cols-12">
             <div className="lg:col-span-7">
@@ -596,10 +579,8 @@ export function EmtrcHomePage() {
         </div>
       </section>
 
-      <SectionSeparator variant="architectural-ribbon" from="sand" to="obsidian" accentColor="coral" />
-
       {/* CHAPTER 8: Live Interactive London Demos (High-Contrast Obsidian Showcase Band) */}
-      <section className="bg-[#0B0D12] text-[#F5F6F8]">
+      <section className="border-b border-[var(--emtrc-navy-border)] bg-[#0B0D12] text-[#F5F6F8]">
         <div className="mx-auto max-w-[1200px] px-5 py-10 sm:px-8 sm:py-14">
           <div className="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
             <AnimatedSectionHeader
@@ -667,10 +648,8 @@ export function EmtrcHomePage() {
         </div>
       </section>
 
-      <SectionSeparator variant="wave" from="obsidian" to="surface" accentColor="amber" flip />
-
       {/* CHAPTER 9: Owner Training Centre + FAQ Hub Spotlight */}
-      <section className="bg-[var(--emtrc-surface)]">
+      <section className="border-b border-[var(--emtrc-border)] bg-[var(--emtrc-surface)]">
         <div className="mx-auto max-w-[1200px] px-5 py-10 sm:px-8 sm:py-14">
           <div className="grid grid-cols-1 items-center gap-8 lg:grid-cols-12">
             <div className="lg:col-span-6">
@@ -738,16 +717,8 @@ export function EmtrcHomePage() {
         </div>
       </section>
 
-      <OrnamentalDivider
-        pattern="georgian-fret"
-        from="surface"
-        to="canvas"
-        label="EMTRC SIGNALS · LONG-FORM LONDON FIELD INTELLIGENCE"
-        accentColor="blue"
-      />
-
       {/* CHAPTER 10: The emtrc Journal (Static Markdown Blog Showcase with 4-Photo Gallery & Charts) */}
-      <section className="bg-[var(--emtrc-canvas)]">
+      <section className="border-b border-[var(--emtrc-border)] bg-[var(--emtrc-canvas)]">
         <div className="mx-auto max-w-[1200px] px-5 py-10 sm:px-8 sm:py-14">
           <div className="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
             <AnimatedSectionHeader
@@ -813,10 +784,8 @@ export function EmtrcHomePage() {
         </div>
       </section>
 
-      <SectionSeparator variant="angle" from="canvas" to="sand" accentColor="amber" />
-
       {/* CHAPTER 11: Free PDF Guides Shelf */}
-      <section className="bg-[var(--emtrc-sand)]">
+      <section className="border-b border-[var(--emtrc-border)] bg-[var(--emtrc-sand)]">
         <div className="mx-auto max-w-[1200px] px-5 py-10 sm:px-8 sm:py-14">
           <div className="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
             <AnimatedSectionHeader
@@ -876,10 +845,8 @@ export function EmtrcHomePage() {
         </div>
       </section>
 
-      <SectionSeparator variant="architectural-ribbon" from="sand" to="surface" accentColor="emerald" />
-
       {/* CHAPTER 12: Clear Pricing Preview + 4 Guarantees */}
-      <section className="bg-[var(--emtrc-surface)]">
+      <section className="border-b border-[var(--emtrc-border)] bg-[var(--emtrc-surface)]">
         <div className="mx-auto max-w-[1200px] px-5 py-10 sm:px-8 sm:py-14">
           <AnimatedSectionHeader
             index="08"

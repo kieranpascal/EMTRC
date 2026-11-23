@@ -7,7 +7,6 @@ import { useLanguage } from '../../context/LanguageContext';
 import { EmtrcHead } from '../../components/emtrc/EmtrcHead';
 import { EmtrcLayout } from '../../components/emtrc/EmtrcLayout';
 import { PageHeader } from '../../components/emtrc/PageHeader';
-import { OrnamentalDivider } from '../../components/emtrc/OrnamentalDivider';
 import { MapsRankingOrbitIllustration } from '../../components/emtrc/AnimatedIllustrations';
 import { Reveal } from '../../components/emtrc/Reveal';
 import { ScrollReveal } from '../../components/emtrc/ScrollReveal';
@@ -150,16 +149,8 @@ export function EmtrcBlogPage() {
         }
       />
 
-      <OrnamentalDivider
-        pattern="barbican-grid"
-        from="obsidian"
-        to="canvas"
-        label="SIGNALS FIELD INTELLIGENCE · 6 BRIEFINGS"
-        accentColor="coral"
-      />
-
       {/* Symmetrical 3x2 Signals Grid (Zero Orphan Boxes) */}
-      <section className="py-10 sm:py-14">
+      <section className="border-b border-[var(--emtrc-border)] py-10 sm:py-14">
         <div className="mx-auto max-w-[1200px] px-5 sm:px-8">
           {filtered.length === 0 ? (
             <div
@@ -255,14 +246,6 @@ export function EmtrcBlogPage() {
           )}
         </div>
       </section>
-
-      <OrnamentalDivider
-        pattern="victorian-tile"
-        from="canvas"
-        to="sand"
-        label="LIVE LONDON VISIBILITY TELEMETRY"
-        accentColor="amber"
-      />
 
       {/* Live Animated London Radar Illustration Band */}
       <section className="bg-[var(--emtrc-sand)] py-11 sm:py-14">

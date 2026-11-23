@@ -13,7 +13,6 @@ import {
   StaggerItem,
 } from '../../components/emtrc/Reveal';
 import { BeforeAfterSlider } from '../../components/emtrc/BeforeAfterSlider';
-import { OrnamentalDivider } from '../../components/emtrc/OrnamentalDivider';
 import { MapsRankingOrbitIllustration } from '../../components/emtrc/AnimatedIllustrations';
 import { SafeImage } from '../../components/SafeImage';
 import { CASE_STUDIES } from '../../content/caseStudies';
@@ -203,17 +202,8 @@ export function EmtrcCaseStudiesPage() {
           ))}
         </StaggerContainer>
 
-        <div className="mt-14">
-          <OrnamentalDivider
-            pattern="art-deco-chevron"
-            from="canvas"
-            to="canvas"
-            label="LONDON BOROUGH VISIBILITY RADAR"
-            accentColor="emerald"
-          />
-          <div className="mt-8">
-            <MapsRankingOrbitIllustration />
-          </div>
+        <div className="mt-14 border-t border-[var(--emtrc-border)] pt-12">
+          <MapsRankingOrbitIllustration />
         </div>
 
         {/* Representative disclosure & CTA */}

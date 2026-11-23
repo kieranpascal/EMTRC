@@ -10,6 +10,7 @@ import {
 import buildSiteConfig from 'virtual:site-config';
 import type { SiteConfig } from '../types/site';
 import { buildThemeTokens, type ResolvedThemeTokens } from '../utils/theme';
+import { getDemoDesignProfile, type DemoDesignProfile } from '../utils/demoBlueprint';
 
 export interface PreviewPresetOption {
   id: string;
@@ -18,32 +19,40 @@ export interface PreviewPresetOption {
   style: string;
 }
 
-const EXAMPLE_LOADERS = import.meta.glob('../../examples/*.json') as Record<
-  string,
-  () => Promise<{ default: SiteConfig }>
->;
+const EXAMPLE_MODULES = import.meta.glob('../../examples/*.json', {
+  eager: true,
+}) as Record<string, { default: SiteConfig }>;
+
+function resolveExampleSite(presetId: string): SiteConfig | null {
+  const mod = EXAMPLE_MODULES[`../../examples/${presetId}.json`];
+  if (!mod?.default) return null;
+  return {
+    ...mod.default,
+    showTemplatePreview: buildSiteConfig.showTemplatePreview,
+  };
+}
 
 export const PREVIEW_PRESETS: readonly PreviewPresetOption[] = [
   // Barber shops (3 boroughs × 3 styles)
-  { id: 'barber-bold-hackney', label: 'Barber · Bold — Hackney (5 pages)', niche: 'Barber Shop', style: 'Bold' },
-  { id: 'barber-elegant-marylebone', label: 'Barber · Elegant — Marylebone (5 pages)', niche: 'Barber Shop', style: 'Elegant' },
-  { id: 'barber-minimal-brixton', label: 'Barber · Minimal — Brixton (1 page)', niche: 'Barber Shop', style: 'Minimal' },
+  { id: 'barber-bold-hackney', label: 'Barber · Bold Cinema — Hackney (5 pages)', niche: 'Barber Shop', style: 'Bold' },
+  { id: 'barber-elegant-marylebone', label: 'Barber · Atelier Magazine — Marylebone (5 pages)', niche: 'Barber Shop', style: 'Elegant' },
+  { id: 'barber-minimal-brixton', label: 'Barber · Swiss Grid — Brixton (1 page)', niche: 'Barber Shop', style: 'Minimal' },
   // Hair & beauty salons (3 boroughs × 3 styles)
-  { id: 'salon-elegant-kensington', label: 'Salon · Elegant — South Kensington (5 pages)', niche: 'Hair & Beauty Salon', style: 'Elegant' },
-  { id: 'salon-bold-islington', label: 'Salon · Bold — Islington (5 pages)', niche: 'Hair & Beauty Salon', style: 'Bold' },
-  { id: 'salon-minimal-richmond', label: 'Salon · Minimal — Richmond (1 page)', niche: 'Hair & Beauty Salon', style: 'Minimal' },
+  { id: 'salon-elegant-kensington', label: 'Salon · Atelier Magazine — South Kensington (5 pages)', niche: 'Hair & Beauty Salon', style: 'Elegant' },
+  { id: 'salon-bold-islington', label: 'Salon · Bold Cinema — Islington (5 pages)', niche: 'Hair & Beauty Salon', style: 'Bold' },
+  { id: 'salon-minimal-richmond', label: 'Salon · Quiet Gallery — Richmond (1 page)', niche: 'Hair & Beauty Salon', style: 'Minimal' },
   // Plumbers & electricians (3 boroughs × 3 styles)
-  { id: 'trades-bold-greenwich', label: 'Plumber & Electrician · Bold — Greenwich (Gas Safe + NICEIC)', niche: 'Plumber & Electrician', style: 'Bold' },
-  { id: 'trades-elegant-camden', label: 'Electrician · Elegant — Camden (NICEIC only)', niche: 'Plumber & Electrician', style: 'Elegant' },
-  { id: 'trades-minimal-ealing', label: 'Plumber · Minimal — Ealing (1 page, badges hidden)', niche: 'Plumber & Electrician', style: 'Minimal' },
+  { id: 'trades-bold-greenwich', label: 'Plumber & Electrician · Command — Greenwich (Gas Safe + NICEIC)', niche: 'Plumber & Electrician', style: 'Bold' },
+  { id: 'trades-elegant-camden', label: 'Electrician · Dark Atelier — Camden (NICEIC)', niche: 'Plumber & Electrician', style: 'Elegant' },
+  { id: 'trades-minimal-ealing', label: 'Plumber · Quiet Gallery — Ealing (1 page)', niche: 'Plumber & Electrician', style: 'Minimal' },
   // Cleaners (3 boroughs × 3 styles)
-  { id: 'cleaner-minimal-wandsworth', label: 'Cleaner · Minimal — Wandsworth (Quote form)', niche: 'Cleaner', style: 'Minimal' },
-  { id: 'cleaner-bold-tower-hamlets', label: 'Cleaner · Bold — Canary Wharf E14 (Quote form)', niche: 'Cleaner', style: 'Bold' },
-  { id: 'cleaner-elegant-hampstead', label: 'Cleaner · Elegant — Hampstead NW3 (Quote form)', niche: 'Cleaner', style: 'Elegant' },
+  { id: 'cleaner-minimal-wandsworth', label: 'Cleaner · Swiss Grid — Wandsworth (Quote form)', niche: 'Cleaner', style: 'Minimal' },
+  { id: 'cleaner-bold-tower-hamlets', label: 'Cleaner · Dark Command — Canary Wharf E14 (Quote form)', niche: 'Cleaner', style: 'Bold' },
+  { id: 'cleaner-elegant-hampstead', label: 'Cleaner · Quiet Residence — Hampstead NW3 (Quote form)', niche: 'Cleaner', style: 'Elegant' },
   // Cafés (3 boroughs × 3 styles)
-  { id: 'cafe-elegant-southwark', label: 'Café · Elegant — Peckham SE15 (Menu + Food)', niche: 'Café', style: 'Elegant' },
-  { id: 'cafe-bold-shoreditch', label: 'Café · Bold Dark — Shoreditch E2 (Menu + Brunch)', niche: 'Café', style: 'Bold' },
-  { id: 'cafe-minimal-hammersmith', label: 'Café · Minimal — Hammersmith W6 (1-page Menu)', niche: 'Café', style: 'Minimal' },
+  { id: 'cafe-elegant-southwark', label: 'Café · Atelier Magazine — Peckham SE15 (Menu + Food)', niche: 'Café', style: 'Elegant' },
+  { id: 'cafe-bold-shoreditch', label: 'Café · Bold Roastery — Shoreditch E2 (Menu + Brunch)', niche: 'Café', style: 'Bold' },
+  { id: 'cafe-minimal-hammersmith', label: 'Café · Swiss Grid — Hammersmith W6 (1-page Menu)', niche: 'Café', style: 'Minimal' },
 ];
 
 export const PREVIEW_PRESET_GROUPS: readonly { group: string; options: readonly PreviewPresetOption[] }[] = [
@@ -60,6 +69,7 @@ export const PREVIEW_PRESET_GROUPS: readonly { group: string; options: readonly 
 interface SiteContextValue {
   site: SiteConfig;
   theme: ResolvedThemeTokens;
+  blueprint: DemoDesignProfile;
   previewEnabled: boolean;
   activePresetId: string;
   selectPreset: (presetId: string) => void;
@@ -82,7 +92,6 @@ export function SiteProvider({
   initialPresetId?: string;
 }) {
   const previewEnabled = Boolean(buildSiteConfig.showTemplatePreview);
-  const [site, setSite] = useState<SiteConfig>(buildSiteConfig);
   const resolvedStartPreset =
     (initialPresetId && PREVIEW_PRESETS.some((p) => p.id === initialPresetId)
       ? initialPresetId
@@ -91,22 +100,15 @@ export function SiteProvider({
     'barber-bold-hackney';
 
   const [activePresetId, setActivePresetId] = useState<string>(resolvedStartPreset);
+  const [site, setSite] = useState<SiteConfig>(
+    () => resolveExampleSite(resolvedStartPreset) ?? buildSiteConfig
+  );
 
-  const loadPresetById = async (presetId: string) => {
-    const key = `../../examples/${presetId}.json`;
-    const loader = EXAMPLE_LOADERS[key];
-    if (!loader) return;
-    try {
-      const mod = await loader();
-      if (mod?.default) {
-        setSite({
-          ...mod.default,
-          showTemplatePreview: buildSiteConfig.showTemplatePreview,
-        });
-        setActivePresetId(presetId);
-      }
-    } catch {
-      // Keep active config on load error
+  const loadPresetById = (presetId: string) => {
+    const resolved = resolveExampleSite(presetId);
+    if (resolved) {
+      setSite(resolved);
+      setActivePresetId(presetId);
     }
   };
 
@@ -115,12 +117,32 @@ export function SiteProvider({
       (initialPresetId && PREVIEW_PRESETS.some((p) => p.id === initialPresetId)
         ? initialPresetId
         : null) ?? getInitialPresetFromUrl();
-    if (target) {
-      void loadPresetById(target);
+    if (target && target !== activePresetId) {
+      loadPresetById(target);
     }
-  }, [initialPresetId]);
+  }, [initialPresetId, activePresetId]);
 
-  const theme = useMemo(() => buildThemeTokens(site.niche, site.theme), [site.niche, site.theme]);
+  const blueprint = useMemo(
+    () => getDemoDesignProfile(activePresetId, site),
+    [activePresetId, site]
+  );
+
+  const theme = useMemo<ResolvedThemeTokens>(() => {
+    const base = buildThemeTokens(site.niche, site.theme);
+    return {
+      ...base,
+      mode: blueprint.mode,
+      cardRadius: blueprint.cardRadius,
+      buttonRadius: blueprint.buttonRadius,
+      imageRadius: blueprint.imageRadius,
+      headingTracking: blueprint.headingTracking,
+      headingTransform: blueprint.headingTransform === 'uppercase' ? 'uppercase' : '',
+      cssVars: {
+        ...base.cssVars,
+        ...blueprint.cssVars,
+      },
+    };
+  }, [site.niche, site.theme, blueprint]);
 
   useLayoutEffect(() => {
     const root = document.documentElement;
@@ -130,12 +152,14 @@ export function SiteProvider({
     root.dataset.themeMode = theme.mode;
     root.dataset.themeStyle = theme.style;
     root.dataset.niche = site.niche;
+    root.dataset.demoArchetype = blueprint.archetype;
     return () => {
       delete root.dataset.themeMode;
       delete root.dataset.themeStyle;
       delete root.dataset.niche;
+      delete root.dataset.demoArchetype;
     };
-  }, [theme, site.niche]);
+  }, [theme, site.niche, blueprint.archetype]);
 
   const selectPreset = (presetId: string) => {
     void loadPresetById(presetId);
@@ -150,11 +174,12 @@ export function SiteProvider({
     () => ({
       site,
       theme,
+      blueprint,
       previewEnabled,
       activePresetId,
       selectPreset,
     }),
-    [site, theme, previewEnabled, activePresetId]
+    [site, theme, blueprint, previewEnabled, activePresetId]
   );
 
   return <SiteContext.Provider value={value}>{children}</SiteContext.Provider>;

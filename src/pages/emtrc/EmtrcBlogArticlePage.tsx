@@ -11,9 +11,8 @@ import { GalleryCarousel, type GallerySlide } from '../../components/emtrc/Galle
 import { MarkdownRenderer } from '../../components/emtrc/MarkdownRenderer';
 import { PdfDownloadModal } from '../../components/emtrc/PdfDownloadModal';
 import { PostVisualizer } from '../../components/emtrc/PostVisualizer';
-import { OrnamentalDivider } from '../../components/emtrc/OrnamentalDivider';
 import { KickerRule, Reveal } from '../../components/emtrc/Reveal';
-import { AnimatedSectionHeader, SectionSeparator } from '../../components/emtrc/SectionSeparator';
+import { AnimatedSectionHeader } from '../../components/emtrc/SectionSeparator';
 import { SafeImage } from '../../components/SafeImage';
 
 const EXTRA_BLOG_SLIDES: Record<string, GallerySlide> = {
@@ -165,10 +164,8 @@ export function EmtrcBlogArticlePage() {
           </div>
         </header>
 
-        <SectionSeparator variant="angle" from="obsidian" to="sand" accentColor="coral" />
-
         {/* Interactive Swipeable Photo Gallery Carousel (4 Curated London Photos) */}
-        <section className="bg-[var(--emtrc-sand)] py-8 sm:py-11">
+        <section className="border-y border-[var(--emtrc-border)] bg-[var(--emtrc-sand)] py-8 sm:py-11">
           <div className="mx-auto max-w-[960px] px-5 sm:px-8">
             <Reveal>
               <GalleryCarousel
@@ -180,16 +177,8 @@ export function EmtrcBlogArticlePage() {
           </div>
         </section>
 
-        <OrnamentalDivider
-          pattern="georgian-fret"
-          from="sand"
-          to="canvas"
-          label="SIGNALS BRIEFING & LIVE DATA VISUALISER"
-          accentColor="coral"
-        />
-
         {/* Main Editorial Body with automatic PostVisualizer + Parsed Markdown */}
-        <div className="mx-auto max-w-[820px] px-5 pt-6 pb-12 sm:px-8">
+        <div className="mx-auto max-w-[820px] px-5 pt-8 pb-12 sm:px-8">
           {/* Automatic Interactive Data Chart + Key Takeaway Infographic Visualizer */}
           <Reveal>
             <PostVisualizer article={article} />
@@ -253,10 +242,8 @@ export function EmtrcBlogArticlePage() {
           </div>
         </div>
 
-        <SectionSeparator variant="wave" from="canvas" to="sand" accentColor="amber" />
-
         {/* Keep Reading Strip */}
-        <section className="bg-[var(--emtrc-sand)] py-11 sm:py-14">
+        <section className="border-t border-[var(--emtrc-border)] bg-[var(--emtrc-sand)] py-11 sm:py-14">
           <div className="mx-auto max-w-[1200px] px-5 sm:px-8">
             <AnimatedSectionHeader
               kicker={t.blogPage.relatedArticles}

@@ -157,36 +157,6 @@ export const SITE = {
             to: '/services/care-plan',
           },
           {
-            label: 'The emtrc App',
-            description: 'Manage missed calls, reviews and 24-hour edits from your pocket',
-            to: '/app',
-          },
-          {
-            label: 'Live London Demos (15)',
-            description: 'Click through working demos across five London trades',
-            to: '/work',
-          },
-        ],
-      },
-      {
-        heading: 'AI front desk',
-        items: [
-          {
-            label: 'Lead Catcher',
-            description: '24/7 AI chat, 8-second missed-call text-back & reviews',
-            to: '/services/lead-catcher',
-          },
-          {
-            label: 'AI Receptionist',
-            description: 'Every call answered 24/7 in a natural British voice',
-            to: '/services/ai-receptionist',
-          },
-          {
-            label: 'Review Engine',
-            description: 'Polite DMCC-compliant Google review requests & replies',
-            to: '/services/review-engine',
-          },
-          {
             label: 'Business Phone (VoIP)',
             description: 'Keep your 020 number ahead of the 31 Jan 2027 switch-off',
             to: '/services/business-phone',
@@ -194,53 +164,103 @@ export const SITE = {
         ],
       },
       {
-        heading: 'Get found locally',
+        heading: 'AI agents & automation',
         items: [
           {
-            label: 'Local SEO & AI Search',
-            description: 'Google Maps top-3 profile alignment + Schema for ChatGPT',
+            label: 'Personal AI Agents',
+            description: 'Private owner assistant for inbox triage, quotes & 7:30am briefs',
+            to: '/services/personal-ai-agents',
+          },
+          {
+            label: 'AI Sales Leads',
+            description: 'Exclusive London B2B & local prospect pipeline + warm outreach',
+            to: '/services/ai-sales-leads',
+          },
+          {
+            label: 'Lead Catcher',
+            description: '24/7 AI website chat, 8-sec missed-call SMS & review link',
+            to: '/services/lead-catcher',
+          },
+          {
+            label: 'AI Receptionist',
+            description: 'Every call answered 24/7 in a natural British voice',
+            to: '/services/ai-receptionist',
+          },
+        ],
+      },
+      {
+        heading: 'Growth, SEO & reviews',
+        items: [
+          {
+            label: 'AI Social Management',
+            description: 'Weekly London Instagram, TikTok, Google posts & DM replies',
+            to: '/services/ai-social-management',
+          },
+          {
+            label: 'Competitor Pricing Watch',
+            description: 'Weekly borough price benchmarks, margin alerts & rank gaps',
+            to: '/services/competitor-pricing',
+          },
+          {
+            label: 'Local SEO & Rank Tracking',
+            description: 'Google Maps 3-Pack rank tracking + Schema for AI search',
             to: '/services/local-seo',
           },
           {
-            label: 'How it works',
-            description: 'From free 48-hour demo to live domain in one week',
-            to: '/how-it-works',
-          },
-          {
-            label: 'One-off builds',
-            description: 'Prefer to pay once? £595 build + £25/month care plan',
-            to: '/pricing#one-off',
-          },
-          {
-            label: 'All 8 services',
-            description: 'Compare everything we handle under one London roof',
-            to: '/services',
+            label: 'Reviews & Reputation Engine',
+            description: 'DMCC-compliant Google review requests & one-tap replies',
+            to: '/services/review-engine',
           },
         ],
       },
     ] as MegaMenuColumn[],
     servicesSpotlights: [
       {
+        title: 'All 12 London services',
+        description: 'Compare websites, AI agents, lead pipelines, pricing watch & reviews.',
+        cta: 'Browse all 12 services',
+        to: '/services',
+      },
+      {
         title: 'Free demo built first',
         description: 'See a working site for your London business before you spend a penny.',
         cta: 'Request your demo',
         to: '/free-demo',
       },
-      {
-        title: 'Free PDF playbooks',
-        description: 'Website checklist, Jan 2027 phone guide and Google Maps playbook.',
-        cta: 'Download free guides',
-        to: '/resources#guides',
-      },
     ],
     resources: [
       {
-        heading: 'Learn & prove',
+        heading: 'Studio & proof',
         items: [
+          {
+            label: 'About emtrc London',
+            description: 'Who we are, our four studio rules and London borough coverage',
+            to: '/about',
+          },
+          {
+            label: 'Contact & Direct Enquiry',
+            description: 'Send a direct message, email us or book a 15-minute call',
+            to: '/contact',
+          },
           {
             label: 'London Case Studies',
             description: 'Before/after transformations across Hackney, Greenwich, SW7 & SE15',
             to: '/case-studies',
+          },
+          {
+            label: 'How it works',
+            description: 'From free 48-hour working demo to live site in one week',
+            to: '/how-it-works',
+          },
+        ],
+      },
+      {
+        heading: 'Guides, training & FAQs',
+        items: [
+          {
+            label: 'Signals — Field Journal',
+            description: 'Searchable plain-English London guides on websites, Maps, AI & UK phones',
+            to: '/blog',
           },
           {
             label: 'Owner Training Centre',
@@ -248,39 +268,14 @@ export const SITE = {
             to: '/training',
           },
           {
-            label: 'Signals — Field Journal',
-            description: 'Searchable plain-English London guides on websites, Maps, AI & UK phones',
-            to: '/blog',
-          },
-          {
             label: 'Straight Answers (FAQ Hub)',
-            description: '24 clear answers on demos, contracts, domains & AI tools',
+            description: '30 clear answers on demos, contracts, domains & AI services',
             to: '/faq',
           },
-        ],
-      },
-      {
-        heading: 'Free PDF guides',
-        items: [
           {
-            label: 'London Website Checklist (PDF)',
-            description: '14 things that turn Maps searches into phone calls',
-            to: '/resources#guide-website-checklist',
-          },
-          {
-            label: 'UK PSTN Switch-Off Guide (PDF)',
-            description: 'What happens to copper lines on 31 January 2027',
-            to: '/resources#guide-pstn-2027',
-          },
-          {
-            label: 'Google Maps & AI Search Playbook',
-            description: 'Win top-3 Maps spots and ChatGPT recommendations',
-            to: '/resources#guide-maps-ai',
-          },
-          {
-            label: 'All Resources & Downloads',
-            description: 'Search across PDFs, guides, training and FAQs',
-            to: '/resources',
+            label: 'Free PDF Playbooks',
+            description: 'Website checklist, Jan 2027 phone guide & Google Maps playbook',
+            to: '/resources#guides',
           },
         ],
       },
@@ -692,23 +687,98 @@ export const SITE = {
   },
 
   aiTools: {
-    headline: 'Stop losing work when you cannot pick up the phone.',
+    headline: 'Practical AI agents & intelligence built for London operators.',
     subheadline:
-      'Every AI tool we install is built for real London high-street workflows: polite, transparent (callers always know when AI assists), and wired straight into your calendar and phone.',
+      'Every AI service we install is built around real high-street workflows: personal owner assistants, exclusive London sales pipelines, automated social management, competitor pricing intelligence, Maps SEO rank tracking and 24/7 call capture.',
     cards: [
       {
-        id: 'review-engine',
-        name: 'Review Engine',
-        price: '£39/month',
-        status: 'Available now',
+        id: 'personal-ai-agents',
+        name: 'Personal AI Agents',
+        price: '£99/month',
+        status: 'New · Executive owner assistant',
         whatItDoes:
-          'Automatically sends a polite, DMCC-compliant Google review link after a completed visit or job, and drafts thoughtful local replies for your approval.',
+          'Triages your @yourbusiness inbox, drafts human-sounding quote replies, chases overdue estimates and delivers a crisp 7:30am morning summary inside the emtrc App.',
+        whoItsFor:
+          'Solo founders and multi-van trade directors losing 6–10 hours a week to evening emails, diary clashes and supplier follow-ups.',
+        flowSteps: [
+          { step: '01', label: 'Inbox & diary synced', detail: 'Gmail, Outlook or Zoho' },
+          { step: '02', label: 'Drafts prepared', detail: 'Quotes & chases queued' },
+          { step: '03', label: '1-tap approval', detail: 'Nothing sends without you' },
+        ],
+      },
+      {
+        id: 'ai-sales-leads',
+        name: 'AI Sales Leads',
+        price: '£119/month',
+        status: 'New · Exclusive local pipeline',
+        whatItDoes:
+          'Discovers verified London commercial & residential partner prospects in your target postcodes, runs polite PECR-compliant outreach, and hands warm replies straight to your phone.',
+        whoItsFor:
+          'Cleaners, trades, maintenance firms and hospitality businesses tired of paying £40/lead to shared directories.',
+        flowSteps: [
+          { step: '01', label: 'London targeting', detail: 'Borough & sector filtered' },
+          { step: '02', label: 'Bespoke outreach', detail: 'Warmed sending domain' },
+          { step: '03', label: 'Warm handoff', detail: 'Booked straight in App' },
+        ],
+      },
+      {
+        id: 'ai-social-management',
+        name: 'AI Social Management',
+        price: '£89/month',
+        status: 'New · Content + DM replies',
+        whatItDoes:
+          'Turns raw smartphone snaps from your shop or van into 3–4 weekly branded posts across Instagram, Facebook & Google Business Profile — plus 24/7 instant DM booking replies.',
+        whoItsFor:
+          'Barbers, salons, cafés and craft trades who want an active, high-trust local feed without paying £750/month to a social agency.',
+        flowSteps: [
+          { step: '01', label: 'Snap raw photos', detail: 'Drop in App in 10 secs' },
+          { step: '02', label: 'Weekly queue built', detail: 'Captions + Google cross-post' },
+          { step: '03', label: 'DMs converted', detail: '24/7 booking link replies' },
+        ],
+      },
+      {
+        id: 'competitor-pricing',
+        name: 'Competitor Pricing Watch',
+        price: '£69/month',
+        status: 'New · Borough price & rank radar',
+        whatItDoes:
+          'Monitors up to 15 local London competitors every week across public service prices, seasonal offers, Google Maps 3-Pack rankings and review velocity.',
+        whoItsFor:
+          'Salons, barbers, trades and cleaners who want to protect profit margins and spot safe £3–£15 price increases backed by local data.',
+        flowSteps: [
+          { step: '01', label: 'Track 15 rivals', detail: 'Within your London patch' },
+          { step: '02', label: 'Monday benchmark', detail: 'Price & rank deltas' },
+          { step: '03', label: '1-tap price sync', detail: 'Studio updates live in 24h' },
+        ],
+      },
+      {
+        id: 'local-seo',
+        name: 'Local SEO & Rank Tracking',
+        price: 'Included on Business & Growth',
+        status: 'Live weekly rank tracker',
+        whatItDoes:
+          'Aligns your Google Business Profile, embeds full LocalBusiness Schema.org data for AI search, and tracks your exact weekly Google Maps 3-Pack keyword positions.',
+        whoItsFor:
+          'Any London shop or service firm sitting outside the Maps top 3 who wants predictable free local calls instead of paying for Google Ads.',
+        flowSteps: [
+          { step: '01', label: 'Profile & schema', detail: 'Categories & hours aligned' },
+          { step: '02', label: 'Weekly rank check', detail: 'Postcode-level Maps grid' },
+          { step: '03', label: 'AI search ready', detail: 'ChatGPT & Apple citations' },
+        ],
+      },
+      {
+        id: 'review-engine',
+        name: 'Reviews & Reputation Engine',
+        price: '£39/month',
+        status: 'Available now · UK DMCC compliant',
+        whatItDoes:
+          'Automatically sends a polite, DMCC-compliant Google review link after a completed visit or job, monitors rating trends and drafts thoughtful local replies for 1-tap approval.',
         whoItsFor:
           'Barbers, salons, cafés, cleaners and trades sitting below 40 Google reviews who want to climb into the local Maps top 3.',
         flowSteps: [
           { step: '01', label: 'Job finishes', detail: 'Mark customer complete' },
           { step: '02', label: 'Polite SMS sent', detail: '1-tap Google review link' },
-          { step: '03', label: 'Reply drafted', detail: 'Boosts Maps & AI search' },
+          { step: '03', label: 'Reply drafted', detail: 'Approve inside emtrc App' },
         ],
       },
       {
@@ -739,21 +809,6 @@ export const SITE = {
           { step: '01', label: 'Phone rings 24/7', detail: 'Answered in 2 rings' },
           { step: '02', label: 'AI qualifies & books', detail: 'Checks diary & postcode' },
           { step: '03', label: 'Summary texted', detail: 'Transcript + calendar invite' },
-        ],
-      },
-      {
-        id: 'business-phone',
-        name: 'Business Phone (Cloud VoIP)',
-        price: 'Coming soon',
-        status: 'Pre-register ahead of 31 Jan 2027',
-        whatItDoes:
-          'Modern cloud business phone system so you can keep your existing 020 London landline number and answer it on your mobile, desk handset or laptop — ready before the old BT copper phone lines switch off on 31 January 2027.',
-        whoItsFor:
-          'Any London shop, salon or office still paying for a legacy BT/Openreach copper landline who wants to avoid forced Emergency Voice Access rates.',
-        flowSteps: [
-          { step: '01', label: 'Keep 020 number', detail: 'Ported cleanly off copper' },
-          { step: '02', label: 'Rings anywhere', detail: 'Mobile app or desk phone' },
-          { step: '03', label: 'Switch-off ready', detail: 'Ahead of 31 Jan 2027' },
         ],
       },
     ],

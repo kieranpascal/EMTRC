@@ -9,8 +9,7 @@ import { PageHeader } from '../../components/emtrc/PageHeader';
 import { MagneticLink } from '../../components/emtrc/MagneticLink';
 import { Reveal, SpotlightCard } from '../../components/emtrc/Reveal';
 import { ScrollReveal, ScrollRevealItem } from '../../components/emtrc/ScrollReveal';
-import { AnimatedSectionHeader, SectionSeparator } from '../../components/emtrc/SectionSeparator';
-import { OrnamentalDivider } from '../../components/emtrc/OrnamentalDivider';
+import { AnimatedSectionHeader } from '../../components/emtrc/SectionSeparator';
 import { LondonEdgeSpeedIllustration } from '../../components/emtrc/AnimatedIllustrations';
 
 interface MatrixGroup {
@@ -219,10 +218,8 @@ export function EmtrcPricingPage() {
         }
       />
 
-      <SectionSeparator variant="angle" from="obsidian" to="sand" accentColor="coral" />
-
       {/* 3 Main Monthly Plans */}
-      <section className="bg-[var(--emtrc-sand)]">
+      <section className="border-b border-[var(--emtrc-border)] bg-[var(--emtrc-sand)]">
         <div className="mx-auto max-w-[1200px] px-5 py-11 sm:px-8 sm:py-14">
           <ScrollReveal autoWrapChildren={false} className="grid grid-cols-1 gap-6 lg:grid-cols-3">
             {SITE.pricing.plans.map((plan) => {
@@ -357,10 +354,8 @@ export function EmtrcPricingPage() {
         </div>
       </section>
 
-      <SectionSeparator variant="architectural-ribbon" from="sand" to="obsidian" accentColor="coral" />
-
       {/* Redesigned Studio-Grade Visual Side-by-Side Comparison Matrix */}
-      <section className="bg-[#0B0D12] text-white">
+      <section className="border-b border-[var(--emtrc-navy-border)] bg-[#0B0D12] text-white">
         <div className="mx-auto max-w-[1200px] px-5 py-12 sm:px-8 sm:py-16">
           <div className="flex flex-col justify-between gap-4 sm:flex-row sm:items-end">
             <AnimatedSectionHeader
@@ -495,10 +490,8 @@ export function EmtrcPricingPage() {
         </div>
       </section>
 
-      <SectionSeparator variant="wave" from="obsidian" to="surface" accentColor="amber" />
-
       {/* Domains, Email & AI Add-ons Card Grid */}
-      <section className="bg-[var(--emtrc-surface)]">
+      <section className="border-b border-[var(--emtrc-border)] bg-[var(--emtrc-surface)]">
         <div className="mx-auto max-w-[1200px] px-5 py-12 sm:px-8 sm:py-16">
           <AnimatedSectionHeader
             index="02"
@@ -533,14 +526,6 @@ export function EmtrcPricingPage() {
           </div>
         </div>
       </section>
-
-      <OrnamentalDivider
-        pattern="art-deco-chevron"
-        from="surface"
-        to="sand"
-        label="WHY LONDON OWNERS PREFER MONTHLY"
-        accentColor="emerald"
-      />
 
       {/* Why Monthly Explainer + Cloudflare Edge Performance Proof */}
       <section className="bg-[var(--emtrc-sand)]">

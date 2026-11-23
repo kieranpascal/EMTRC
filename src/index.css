@@ -7,6 +7,10 @@
 @import "@fontsource/ibm-plex-mono/600.css";
 @import "@fontsource-variable/oswald";
 @import "@fontsource-variable/bricolage-grotesque";
+@import "@fontsource-variable/fraunces";
+@import "@fontsource-variable/archivo";
+@import "@fontsource-variable/dm-sans";
+@import "@fontsource-variable/plus-jakarta-sans";
 
 :root {
   /* Light Editorial Gallery: Warm Architectural Stone + Crisp Ink + Studio Vermilion */
@@ -90,6 +94,30 @@
   .font-mono-data {
     font-family: 'IBM Plex Mono', ui-monospace, SFMono-Regular, monospace;
     font-variant-numeric: tabular-nums;
+  }
+
+  /* Scoped per-demo typography so each of the 15 demos renders its own bespoke font pairing */
+  [data-demo-site="true"] {
+    font-family: var(--font-body, var(--site-font-body));
+    background-color: var(--site-bg);
+    color: var(--site-ink);
+  }
+
+  [data-demo-site="true"] h1,
+  [data-demo-site="true"] h2,
+  [data-demo-site="true"] h3,
+  [data-demo-site="true"] .font-display {
+    font-family: var(--font-display, var(--site-font-display));
+    text-wrap: balance;
+  }
+
+  [data-demo-site="true"] .font-body {
+    font-family: var(--font-body, var(--site-font-body));
+  }
+
+  [data-demo-site="true"] :focus-visible {
+    outline: 2px solid var(--site-focus, var(--site-accent));
+    outline-offset: 2px;
   }
 
   :focus-visible {

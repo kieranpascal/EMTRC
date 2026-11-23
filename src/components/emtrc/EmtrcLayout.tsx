@@ -142,7 +142,6 @@ export function EmtrcLayout({ children, hideNewsletter = false }: EmtrcLayoutPro
   const currentTicker = SITE.tickerItems[tickerIdx] ?? SITE.tickerItems[0];
   const currentLangOption = languages.find((l) => l.code === locale) ?? languages[0];
   const isServicesActive = pathname === '/services' || pathname.startsWith('/services/');
-  const isBlogActive = pathname === '/blog' || pathname.startsWith('/blog/');
   const activeServicePreview =
     SERVICE_DETAILS.find((s) => s.slug === hoveredServiceSlug) ?? SERVICE_DETAILS[0];
 
@@ -297,7 +296,7 @@ export function EmtrcLayout({ children, hideNewsletter = false }: EmtrcLayoutPro
           {/* Zone 2: Clean single-line navigation with springy MagneticLink & live Mega Menu triggers */}
           <nav
             aria-label="Main navigation"
-            className="hidden lg:flex items-center gap-1 xl:gap-2 text-sm font-medium text-[var(--emtrc-muted)]"
+            className="hidden lg:flex items-center gap-0.5 xl:gap-1.5 text-[13.5px] xl:text-sm font-medium text-[var(--emtrc-muted)]"
           >
             <MagneticLink strength={0.18} maxOffset={6}>
               <button
@@ -306,7 +305,7 @@ export function EmtrcLayout({ children, hideNewsletter = false }: EmtrcLayoutPro
                 aria-expanded={openMega === 'services'}
                 onMouseEnter={() => handleMegaEnter('services')}
                 onClick={() => handleMegaToggle('services')}
-                className={`inline-flex items-center gap-1 rounded-lg px-3 py-2 whitespace-nowrap shrink-0 transition-colors ${
+                className={`inline-flex items-center gap-1 rounded-lg px-2.5 py-2 whitespace-nowrap shrink-0 transition-colors ${
                   openMega === 'services' || isServicesActive
                     ? 'bg-[var(--emtrc-sand)] text-[var(--emtrc-ink)] font-semibold'
                     : 'hover:bg-[var(--emtrc-sand)]/60 hover:text-[var(--emtrc-ink)]'
@@ -323,42 +322,40 @@ export function EmtrcLayout({ children, hideNewsletter = false }: EmtrcLayoutPro
             </MagneticLink>
 
             {[
-              { to: '/work', label: t.nav.work },
-              { to: '/app', label: t.nav.theApp },
-              { to: '/pricing', label: t.nav.pricing },
-              { to: '/blog', label: t.nav.blog, matchPrefix: isBlogActive },
+              { to: '/work', label: t.nav.work, testId: 'nav-link-work' },
+              { to: '/app', label: t.nav.theApp, testId: 'nav-link-app' },
+              { to: '/pricing', label: t.nav.pricing, testId: 'nav-link-pricing' },
+              { to: '/about', label: t.nav.about, testId: 'nav-link-about' },
+              { to: '/contact', label: t.nav.contact, testId: 'nav-link-contact' },
             ].map((item) => (
               <MagneticLink
                 key={item.to}
                 navLink
+                data-testid={item.testId}
                 strength={0.18}
                 maxOffset={6}
                 to={item.to}
                 onMouseEnter={() => setOpenMega(null)}
-                className={({ isActive }) => {
-                  const active = isActive || Boolean(item.matchPrefix);
-                  return `relative rounded-lg px-3 py-2 whitespace-nowrap shrink-0 transition-colors ${
-                    active
+                className={({ isActive }) =>
+                  `relative rounded-lg px-2.5 py-2 whitespace-nowrap shrink-0 transition-colors ${
+                    isActive
                       ? 'text-[var(--emtrc-ink)] font-semibold'
                       : 'hover:bg-[var(--emtrc-sand)]/60 hover:text-[var(--emtrc-ink)]'
-                  }`;
-                }}
+                  }`
+                }
               >
-                {({ isActive }) => {
-                  const active = isActive || Boolean(item.matchPrefix);
-                  return (
-                    <>
-                      <span>{item.label}</span>
-                      {active && (
-                        <motion.span
-                          layoutId="header-active-indicator"
-                          transition={{ type: 'spring', stiffness: 420, damping: 32 }}
-                          className="absolute right-3 bottom-0.5 left-3 h-[2px] rounded-full bg-[var(--emtrc-accent)]"
-                        />
-                      )}
-                    </>
-                  );
-                }}
+                {({ isActive }) => (
+                  <>
+                    <span>{item.label}</span>
+                    {isActive && (
+                      <motion.span
+                        layoutId="header-active-indicator"
+                        transition={{ type: 'spring', stiffness: 420, damping: 32 }}
+                        className="absolute right-2.5 bottom-0.5 left-2.5 h-[2px] rounded-full bg-[var(--emtrc-accent)]"
+                      />
+                    )}
+                  </>
+                )}
               </MagneticLink>
             ))}
 
@@ -369,12 +366,14 @@ export function EmtrcLayout({ children, hideNewsletter = false }: EmtrcLayoutPro
                 aria-expanded={openMega === 'resources'}
                 onMouseEnter={() => handleMegaEnter('resources')}
                 onClick={() => handleMegaToggle('resources')}
-                className={`inline-flex items-center gap-1 rounded-lg px-3 py-2 whitespace-nowrap shrink-0 transition-colors ${
+                className={`inline-flex items-center gap-1 rounded-lg px-2.5 py-2 whitespace-nowrap shrink-0 transition-colors ${
                   openMega === 'resources' ||
                   pathname === '/resources' ||
                   pathname === '/how-it-works' ||
                   pathname === '/training' ||
                   pathname === '/faq' ||
+                  pathname === '/blog' ||
+                  pathname.startsWith('/blog/') ||
                   pathname.startsWith('/case-studies')
                     ? 'bg-[var(--emtrc-sand)] text-[var(--emtrc-ink)] font-semibold'
                     : 'hover:bg-[var(--emtrc-sand)]/60 hover:text-[var(--emtrc-ink)]'

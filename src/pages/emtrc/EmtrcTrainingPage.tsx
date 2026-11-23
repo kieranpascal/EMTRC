@@ -22,7 +22,7 @@ import { EmtrcHead } from '../../components/emtrc/EmtrcHead';
 import { EmtrcLayout } from '../../components/emtrc/EmtrcLayout';
 import { PageHeader } from '../../components/emtrc/PageHeader';
 import { Reveal } from '../../components/emtrc/Reveal';
-import { AnimatedSectionHeader, SectionSeparator } from '../../components/emtrc/SectionSeparator';
+import { AnimatedSectionHeader } from '../../components/emtrc/SectionSeparator';
 import { SafeImage } from '../../components/SafeImage';
 import {
   LONDON_MARKETING_CALENDAR,
@@ -175,10 +175,8 @@ export function EmtrcTrainingPage() {
         }
       />
 
-      <SectionSeparator variant="angle" from="obsidian" to="sand" accentColor="coral" />
-
       {/* SECTION 1: Visual 6-Track Curriculum Selector + Deep Interactive Checklists */}
-      <section className="bg-[var(--emtrc-sand)]">
+      <section className="border-b border-[var(--emtrc-border)] bg-[var(--emtrc-sand)]">
         <div className="mx-auto max-w-[1200px] px-5 py-10 sm:px-8 sm:py-14">
           <div className="flex flex-col justify-between gap-5 lg:flex-row lg:items-end">
             <AnimatedSectionHeader
@@ -528,10 +526,8 @@ export function EmtrcTrainingPage() {
         </div>
       </section>
 
-      <SectionSeparator variant="wave" from="sand" to="obsidian" accentColor="amber" />
-
       {/* SECTION 2: Copy-Paste London Owner Scripts & Templates Vault (Obsidian Contrast Band) */}
-      <section className="bg-[#0B0D12] text-white" data-testid="scripts-vault-section">
+      <section className="border-b border-[var(--emtrc-navy-border)] bg-[#0B0D12] text-white" data-testid="scripts-vault-section">
         <div className="mx-auto max-w-[1200px] px-5 py-12 sm:px-8 sm:py-16">
           <div className="flex flex-col justify-between gap-5 lg:flex-row lg:items-end">
             <AnimatedSectionHeader
@@ -610,10 +606,8 @@ export function EmtrcTrainingPage() {
         </div>
       </section>
 
-      <SectionSeparator variant="architectural-ribbon" from="obsidian" to="surface" accentColor="emerald" flip />
-
       {/* SECTION 3: 12-Month London Local Business Marketing Calendar */}
-      <section className="bg-[var(--emtrc-surface)]" data-testid="london-marketing-calendar">
+      <section className="border-b border-[var(--emtrc-border)] bg-[var(--emtrc-surface)]" data-testid="london-marketing-calendar">
         <div className="mx-auto max-w-[1200px] px-5 py-12 sm:px-8 sm:py-16">
           <div className="flex flex-col justify-between gap-6 lg:flex-row lg:items-end">
             <AnimatedSectionHeader
@@ -710,8 +704,6 @@ export function EmtrcTrainingPage() {
           </AnimatePresence>
         </div>
       </section>
-
-      <SectionSeparator variant="angle" from="surface" to="obsidian" accentColor="coral" />
 
       {/* SECTION 4: Closing "Rather We Handle All 6 Tracks?" Studio Conversion Band */}
       <section className="bg-[#0B0D12] text-white">

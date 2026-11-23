@@ -21,7 +21,7 @@ import {
   StaggerContainer,
   StaggerItem,
 } from '../../components/emtrc/Reveal';
-import { AnimatedSectionHeader, SectionSeparator } from '../../components/emtrc/SectionSeparator';
+import { AnimatedSectionHeader } from '../../components/emtrc/SectionSeparator';
 import { ServicePreviewPhone } from '../../components/emtrc/ServicePreviewPhone';
 
 const SERVICE_EXTRA_SLIDES: Record<string, readonly GallerySlide[]> = {
@@ -135,6 +135,62 @@ const SERVICE_EXTRA_SLIDES: Record<string, readonly GallerySlide[]> = {
       alt: 'Independent London tradesperson focused on client craft while emtrc handles website maintenance',
       caption: 'Cloudflare edge security, SSL renewals, daily backups and plain-English monthly call reports.',
       tag: 'ZERO ADMIN OVERHEAD',
+    },
+  ],
+  'personal-ai-agents': [
+    {
+      src: '/src/assets/images/emtrc_app_hero_mobile_1795424181857.jpg',
+      alt: 'London shop owner approving AI agent morning drafts on smartphone',
+      caption: 'Approve drafted client replies, quote follow-ups and supplier chases in one tap on your morning coffee.',
+      tag: '7:30AM OWNER BRIEF',
+    },
+    {
+      src: '/src/assets/images/emtrc_london_studio_team_1795422461958.jpg',
+      alt: 'Clerkenwell studio desk configuring private AI workflows',
+      caption: 'Trained privately on your London rate card and British tone of voice — never shared with public AI pools.',
+      tag: 'PRIVATE UK WORKSPACE',
+    },
+  ],
+  'ai-sales-leads': [
+    {
+      src: '/src/assets/images/london_studio_dusk_header_1795426202168.jpg',
+      alt: 'East London commercial studios and independent workshops at dusk',
+      caption: 'Exclusive London commercial, letting-agent and local partner pipelines — never resold to competitors.',
+      tag: 'EXCLUSIVE PIPELINE',
+    },
+    {
+      src: '/src/assets/images/emtrc_app_hero_mobile_1795424181857.jpg',
+      alt: 'Business owner reviewing warm qualified London sales replies on phone',
+      caption: 'Only verified, warm local buyers land in your pocket app with full borough and budget context.',
+      tag: 'WARM HANDOFF',
+    },
+  ],
+  'ai-social-management': [
+    {
+      src: '/src/assets/images/barber_fade_editorial_1795426201374.jpg',
+      alt: 'Crisp editorial barber fade photographed for weekly London Instagram post',
+      caption: 'Raw phone photos from your shop floor turned into weekly Instagram, Facebook and Google Business posts.',
+      tag: 'WEEKLY LOCAL FEED',
+    },
+    {
+      src: '/src/assets/images/salon_manicure_studio_1795426201499.jpg',
+      alt: 'Bright Islington nail studio framed in natural window light for social calendar',
+      caption: '24/7 DM assistant turns evening Instagram questions into confirmed next-day bookings.',
+      tag: '24/7 DM BOOKINGS',
+    },
+  ],
+  'competitor-pricing': [
+    {
+      src: '/src/assets/images/emtrc_blog_maps_phone_1795375920087.jpg',
+      alt: 'London Maps local search benchmarking beside espresso and notebook',
+      caption: 'Side-by-side weekly price and Google Maps 3-Pack rank tracking against up to 15 local competitors.',
+      tag: 'BOROUGH BENCHMARK',
+    },
+    {
+      src: '/src/assets/images/london_cafe_storefront_morning_1795428788037.jpg',
+      alt: 'Independent East London high-street shopfront in crisp morning light',
+      caption: 'Spot safe £3–£15 price increases backed by live neighbourhood data and sync updates in 24 hours.',
+      tag: 'MARGIN PROTECTION',
     },
   ],
 };
@@ -271,10 +327,8 @@ export function EmtrcServiceDetailPage() {
         </div>
       </section>
 
-      <SectionSeparator variant="angle" from="obsidian" to="sand" accentColor="coral" />
-
       {/* CHAPTER 2: "THE PAIN THIS KILLS" 4-Card Diagnostic Grid */}
-      <section className="bg-[var(--emtrc-sand)]">
+      <section className="border-b border-[var(--emtrc-border)] bg-[var(--emtrc-sand)]">
         <div className="mx-auto max-w-[1200px] px-5 py-12 sm:px-8 sm:py-16">
           <AnimatedSectionHeader
             index="01"
@@ -317,10 +371,8 @@ export function EmtrcServiceDetailPage() {
         </div>
       </section>
 
-      <SectionSeparator variant="architectural-ribbon" from="sand" to="obsidian" accentColor="amber" />
-
       {/* CHAPTER 3: "Watch it actually work." 3 Steps + Tall Interactive ServicePreviewPhone */}
-      <section className="bg-[#0B0D12] text-[#F5F3EE]">
+      <section className="border-b border-white/10 bg-[#0B0D12] text-[#F5F3EE]">
         <div className="mx-auto max-w-[1200px] px-5 py-12 sm:px-8 sm:py-16">
           <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-12">
             <div className="lg:col-span-7">
@@ -360,10 +412,8 @@ export function EmtrcServiceDetailPage() {
         </div>
       </section>
 
-      <SectionSeparator variant="wave" from="obsidian" to="surface" accentColor="emerald" />
-
       {/* CHAPTER 4: "Who this is for." 3 London Trade Personas */}
-      <section className="bg-[var(--emtrc-surface)]">
+      <section className="border-b border-[var(--emtrc-border)] bg-[var(--emtrc-surface)]">
         <div className="mx-auto max-w-[1200px] px-5 py-12 sm:px-8 sm:py-16">
           <AnimatedSectionHeader
             index="03"
@@ -394,10 +444,8 @@ export function EmtrcServiceDetailPage() {
         </div>
       </section>
 
-      <SectionSeparator variant="editorial-rule" from="surface" to="sand" label="Craftsmanship & Ownership" accentColor="coral" />
-
       {/* CHAPTER 5: "Why ours beats DIY." Split GalleryCarousel + Proof Points */}
-      <section className="bg-[var(--emtrc-sand)]">
+      <section className="border-b border-[var(--emtrc-border)] bg-[var(--emtrc-sand)]">
         <div className="mx-auto max-w-[1200px] px-5 py-12 sm:px-8 sm:py-16">
           <div className="grid grid-cols-1 items-center gap-10 lg:grid-cols-12">
             <div className="lg:col-span-6">
@@ -434,10 +482,8 @@ export function EmtrcServiceDetailPage() {
         </div>
       </section>
 
-      <SectionSeparator variant="angle" from="sand" to="surface" accentColor="blue" flip />
-
       {/* CHAPTER 6: Grouped Expandable FAQ Accordions */}
-      <section className="bg-[var(--emtrc-surface)]">
+      <section className="border-b border-[var(--emtrc-border)] bg-[var(--emtrc-surface)]">
         <div className="mx-auto max-w-[960px] px-5 py-12 sm:px-8 sm:py-16">
           <AnimatedSectionHeader
             index="05"
@@ -497,8 +543,6 @@ export function EmtrcServiceDetailPage() {
           </div>
         </div>
       </section>
-
-      <SectionSeparator variant="angle" from="surface" to="canvas" accentColor="coral" />
 
       {/* CHAPTER 7: Related Services + Tailored Closing CTA */}
       <section className="bg-[var(--emtrc-canvas)] py-12 sm:py-16">

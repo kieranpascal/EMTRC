@@ -2,6 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import {
   postStaticForm,
+  validateContactEnquiryForm,
   validateFreeDemoForm,
   validateNewsletterForm,
   validatePdfDownloadForm,
@@ -60,6 +61,38 @@ test('validateNewsletterForm rejects invalid email and accepts valid email', () 
     validateNewsletterForm({ email: 'hello@shop.co.uk', websiteHoneypot: '' }),
     {}
   );
+});
+
+test('validateContactEnquiryForm validates required enquiry fields and passes clean submissions', () => {
+  const errs = validateContactEnquiryForm({
+    name: 'J',
+    businessName: '',
+    email: 'invalid',
+    phone: '',
+    borough: '',
+    serviceInterest: '',
+    message: 'hi',
+    consent: false,
+    websiteHoneypot: '',
+  });
+  assert.ok(errs.name);
+  assert.ok(errs.email);
+  assert.ok(errs.serviceInterest);
+  assert.ok(errs.message);
+  assert.ok(errs.consent);
+
+  const valid = validateContactEnquiryForm({
+    name: 'Hannah Reid',
+    businessName: 'Clapton Sourdough Co.',
+    email: 'hannah@claptonsourdough.co.uk',
+    phone: '020 7946 0812',
+    borough: 'Hackney',
+    serviceInterest: 'Personal AI Agents',
+    message: 'Looking for a personal AI agent and Google Maps SEO package for our bakery.',
+    consent: true,
+    websiteHoneypot: '',
+  });
+  assert.deepEqual(valid, {});
 });
 
 test('postStaticForm drops honeypot spam and succeeds in dry-run when endpoint empty', async () => {
