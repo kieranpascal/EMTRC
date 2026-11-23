@@ -127,7 +127,7 @@ describe('case studies, training centre & FAQ hub catalogs', () => {
     }
   });
 
-  it('ships bespoke London minimalist architectural SVG logo and Cloudflare Pages SPA _redirects', () => {
+  it('ships bespoke London minimalist architectural SVG logo and valid Cloudflare Workers SPA config without conflicting _redirects', () => {
     const logoPath = path.join(process.cwd(), 'src/assets/logo.svg');
     assert.ok(fs.existsSync(logoPath), 'src/assets/logo.svg must exist');
     const logoSvg = fs.readFileSync(logoPath, 'utf-8');
@@ -135,10 +135,17 @@ describe('case studies, training centre & FAQ hub catalogs', () => {
     assert.ok(logoSvg.includes('viewBox="0 0 48 48"'), 'logo.svg must define an explicit square viewBox');
     assert.ok(!logoSvg.includes('<text'), 'logo.svg must be bespoke architectural paths, not a plain text letter');
 
+    const wranglerPath = path.join(process.cwd(), 'wrangler.jsonc');
+    assert.ok(fs.existsSync(wranglerPath), 'wrangler.jsonc must exist for Cloudflare Workers deploy');
+    const wranglerConfig = JSON.parse(fs.readFileSync(wranglerPath, 'utf-8'));
+    assert.equal(wranglerConfig.assets?.directory, './dist');
+    assert.equal(wranglerConfig.assets?.not_found_handling, 'single-page-application');
+
     const redirectsPath = path.join(process.cwd(), 'public/_redirects');
-    assert.ok(fs.existsSync(redirectsPath), 'public/_redirects must exist');
-    const redirects = fs.readFileSync(redirectsPath, 'utf-8').trim();
-    assert.equal(redirects, '/* /index.html 200');
+    assert.ok(
+      !fs.existsSync(redirectsPath),
+      'public/_redirects must not exist when deploying via wrangler single-page-application (causes Cloudflare error 100324)'
+    );
   });
 });
 
