@@ -7,6 +7,7 @@ import {
   Check,
   ChevronDown,
   Globe,
+  Lock,
   Mail,
   Menu,
   Moon,
@@ -18,6 +19,7 @@ import { SERVICE_DETAILS } from '../../content/services';
 import { useLanguage } from '../../context/LanguageContext';
 import { EmtrcLogo } from './EmtrcLogo';
 import { NewsletterBand } from './NewsletterBand';
+import { ScrollProgressBar } from './Reveal';
 
 type MegaKey = 'services' | 'resources' | null;
 
@@ -146,6 +148,7 @@ export function EmtrcLayout({ children, hideNewsletter = false }: EmtrcLayoutPro
 
   return (
     <div className="min-h-screen flex flex-col bg-[var(--emtrc-canvas)] text-[var(--emtrc-ink)] paper-texture">
+      <ScrollProgressBar />
       <a
         href="#main-content"
         className="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-50 focus:rounded-lg focus:bg-[var(--emtrc-accent)] focus:px-4 focus:py-2 focus:text-sm focus:font-semibold focus:text-white"
@@ -205,7 +208,7 @@ export function EmtrcLayout({ children, hideNewsletter = false }: EmtrcLayoutPro
             </a>
 
             {/* Multilingual Selector Dropdown */}
-            <div ref={langContainerRef} className="relative border-l border-[#22325C] pl-4">
+            <div ref={langContainerRef} className="relative border-l border-[#262A36] pl-4">
               <button
                 type="button"
                 data-testid="language-switcher"
@@ -233,7 +236,7 @@ export function EmtrcLayout({ children, hideNewsletter = false }: EmtrcLayoutPro
                     animate={{ opacity: 1, y: 0 }}
                     exit={prefersReduced ? undefined : { opacity: 0, y: 4 }}
                     transition={{ duration: 0.14 }}
-                    className="absolute right-0 top-full mt-2 w-48 overflow-hidden rounded-xl border border-[#22325C] bg-[#0E1730] p-1.5 shadow-2xl"
+                    className="absolute right-0 top-full mt-2 w-48 overflow-hidden rounded-xl border border-[#262D3B] bg-[#0D1014] p-1.5 shadow-2xl"
                   >
                     {languages.map((lang) => {
                       const active = lang.code === locale;
@@ -250,8 +253,8 @@ export function EmtrcLayout({ children, hideNewsletter = false }: EmtrcLayoutPro
                           }}
                           className={`flex w-full items-center justify-between rounded-lg px-3 py-2 text-left text-xs transition-colors ${
                             active
-                              ? 'bg-[#2347FF] font-semibold text-white'
-                              : 'text-[#DCE3F2] hover:bg-[#19274C] hover:text-white'
+                              ? 'bg-[var(--emtrc-accent)] font-semibold text-white'
+                              : 'text-[#DCE3F2] hover:bg-[#19202B] hover:text-white'
                           }`}
                         >
                           <span>
@@ -308,6 +311,20 @@ export function EmtrcLayout({ children, hideNewsletter = false }: EmtrcLayoutPro
             </button>
 
             <NavLink
+              to="/app"
+              onMouseEnter={() => setOpenMega(null)}
+              className={({ isActive }) =>
+                `whitespace-nowrap shrink-0 py-1 transition-colors ${
+                  isActive
+                    ? 'text-[var(--emtrc-ink)] font-semibold underline underline-offset-8 decoration-2 decoration-[var(--emtrc-accent)]'
+                    : 'hover:text-[var(--emtrc-ink)]'
+                }`
+              }
+            >
+              The App
+            </NavLink>
+
+            <NavLink
               to="/work"
               onMouseEnter={() => setOpenMega(null)}
               className={({ isActive }) =>
@@ -336,20 +353,6 @@ export function EmtrcLayout({ children, hideNewsletter = false }: EmtrcLayoutPro
             </NavLink>
 
             <NavLink
-              to="/ai-tools"
-              onMouseEnter={() => setOpenMega(null)}
-              className={({ isActive }) =>
-                `whitespace-nowrap shrink-0 py-1 transition-colors ${
-                  isActive
-                    ? 'text-[var(--emtrc-ink)] font-semibold underline underline-offset-8 decoration-2 decoration-[var(--emtrc-accent)]'
-                    : 'hover:text-[var(--emtrc-ink)]'
-                }`
-              }
-            >
-              {t.nav.aiTools}
-            </NavLink>
-
-            <NavLink
               to="/blog"
               onMouseEnter={() => setOpenMega(null)}
               className={`whitespace-nowrap shrink-0 py-1 transition-colors ${
@@ -368,7 +371,12 @@ export function EmtrcLayout({ children, hideNewsletter = false }: EmtrcLayoutPro
               onMouseEnter={() => handleMegaEnter('resources')}
               onClick={() => handleMegaToggle('resources')}
               className={`inline-flex items-center gap-1 rounded-md px-2 py-1.5 whitespace-nowrap shrink-0 transition-colors ${
-                openMega === 'resources' || pathname === '/resources' || pathname === '/how-it-works'
+                openMega === 'resources' ||
+                pathname === '/resources' ||
+                pathname === '/how-it-works' ||
+                pathname === '/training' ||
+                pathname === '/faq' ||
+                pathname.startsWith('/case-studies')
                   ? 'bg-[var(--emtrc-sand)] text-[var(--emtrc-ink)] font-semibold'
                   : 'hover:text-[var(--emtrc-ink)]'
               }`}
@@ -381,24 +389,19 @@ export function EmtrcLayout({ children, hideNewsletter = false }: EmtrcLayoutPro
                 aria-hidden="true"
               />
             </button>
-
-            <NavLink
-              to="/about"
-              onMouseEnter={() => setOpenMega(null)}
-              className={({ isActive }) =>
-                `whitespace-nowrap shrink-0 py-1 transition-colors ${
-                  isActive
-                    ? 'text-[var(--emtrc-ink)] font-semibold underline underline-offset-8 decoration-2 decoration-[var(--emtrc-accent)]'
-                    : 'hover:text-[var(--emtrc-ink)]'
-                }`
-              }
-            >
-              {t.nav.about}
-            </NavLink>
           </nav>
 
-          {/* Zone 3: Theme switch + Primary CTA + Mobile menu trigger */}
+          {/* Zone 3: Client Portal + Theme switch + Primary CTA + Mobile menu trigger */}
           <div className="flex items-center gap-2.5 shrink-0">
+            <Link
+              to="/portal"
+              data-testid="header-portal-link"
+              className="hidden md:inline-flex items-center gap-1.5 rounded-lg px-3 py-2 text-sm font-semibold text-[var(--emtrc-ink)] whitespace-nowrap shrink-0 transition-colors hover:bg-[var(--emtrc-sand)]"
+            >
+              <Lock className="h-3.5 w-3.5 text-[var(--emtrc-muted)]" aria-hidden="true" />
+              <span>Client Portal</span>
+            </Link>
+
             <button
               type="button"
               onClick={toggleTheme}
@@ -581,23 +584,23 @@ export function EmtrcLayout({ children, hideNewsletter = false }: EmtrcLayoutPro
                       </div>
                     ))}
 
-                    <div className="col-span-4 border-l border-[var(--emtrc-border)] pl-7">
+                    <div className="col-span-4 border-l border-[var(--emtrc-border)] pl-7 space-y-3">
                       <Link
-                        to="/blog"
+                        to="/case-studies"
                         onClick={() => setOpenMega(null)}
-                        className="group block h-full rounded-xl border border-[var(--emtrc-navy-border)] bg-[var(--emtrc-navy)] p-5 text-[#F5F3EE]"
+                        className="group block rounded-xl border border-[var(--emtrc-navy-border)] bg-[var(--emtrc-navy)] p-5 text-[#F5F6F8]"
                       >
-                        <p className="text-xs font-semibold text-[var(--emtrc-brass-light)]">
-                          {t.homeSections.blogKicker}
+                        <p className="font-mono-data text-[11px] font-semibold text-[var(--emtrc-brass-light)]">
+                          LONDON TRANSFORMATIONS
                         </p>
                         <p className="mt-1.5 font-editorial text-lg font-bold text-white">
-                          Plain-English London guides &amp; free PDFs.
+                          Before &amp; after London case studies.
                         </p>
-                        <p className="mt-2 text-xs leading-relaxed text-[#BAC5DC]">
-                          Read our articles on Jan 2027 PSTN switch-off, Google Maps rankings, missed-call capture and domain ownership.
+                        <p className="mt-1.5 text-xs leading-relaxed text-[#B4BCCB]">
+                          Drag the interactive comparison and inspect live 5-page builds across Hackney, Greenwich, SW7 and SE15.
                         </p>
-                        <p className="mt-4 inline-flex items-center gap-1.5 text-xs font-semibold text-[var(--emtrc-brass-light)]">
-                          <span>{t.homeSections.blogAllLink}</span>
+                        <p className="mt-3 inline-flex items-center gap-1.5 text-xs font-semibold text-[var(--emtrc-brass-light)]">
+                          <span>View case studies</span>
                           <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5" aria-hidden="true" />
                         </p>
                       </Link>
@@ -673,6 +676,9 @@ export function EmtrcLayout({ children, hideNewsletter = false }: EmtrcLayoutPro
                 </div>
               )}
 
+              <Link to="/app" className="block rounded-lg px-3 py-2.5 text-base font-semibold text-[var(--emtrc-ink)]">
+                The emtrc App
+              </Link>
               <Link to="/work" className="block rounded-lg px-3 py-2.5 text-base font-semibold text-[var(--emtrc-ink)]">
                 {t.nav.work} (15)
               </Link>
@@ -699,14 +705,20 @@ export function EmtrcLayout({ children, hideNewsletter = false }: EmtrcLayoutPro
               </button>
               {mobileSection === 'resources' && (
                 <div className="space-y-1 pl-3 pb-2">
+                  <Link to="/case-studies" className="block rounded-md px-3 py-1.5 text-sm font-semibold text-[var(--emtrc-accent)]">
+                    London Case Studies
+                  </Link>
+                  <Link to="/training" className="block rounded-md px-3 py-1.5 text-sm text-[var(--emtrc-muted)] hover:text-[var(--emtrc-ink)]">
+                    Owner Training Centre
+                  </Link>
                   <Link to="/resources#guides" className="block rounded-md px-3 py-1.5 text-sm text-[var(--emtrc-muted)] hover:text-[var(--emtrc-ink)]">
                     {t.nav.pdfLibrary}
                   </Link>
                   <Link to="/how-it-works" className="block rounded-md px-3 py-1.5 text-sm text-[var(--emtrc-muted)] hover:text-[var(--emtrc-ink)]">
                     {t.nav.howItWorks}
                   </Link>
-                  <Link to="/resources#faq" className="block rounded-md px-3 py-1.5 text-sm text-[var(--emtrc-muted)] hover:text-[var(--emtrc-ink)]">
-                    {t.nav.faq}
+                  <Link to="/faq" className="block rounded-md px-3 py-1.5 text-sm text-[var(--emtrc-muted)] hover:text-[var(--emtrc-ink)]">
+                    {t.nav.faq} (24 answers)
                   </Link>
                 </div>
               )}
@@ -726,6 +738,13 @@ export function EmtrcLayout({ children, hideNewsletter = false }: EmtrcLayoutPro
               >
                 <span>{t.nav.freeDemoCta}</span>
                 <ArrowRight className="h-4 w-4" aria-hidden="true" />
+              </Link>
+              <Link
+                to="/portal"
+                className="inline-flex w-full items-center justify-center gap-2 rounded-lg border border-[var(--emtrc-border)] bg-[var(--emtrc-canvas)] px-5 py-3 text-sm font-semibold text-[var(--emtrc-ink)]"
+              >
+                <Lock className="h-4 w-4" aria-hidden="true" />
+                <span>Client Portal</span>
               </Link>
               <a
                 href={SITE.brand.calendlyUrl}
@@ -802,12 +821,12 @@ export function EmtrcLayout({ children, hideNewsletter = false }: EmtrcLayoutPro
               </h2>
               <ul className="mt-4 space-y-2.5 text-sm text-[#BAC5DC]">
                 <li><Link to="/free-demo" className="hover:text-white transition-colors">{t.nav.freeDemoCta}</Link></li>
+                <li><Link to="/case-studies" className="hover:text-white transition-colors">London Case Studies</Link></li>
+                <li><Link to="/training" className="hover:text-white transition-colors">Owner Training Centre</Link></li>
                 <li><Link to="/work" className="hover:text-white transition-colors">Live London demos (15)</Link></li>
                 <li><Link to="/blog" className="hover:text-white transition-colors">The emtrc Blog &amp; Journal</Link></li>
-                <li><Link to="/resources#guide-website-checklist" className="hover:text-white transition-colors">London Website Checklist (PDF)</Link></li>
-                <li><Link to="/resources#guide-pstn-2027" className="hover:text-white transition-colors">PSTN Jan 2027 Guide (PDF)</Link></li>
-                <li><Link to="/resources#guide-maps-ai" className="hover:text-white transition-colors">Maps &amp; AI Search Playbook (PDF)</Link></li>
-                <li><Link to="/resources#faq" className="hover:text-white transition-colors">Straight answers (FAQ)</Link></li>
+                <li><Link to="/resources#guides" className="hover:text-white transition-colors">Free PDF Playbooks (3)</Link></li>
+                <li><Link to="/faq" className="hover:text-white transition-colors">Straight answers (FAQ)</Link></li>
               </ul>
             </div>
 
@@ -816,6 +835,8 @@ export function EmtrcLayout({ children, hideNewsletter = false }: EmtrcLayoutPro
                 {t.footer.company}
               </h2>
               <ul className="mt-4 space-y-2.5 text-sm text-[#BAC5DC]">
+                <li><Link to="/app" className="hover:text-white transition-colors">The emtrc App</Link></li>
+                <li><Link to="/portal" className="hover:text-white transition-colors">Client Portal</Link></li>
                 <li><Link to="/pricing" className="hover:text-white transition-colors">{t.nav.pricing}</Link></li>
                 <li><Link to="/ai-tools" className="hover:text-white transition-colors">{t.nav.aiTools}</Link></li>
                 <li><Link to="/how-it-works" className="hover:text-white transition-colors">{t.nav.howItWorks}</Link></li>
@@ -833,13 +854,6 @@ export function EmtrcLayout({ children, hideNewsletter = false }: EmtrcLayoutPro
             </p>
             <p>
               {SITE.flags.showExVat ? 'All prices ex VAT · ' : ''}{t.footer.noCookies}
-            </p>
-          </div>
-
-          {/* Tasteful architectural footer sign-off wordmark */}
-          <div aria-hidden="true" className="mt-8 select-none overflow-hidden border-t border-[#182548] pt-4 text-center">
-            <p className="font-editorial text-[clamp(3.2rem,13vw,9.5rem)] font-extrabold leading-[0.82] tracking-[-0.05em] text-white/[0.045]">
-              emtrc london
             </p>
           </div>
         </div>

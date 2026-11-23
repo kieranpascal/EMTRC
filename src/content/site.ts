@@ -150,6 +150,11 @@ export const SITE = {
             to: '/services/care-plan',
           },
           {
+            label: 'The emtrc App',
+            description: 'Manage missed calls, reviews and 24-hour edits from your pocket',
+            to: '/app',
+          },
+          {
             label: 'Live London Demos (15)',
             description: 'Click through working demos across five London trades',
             to: '/work',
@@ -223,6 +228,31 @@ export const SITE = {
     ],
     resources: [
       {
+        heading: 'Learn & prove',
+        items: [
+          {
+            label: 'London Case Studies',
+            description: 'Before/after transformations across Hackney, Greenwich, SW7 & SE15',
+            to: '/case-studies',
+          },
+          {
+            label: 'Owner Training Centre',
+            description: 'Interactive checklists for Google Maps, phone photos & PSTN 2027',
+            to: '/training',
+          },
+          {
+            label: 'The emtrc Blog & Journal',
+            description: 'Searchable plain-English guides on websites, Maps, AI & UK phones',
+            to: '/blog',
+          },
+          {
+            label: 'Straight Answers (FAQ Hub)',
+            description: '24 clear answers on demos, contracts, domains & AI tools',
+            to: '/faq',
+          },
+        ],
+      },
+      {
         heading: 'Free PDF guides',
         items: [
           {
@@ -240,30 +270,10 @@ export const SITE = {
             description: 'Win top-3 Maps spots and ChatGPT recommendations',
             to: '/resources#guide-maps-ai',
           },
-        ],
-      },
-      {
-        heading: 'Journal & guides',
-        items: [
           {
-            label: 'The emtrc Blog & Journal',
-            description: 'Plain-English guides on websites, Maps, AI & UK phones',
-            to: '/blog',
-          },
-          {
-            label: 'The London Local Dispatch',
-            description: 'One plain-English email a fortnight — zero fluff',
-            to: '/resources#newsletter',
-          },
-          {
-            label: 'How emtrc works',
-            description: 'Our 3-step week from demo to live launch',
-            to: '/how-it-works',
-          },
-          {
-            label: 'Straight answers (FAQ)',
-            description: 'Domains, edits, contracts and cancellations explained',
-            to: '/resources#faq',
+            label: 'All Resources & Downloads',
+            description: 'Search across PDFs, guides, training and FAQs',
+            to: '/resources',
           },
         ],
       },
@@ -401,8 +411,8 @@ export const SITE = {
         statLabel: 'Mobile Lighthouse target on every single launch',
         linkLabel: 'Explore Managed Websites',
         linkTo: '/services/websites',
-        image: '/src/assets/images/emtrc_editorial_desk_craft_1795374293989.jpg',
-        imageAlt: 'Minimalist walnut studio desk with matte laptop, espresso and architectural notebook',
+        image: '/src/assets/images/emtrc_mobile_maps_search_1795424180037.jpg',
+        imageAlt: 'London commuter on a sunlit high street holding a smartphone with a local business map listing and tap-to-call button',
       },
       {
         id: 'lead-catcher',
@@ -798,8 +808,8 @@ export const SITE = {
       ],
       pdfUrl: '/downloads/emtrc-google-maps-ai-search-playbook.pdf',
       fileName: 'emtrc-google-maps-ai-search-playbook.pdf',
-      coverImage: '/src/assets/images/emtrc_editorial_desk_craft_1795374293989.jpg',
-      coverAlt: 'Editorial overhead view of studio desk with notebook and espresso',
+      coverImage: '/src/assets/images/emtrc_mobile_maps_search_1795424180037.jpg',
+      coverAlt: 'London commuter using a smartphone on a Victorian high street to compare local businesses on Google Maps',
     },
   ] as PdfGuideItem[],
 

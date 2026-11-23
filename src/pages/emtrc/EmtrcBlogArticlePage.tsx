@@ -7,6 +7,7 @@ import { getServiceBySlug } from '../../content/services';
 import { useLanguage } from '../../context/LanguageContext';
 import { EmtrcHead } from '../../components/emtrc/EmtrcHead';
 import { EmtrcLayout } from '../../components/emtrc/EmtrcLayout';
+import { MarkdownRenderer } from '../../components/emtrc/MarkdownRenderer';
 import { PdfDownloadModal } from '../../components/emtrc/PdfDownloadModal';
 import { KickerRule, Reveal } from '../../components/emtrc/Reveal';
 import { SafeImage } from '../../components/SafeImage';
@@ -45,46 +46,51 @@ export function EmtrcBlogArticlePage() {
               <span>{t.blogPage.backToBlog}</span>
             </Link>
 
-            <div className="mt-6">
-              <KickerRule>
-                {article.category} · {article.readTime} · {article.publishedDate}
-              </KickerRule>
-            </div>
+            <Reveal immediate>
+              <div className="mt-6">
+                <KickerRule>
+                  {article.category} · {article.readTime} · {article.publishedDate}
+                </KickerRule>
+              </div>
 
-            <h1 className="mt-4 font-editorial text-[clamp(2rem,4.6vw,3.35rem)] font-extrabold leading-[1.06] tracking-[-0.03em] text-[var(--emtrc-ink)]">
-              {article.title}
-            </h1>
+              <h1 className="mt-4 font-editorial text-[clamp(2rem,4.6vw,3.35rem)] font-bold leading-[1.06] tracking-[-0.03em] text-[var(--emtrc-ink)]">
+                {article.title}
+              </h1>
 
-            <p className="mt-5 text-base leading-relaxed text-[var(--emtrc-muted)] sm:text-lg">
-              {article.excerpt}
-            </p>
+              <p className="mt-5 text-base leading-relaxed text-[var(--emtrc-muted)] sm:text-lg">
+                {article.excerpt}
+              </p>
 
-            <p className="mt-5 text-xs font-medium text-[var(--emtrc-muted)]">
-              By {article.author}
-            </p>
+              <p className="mt-5 font-mono-data text-xs font-medium text-[var(--emtrc-muted)]">
+                By {article.author}
+              </p>
+            </Reveal>
           </div>
         </header>
 
         {/* Hero Photo */}
         <div className="mx-auto max-w-[960px] px-5 pt-10 sm:px-8">
-          <div className="overflow-hidden rounded-2xl border border-[var(--emtrc-border)] bg-[var(--emtrc-sand)]">
-            <SafeImage
-              src={article.image}
-              alt={article.imageAlt}
-              width={1200}
-              height={800}
-              className="aspect-[16/9] w-full object-cover"
-            />
-          </div>
+          <Reveal>
+            <div className="overflow-hidden rounded-2xl border border-[var(--emtrc-border)] bg-[var(--emtrc-sand)]">
+              <SafeImage
+                src={article.image}
+                alt={article.imageAlt}
+                width={1200}
+                height={800}
+                priority
+                className="aspect-[16/9] w-full object-cover"
+              />
+            </div>
+          </Reveal>
         </div>
 
-        {/* Main Editorial Body */}
+        {/* Main Editorial Body (rendered directly from static Markdown blocks) */}
         <div className="mx-auto max-w-[780px] px-5 pt-12 sm:px-8">
           {/* Key Takeaways Box */}
           <Reveal>
             <div className="rounded-2xl border border-[var(--emtrc-border)] bg-[var(--emtrc-surface)] p-6 sm:p-8">
-              <p className="text-xs font-bold tracking-wide text-[var(--emtrc-brass)]">
-                {t.blogPage.keyTakeaways}
+              <p className="font-mono-data text-xs font-bold tracking-wider text-[var(--emtrc-accent)]">
+                {t.blogPage.keyTakeaways.toUpperCase()}
               </p>
               <ul className="mt-4 space-y-3">
                 {article.keyTakeaways.map((point) => (
@@ -103,48 +109,22 @@ export function EmtrcBlogArticlePage() {
             </div>
           </Reveal>
 
-          {/* Sections */}
-          <div className="mt-12 space-y-11">
-            {article.sections.map((section) => (
-              <Reveal key={section.heading}>
-                <section>
-                  <h2 className="font-editorial text-2xl font-extrabold leading-snug tracking-[-0.02em] text-[var(--emtrc-ink)] sm:text-3xl">
-                    {section.heading}
-                  </h2>
-                  <div className="mt-4 space-y-4 text-base leading-[1.75] text-[var(--emtrc-muted)]">
-                    {section.paragraphs.map((paragraph) => (
-                      <p key={paragraph}>{paragraph}</p>
-                    ))}
-                  </div>
-                  {section.bullets && section.bullets.length > 0 && (
-                    <ul className="mt-5 space-y-2.5 rounded-xl border border-[var(--emtrc-border)] bg-[var(--emtrc-surface)] p-5 text-sm leading-relaxed text-[var(--emtrc-ink)]">
-                      {section.bullets.map((bullet) => (
-                        <li key={bullet} className="flex items-start gap-2.5">
-                          <Check
-                            className="mt-0.5 h-4 w-4 shrink-0 text-[var(--emtrc-accent)]"
-                            aria-hidden="true"
-                          />
-                          <span>{bullet}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  )}
-                </section>
-              </Reveal>
-            ))}
+          {/* Parsed Markdown Article Content */}
+          <div className="mt-12">
+            <MarkdownRenderer blocks={article.blocks} />
           </div>
 
           {/* Contextual Companion PDF + Related Service */}
           <div className="mt-14 grid grid-cols-1 gap-6 border-t border-[var(--emtrc-border)] pt-12 md:grid-cols-2">
-            <div className="flex flex-col justify-between rounded-2xl border border-[var(--emtrc-navy-border)] bg-[var(--emtrc-navy)] p-6 text-[#F5F3EE]">
+            <div className="flex flex-col justify-between rounded-2xl border border-[var(--emtrc-navy-border)] bg-[var(--emtrc-navy)] p-6 text-[#F5F6F8]">
               <div>
-                <p className="text-xs font-semibold text-[var(--emtrc-brass-light)]">
+                <p className="font-mono-data text-xs font-semibold text-[var(--emtrc-brass-light)]">
                   Free companion PDF · {relatedGuide.pages}
                 </p>
                 <h3 className="mt-2 font-editorial text-xl font-bold text-white">
                   {relatedGuide.shortTitle}
                 </h3>
-                <p className="mt-2 text-xs leading-relaxed text-[#BAC5DC]">
+                <p className="mt-2 text-xs leading-relaxed text-[#B4BCCB]">
                   {relatedGuide.summary}
                 </p>
               </div>
@@ -163,7 +143,7 @@ export function EmtrcBlogArticlePage() {
             {relatedService && (
               <div className="flex flex-col justify-between rounded-2xl border border-[var(--emtrc-border)] bg-[var(--emtrc-surface)] p-6">
                 <div>
-                  <p className="text-xs font-semibold text-[var(--emtrc-brass)]">
+                  <p className="font-mono-data text-xs font-semibold text-[var(--emtrc-accent)]">
                     Want emtrc to handle this for you?
                   </p>
                   <h3 className="mt-2 font-editorial text-xl font-bold text-[var(--emtrc-ink)]">
@@ -195,10 +175,10 @@ export function EmtrcBlogArticlePage() {
               <Link
                 key={other.slug}
                 to={`/blog/${other.slug}`}
-                className="group flex flex-col justify-between rounded-2xl border border-[var(--emtrc-border)] bg-[var(--emtrc-surface)] p-6 transition-transform duration-200 hover:-translate-y-0.5 hover:border-[var(--emtrc-accent)]"
+                className="group flex flex-col justify-between rounded-2xl border border-[var(--emtrc-border)] bg-[var(--emtrc-surface)] p-6 transition-colors hover:border-[var(--emtrc-ink)]"
               >
                 <div>
-                  <p className="text-xs font-medium text-[var(--emtrc-brass)]">
+                  <p className="font-mono-data text-xs font-medium text-[var(--emtrc-accent)]">
                     {other.category} · {other.readTime}
                   </p>
                   <h3 className="mt-2 font-editorial text-xl font-bold leading-snug text-[var(--emtrc-ink)] group-hover:text-[var(--emtrc-accent)]">

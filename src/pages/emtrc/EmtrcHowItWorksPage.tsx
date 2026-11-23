@@ -49,40 +49,56 @@ export function EmtrcHowItWorksPage() {
       />
 
       {/* Editorial Header */}
-      <section className="border-b border-[var(--emtrc-border)] pt-12 pb-16 sm:pt-16 sm:pb-20">
+      <section className="hero-editorial-wash border-b border-[var(--emtrc-border)] pt-12 pb-16 sm:pt-16 sm:pb-20">
         <div className="mx-auto max-w-[1200px] px-5 sm:px-8">
-          <div className="max-w-3xl">
-            <p className="text-xs font-bold tracking-wide text-[var(--emtrc-brass)]">
-              How it works · No six-week agency theatre
-            </p>
-            <h1 className="mt-3 font-editorial text-4xl font-extrabold leading-[1.03] tracking-[-0.035em] text-[var(--emtrc-ink)] sm:text-6xl">
-              See your site on your phone.
-              <span className="block text-[var(--emtrc-muted)]">
-                Then decide if you want it.
-              </span>
-            </h1>
-            <p className="mt-5 text-base leading-relaxed text-[var(--emtrc-muted)] sm:text-lg">
-              Most small businesses have been burned by agencies that ask for £1,500 up front and
-              take two months to deliver a template. We flipped the order: we build first, show you
-              a real working demo in 2 working days, and only charge if you love it.
-            </p>
-            <div className="mt-7 flex flex-wrap gap-3">
-              <Link
-                to="/free-demo"
-                className="inline-flex items-center gap-2 rounded-lg bg-[var(--emtrc-accent)] px-5 py-3 text-sm font-semibold text-white transition-colors hover:bg-[var(--emtrc-accent-hover)]"
-              >
-                <span>Request my free demo</span>
-                <ArrowRight className="h-4 w-4" aria-hidden="true" />
-              </Link>
-              <a
-                href={SITE.brand.calendlyUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 rounded-lg border border-[var(--emtrc-border)] bg-[var(--emtrc-surface)] px-5 py-3 text-sm font-semibold text-[var(--emtrc-ink)] transition-colors hover:border-[var(--emtrc-ink)]"
-              >
-                <Calendar className="h-4 w-4" aria-hidden="true" />
-                <span>Book a 15-minute call</span>
-              </a>
+          <div className="grid grid-cols-1 items-center gap-10 lg:grid-cols-12">
+            <div className="lg:col-span-7">
+              <Reveal immediate>
+                <p className="font-mono-data text-xs font-bold tracking-wider text-[var(--emtrc-accent)]">
+                  HOW IT WORKS · NO SIX-WEEK AGENCY THEATRE
+                </p>
+                <h1 className="mt-3 font-editorial text-4xl font-bold leading-[1.03] tracking-[-0.03em] text-[var(--emtrc-ink)] sm:text-6xl">
+                  See your site on your phone.
+                  <span className="block text-[var(--emtrc-muted)]">
+                    Then decide if you want it.
+                  </span>
+                </h1>
+                <p className="mt-5 text-base leading-relaxed text-[var(--emtrc-muted)] sm:text-lg">
+                  Most small businesses have been burned by agencies that ask for £1,500 up front and
+                  take two months to deliver a template. We flipped the order: we build first, show you
+                  a real working demo in 2 working days, and only charge if you love it.
+                </p>
+                <div className="mt-7 flex flex-wrap gap-3">
+                  <Link
+                    to="/free-demo"
+                    className="inline-flex items-center gap-2 rounded-lg bg-[var(--emtrc-accent)] px-5 py-3 text-sm font-semibold text-white transition-colors hover:bg-[var(--emtrc-accent-hover)]"
+                  >
+                    <span>Request my free demo</span>
+                    <ArrowRight className="h-4 w-4" aria-hidden="true" />
+                  </Link>
+                  <a
+                    href={SITE.brand.calendlyUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 rounded-lg border border-[var(--emtrc-border)] bg-[var(--emtrc-surface)] px-5 py-3 text-sm font-semibold text-[var(--emtrc-ink)] transition-colors hover:border-[var(--emtrc-ink)]"
+                  >
+                    <Calendar className="h-4 w-4" aria-hidden="true" />
+                    <span>Book a 15-minute call</span>
+                  </a>
+                </div>
+              </Reveal>
+            </div>
+
+            <div className="lg:col-span-5">
+              <Reveal immediate delay={0.1}>
+                <div className="overflow-hidden rounded-2xl border border-[var(--emtrc-border)] bg-[var(--emtrc-navy)] shadow-lg">
+                  <img
+                    src="/src/assets/images/emtrc_london_plumber_van_1795422464729.jpg"
+                    alt="London heating engineer inspecting precision copper pipework"
+                    className="aspect-[4/3] w-full object-cover"
+                  />
+                </div>
+              </Reveal>
             </div>
           </div>
         </div>

@@ -73,8 +73,8 @@ export const SERVICE_DETAILS: readonly ServiceDetail[] = [
       'Fast, mobile-first websites for London barbers, salons, trades, cleaners and cafés — built around upfront pricing, live opening hours and one-tap calling, hosted on Cloudflare’s global edge, and looked after every month.',
     heroImage: '/src/assets/images/emtrc_hero_london_highstreet_1795374294553.jpg',
     heroAlt: 'London Victorian high street shopfronts with independent barber and café',
-    secondaryImage: '/src/assets/images/emtrc_editorial_desk_craft_1795374293989.jpg',
-    secondaryAlt: 'Minimal walnut design studio desk with laptop and notebook',
+    secondaryImage: '/src/assets/images/emtrc_mobile_maps_search_1795424180037.jpg',
+    secondaryAlt: 'London customer checking a local business on mobile Google Maps while walking down a high street',
     pains: [
       {
         title: 'No website, or an outdated one',

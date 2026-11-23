@@ -41,12 +41,12 @@ export function NewsletterBand() {
     <section
       id="newsletter"
       aria-labelledby="newsletter-heading"
-      className="border-t border-[var(--emtrc-navy-border)] bg-[var(--emtrc-navy)] text-[#F5F3EE]"
+      className="border-t border-[var(--emtrc-navy-border)] bg-[var(--emtrc-navy)] text-[#F5F6F8]"
     >
       <div className="mx-auto max-w-[1200px] px-5 py-14 sm:px-8 sm:py-16">
         <div className="grid grid-cols-1 items-center gap-10 rounded-2xl border border-[var(--emtrc-navy-border)] bg-[var(--emtrc-navy-surface)] p-6 sm:p-10 lg:grid-cols-12">
           <div className="lg:col-span-6">
-            <p className="text-xs font-semibold tracking-wide text-[var(--emtrc-brass-light)]">
+            <p className="font-mono-data text-xs font-semibold tracking-wider text-[var(--emtrc-brass-light)]">
               {t.newsletter.eyebrow}
             </p>
             <h2
@@ -55,7 +55,7 @@ export function NewsletterBand() {
             >
               {t.newsletter.headline}
             </h2>
-            <ul className="mt-5 space-y-2.5 text-sm text-[#C7D0E4]">
+            <ul className="mt-5 space-y-2.5 text-sm text-[#B4BCCB]">
               {SITE.newsletter.bullets.map((bullet) => (
                 <li key={bullet} className="flex items-start gap-2.5">
                   <Check className="mt-0.5 h-4 w-4 shrink-0 text-[var(--emtrc-brass-light)]" aria-hidden="true" />
@@ -69,13 +69,13 @@ export function NewsletterBand() {
             {joined ? (
               <div
                 data-testid="newsletter-success"
-                className="rounded-xl border border-[#2D4073] bg-[#0E1833] p-6"
+                className="rounded-xl border border-[#263532] bg-[#0F1B18] p-6"
               >
                 <div className="flex items-start gap-3">
                   <CheckCircle2 className="mt-0.5 h-5 w-5 shrink-0 text-[var(--emtrc-brass-light)]" aria-hidden="true" />
                   <div>
                     <p className="text-sm font-bold text-white">Subscribed</p>
-                    <p className="mt-1 text-sm text-[#C7D0E4]">{t.newsletter.successMessage}</p>
+                    <p className="mt-1 text-sm text-[#B4BCCB]">{t.newsletter.successMessage}</p>
                   </div>
                 </div>
               </div>
@@ -93,7 +93,7 @@ export function NewsletterBand() {
                   />
                 </div>
 
-                <label htmlFor="newsletter-email" className="block text-xs font-semibold text-[#D6DEF0]">
+                <label htmlFor="newsletter-email" className="block text-xs font-semibold text-[#D4DAE4]">
                   Business email address
                 </label>
                 <div className="mt-2 flex flex-col gap-2.5 sm:flex-row">
@@ -104,12 +104,12 @@ export function NewsletterBand() {
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     placeholder={t.newsletter.placeholder}
-                    className="min-w-0 flex-1 rounded-lg border border-[#2C3D6B] bg-[#0B132B] px-4 py-3 text-sm text-white placeholder:text-[#7E8BA8] focus:border-[#5370FF] focus:outline-none"
+                    className="min-w-0 flex-1 rounded-lg border border-[#2A3342] bg-[#0D1014] px-4 py-3 text-sm text-white placeholder:text-[#7A8496] focus:border-[var(--emtrc-brass-light)] focus:outline-none"
                   />
                   <button
                     type="submit"
                     disabled={submitting}
-                    className="group inline-flex items-center justify-center gap-2 rounded-lg bg-[#2347FF] px-6 py-3 text-sm font-semibold text-white whitespace-nowrap shrink-0 transition-colors hover:bg-[#3A5BFF] disabled:opacity-60"
+                    className="group inline-flex items-center justify-center gap-2 rounded-lg bg-[var(--emtrc-accent)] px-6 py-3 text-sm font-semibold text-white whitespace-nowrap shrink-0 transition-colors hover:bg-[var(--emtrc-accent-hover)] disabled:opacity-60"
                   >
                     <span>{submitting ? 'Joining…' : t.newsletter.buttonLabel}</span>
                     <ArrowRight
@@ -119,8 +119,8 @@ export function NewsletterBand() {
                   </button>
                 </div>
                 {error && <p className="mt-2 text-xs font-medium text-[#FCA5A5]">{error}</p>}
-                <p className="mt-3 text-xs text-[#9BA7C2]">{t.newsletter.disclaimer}</p>
-                <p className="mt-2 text-xs text-[#7E8BA8]">
+                <p className="mt-3 text-xs text-[#9BA3B4]">{t.newsletter.disclaimer}</p>
+                <p className="mt-2 font-mono-data text-[11px] text-[#7A8496]">
                   Fortnightly · 2 min read · Unsubscribe anytime
                 </p>
               </form>

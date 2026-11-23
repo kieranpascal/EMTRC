@@ -1,176 +1,472 @@
 import { useEffect, useState } from 'react';
 import { AnimatePresence, motion, useReducedMotion } from 'framer-motion';
-import { CheckCircle2, Globe, MessageSquare, PhoneCall, Star } from 'lucide-react';
-import { SITE } from '../../content/site';
-import emtrcLogoMark from '../../assets/images/emtrc_logo_emblem_1795377025072.jpg';
+import {
+  ArrowUpRight,
+  Check,
+  CheckCheck,
+  MessageSquare,
+  PhoneIncoming,
+  SlidersHorizontal,
+  Sparkles,
+  Star,
+  TrendingUp,
+  Wifi,
+} from 'lucide-react';
+import { EmtrcMark } from './EmtrcLogo';
+import { ParallaxLayer } from './Reveal';
 import { SafeImage } from '../SafeImage';
 
+type AppTabId = 'overview' | 'calls' | 'reviews' | 'edits';
+
+const TABS: { id: AppTabId; label: string; ariaLabel: string }[] = [
+  { id: 'overview', label: 'Today', ariaLabel: 'Today overview' },
+  { id: 'calls', label: 'Calls', ariaLabel: 'Missed-call text-back' },
+  { id: 'reviews', label: 'Reviews', ariaLabel: 'Google reviews' },
+  { id: 'edits', label: 'Edits', ariaLabel: 'Studio edits' },
+];
+
+const SPARKLINE_BARS = [34, 48, 42, 61, 55, 78, 86];
+const SPARKLINE_DAYS = ['M', 'T', 'W', 'T', 'F', 'S', 'S'];
+
+/**
+ * Interactive titanium iOS-grade emtrc Owner App preview layered inside a mouse-parallax stage.
+ * Showcases real mobile conversion metrics, 8-second missed-call SMS recovery, one-tap review replies,
+ * and instant studio edit dispatch — built with crisp real UI rather than blurry static mockups.
+ */
 export function HeroPhonePreview() {
-  const screens = SITE.heroPhoneScreens;
-  const [activeIndex, setActiveIndex] = useState(0);
+  const [activeTab, setActiveTab] = useState<AppTabId>('overview');
   const [paused, setPaused] = useState(false);
+  const [reviewPublished, setReviewPublished] = useState(false);
+  const [editSent, setEditSent] = useState(false);
   const prefersReduced = useReducedMotion();
 
   useEffect(() => {
     if (paused || prefersReduced) return;
     const id = window.setInterval(() => {
-      setActiveIndex((prev) => (prev + 1) % screens.length);
-    }, 6500);
+      setActiveTab((prev) => {
+        const idx = TABS.findIndex((t) => t.id === prev);
+        return TABS[(idx + 1) % TABS.length].id;
+      });
+    }, 6800);
     return () => window.clearInterval(id);
-  }, [paused, prefersReduced, screens.length]);
-
-  const current = screens[activeIndex];
-  const shortTabLabels = ['Demo', 'Calls', 'Reviews', 'Report'];
+  }, [paused, prefersReduced]);
 
   return (
     <div
-      className="relative mx-auto w-full max-w-[540px] lg:ml-auto lg:mr-0"
+      className="relative mx-auto w-full max-w-[560px] lg:ml-auto lg:mr-0"
       onMouseEnter={() => setPaused(true)}
       onMouseLeave={() => setPaused(false)}
     >
-      {/* Editorial London high-street backdrop photo (offset to top-right, Klyara style) */}
-      <div className="relative ml-auto w-[86%] sm:w-[82%] overflow-hidden rounded-2xl border border-[var(--emtrc-border)] bg-[var(--emtrc-navy)] shadow-sm">
-        <SafeImage
-          src={SITE.hero.backgroundPhoto}
-          alt={SITE.hero.backgroundPhotoAlt}
-          width={1200}
-          height={900}
-          priority
-          className="h-[360px] w-full object-cover sm:h-[440px] brightness-[0.88] contrast-[1.06]"
-        />
-        <div
-          className="pointer-events-none absolute inset-0 bg-gradient-to-tr from-[#0B132B]/55 via-transparent to-transparent"
-          aria-hidden="true"
-        />
-      </div>
-
-      {/* Layered Interactive Phone Frame */}
-      <div
-        data-testid="hero-phone-preview"
-        className="relative z-10 -mt-[300px] sm:-mt-[370px] w-[88%] max-w-[348px] rounded-[28px] border-[5px] border-[#0B132B] bg-[#F8F6F1] text-[#0E172A] shadow-2xl dark:border-[#243254] dark:bg-[#111829] dark:text-[#F4F5F8]"
-      >
-        {/* Top notch & status line */}
-        <div className="flex items-center justify-between px-5 pt-3 pb-2 text-[11px] font-semibold tabular-nums text-[#4A5468] dark:text-[#9AA6BE]">
-          <span>09:41</span>
-          <span className="h-3.5 w-16 rounded-full bg-[#0B132B] dark:bg-[#050811]" aria-hidden="true" />
-          <span>5G</span>
+      {/* Background Depth Plane: Authentic East London Owner Holding Smartphone Outside Shopfront */}
+      <ParallaxLayer depth={-10} tilt={2} className="relative ml-auto w-[84%] sm:w-[80%]">
+        <div className="relative overflow-hidden rounded-2xl border border-[var(--emtrc-border)] bg-[#0A0B0E] shadow-xl">
+          <SafeImage
+            src="/src/assets/images/emtrc_app_hero_mobile_1795424181857.jpg"
+            alt="East London independent business owner checking live bookings on a smartphone outside his brick shopfront"
+            width={1200}
+            height={900}
+            priority
+            className="h-[395px] w-full object-cover object-center sm:h-[485px] brightness-[0.9] contrast-[1.04]"
+          />
+          <div
+            aria-hidden="true"
+            className="pointer-events-none absolute inset-0 bg-gradient-to-tr from-[#0A0B0E]/75 via-[#0A0B0E]/15 to-transparent"
+          />
+          <div className="pointer-events-none absolute right-4 bottom-4 hidden rounded-lg border border-white/15 bg-[#0A0B0E]/82 px-3 py-2 backdrop-blur-md sm:block">
+            <p className="font-mono-data text-[10px] tracking-wider text-white/65">LONDON E8 · LIVE</p>
+            <p className="mt-0.5 text-xs font-semibold text-white">0.9s mobile paint · 4G</p>
+          </div>
         </div>
+      </ParallaxLayer>
 
-        {/* Mini App Header */}
-        <div className="flex items-center justify-between border-b border-[#E4DEC9] px-4 py-2.5 dark:border-[#1E2A45]">
-          <div className="flex items-center gap-2 min-w-0">
-            <img
-              src={emtrcLogoMark}
-              alt="emtrc emblem"
-              width={24}
-              height={24}
-              referrerPolicy="no-referrer"
-              className="h-6 w-6 shrink-0 rounded-md object-cover ring-1 ring-[#0B132B]/15"
-            />
-            <div className="min-w-0">
-              <p className="truncate text-xs font-bold leading-tight">emtrc</p>
-              <p className="truncate text-[10px] font-medium tracking-wide text-[#5C667A] dark:text-[#9AA6BE]">
-                {current.headerSub}
-              </p>
+      {/* Foreground Depth Plane: Precision Anodized Titanium iPhone 16 Pro UI */}
+      <ParallaxLayer
+        depth={16}
+        tilt={3.5}
+        className="relative z-20 -mt-[345px] sm:-mt-[425px] w-[92%] max-w-[356px]"
+      >
+        <div
+          data-testid="hero-phone-preview"
+          className="rounded-[40px] bg-gradient-to-b from-[#3A3D45] via-[#1B1D22] to-[#2B2E36] p-[2.5px] shadow-[0_32px_70px_-15px_rgba(10,11,14,0.48)]"
+        >
+          <div className="overflow-hidden rounded-[38px] bg-[#0B0C10] text-white">
+            {/* iOS Status Bar + Dynamic Island */}
+            <div className="flex items-center justify-between px-6 pt-3.5 pb-2 text-[11px] font-semibold tracking-tight text-white/90">
+              <span className="font-mono-data">09:41</span>
+              <span
+                aria-hidden="true"
+                className="flex h-[22px] w-[86px] items-center justify-end rounded-full bg-black px-2 ring-1 ring-white/10"
+              >
+                <span className="h-2 w-2 rounded-full bg-[#1C1F2B] ring-1 ring-white/15" />
+              </span>
+              <span className="inline-flex items-center gap-1.5 text-white/85">
+                <Wifi className="h-3 w-3" aria-hidden="true" />
+                <span className="font-mono-data text-[10px]">5G</span>
+              </span>
+            </div>
+
+            {/* App Top Bar */}
+            <div className="flex items-center justify-between px-5 pt-1.5 pb-3">
+              <div className="flex items-center gap-2.5 min-w-0">
+                <EmtrcMark inverted className="h-7 w-7" />
+                <div className="min-w-0">
+                  <p className="truncate text-[13px] font-bold leading-tight text-white">
+                    Kingsland Blade
+                  </p>
+                  <p className="truncate font-mono-data text-[10px] text-[#98A0B2]">
+                    emtrc App · Hackney E8
+                  </p>
+                </div>
+              </div>
+              <span className="rounded-md bg-white/[0.08] px-2 py-1 font-mono-data text-[10px] font-semibold text-[#FF6B5B]">
+                LIVE
+              </span>
+            </div>
+
+            {/* Animated Segmented Control */}
+            <div
+              role="tablist"
+              aria-label="Preview emtrc mobile app"
+              className="mx-4 grid grid-cols-4 gap-1 rounded-xl bg-[#151821] p-1 ring-1 ring-white/[0.07]"
+            >
+              {TABS.map((tab) => {
+                const selected = tab.id === activeTab;
+                return (
+                  <button
+                    key={tab.id}
+                    type="button"
+                    role="tab"
+                    aria-label={tab.ariaLabel}
+                    aria-selected={selected}
+                    onClick={() => {
+                      setActiveTab(tab.id);
+                      setPaused(true);
+                    }}
+                    className={`relative rounded-lg py-1.5 text-[11px] font-semibold transition-colors ${
+                      selected ? 'text-[#0A0B0E]' : 'text-[#98A0B2] hover:text-white'
+                    }`}
+                  >
+                    {selected && (
+                      <motion.span
+                        layoutId="hero-phone-tab-indicator"
+                        transition={{ type: 'spring', stiffness: 380, damping: 32 }}
+                        className="absolute inset-0 rounded-lg bg-white shadow-sm"
+                      />
+                    )}
+                    <span className="relative z-10">{tab.label}</span>
+                  </button>
+                );
+              })}
+            </div>
+
+            {/* Dynamic Screen Viewport */}
+            <div className="min-h-[305px] px-4 pt-3.5 pb-4">
+              <AnimatePresence mode="wait" initial={false}>
+                {activeTab === 'overview' && (
+                  <motion.div
+                    key="overview"
+                    initial={prefersReduced ? false : { opacity: 0, y: 8 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={prefersReduced ? undefined : { opacity: 0, y: -6 }}
+                    transition={{ duration: 0.2, ease: [0.22, 1, 0.36, 1] }}
+                    className="space-y-3"
+                  >
+                    {/* Hero KPI Card with Crisp Bar Sparkline */}
+                    <div className="rounded-2xl bg-[#141720] p-4 ring-1 ring-white/[0.08]">
+                      <div className="flex items-start justify-between">
+                        <div>
+                          <p className="font-mono-data text-[10px] tracking-wider text-[#98A0B2]">
+                            CALLS &amp; BOOKINGS · 7 DAYS
+                          </p>
+                          <div className="mt-1 flex items-baseline gap-2">
+                            <span className="font-editorial text-3xl font-bold tracking-tight text-white tabular-nums">
+                              47
+                            </span>
+                            <span className="inline-flex items-center gap-0.5 font-mono-data text-[11px] font-semibold text-[#FF6B5B]">
+                              <TrendingUp className="h-3 w-3" aria-hidden="true" />
+                              +28%
+                            </span>
+                          </div>
+                        </div>
+                        <span className="font-mono-data text-[10px] text-white/60">
+                          99/100 Speed
+                        </span>
+                      </div>
+
+                      {/* 7-day bar chart */}
+                      <div className="mt-4 grid grid-cols-7 items-end gap-1.5 h-16">
+                        {SPARKLINE_BARS.map((height, i) => (
+                          <div key={i} className="flex h-full flex-col items-center justify-end gap-1">
+                            <motion.div
+                              initial={prefersReduced ? false : { scaleY: 0 }}
+                              animate={{ scaleY: 1 }}
+                              transition={{
+                                duration: 0.45,
+                                delay: i * 0.04,
+                                ease: [0.22, 1, 0.36, 1],
+                              }}
+                              style={{ height: `${height}%`, transformOrigin: 'bottom' }}
+                              className={`w-full rounded-t-[4px] ${
+                                i === SPARKLINE_BARS.length - 1
+                                  ? 'bg-[#E03528]'
+                                  : 'bg-white/20'
+                              }`}
+                            />
+                            <span className="font-mono-data text-[9px] text-[#7D8596]">
+                              {SPARKLINE_DAYS[i]}
+                            </span>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+
+                    {/* Two Compact Bento Tiles */}
+                    <div className="grid grid-cols-2 gap-2.5">
+                      <div className="rounded-xl bg-[#141720] p-3 ring-1 ring-white/[0.08]">
+                        <p className="font-mono-data text-[10px] text-[#98A0B2]">AUTO-SAVED</p>
+                        <p className="mt-1 font-editorial text-lg font-bold text-white tabular-nums">
+                          £1,140
+                        </p>
+                        <p className="mt-0.5 text-[10px] text-[#98A0B2]">9 missed calls rescued</p>
+                      </div>
+                      <div className="rounded-xl bg-[#141720] p-3 ring-1 ring-white/[0.08]">
+                        <p className="font-mono-data text-[10px] text-[#98A0B2]">GOOGLE MAPS</p>
+                        <p className="mt-1 font-editorial text-lg font-bold text-white tabular-nums">
+                          4.9 ★
+                        </p>
+                        <p className="mt-0.5 text-[10px] text-[#FF6B5B]">Top 3 in Hackney E8</p>
+                      </div>
+                    </div>
+
+                    {/* Live Activity Line */}
+                    <div className="flex items-center justify-between rounded-xl bg-white/[0.05] px-3.5 py-2.5 text-xs">
+                      <span className="text-white/90">Fresha booking · Skin Fade</span>
+                      <span className="font-mono-data text-[10px] font-semibold text-[#FF6B5B]">
+                        14:30 · £36
+                      </span>
+                    </div>
+                  </motion.div>
+                )}
+
+                {activeTab === 'calls' && (
+                  <motion.div
+                    key="calls"
+                    initial={prefersReduced ? false : { opacity: 0, y: 8 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={prefersReduced ? undefined : { opacity: 0, y: -6 }}
+                    transition={{ duration: 0.2, ease: [0.22, 1, 0.36, 1] }}
+                    className="space-y-2.5"
+                  >
+                    <div className="flex items-center justify-between rounded-xl bg-[#141720] px-3.5 py-2.5 ring-1 ring-white/[0.08]">
+                      <div className="flex items-center gap-2.5">
+                        <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-[#E03528]/15 text-[#FF6B5B]">
+                          <PhoneIncoming className="h-4 w-4" aria-hidden="true" />
+                        </span>
+                        <div>
+                          <p className="text-xs font-semibold text-white">07700 900 418</p>
+                          <p className="font-mono-data text-[10px] text-[#98A0B2]">
+                            Missed at 14:22 · SMS in 8s
+                          </p>
+                        </div>
+                      </div>
+                      <span className="font-mono-data text-[10px] font-semibold text-[#FF6B5B]">
+                        RECOVERED
+                      </span>
+                    </div>
+
+                    {/* Realistic SMS Thread */}
+                    <div className="space-y-2 rounded-2xl bg-[#141720] p-3.5 ring-1 ring-white/[0.08]">
+                      <div className="ml-auto max-w-[88%] rounded-2xl rounded-br-sm bg-white px-3 py-2 text-[11px] leading-snug text-[#0A0B0E]">
+                        <p>
+                          Sorry we missed your call at Kingsland Blade — hands are on a cut. Reply here or tap to book a chair today:
+                        </p>
+                        <p className="mt-1 flex items-center justify-end gap-1 font-mono-data text-[9px] text-[#525866]">
+                          <span>14:22</span>
+                          <CheckCheck className="h-3 w-3 text-[#C82419]" aria-hidden="true" />
+                        </p>
+                      </div>
+
+                      <div className="mr-auto max-w-[84%] rounded-2xl rounded-bl-sm bg-[#222633] px-3 py-2 text-[11px] leading-snug text-white">
+                        <p>No worries mate — got anything around 5pm for a skin fade?</p>
+                        <p className="mt-1 font-mono-data text-[9px] text-[#98A0B2]">14:23</p>
+                      </div>
+
+                      <div className="flex items-center justify-between rounded-xl bg-[#E03528] px-3 py-2 text-[11px] font-semibold text-white">
+                        <span>Slot held · Today 17:15</span>
+                        <ArrowUpRight className="h-3.5 w-3.5" aria-hidden="true" />
+                      </div>
+                    </div>
+                  </motion.div>
+                )}
+
+                {activeTab === 'reviews' && (
+                  <motion.div
+                    key="reviews"
+                    initial={prefersReduced ? false : { opacity: 0, y: 8 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={prefersReduced ? undefined : { opacity: 0, y: -6 }}
+                    transition={{ duration: 0.2, ease: [0.22, 1, 0.36, 1] }}
+                    className="space-y-3"
+                  >
+                    <div className="rounded-2xl bg-[#141720] p-4 ring-1 ring-white/[0.08]">
+                      <div className="flex items-center justify-between">
+                        <div className="flex items-center gap-0.5 text-[#FF6B5B]" aria-label="5 out of 5 stars">
+                          {[0, 1, 2, 3, 4].map((s) => (
+                            <Star key={s} className="h-3.5 w-3.5 fill-current" aria-hidden="true" />
+                          ))}
+                        </div>
+                        <span className="font-mono-data text-[10px] text-[#98A0B2]">Google · 12m ago</span>
+                      </div>
+                      <p className="mt-2.5 text-xs leading-relaxed text-white">
+                        “Booked on my phone walking up Kingsland Road, zero wait, sharpest fade in E8.”
+                      </p>
+                      <p className="mt-2 font-mono-data text-[10px] text-[#98A0B2]">
+                        Daniel O. · Verified Local Guide
+                      </p>
+                    </div>
+
+                    <div className="rounded-2xl bg-[#141720] p-3.5 ring-1 ring-white/[0.08]">
+                      <p className="font-mono-data text-[10px] text-[#98A0B2]">DRAFTED OWNER REPLY</p>
+                      <p className="mt-1.5 text-[11px] leading-relaxed text-white/85">
+                        “Thanks Daniel — glad the walk-in slot worked smoothly. See you next month!”
+                      </p>
+                      <button
+                        type="button"
+                        onClick={() => {
+                          setReviewPublished(true);
+                          setPaused(true);
+                        }}
+                        className={`mt-3 flex w-full items-center justify-center gap-1.5 rounded-lg py-2 text-xs font-semibold transition-colors ${
+                          reviewPublished
+                            ? 'bg-white text-[#0A0B0E]'
+                            : 'bg-[#E03528] text-white hover:bg-[#F04438]'
+                        }`}
+                      >
+                        <Check className="h-3.5 w-3.5" aria-hidden="true" />
+                        <span>{reviewPublished ? 'Published to Google Maps' : 'Approve & publish reply'}</span>
+                      </button>
+                    </div>
+                  </motion.div>
+                )}
+
+                {activeTab === 'edits' && (
+                  <motion.div
+                    key="edits"
+                    initial={prefersReduced ? false : { opacity: 0, y: 8 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={prefersReduced ? undefined : { opacity: 0, y: -6 }}
+                    transition={{ duration: 0.2, ease: [0.22, 1, 0.36, 1] }}
+                    className="space-y-3"
+                  >
+                    <div className="rounded-2xl bg-[#141720] p-4 ring-1 ring-white/[0.08]">
+                      <div className="flex items-center justify-between">
+                        <p className="font-mono-data text-[10px] text-[#98A0B2]">STUDIO CONCIERGE</p>
+                        <span className="font-mono-data text-[10px] text-white/75">24 min left</span>
+                      </div>
+                      <p className="mt-1.5 text-sm font-semibold text-white">
+                        Request a website update
+                      </p>
+                      <p className="mt-1 text-[11px] leading-relaxed text-[#98A0B2]">
+                        Tap a quick change — our London studio publishes it inside 24 hours.
+                      </p>
+
+                      <div className="mt-3 space-y-2">
+                        <div className="flex items-center justify-between rounded-lg bg-white/[0.05] px-3 py-2 text-[11px]">
+                          <span className="text-white/90">Bank holiday hours live</span>
+                          <span className="font-mono-data text-[10px] text-[#98A0B2]">Done · 2h</span>
+                        </div>
+                        <button
+                          type="button"
+                          onClick={() => {
+                            setEditSent(true);
+                            setPaused(true);
+                          }}
+                          className={`flex w-full items-center justify-between rounded-lg px-3 py-2.5 text-left text-[11px] font-semibold transition-colors ${
+                            editSent
+                              ? 'bg-white text-[#0A0B0E]'
+                              : 'bg-[#E03528] text-white hover:bg-[#F04438]'
+                          }`}
+                        >
+                          <span>
+                            {editSent
+                              ? 'Queued: Update Skin Fade to £38'
+                              : 'Tap to queue: Update Skin Fade to £38'}
+                          </span>
+                          <Sparkles className="h-3.5 w-3.5 shrink-0" aria-hidden="true" />
+                        </button>
+                      </div>
+                    </div>
+
+                    <div className="flex items-center justify-between rounded-xl bg-white/[0.04] px-3.5 py-2.5 font-mono-data text-[10px] text-[#98A0B2]">
+                      <span>Domain: kingslandblade.co.uk</span>
+                      <span className="text-white">SSL Active</span>
+                    </div>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </div>
+
+            {/* Bottom iOS Tab Dock + Home Bar */}
+            <div className="border-t border-white/[0.08] bg-[#0F1117] px-4 pt-2.5 pb-2">
+              <div className="grid grid-cols-4 text-center text-[10px] font-medium">
+                <button
+                  type="button"
+                  onClick={() => {
+                    setActiveTab('overview');
+                    setPaused(true);
+                  }}
+                  className={`flex flex-col items-center gap-1 transition-colors ${
+                    activeTab === 'overview' ? 'text-white' : 'text-[#7D8596] hover:text-white'
+                  }`}
+                >
+                  <TrendingUp className="h-3.5 w-3.5" aria-hidden="true" />
+                  <span>Today</span>
+                </button>
+                <button
+                  type="button"
+                  onClick={() => {
+                    setActiveTab('calls');
+                    setPaused(true);
+                  }}
+                  className={`flex flex-col items-center gap-1 transition-colors ${
+                    activeTab === 'calls' ? 'text-white' : 'text-[#7D8596] hover:text-white'
+                  }`}
+                >
+                  <MessageSquare className="h-3.5 w-3.5" aria-hidden="true" />
+                  <span>Calls</span>
+                </button>
+                <button
+                  type="button"
+                  onClick={() => {
+                    setActiveTab('reviews');
+                    setPaused(true);
+                  }}
+                  className={`flex flex-col items-center gap-1 transition-colors ${
+                    activeTab === 'reviews' ? 'text-white' : 'text-[#7D8596] hover:text-white'
+                  }`}
+                >
+                  <Star className="h-3.5 w-3.5" aria-hidden="true" />
+                  <span>Reviews</span>
+                </button>
+                <button
+                  type="button"
+                  onClick={() => {
+                    setActiveTab('edits');
+                    setPaused(true);
+                  }}
+                  className={`flex flex-col items-center gap-1 transition-colors ${
+                    activeTab === 'edits' ? 'text-white' : 'text-[#7D8596] hover:text-white'
+                  }`}
+                >
+                  <SlidersHorizontal className="h-3.5 w-3.5" aria-hidden="true" />
+                  <span>Edits</span>
+                </button>
+              </div>
+              <div className="mx-auto mt-2.5 h-1 w-24 rounded-full bg-white/25" aria-hidden="true" />
             </div>
           </div>
-          <CheckCircle2 className="h-4 w-4 shrink-0 text-[#2347FF] dark:text-[#5C7BFF]" aria-hidden="true" />
         </div>
-
-        {/* Interactive 4-Column Segmented Tab Strip (zero clipping) */}
-        <div
-          role="tablist"
-          aria-label="Preview emtrc features"
-          className="grid grid-cols-4 gap-1 px-3.5 pt-3 pb-2"
-        >
-          {screens.map((screen, idx) => {
-            const active = idx === activeIndex;
-            return (
-              <button
-                key={screen.id}
-                type="button"
-                role="tab"
-                aria-label={screen.tabLabel}
-                aria-selected={active}
-                onClick={() => {
-                  setActiveIndex(idx);
-                  setPaused(true);
-                }}
-                className={`rounded-md px-1.5 py-1.5 text-center text-[11px] font-semibold ${
-                  active
-                    ? 'bg-[#0B132B] text-[#F5F3EE] shadow-xs dark:bg-[#2347FF] dark:text-white'
-                    : 'bg-[#ECE7DB] text-[#3F495C] hover:bg-[#E1DACB] dark:bg-[#1A243D] dark:text-[#B4C0D8] dark:hover:bg-[#223050]'
-                }`}
-              >
-                {shortTabLabels[idx] ?? screen.tabLabel}
-              </button>
-            );
-          })}
-        </div>
-
-        {/* Crisp Phone Screen Content */}
-        <div className="min-h-[252px] px-4 pt-2 pb-3">
-          <AnimatePresence mode="popLayout" initial={false}>
-            <motion.div
-              key={current.id}
-              initial={prefersReduced ? false : { opacity: 0, y: 6 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={prefersReduced ? undefined : { opacity: 0 }}
-              transition={{ duration: 0.16, ease: [0.16, 1, 0.3, 1] }}
-            >
-              <p className="font-editorial text-base font-bold leading-tight">{current.title}</p>
-              <p className="mt-0.5 text-xs text-[#5C667A] dark:text-[#9AA6BE]">{current.subtitle}</p>
-
-              <div className="mt-3 space-y-1.5">
-                {current.rows.map((row) => (
-                  <div
-                    key={row.label}
-                    className="flex items-center justify-between gap-2 rounded-lg border border-[#E5DFD2] bg-white px-3 py-2 text-xs dark:border-[#202C47] dark:bg-[#172138]"
-                  >
-                    <span className="text-[#4A5468] dark:text-[#B4C0D8] truncate">{row.label}</span>
-                    <span
-                      className={`font-semibold tabular-nums whitespace-nowrap shrink-0 ${
-                        'highlight' in row && row.highlight
-                          ? 'text-[#2347FF] dark:text-[#6B8AFF]'
-                          : 'text-[#0E172A] dark:text-[#F4F5F8]'
-                      }`}
-                    >
-                      {row.value}
-                    </span>
-                  </div>
-                ))}
-              </div>
-
-              <p className="mt-3 text-[11px] leading-relaxed text-[#4A5468] dark:text-[#9AA6BE]">
-                {current.footerNote}
-              </p>
-            </motion.div>
-          </AnimatePresence>
-        </div>
-
-        {/* Bottom mini navigation bar */}
-        <div
-          aria-hidden="true"
-          className="grid grid-cols-4 border-t border-[#E4DEC9] px-2 py-2.5 text-center text-[10px] font-medium text-[#5C667A] dark:border-[#1E2A45] dark:text-[#8E9BB5]"
-        >
-          <div className={`flex flex-col items-center gap-0.5 ${activeIndex === 0 ? 'text-[#2347FF] dark:text-[#6B8AFF] font-semibold' : ''}`}>
-            <Globe className="h-3.5 w-3.5" />
-            <span>Site</span>
-          </div>
-          <div className={`flex flex-col items-center gap-0.5 ${activeIndex === 1 ? 'text-[#2347FF] dark:text-[#6B8AFF] font-semibold' : ''}`}>
-            <PhoneCall className="h-3.5 w-3.5" />
-            <span>Calls</span>
-          </div>
-          <div className={`flex flex-col items-center gap-0.5 ${activeIndex === 2 ? 'text-[#2347FF] dark:text-[#6B8AFF] font-semibold' : ''}`}>
-            <Star className="h-3.5 w-3.5" />
-            <span>Reviews</span>
-          </div>
-          <div className={`flex flex-col items-center gap-0.5 ${activeIndex === 3 ? 'text-[#2347FF] dark:text-[#6B8AFF] font-semibold' : ''}`}>
-            <MessageSquare className="h-3.5 w-3.5" />
-            <span>Report</span>
-          </div>
-        </div>
-      </div>
+      </ParallaxLayer>
     </div>
   );
 }

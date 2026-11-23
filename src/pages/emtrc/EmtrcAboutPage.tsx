@@ -37,42 +37,76 @@ export function EmtrcAboutPage() {
       />
 
       {/* Editorial Hero */}
-      <section className="border-b border-[var(--emtrc-border)] pt-12 pb-16 sm:pt-16 sm:pb-20">
+      <section className="hero-editorial-wash border-b border-[var(--emtrc-border)] pt-12 pb-16 sm:pt-16 sm:pb-20">
         <div className="mx-auto max-w-[1200px] px-5 sm:px-8">
           <div className="grid grid-cols-1 gap-10 lg:grid-cols-12 lg:items-center">
             <div className="lg:col-span-7">
-              <p className="text-xs font-bold tracking-wide text-[var(--emtrc-brass)]">
-                About emtrc · Built for independent London
-              </p>
-              <h1 className="mt-3 font-editorial text-4xl font-extrabold leading-[1.03] tracking-[-0.035em] text-[var(--emtrc-ink)] sm:text-6xl">
-                Great local businesses deserve
-                <span className="block text-[var(--emtrc-muted)]">
-                  a proper website — without the £2,500 bill.
-                </span>
-              </h1>
-              <p className="mt-5 text-base leading-relaxed text-[var(--emtrc-muted)] sm:text-lg">
-                Walk down any London high street and you will find brilliant barbers, salons,
-                cleaners, cafés and tradespeople doing five-star work — yet losing daily enquiries
-                because they only have an Instagram page, an outdated website, or missed calls while
-                their hands are full.
-              </p>
-              <p className="mt-4 text-base leading-relaxed text-[var(--emtrc-muted)]">
-                emtrc exists to close that gap: agency-grade mobile websites, proper business email,
-                local Google Maps foundations and practical AI call-handling, looked after for one
-                clear monthly fee.
-              </p>
+              <Reveal immediate>
+                <p className="font-mono-data text-xs font-bold tracking-wider text-[var(--emtrc-accent)]">
+                  ABOUT EMTRC · BUILT FOR INDEPENDENT LONDON
+                </p>
+                <h1 className="mt-3 font-editorial text-4xl font-bold leading-[1.03] tracking-[-0.03em] text-[var(--emtrc-ink)] sm:text-6xl">
+                  Great local businesses deserve
+                  <span className="block text-[var(--emtrc-muted)]">
+                    a proper website — without the £2,500 bill.
+                  </span>
+                </h1>
+                <p className="mt-5 text-base leading-relaxed text-[var(--emtrc-muted)] sm:text-lg">
+                  Walk down any London high street and you will find brilliant barbers, salons,
+                  cleaners, cafés and tradespeople doing five-star work — yet losing daily enquiries
+                  because they only have an Instagram page, an outdated website, or missed calls while
+                  their hands are full.
+                </p>
+                <p className="mt-4 text-base leading-relaxed text-[var(--emtrc-muted)]">
+                  emtrc exists to close that gap: agency-grade mobile websites, proper business email,
+                  local Google Maps foundations and practical AI call-handling, looked after for one
+                  clear monthly fee.
+                </p>
+              </Reveal>
             </div>
 
             <div className="lg:col-span-5">
-              <div className="overflow-hidden rounded-2xl border border-[var(--emtrc-border)] bg-[var(--emtrc-sand)] shadow-sm">
+              <Reveal immediate delay={0.1}>
+                <div className="overflow-hidden rounded-2xl border border-[var(--emtrc-border)] bg-[var(--emtrc-sand)] shadow-lg">
+                  <img
+                    src="/src/assets/images/emtrc_london_studio_team_1795422461958.jpg"
+                    alt="Sunlit Clerkenwell London design studio with dark Crittall factory windows and oak workbenches"
+                    className="aspect-[4/3] w-full object-cover"
+                  />
+                </div>
+              </Reveal>
+            </div>
+          </div>
+
+          {/* Documentary London Trade Triptych */}
+          <Reveal delay={0.14}>
+            <div className="mt-12 grid grid-cols-1 gap-4 sm:grid-cols-3">
+              <div className="overflow-hidden rounded-xl border border-[var(--emtrc-border)]">
                 <img
-                  src="/src/assets/images/emtrc_hero_london_highstreet_1795374294553.jpg"
-                  alt="Independent London Victorian high street shopfronts in morning light"
-                  className="aspect-[4/3] w-full object-cover"
+                  src="/src/assets/images/emtrc_london_barber_craft_1795422463841.jpg"
+                  alt="Independent East London barber finishing a precision fade"
+                  loading="lazy"
+                  className="h-44 w-full object-cover"
+                />
+              </div>
+              <div className="overflow-hidden rounded-xl border border-[var(--emtrc-border)]">
+                <img
+                  src="/src/assets/images/emtrc_london_plumber_van_1795422464729.jpg"
+                  alt="London heating engineer inspecting precision copper manifold"
+                  loading="lazy"
+                  className="h-44 w-full object-cover"
+                />
+              </div>
+              <div className="overflow-hidden rounded-xl border border-[var(--emtrc-border)]">
+                <img
+                  src="/src/assets/images/emtrc_london_cafe_owner_1795422462836.jpg"
+                  alt="Independent London café owner pouring a flat white by green timber shopfront"
+                  loading="lazy"
+                  className="h-44 w-full object-cover"
                 />
               </div>
             </div>
-          </div>
+          </Reveal>
         </div>
       </section>
 

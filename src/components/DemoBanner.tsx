@@ -15,7 +15,7 @@ export function DemoBanner() {
       role="region"
       aria-label="Demo website notice"
       data-testid="demo-mode-banner"
-      className="border-b border-[#2347FF]/30 bg-[#2347FF] px-4 py-2 text-center text-xs font-medium text-white"
+      className="border-b border-white/15 bg-[#0A0B0E] px-4 py-2 text-center text-xs font-medium text-white"
     >
       <p className="mx-auto max-w-[1200px] leading-snug">
         This is a free demo website made for{' '}
